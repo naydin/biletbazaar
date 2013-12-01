@@ -1,4 +1,4 @@
-from Events.models import Event
+from data.models import Event
 
 def insertEvent(name, description):
     e = Event(name,description)
