@@ -4,7 +4,7 @@ from django.template import Context
 from Events.eventManager import *
 
 def hello(request):
-    return HttpResponse("Hi world")
+    return HttpResponse("Hola world")
     
 def events(request):
     event_list = getAllEvents()

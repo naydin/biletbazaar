@@ -6,6 +6,7 @@ class Event(models.Model):
     #photo_url
     #place
     #date & time
+    #creation date
     
     def __unicode__(self):
             return self.name
