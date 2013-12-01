@@ -1,0 +1,19 @@
+<html>
+<head><title>Events</title></head>
+
+<body>
+	<h2>Events listed:</h2>
+	
+	<table border="1">
+		<tr>
+			<td>name</td>
+			<td>event description</td>
+		</tr>
+		{%for event in event_list%}
+		<tr>
+			<td>{{event.name}}</td>
+			<td>{{event.description}}</td>
+		</tr>
+		{%endfor%}
+	</table>
+</body>
