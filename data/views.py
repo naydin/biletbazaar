@@ -1,1 +1,5 @@
-# Create your views here.
+from data.models import *
+
+def getEventGroups:
+    return Publisher.objects.all()
+    

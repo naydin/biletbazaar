@@ -5,7 +5,7 @@ class EventGroup(models.Model):
     name = models.CharField(max_length = 30)
     description = models.CharField(max_length = 200)
     category = models.CharField(max_length = 30,null=True)
-    saleCount = models.IntegerField()
+    saleCount = models.IntegerField(default=0)
     photoUrl = models.URLField(null=True)
     #time interval?
     
@@ -15,7 +15,6 @@ class Event(models.Model):
     place = models.CharField(max_length = 30)
     date = models.DateField()
     city = models.CharField(max_length = 15)
-
 
 class User(models.Model):
     id = models.AutoField(primary_key=True)

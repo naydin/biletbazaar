@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
-from views import hello
+from views import *
+from forms import *
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -17,4 +18,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     
     url(r'^hello/$', hello),
+    url(r'^eventgroups/$', event_groups),
+    url(r'^landing/$', landing),
 )

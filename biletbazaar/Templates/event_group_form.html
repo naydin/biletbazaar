@@ -1,0 +1,12 @@
+<!-- <html>
+<head><title>Event Group Form Title</title></head>
+<body> -->
+<form action="" method="post">
+	<table>
+		{{ form.as_table }}
+	</table>
+	{% csrf_token %}
+	<input type="submit" value="Submit">
+</form>
+<!-- <body>
+</html> -->
