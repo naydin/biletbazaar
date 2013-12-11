@@ -66,7 +66,7 @@ MEDIA_URL = ''
 
 import os
 STATIC_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), "static")
-print STATIC_ROOT
+STATIC_TEMP_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), "statictemp")
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -74,6 +74,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    STATIC_TEMP_ROOT,
     # "/Users/naydin/downloads/folder",
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
