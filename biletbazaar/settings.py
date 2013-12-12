@@ -65,12 +65,12 @@ MEDIA_URL = ''
 # Example: "/var/www/example.com/static/"
 
 import os
-STATIC_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), "static")
+STATIC_ROOT = LOCAL_STATIC_ROOT
 STATIC_TEMP_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), "statictemp")
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = '/static/'
+STATIC_URL = LOCAL_STATIC_URL
 
 # Additional locations of static files
 STATICFILES_DIRS = (
