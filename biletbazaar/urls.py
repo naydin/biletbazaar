@@ -19,5 +19,5 @@ urlpatterns = patterns('',
     
     url(r'^hello/$', hello),
     url(r'^eventgroups/$', event_groups),
-    url(r'^landing/$', landing),
+    url(r'^$', landing),
 )
