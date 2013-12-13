@@ -6,6 +6,7 @@ from forms import *
 from django.contrib import admin
 admin.autodiscover()
 
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'biletbazaar.views.home', name='home'),
