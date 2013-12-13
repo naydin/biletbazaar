@@ -5,6 +5,9 @@ from data.eventManager import *
 from django.shortcuts import render
 from forms import *
 
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+
 def hello(request):
     return HttpResponse("Hola world")
 
@@ -24,8 +27,13 @@ def event_groups(request):
 
 def landing(request):
     if request.method == 'POST':
+        email = request.POST['email']
+        try:
+            validate_email(email)
+        except ValidationError:
+            return HttpResponse("Adam gibi mail gir lan")
         user = LandingUser()
-        user.email = request.POST['email']
+        user.email = email
         user.save()
 
     return render(request,'landing_page.html',{'base':'/static/'})
