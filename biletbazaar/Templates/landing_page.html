@@ -11,9 +11,10 @@
 	<div>
 	<img src="{{base}}landing_image.png"/>
     <div class="form">
-    	<form  action="" method="post">
-         	<input type="submit" value="Gonder">	                      							    								          		         	
-         	<input  type="text" placeholder="e-posta adresi">    
+    	<form  action="/landing/" method="post">
+			{% csrf_token %}
+         	<input type="submit" value="Gonder" >	                      							    								          		         	
+         	<input  type="text" placeholder="e-posta adresi" name ="email">    
     	</form>
 	</div>
 </body>

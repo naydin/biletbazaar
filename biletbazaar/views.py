@@ -23,6 +23,11 @@ def event_groups(request):
     return render(request,'event_group_form.html',{'form':form})
 
 def landing(request):
+    if request.method == 'POST':
+        user = LandingUser()
+        user.email = request.POST['email']
+        user.save()
+
     return render(request,'landing_page.html',{'base':'/static/'})
 
 # def events(request):
