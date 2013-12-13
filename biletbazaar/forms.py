@@ -42,3 +42,7 @@ class TicketForm(forms.Form):
     creationDate = forms.DateField()
     ticketCount = forms.IntegerField()
     seatCategory = forms.CharField(max_length = 30)
+    
+class LandingUserForm(forms.Form):
+    email = forms.EmailField()
+    

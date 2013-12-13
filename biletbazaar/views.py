@@ -23,7 +23,7 @@ def event_groups(request):
     return render(request,'event_group_form.html',{'form':form})
 
 def landing(request):
-    return render(request,'landing_page.html',{'base':'/static/'})
+    return render(request,'landing_page.html',{'base':'/static/','form':LandingUserForm()})
 
 # def events(request):
 #     event_list = getAllEvents()
@@ -33,3 +33,4 @@ def landing(request):
 #     # insertEventt()
 # 
 #     return HttpResponse(html)
+

@@ -36,7 +36,9 @@ class Ticket(models.Model):
     ticketCount = models.IntegerField()
     seatCategory = models.CharField(max_length = 30)
     
-    
+class LandingUser(models.Model):
+    id = models.AutoField(primary_key=True)
+    email = models.EmailField()
     
     # name = models.CharField(max_length = 30)
 #     description = models.CharField(max_length = 200)
