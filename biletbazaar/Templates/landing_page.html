@@ -8,17 +8,13 @@
 </head>
 
 <body>
-	<img src="{{ base }}landing_image.png"/>
+	<div>
+	<img src="landing_image.png"/>
     <div class="form">
-    	<div>
-			<form id="searchbox" action="" method="post">
-                <!-- <input id="submit" type="submit" value="Gonder">
-    			<input id="search" type="text" placeholder="e-posta adresi"> -->
-					{{ form.email }}
-					{% csrf_token %}
-					<input type="submit" value="Submit">
-			</form>
-        </div>
-    </div>
+    	<form  action="" method="post">
+         	<input type="submit" value="Gönder">
+         	<input  type="text" placeholder="e-posta adresi">	                      							    								          		         	<input  type="text" placeholder="e-posta adresi">    
+    	</form>
+	</div>
 </body>
 </html>
