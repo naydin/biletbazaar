@@ -166,3 +166,9 @@ LOGGING = {
         },
     }
 }
+
+EMAIL_HOST = 'smtp.webfaction.com'
+EMAIL_HOST_USER = 'biletbosta_mail'
+EMAIL_HOST_PASSWORD = '398398Na'
+DEFAULT_FROM_EMAIL = 'biletbosta@naydin.webfactional.com'
+SERVER_EMAIL = 'biletbosta@naydin.webfactional.com'
