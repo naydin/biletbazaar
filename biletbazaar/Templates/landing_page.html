@@ -5,17 +5,35 @@
 <title>Bilet Bosta | Kalmasin</title>
 <link href="{{ base }}landing_css.css" rel="stylesheet" type="text/css" />
 
+<script>
+function validateForm()
+{
+var x=document.forms["mail_collect"]["email"].value;
+var atpos=x.indexOf("@");
+var dotpos=x.lastIndexOf(".");
+if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+  {
+  document.getElementById('warning').innerHTML = 'Lutfen gecerli bir email adresi giriniz.'
+  return false;
+  }
+}
+
+</script>
+
+
 </head>
 
 <body>
 	<div>
 	<img src="{{base}}landing_image.png"/>
     <div class="form">
-    	<form  action="/landing/" method="post">
+    	<form name="mail_collect"  action="/landing/" method="post" onsubmit="return validateForm();">
 			{% csrf_token %}
-         	<input type="submit" value="Gonder" >	                      							    								          		         	
-         	<input  type="text" placeholder="e-posta adresi" name ="email">    
+         		                      							    								          		         	
+         	<input class="tb"  type="text" placeholder="  e-posta adresi" name ="email">  
+         	<input type="submit" value="Gonder" >  
     	</form>
+    	<label class="warn" id="warning"></label>
 	</div>
 </body>
 </html>

@@ -28,12 +28,30 @@ img{
 
 .form{
 	position:absolute;
-	left:62%;
+	left:63%;
 	top:64%;
 	z-index:100px;
 	height:30px;;
-	width:250px;;
+	width:300px;;
 }
+
+
+
+.form .warn{
+	margin-top: 15px;
+	color:#F00;
+}
+
+.form .tb { 
+    border: 1px solid #848484; 
+    -webkit-border-radius: 30px; 
+    -moz-border-radius: 30px; 
+    border-radius: 30px; 
+    outline:0; 
+    height:18px; 
+    width: 170px; 
+   
+  } 
 
 
 
