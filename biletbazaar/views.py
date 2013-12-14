@@ -27,24 +27,29 @@ def event_groups(request):
     return render(request,'event_group_form.html',{'form':form})
 
 def landing(request):
+    clientError = u""
     if request.method == 'POST':
         reqEmail = request.POST['email']
+
         try:
             if LandingUser.objects.get(email=reqEmail).email == reqEmail:
-                return HttpResponse("Bu mail var panpa")
+                clientError = u"Bu e-mail zaten mevcut."
+                return render(request,'landing_page.html',{'base':'/static/','error':clientError})
         except LandingUser.DoesNotExist:
             pass
 
         try:
             validate_email(reqEmail)
         except ValidationError:
-            return HttpResponse("Adam gibi mail gir lan")
+            clientError = u"Lutfen Gecerli bir e-mail adresi girin."
+            return render(request,'landing_page.html',{'base':'/static/','error':clientError})
 
         user = LandingUser()
         user.email = reqEmail
-        # user.save()
-
-    return render(request,'landing_page.html',{'base':'/static/'})
+        user.save()
+        clientError = u"E-mail adreseniz sistemize kaydedildi."
+        
+    return render(request,'landing_page.html',{'base':'/static/','error':clientError})
 
 # def events(request):
 #     event_list = getAllEvents()
