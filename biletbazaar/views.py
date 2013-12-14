@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context
 from data.eventManager import *
+from data.models import *
 from django.shortcuts import render
 from forms import *
 
@@ -27,14 +28,21 @@ def event_groups(request):
 
 def landing(request):
     if request.method == 'POST':
-        email = request.POST['email']
+        reqEmail = request.POST['email']
         try:
-            validate_email(email)
+            if LandingUser.objects.get(email=reqEmail).email == reqEmail:
+                return HttpResponse("Bu mail var panpa")
+        except LandingUser.DoesNotExist:
+            pass
+
+        try:
+            validate_email(reqEmail)
         except ValidationError:
             return HttpResponse("Adam gibi mail gir lan")
+
         user = LandingUser()
-        user.email = email
-        user.save()
+        user.email = reqEmail
+        # user.save()
 
     return render(request,'landing_page.html',{'base':'/static/'})
 
