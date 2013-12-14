@@ -1,8 +1,8 @@
 from django.http import HttpResponse
-from django.core.mail import send_mail
-from django.core.mail import EmailMessage
-from django.core.mail import EmailMultiAlternatives
-from html import HTML
+# from django.core.mail import send_mail
+# from django.core.mail import EmailMessage
+# from django.core.mail import EmailMultiAlternatives
+# from html import HTML
 from django.template.loader import get_template
 from django.template import Context
 from data.eventManager import *
@@ -53,11 +53,11 @@ def landing(request):
         user.save()
         clientError = u"E-mail adreseniz sistemize kaydedildi."
         
-        subject, from_email, to_mail = 'Bilet Bosta Hosgeldiniz', 'biletbosta@naydin.webfactional.com', [reqEmail]
-        text_content = 'Selam, naber?'
-
-        message = EmailMessage(subject, text_content, from_email,to_mail)
-        message.send()
+#         subject, from_email, to_mail = 'Bilet Bosta Hosgeldiniz', 'biletbosta@naydin.webfactional.com', [reqEmail]
+#         text_content = 'Selam, naber?'
+# 
+#         message = EmailMessage(subject, text_content, from_email,to_mail)
+#         message.send()
         
     return render(request,'landing_page.html',{'base':'/static/','error':clientError})
 
