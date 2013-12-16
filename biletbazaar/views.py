@@ -76,7 +76,7 @@ def send_maill(request):
     # subject, from_email, to = 'hello', 'from@example.com', 'to@example.com'
     text_content = ''
     # html_content = '<p>This is an <strong>important</strong> message.</p>'
-    c = Context()
+    c = Context({'base':'/static/'})
     t = loader.get_template('mail_template.html')
     html_content = t.render(c)
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
