@@ -64,11 +64,12 @@ def mail_template(request):
     return render(request,'mail_template.html',{'base':'/static/'})
 
 def send_mail(request):
-    subject, from_email, to_mail = 'Bilet Bosta\'ya Hosgeldiniz', 'biletbosta@naydin.webfactional.com','aydinnecati@gmail.com'
+    subject, from_emaill, to_maill = 'Bilet Bosta\'ya Hosgeldiniz', 'biletbosta@naydin.webfactional.com','aydinnecati@gmail.com'
     # text_content = 'Turkiye 2.el bilet pazari cok yakinda www.biletbosta.com adresinde sizlerle bulusacak!'
-    html_template = loader.get_template('mail_template.html')
-    message = EmailMessage(subject,text_content = "",from_email,to_mail,html_message = html_template)
-    message.send()
+    html_messagee = loader.get_template('mail_template.html')
+    # message = EmailMessage(subject,"",from_email,to_mail,html_message = html_template)
+    # message.send()
+    send_mail(subject = subjectt,from_email=from_emaill,to_mail=to_maill,html_message=html_messagee)
     return HttpResponse('oldu')
 # def events(request):
 #     event_list = getAllEvents()
