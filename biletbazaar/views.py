@@ -72,7 +72,6 @@ def send_maill(request):
     # message.send()
     c = Context({'base':'/static/'})
     send_mail(subject, html_message.render(c), from_email, [to_mail], fail_silently=False)
-    share
     return HttpResponse('oldu')
 # def events(request):
 #     event_list = getAllEvents()
