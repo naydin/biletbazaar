@@ -68,8 +68,10 @@ def send_mail(request):
     # text_content = 'Turkiye 2.el bilet pazari cok yakinda www.biletbosta.com adresinde sizlerle bulusacak!'
     text_content = 'content'
     html_message = loader.get_template('mail_template.html')
-    message = EmailMessage(subject,text_content,from_email,to_mail,html_message)
-    message.send()
+    # message = EmailMessage(subject,text_content,from_email,to_mail,html_message)
+    # message.send()
+    send_mail(subject, html_message.render(c), from_email, [to_mail], fail_silently=False)
+    share
     return HttpResponse('oldu')
 # def events(request):
 #     event_list = getAllEvents()
