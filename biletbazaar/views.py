@@ -53,7 +53,7 @@ def landing(request):
         clientError = u"E-mail adresiniz sistemize kaydedildi."
         
         subject, from_email, to_mail = 'Bilet Bosta Hosgeldiniz Mesaji', 'biletbosta@naydin.webfactional.com', [reqEmail]
-        text_content = 'Türkiye’nin ikinci el bilet platformu biletbosta.com ‘ a hoþ geldiniz! Etkinlik kapýnýzda, bilet elinizde ama planlar deðiþti son saniyede. Boþta kalan biletler artýk bu adreste. biletbosta.com ‘un güvenilir ve hýzlý hizmetiyle; katýlamayacaðýnýz konser, maç, festival, tiyatro biletlerini bu platform üzerinden satýþa sunabilirsiniz. Bu konser Türkiye’ye bir daha gelmez, bu derbi tribünden baþka yerde izlenmezse etkinlik kapalý giþe. Uzun zamandýr gitmek isteyip giþede bilet bulamadýðýnýz etkinlikler için ilk adresiniz biletbosta.com ile aradýðýnýz biletleri artýk çok daha kolay, güvenilir ve hýzlý bir þekilde satýn alabilirsiniz. Ucuz biletin ve kapalý giþe etkinliklerin adresi www.biletbosta.com Etkinlikler kaçmasýn, boþta bilet kalmasýn diyen herkes için, biletbosta.com çok yakýnda, çok yakýnýnýzda!'
+        text_content = 'Turkiye 2.el bilet pazari cok yakinda www.biletbosta.com adresinde sizlerle bulusacak!'
  
         message = EmailMessage(subject, text_content, from_email,to_mail)
         message.send()
