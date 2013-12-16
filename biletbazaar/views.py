@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
-from django.template import Context
+from django.template import Context,loader
 from data.eventManager import *
 from data.models import *
 from django.shortcuts import render
@@ -60,6 +60,16 @@ def landing(request):
         
     return render(request,'landing_page.html',{'base':'/static/','error':clientError})
 
+def mail_template(request):
+    return render(request,'mail_template.html',{'base':'/static/'})
+
+def send_mail(request):
+    subject, from_email, to_mail = 'Bilet Bosta\'ya Hosgeldiniz', 'biletbosta@naydin.webfactional.com','aydinnecati@gmail.com'
+    # text_content = 'Turkiye 2.el bilet pazari cok yakinda www.biletbosta.com adresinde sizlerle bulusacak!'
+    html_message = loader.get_template('mail_template.html')
+    message = EmailMessage(subject,from_email,to_mail,html_message)
+    message.send()
+    return HttpResponse('oldu')
 # def events(request):
 #     event_list = getAllEvents()
 #     t = get_template('events.html')
