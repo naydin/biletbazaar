@@ -64,14 +64,21 @@ def mail_template(request):
     return render(request,'mail_template.html',{'base':'/static/'})
 
 def send_maill(request):
-    subject, from_email, to_mail = 'Bilet Bosta\'ya Hosgeldiniz', 'biletbosta@naydin.webfactional.com','aydinnecati@gmail.com'
-    # text_content = 'Turkiye 2.el bilet pazari cok yakinda www.biletbosta.com adresinde sizlerle bulusacak!'
-    text_content = 'content'
-    html_message = loader.get_template('mail_template.html')
-    # message = EmailMessage(subject,text_content,from_email,to_mail,html_message)
-    # message.send()
-    c = Context({'base':'/static/'})
-    send_mail(subject, html_message, from_email, [to_mail], fail_silently=False)
+    subject, from_email, to = 'Bilet Bosta\'ya Hosgeldiniz', 'biletbosta@naydin.webfactional.com','aydinnecati@gmail.com'
+ #    # text_content = 'Turkiye 2.el bilet pazari cok yakinda www.biletbosta.com adresinde sizlerle bulusacak!'
+ #    text_content = 'content'
+ #    html_message = loader.get_template('mail_template.html')
+ #    # message = EmailMessage(subject,text_content,from_email,to_mail,html_message)
+ #    # message.send()
+ #    c = Context({'base':'/static/'})
+ #    send_mail(subject, html_message, from_email, [to_mail], fail_silently=False)
+ 
+    # subject, from_email, to = 'hello', 'from@example.com', 'to@example.com'
+    text_content = 'This is an important message.'
+    html_content = '<p>This is an <strong>important</strong> message.</p>'
+    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
     return HttpResponse('oldu')
 # def events(request):
 #     event_list = getAllEvents()
