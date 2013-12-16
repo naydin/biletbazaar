@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^eventgroups/$', event_groups),
     url(r'^landing/$',landing),
     url(r'^mailTemplate/$',mail_template),
-    url(r'^send_mail/$',send_mail),
+    url(r'^send_mail/$',send_maill),
     url(r'^$', landing),
     
 )
