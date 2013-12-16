@@ -21,8 +21,8 @@ urlpatterns = patterns('',
     url(r'^hello/$', hello),
     url(r'^eventgroups/$', event_groups),
     url(r'^landing/$',landing),
-    url(r'^mailTemplate/$',mail_template),
-    url(r'^send_mail/$',send_maill),
+    # url(r'^mailTemplate/$',mail_template),
+    # url(r'^send_mail/$',send_maill),
     url(r'^$', landing),
     
 )

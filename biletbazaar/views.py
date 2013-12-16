@@ -52,37 +52,28 @@ def landing(request):
         user.save()
         clientError = u"E-mail adresiniz sistemize kaydedildi."
         
-        subject, from_email, to_mail = 'Bilet Bosta Hosgeldiniz Mesaji', 'biletbosta@naydin.webfactional.com', [reqEmail]
-        text_content = 'Turkiye 2.el bilet pazari cok yakinda www.biletbosta.com adresinde sizlerle bulusacak!'
- 
-        message = EmailMessage(subject, text_content, from_email,to_mail)
-        message.send()
+        # subject, from_email, to_mail = 'Bilet Bosta Hosgeldiniz Mesaji', 'biletbosta@naydin.webfactional.com', [reqEmail]
+#         text_content = 'Turkiye 2.el bilet pazari cok yakinda www.biletbosta.com adresinde sizlerle bulusacak!'
+#  
+#         message = EmailMessage(subject, text_content, from_email,to_mail)
+#         message.send()
+        send_maill(reqEmail)
         
     return render(request,'landing_page.html',{'base':'/static/','error':clientError})
 
 def mail_template(request):
     return render(request,'mail_template.html',{'base':'/static/'})
 
-def send_maill(request):
-    subject, from_email, to = 'Bilet Bosta\'ya Hosgeldiniz', 'biletbosta@naydin.webfactional.com','aydinnecati@gmail.com'
- #    # text_content = 'Turkiye 2.el bilet pazari cok yakinda www.biletbosta.com adresinde sizlerle bulusacak!'
- #    text_content = 'content'
- #    html_message = loader.get_template('mail_template.html')
- #    # message = EmailMessage(subject,text_content,from_email,to_mail,html_message)
- #    # message.send()
- #    c = Context({'base':'/static/'})
- #    send_mail(subject, html_message, from_email, [to_mail], fail_silently=False)
- 
-    # subject, from_email, to = 'hello', 'from@example.com', 'to@example.com'
+def send_maill(email):
+    subject, from_email, to = 'Bilet Bosta\'ya Hosgeldiniz', 'biletbosta@naydin.webfactional.com',mail
     text_content = ''
-    # html_content = '<p>This is an <strong>important</strong> message.</p>'
     c = Context({'ig_url':'http://www.biletbosta.com/static/bilet-bosta-reklam.png'})
     t = loader.get_template('mail_template.html')
     html_content = t.render(c)
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
     msg.attach_alternative(html_content, "text/html")
     msg.send()
-    return HttpResponse('oldu')
+
 # def events(request):
 #     event_list = getAllEvents()
 #     t = get_template('events.html')
