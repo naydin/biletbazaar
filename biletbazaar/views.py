@@ -66,8 +66,8 @@ def mail_template(request):
 def send_mail(request):
     subject, from_email, to_mail = 'Bilet Bosta\'ya Hosgeldiniz', 'biletbosta@naydin.webfactional.com','aydinnecati@gmail.com'
     # text_content = 'Turkiye 2.el bilet pazari cok yakinda www.biletbosta.com adresinde sizlerle bulusacak!'
-    html_message = loader.get_template('mail_template.html')
-    message = EmailMessage(subject,from_email,to_mail,html_message)
+    html_template = loader.get_template('mail_template.html')
+    message = EmailMessage(subject,text_content = "",from_email,to_mail,html_message = html_template)
     message.send()
     return HttpResponse('oldu')
 # def events(request):
