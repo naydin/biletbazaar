@@ -70,7 +70,8 @@ def send_mail(request):
     html_message = loader.get_template('mail_template.html')
     # message = EmailMessage(subject,text_content,from_email,to_mail,html_message)
     # message.send()
-    send_mail(subject, html_message.render(), from_email, [to_mail], fail_silently=False)
+    c = Context({'base':'/static/'})
+    send_mail(subject, html_message.render(c), from_email, [to_mail], fail_silently=False)
     share
     return HttpResponse('oldu')
 # def events(request):
