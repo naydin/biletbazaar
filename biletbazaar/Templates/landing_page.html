@@ -28,14 +28,15 @@ if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
 <body>
 	<div>
 	<img src="{{base}}landing_bg.png"/>
-    <div class="form">
-    	<form name="mail_collect"  action="/landing/" method="post" onsubmit="return validateForm();">
+    <div >
+    	<form class="form" name="mail_collect"  action="/landing/" method="post" onsubmit="return validateForm();">
 			{% csrf_token %}
          		                      							    								          		         	
-         	<input class="tb"  type="text" placeholder="  e-posta adresi" name ="email">  
-         	<input class="button" type="submit" value="Kaydet" >  
+         	<input style=" width:65%; font-size:100%" class="tb"  type="text" placeholder="  e-posta adresi" name ="email">  
+         	<input style="width:25%; font-size:100%" class="button" type="submit" value="Kaydet" >
+         	<label class="warn" id="warning">{{ error }}</label>  
     	</form>
-    	<label class="warn" id="warning">{{ error }}</label>
+    	
 	</div>
 </body>
 </html>
