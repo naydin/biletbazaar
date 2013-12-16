@@ -74,8 +74,9 @@ def send_maill(request):
  #    send_mail(subject, html_message, from_email, [to_mail], fail_silently=False)
  
     # subject, from_email, to = 'hello', 'from@example.com', 'to@example.com'
-    text_content = 'This is an important message.'
-    html_content = '<p>This is an <strong>important</strong> message.</p>'
+    text_content = ''
+    # html_content = '<p>This is an <strong>important</strong> message.</p>'
+    html_content = loader.get_template('mail_template.html')
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
     msg.attach_alternative(html_content, "text/html")
     msg.send()
