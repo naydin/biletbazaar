@@ -7,7 +7,10 @@
 <link rel="shortcut icon" href="{{ base }}bilet-bosta-reklam.png" />
 <link rel="icon" href="{{ base }}bilet-bosta-reklam.png" />
 
+
 <script>
+ $(window).load(function() {  document.getElementById("hideAll").style.display = "none"; });
+
 function validateForm()
 {
 var x=document.forms["mail_collect"]["email"].value;
@@ -26,7 +29,7 @@ if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
 </head>
 
 <body>
-	<div>
+	<div style="display: none" id="hideAll">&nbsp;</div>
 	<img src="{{base}}landing_bg.jpg"/>
     <div >
     	<form class="form" name="mail_collect"  action="/landing/" method="post" onsubmit="return validateForm();">
