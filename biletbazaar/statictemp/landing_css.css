@@ -50,11 +50,53 @@ img{
 }
 
 
+.social{
+
+	position:relative;
+	left:60%;
+	top:90%;
+	height: 6%;
+	width:30%;
+}
+
+.social .fb{
+	position:absolute;
+	margin-left:0px;
+	height:100%;
+	width:50%;
+}
+
+
+
+.social .twitter{
+	position:absolute;
+	margin-left:50%;
+	height:100%;
+	width:50%;
+	
+}
+
+.social .fb .fb_img{
+	width:80%;
+	height:80%;
+}
+
+
+.social .twitter .tw_img{
+	width:80%;
+	height:80%;
+}
+	
+
+
+
+
 
 .form .warn{
-	margin-top: 15px;
+	margin-top: 50%;
 	color:#F00;
 }
+
 
 .form .tb {
 	
