@@ -15,20 +15,6 @@ body{
     padding:0;
 }
 
-
-#hideAll
- {
-   position: fixed;
-   left: 0px; 
-   right: 0px; 
-   top: 0px; 
-   bottom: 0px; 
-   background-color: white;
-   z-index: 99; /* Higher than anything else in the document */
-
- }
-
-
 img{
 	position:absolute;
 	left:0px;
@@ -41,6 +27,7 @@ img{
 
 
 .form{
+	
 	position:absolute;
 	left:61%;
 	top:77%;
@@ -48,7 +35,6 @@ img{
 	height:4%;
 	width:26%;
 }
-
 
 .social{
 
@@ -62,8 +48,8 @@ img{
 .social .fb{
 	position:absolute;
 	margin-left:0px;
-	height:100%;
-	width:50%;
+	height:80%;
+	width:40%;
 }
 
 
@@ -71,20 +57,20 @@ img{
 .social .twitter{
 	position:absolute;
 	margin-left:50%;
-	height:100%;
-	width:50%;
+	height:80%;
+	width:40%;
 	
 }
 
 .social .fb .fb_img{
-	width:80%;
-	height:80%;
+	width:100%;
+	height:100%;
 }
 
 
 .social .twitter .tw_img{
-	width:80%;
-	height:80%;
+	width:100%;
+	height:100%;
 }
 	
 
@@ -96,7 +82,6 @@ img{
 	margin-top: 50%;
 	color:#F00;
 }
-
 
 .form .tb {
 	
