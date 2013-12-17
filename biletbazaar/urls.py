@@ -24,5 +24,6 @@ urlpatterns = patterns('',
     # url(r'^mailTemplate/$',mail_template),
     # url(r'^send_mail/$',send_maill),
     url(r'^$', landing),
+    url('^anasayfa/$',anasayfa),
     
 )

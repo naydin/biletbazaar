@@ -64,6 +64,11 @@ def landing(request):
 def mail_template(request):
     return render(request,'mail_template.html',{'base':'/static/'})
 
+
+def anasayfa(request):
+    return render(request,'abc.html',{'base':'/static/'})
+
+
 def send_maill(email):
     subject, from_email, to = 'Bilet Bosta\'ya Hosgeldiniz', 'info@biletbosta.com',email
     text_content = ''
