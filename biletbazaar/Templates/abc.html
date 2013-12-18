@@ -10,14 +10,18 @@
     
     
     <style>
-    html{
+    
+    
+    
+ html{
 	font-family:"Myriad Pro";
 	font-size:14px;
 }
 body{
 	
-	background-image:url({{base}}resimler/deneme10.jpg);
-	width:1366px;
+	background-image:url({{ base }}resimler/deneme10.jpg);
+	overflow-y: scroll;
+	overflow-x: hidden;
 	
 }
 
@@ -33,8 +37,7 @@ a:active{
 }
 
 .header_css{
-	background-image:url({{base}}resimler/bg.png);
-	width:100%;
+	background-image:url({{ base }}resimler/bg.png);
 	height:195px;
 	margin-left:0px;
 	margin-top:0px;
@@ -42,17 +45,18 @@ a:active{
 }
 
 .header_css .banner{
-	margin-left:230px;
+	
+	
 	position:relative;
 	height:166px;
 	
 }
 
 .header_css .menu{
+	position:absolute;
 	text-align:center;
 	font-family:Tahoma, Geneva, sans-serif;
 	font-size:15px;
-	margin-left:230px;
 	margin-top:0px;
 	height:29px;
 }
@@ -60,7 +64,7 @@ a:active{
 
 .header_css .menu .anasayfa{
 	opacity:1;
-	background-image:url({{base}}resimler/anasayfa.png);
+	background-image:url({{ base }}resimler/anasayfa.png);
 	height:29px;
 	float:left;
 	width:157px;
@@ -100,7 +104,7 @@ a:active{
 
 .header_css .menu .muzik{
 	opacity:1;
-	background-image:url({{base}}resimler/muzik.png);
+	background-image:url({{ base }}resimler/muzik.png);
 	height:29px;
 	float:left;
 	width:144px;
@@ -108,7 +112,7 @@ a:active{
 
 .header_css .menu .spor{
 	opacity:1;
-	background-image:url({{base}}resimler/spor.png);
+	background-image:url({{ base }}resimler/spor.png);
 	height:29px;
 	float:left;
 	width:147px;
@@ -116,7 +120,7 @@ a:active{
 
 .header_css .menu .sahne{
 	opacity:1;
-	background-image:url({{base}}resimler/sahne.png);
+	background-image:url({{ base }}resimler/sahne.png);
 	height:29px;
 	float:left;
 	width:146px;
@@ -124,7 +128,7 @@ a:active{
 
 .header_css .menu .hakkimizda{
 	opacity:1;
-	background-image:url({{base}}resimler/hakkimizda.png);
+	background-image:url({{ base }}resimler/hakkimizda.png);
 	height:29px;
 	float:left;
 	width:151px;
@@ -132,7 +136,7 @@ a:active{
 
 .header_css .menu .sss{
 	opacity:1;
-	background-image:url({{base}}resimler/sss.png);
+	background-image:url({{ base }}resimler/sss.png);
 	margin-top:0px;
 	height:29px;
 	float:left;
@@ -181,10 +185,9 @@ a:active{
 .content_css{
 	position:relative;
 	background-color:#565554;
+	width:890px;
 	height:695px;
-	margin-left:230px;
-	margin-right:247px;
-	margin-top:0px;
+
 	
 }
 
@@ -302,7 +305,7 @@ a:active{
 	text-align:center;
 	font-size:24px;
 	position:absolute;
-	background-image:url({{base}}resimler/bilet_ilani_ver.png);
+	background-image:url({{ base }}resimler/bilet_ilani_ver.png);
 	margin-top: 12px;
 	margin-left: 587px;
 	width: 268px;
@@ -395,7 +398,7 @@ a:active{
 
 .content_css .white_bg .logo{
 	position:absolute;
-	background-image:url({{base}}resimler/bilet-bosta-reklam.png);
+	background-image:url({{ base }}resimler/bilet-bosta-reklam.png);
 	margin-top: 456px;
 	margin-left: 587px;
 	width: 268px;
@@ -404,7 +407,7 @@ a:active{
 
 
 .footer{
-	background-image:url({{base}}resimler/bg.png);
+	background-image:url({{ base }}resimler/bg.png);
 	height:165px;
 
 	margin-top:0px;
@@ -524,6 +527,9 @@ a:active{
 {
        border: 0;  /* Small centering fix for Firefox */
 }		
+ 
+    
+    
     
     </style>
     
@@ -542,6 +548,28 @@ a:active{
     
     <script>
     
+    
+    
+    	function myFunction()
+{
+var w = screen.availWidth;
+document.getElementById('content').style.marginLeft = Math.round( (w - 890)/2)+'px';
+document.getElementById('banner').style.marginLeft = Math.round( (w - 890)/2)+'px';
+document.getElementById('menu').style.marginLeft = Math.round( (w - 890)/2)+'px';
+document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)/2 +210 )+'px';
+
+
+
+
+
+
+
+};
+    
+    
+    
+    
+    
 
 	function changeImage(id) {
     	document.getElementById('big_photo').src = id;
@@ -553,15 +581,15 @@ a:active{
 
 </head>
 
-<body>
+<body onload="myFunction()">
 	<div class="header_css">
-    	<div class="banner">
+    	<div id="banner" class="banner">
         	<div class="logo">
-            	<a href="anasayfa"><img class="img" src="{{base}}resimler/logo.png" /></a>
+            	<a href=""><img class="img" src="{{base}}resimler/logo.png" /></a>
             </div>
             <div class="links">
             	<div class="hesabim"><a style="color:#FFF" href="#">yardim</a> | <a style="color:#FFF" href="#">hesabim</a></div>
-                <div class="uye_girisi"><a style="color:#FFF" href="#">Uye ol</a> | <a style="color:#FFF" href="#">Uye girisi</a>&nbsp;&nbsp;<a href="#"><img src="{{base}}resimler/facebook.png" /></a>&nbsp;<a href="#"><img src="{{base}}resimler/twitter.png" /></a>&nbsp;<a href="#"><img src="{{base}}resimler/googleplus.png" /></a></div>
+                <div class="uye_girisi"><a style="color:#FFF" href="#">uye ol</a> | <a style="color:#FFF" href="#">uye girisi</a>&nbsp;&nbsp;<a href="#"><img src="{{base}}resimler/facebook.png" /></a>&nbsp;<a href="#"><img src="{{base}}resimler/twitter.png" /></a>&nbsp;<a href="#"><img src="{{base}}resimler/googleplus.png" /></a></div>
                 <div class="search">
                 <form id="searchbox" action="">
                 <input id="submit" type="submit" value="Search">
@@ -571,7 +599,7 @@ a:active{
                 <div class="dil"><a style="color:#FFF" href="#">bize ulasin</a>&nbsp;&nbsp;<a style="color:#FFF" href="#">TR</a> | <a style="color:#FFF" href="#">ENG</a></div>
             </div>
         </div>
-        <div class="menu">
+        <div id="menu" class="menu">
       <a href="#"><div align="center" class="anasayfa"><span style="color:#FFF; vertical-align:middle">anasayfa</span></div></a>
             <a href="#"><div align="center" class="muzik"><span style="color:#FFF; vertical-align:middle">muzik</span></div></a>
             <a href="#"><div align="center" class="spor"><span style="color:#FFF; vertical-align:middle">spor</span></div></a>
@@ -580,7 +608,7 @@ a:active{
             <a class="button" href="#"><div align="center" class="sss"><span style="color:#FFF; vertical-align:middle">sss</span></div></a>
         </div>
     </div>
-    <div class="content_css">
+    <div id="content" class="content_css">
     	<div class="white_bg">
         	<div class="haftanin_etkinlikleri">
             	<div class="haftanin_etkinlikleri_yazi"><span style=" margin-left:10px;">haftanin etkinlikleri</span></div>
@@ -707,7 +735,7 @@ a:active{
         </div>
     </div>
     <div class="footer">
-    	<div class="footer_links">
+    	<div id="footer_links" class="footer_links">
         	<div class="link">Yardim<br /><a style="color:#FFF" href="#">Sikca Sorulan Sorular</a><br /><a style="color:#FFF" href="#">Bize Ulasin</a><br /><a style="color:#FFF" href="#">Teslimat Secenekleri</a><br /><a style="color:#FFF" href="#">Politikalarimiz</a></div>
             <div class="link">Hesabim<br /><a style="color:#FFF" href="#">Profilim</a><br /><a style="color:#FFF" href="#">Adreslerim</a><br /><a style="color:#FFF" href="#">Biletlerim</a></div>
             <div class="link">Hakkimizda<br /><a style="color:#FFF" href="#">TTK Bildirimleri</a><br /><a style="color:#FFF" href="#">Biz Kimiz?</a><br /><a style="color:#FFF" href="#">Site Haritasi</a></div>
