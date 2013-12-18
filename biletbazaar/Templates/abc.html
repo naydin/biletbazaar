@@ -552,7 +552,7 @@ a:active{
     
     	function myFunction()
 {
-var w = screen.availWidth;
+var w = document.documentElement.clientWidth;
 document.getElementById('content').style.marginLeft = Math.round( (w - 890)/2)+'px';
 document.getElementById('banner').style.marginLeft = Math.round( (w - 890)/2)+'px';
 document.getElementById('menu').style.marginLeft = Math.round( (w - 890)/2)+'px';
