@@ -30,7 +30,7 @@ if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
 
 <body>
 	<div style="display: none" id="hideAll">&nbsp;</div>
-	<img src="{{base}}landing_bg.jpg"/>
+	<img src="{{base}}landing_background.jpg"/>
     <div >
     	<form class="form" name="mail_collect"  action="/landing/" method="post" onsubmit="return validateForm();">
 			{% csrf_token %}
@@ -41,6 +41,13 @@ if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
          	<label class="warn" id="warning">{{ error }}</label>  
     	</form>
     	
+	</div>
+	<div class="social">
+    	<!-- Facebook -->
+		<a class="fb" href="https://www.facebook.com/pages/Bilet-Bo%C5%9Fta/182450405288050?ref=br_tf"><img class="fb_img" src="{{base}}fb_takip.png" /></a>
+ 
+		<!-- Twitter -->
+	  <a class="twitter" href="https://twitter.com/biletbosta"><img class="tw_img" src="{{base}}twitter_takip.png" /></a>
 	</div>
 </body>
 </html>
