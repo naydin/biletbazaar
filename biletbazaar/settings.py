@@ -1,7 +1,7 @@
 # Django settings for biletbazaar project.
 from local_settings import *
 
-DEBUG = False
+DEBUG = LOCAL_DEBUG
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
