@@ -7,6 +7,9 @@ class EventGroup(models.Model):
     category = models.CharField(max_length = 30,null=True)
     saleCount = models.IntegerField(default=0)
     photoUrl = models.URLField(null=True)
+    
+    def __unicode__(self):
+        return self.name
     #time interval?
     
 class Event(models.Model):

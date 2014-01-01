@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	    <title>Admin Panel</title>
+	</head>
+	<body>
+	    <h1>Admin Panel</h1>
+		<h2>Event Group</h2>
+	    {% if eventGroupModelForm.errors %}
+	        <p style="color: red;">
+	            Please correct the error{{ eventGroupModelForm.errors|pluralize }} below.
+	        </p>
+	    {% endif %}
+
+	    <form action="" method="post">
+	        <table>
+	            {{ eventGroupModelForm.as_table }}
+	        </table>
+	        {% csrf_token %}
+	        <input type="submit" name="eventGroupModelForm" value="Submit">
+	    </form>
+		
+		<h2>Event</h2>
+	    {% if eventModelForm.errors %}
+	        <p style="color: red;">
+	            Please correct the error{{ eventModelForm.errors|pluralize }} below.
+	        </p>
+	    {% endif %}
+
+	    <form action="" method="post">
+	        <table>
+	            {{ eventModelForm.as_table }}
+	        </table>
+	        {% csrf_token %}
+	        <input type="submit" name="eventModelForm" value="Submit">
+	    </form>
+	</body>
+</html>

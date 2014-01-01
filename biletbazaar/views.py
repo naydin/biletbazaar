@@ -8,12 +8,41 @@ from data.eventManager import *
 from data.models import *
 from django.shortcuts import render
 from forms import *
+from modelForms import *
 
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 
 def hello(request):
     return HttpResponse("Hola world")
+
+def admin_panel(request):
+    eventGroupModelForm = EventGroupModelForm()
+    eventModelForm = EventModelForm()
+    
+    if request.method == 'POST':
+        if 'eventGroupModelForm' in request.POST:
+            form = EventGroupModelForm(request.POST)
+        if 'eventModelForm' in request.POST:
+            form = EventModelForm(request.POST)
+            
+        if form.is_valid():
+            form.save(commit=True)
+            # cd = form.cleaned_data
+            # send_mail(
+            #     cd['subject'],
+            #     cd['message'],
+            #     cd.get('email', 'noreply@example.com'),
+            #     ['siteowner@example.com'],
+            # )
+            return HttpResponse("Success")
+        else:
+            if 'eventGroupModelForm' in request.POST:
+                eventGroupModelForm = form
+            if 'eventModelForm' in request.POST:
+                eventModelForm = form
+
+    return render(request, 'admin_panel.html', {'eventGroupModelForm': eventGroupModelForm,'eventModelForm':eventModelForm})
 
 def event_groups(request):
     if request.method == 'POST':

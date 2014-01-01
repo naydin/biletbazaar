@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import ModelForm
 from data.models import *
 
 # class EventGroupForm(forms.Form):    
@@ -9,10 +8,7 @@ from data.models import *
 #     category = forms.CharField(max_length = 30,required=False)
 #     saleCount = forms.IntegerField(required=False)
 #     photoUrl = forms.URLField(required=False)
-class EventGroupForm(ModelForm):
-    class Meta:
-        model = EventGroup
-        # fields = ['name','description','category','saleCount','photoUrl']
+
 
 
 class EventForm(forms.Form):
