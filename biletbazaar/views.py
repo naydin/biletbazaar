@@ -9,6 +9,7 @@ from data.models import *
 from django.shortcuts import render
 from forms import *
 from modelForms import *
+from django.db.models import Max
 
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
@@ -110,7 +111,22 @@ def mail_template(request):
 
 
 def anasayfa(request):
-    event_list = Event.objects.all()
+    # max_sale_count = EventGroup.objects.all().aggregate(Max('saleCount'))['saleCount__max']
+    # event_group_list = EventGroup.objects.filter(saleCount = max_sale_count)
+    # event_group = event_group_list[0]
+    # event_list = event_group.event_set.all()
+
+    event_group_list = EventGroup.objects.all().order_by('-saleCount')
+
+    if len(event_group_list) > 10:
+        event_group_list = event_group_list[0:10]
+    
+    event_list = []
+    for event_group in event_group_list:
+        event_list_temp = event_group.event_set.filter(city='istanbul')
+        if len(event_list_temp) >= 1:
+            event_list.append(event_list_temp[0])
+    
     return render(request,'main_page.html',{'base':'/static/','event_list':event_list})
 
 
