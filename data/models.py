@@ -18,6 +18,9 @@ class Event(models.Model):
     place = models.CharField(max_length = 30)
     date = models.DateField()
     city = models.CharField(max_length = 15)
+    
+    def __unicode__(self):
+        return self.eventGroup.name + " " + self.place
 
 class User(models.Model):
     id = models.AutoField(primary_key=True)
@@ -27,6 +30,9 @@ class User(models.Model):
     iban = models.CharField(max_length = 25, null=True)
     saleCount = models.IntegerField()
     purchaseCount = models.IntegerField()
+
+    def __unicode__(self):
+        return self.username
 
 seatCategorySeparator = '=='
     
@@ -38,6 +44,7 @@ class Ticket(models.Model):
     creationDate = models.DateField()
     ticketCount = models.IntegerField()
     seatCategory = models.CharField(max_length = 30)
+
     
 class LandingUser(models.Model):
     id = models.AutoField(primary_key=True)

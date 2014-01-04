@@ -32,7 +32,7 @@ def admin_panel(request):
         if 'ticketModelForm' in request.POST:
             form = TicketModelForm(request.POST)
         if 'userModelForm' in request.POST:
-            form = userModelForm(request.POST)
+            form = UserModelForm(request.POST)
         if 'landingUserModelForm' in request.POST:
             form = LandingUserModelForm(request.POST)
             
