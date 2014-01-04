@@ -20,7 +20,7 @@ class Event(models.Model):
     city = models.CharField(max_length = 15)
     
     def __unicode__(self):
-        return self.eventGroup.name + " " + self.place
+        return self.eventGroup.name + " "+ self.city+ " " + self.place
 
 class User(models.Model):
     id = models.AutoField(primary_key=True)

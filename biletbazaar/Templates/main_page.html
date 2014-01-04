@@ -653,36 +653,15 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
             </div>
             <div class="ucuz_biletler">
               <a href="#"><div class="ucuz_bilet_yazi">ucuz biletler</div></a>
+			  {% for ticket in ticket_list %}
               <a href="#"><div class="ucuz_bilet">
               <table><tr>
-                <td height="45px" width="60px" ><img class="autoResizeImage" src="{{base}}resimler/biletbosta.png" /></td>
-                <td height="45px" width="150px" >Duman<br />Jolly Joker Istanbul<br />Istanbul</td>
-                <td height="45px" width="50px">Ara<br />11<br />Cmt</td>
-                </tr></table></div></a>
-              <a href="#"><div class="ucuz_bilet">
-              <table><tr>
-                <td height="45px" width="60px"><img class="autoResizeImage" src="{{base}}resimler/biletbosta.png" alt="Event Photo"  /></td>
-                <td height="45px" width="150px">Duman<br />Jolly Joker Istanbul<br/> Istanbul</td>
-                <td height="45px" width="50px">Ara<br />11<br />Cmt</td>
-                </tr></table></div></a>
-              <a href="#"><div class="ucuz_bilet">
-              <table><tr>
-                <td height="45px" width="60px"><img class="autoResizeImage" src="{{base}}resimler/biletbosta.png" alt="Event Photo"  /></td>
-                <td height="45px" width="150px">Duman<br />Jolly Joker Istanbul<br/> Istanbul</td>
-                <td height="45px" width="50px">Ara<br />11<br />Cmt</td>
-                </tr></table></div></a>
-              <a href="#"><div class="ucuz_bilet">
-              <table><tr>
-                <td height="45px" width="60px"><img class="autoResizeImage" src="{{base}}resimler/biletbosta.png" alt="Event Photo"  /></td>
-                <td height="45px" width="150px">Duman<br />Jolly Joker Istanbul<br/> Istanbul</td>
-                <td height="45px" width="50px">Ara<br />11<br />Cmt</td>
-                </tr></table></div></a>
-              <a href="#"><div class="ucuz_bilet">
-              <table><tr>
-                <td height="45px" width="60px"><img class="autoResizeImage" src="{{base}}resimler/biletbosta.png" alt="Event Photo"  /></td>
-                <td height="45px" width="150px">Duman<br />Jolly Joker Istanbul<br/> Istanbul</td>
-                <td height="45px" width="50px">Ara<br />11<br />Cmt</td>
-                </tr></table></div></a>
+                <td height="45px" width="60px" ><img class="autoResizeImage" src="{{ticket.event.eventGroup.photoUrl}}" /></td>
+                <td height="45px" width="150px" >{{ticket.event.eventGroup.name}}<br />{{ticket.event.place}}<br />{{ticket.event.city}}</td>
+                <td height="45px" width="50px">{{ticket.ticketCount}} Adet<br />{{ticket.price}} TL<br /></td>
+                </tr></table></div>
+			  </a>
+			  {% endfor %}
             </div>
             <div class="logo">
             </div>

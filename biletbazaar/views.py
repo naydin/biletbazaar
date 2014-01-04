@@ -129,9 +129,9 @@ def anasayfa(request):
 
     event_list = Event.objects.filter(city='istanbul').order_by('date')[0:10]
     
-    cheap_event_list = Event.objects.filter(city='istanbul').order_by('date')[0:5]
+    ticket_list = Ticket.objects.filter(event__city='istanbul')
     
-    return render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list})
+    return render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list,'ticket_list':ticket_list})
 
 
 def send_maill(email):
