@@ -614,11 +614,14 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
             	<div class="haftanin_etkinlikleri_yazi"><span style=" margin-left:10px;">haftanin etkinlikleri</span></div>
                 <div class="weekly_content">
                         <div class="left_images">
-                            <a href="#"><div class="left_image" onmouseover="return changeImage('{{base}}resimler/duman.jpg');"><span >Duman</span></div></a>
+							{% for event_group in event_group_list %}
+	                            <a href="#"><div class="left_image" onmouseover="return changeImage('{{event_group.photoUrl}}');"><span >{{event_group.name}}</span></div></a>
+							{% endfor %}
+                            <!-- <a href="#"><div class="left_image" onmouseover="return changeImage('{{base}}resimler/duman.jpg');"><span >Duman</span></div></a>
                             <a href="#"><div class="left_image" onmouseover="return changeImage('{{base}}resimler/bilkent-senfoni.jpg');"><span>Berlin Senfoni Oda Orkestrasi</span></div></a>
                             <a href="#"><div class="left_image" onmouseover="return changeImage('{{base}}resimler/sebnem-ferah.jpg');"><span>Sebnem Ferah</span></div></a>
                             <a href="#"><div class="left_image" onmouseover="return changeImage('{{base}}resimler/mehmet-erdem.jpg');"><span>Mehmet Erdem Akustik</span></div></a>
-                            <a href="#"><div class="left_image" onmouseover="return changeImage('{{base}}resimler/fenerbahce-besiktas.jpg');"><span>Fenerbahce-Besiktas</span></div></a>
+                            <a href="#"><div class="left_image" onmouseover="return changeImage('{{base}}resimler/fenerbahce-besiktas.jpg');"><span>Fenerbahce-Besiktas</span></div></a> -->
                         </div>
                         <a href="#"><div id="buyuk_resim" class="big_image"><img class="autoResizeImage" id="big_photo" src="{{base}}resimler/duman.jpg" /></div></a>
                     	</div>

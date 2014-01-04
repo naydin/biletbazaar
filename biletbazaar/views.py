@@ -118,7 +118,7 @@ def anasayfa(request):
 
     event_group_list = EventGroup.objects.all().order_by('-saleCount')
 
-    if len(event_group_list) > 10:
+    if len(event_group_list) > 5:
         event_group_list = event_group_list[0:10]
     
     event_list = []
@@ -127,7 +127,7 @@ def anasayfa(request):
         if len(event_list_temp) >= 1:
             event_list.append(event_list_temp[0])
     
-    return render(request,'main_page.html',{'base':'/static/','event_list':event_list})
+    return render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list})
 
 
 def send_maill(email):
