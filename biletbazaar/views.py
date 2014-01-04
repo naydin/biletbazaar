@@ -110,7 +110,8 @@ def mail_template(request):
 
 
 def anasayfa(request):
-    return render(request,'abc.html',{'base':'/static/'})
+    event_list = Event.objects.all()
+    return render(request,'main_page.html',{'base':'/static/','event_list':event_list})
 
 
 def send_maill(email):
