@@ -5,34 +5,94 @@
 	</head>
 	<body>
 	    <h1>Admin Panel</h1>
-		<h2>Event Group</h2>
-	    {% if eventGroupModelForm.errors %}
-	        <p style="color: red;">
-	            Please correct the error{{ eventGroupModelForm.errors|pluralize }} below.
-	        </p>
-	    {% endif %}
+		<table cellspacing='50'>
+			<tr>
+				<td>
+					<h2>Event Group</h2>
+				    {% if eventGroupModelForm.errors %}
+				        <p style="color: red;">
+				            Please correct the error{{ eventGroupModelForm.errors|pluralize }} below.
+				        </p>
+				    {% endif %}
 
-	    <form action="" method="post">
-	        <table>
-	            {{ eventGroupModelForm.as_table }}
-	        </table>
-	        {% csrf_token %}
-	        <input type="submit" name="eventGroupModelForm" value="Submit">
-	    </form>
+				    <form action="" method="post">
+				        <table>
+				            {{ eventGroupModelForm.as_table }}
+				        </table>
+				        {% csrf_token %}
+				        <input type="submit" name="eventGroupModelForm" value="Submit">
+				    </form>
+				</td>
+				<td>
+					<h2>User</h2>
+				    {% if userModelForm.errors %}
+				        <p style="color: red;">
+				            Please correct the error{{ userModelForm.errors|pluralize }} below.
+				        </p>
+				    {% endif %}
+
+				    <form action="" method="post">
+				        <table>
+				            {{ userModelForm.as_table }}
+				        </table>
+				        {% csrf_token %}
+				        <input type="submit" name="userModelForm" value="Submit">
+				    </form>
+				</td>
+				<td>
+					<h2>Ticket</h2>
+				    {% if ticketModelForm.errors %}
+				        <p style="color: red;">
+				            Please correct the error{{ ticketModelForm.errors|pluralize }} below.
+				        </p>
+				    {% endif %}
+
+				    <form action="" method="post">
+				        <table>
+				            {{ ticketModelForm.as_table }}
+				        </table>
+				        {% csrf_token %}
+				        <input type="submit" name="ticketModelForm" value="Submit">
+				    </form>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h2>Event</h2>
+				    {% if eventModelForm.errors %}
+				        <p style="color: red;">
+				            Please correct the error{{ eventModelForm.errors|pluralize }} below.
+				        </p>
+				    {% endif %}
+
+				    <form action="" method="post">
+				        <table>
+				            {{ eventModelForm.as_table }}
+				        </table>
+				        {% csrf_token %}
+				        <input type="submit" name="eventModelForm" value="Submit">
+				    </form>
+				</td>
+				<td>
+					<h2>Landing User</h2>
+				    {% if landingUserModelForm.errors %}
+				        <p style="color: red;">
+				            Please correct the error{{ landingUserModelForm.errors|pluralize }} below.
+				        </p>
+				    {% endif %}
+
+				    <form action="" method="post">
+				        <table>
+				            {{ landingUserModelForm.as_table }}
+				        </table>
+				        {% csrf_token %}
+				        <input type="submit" name="landingUserModelForm" value="Submit">
+				    </form>
+				</td>
+				<td>
+				</td>
+			</tr>
+		</table>
 		
-		<h2>Event</h2>
-	    {% if eventModelForm.errors %}
-	        <p style="color: red;">
-	            Please correct the error{{ eventModelForm.errors|pluralize }} below.
-	        </p>
-	    {% endif %}
-
-	    <form action="" method="post">
-	        <table>
-	            {{ eventModelForm.as_table }}
-	        </table>
-	        {% csrf_token %}
-	        <input type="submit" name="eventModelForm" value="Submit">
-	    </form>
 	</body>
 </html>

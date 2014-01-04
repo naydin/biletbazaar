@@ -19,6 +19,6 @@ class TicketModelForm(ModelForm):
     class Meta:
         model = Ticket
         
-class LandingModelForm(ModelForm):
+class LandingUserModelForm(ModelForm):
     class Meta:
         model = LandingUser

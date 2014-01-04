@@ -19,12 +19,21 @@ def hello(request):
 def admin_panel(request):
     eventGroupModelForm = EventGroupModelForm()
     eventModelForm = EventModelForm()
+    ticketModelForm = TicketModelForm()
+    userModelForm = UserModelForm()
+    landingUserModelForm = LandingUserModelForm()
     
     if request.method == 'POST':
         if 'eventGroupModelForm' in request.POST:
             form = EventGroupModelForm(request.POST)
         if 'eventModelForm' in request.POST:
             form = EventModelForm(request.POST)
+        if 'ticketModelForm' in request.POST:
+            form = TicketModelForm(request.POST)
+        if 'userModelForm' in request.POST:
+            form = userModelForm(request.POST)
+        if 'landingUserModelForm' in request.POST:
+            form = LandingUserModelForm(request.POST)
             
         if form.is_valid():
             form.save(commit=True)
@@ -41,8 +50,14 @@ def admin_panel(request):
                 eventGroupModelForm = form
             if 'eventModelForm' in request.POST:
                 eventModelForm = form
+            if 'ticketModelForm' in request.POST:
+                ticketModelForm = form
+            if 'userModelForm' in request.POST:
+                userModelForm = form
+            if 'landingUserModelForm' in request.POST:
+                landingUserModelForm = form
 
-    return render(request, 'admin_panel.html', {'eventGroupModelForm': eventGroupModelForm,'eventModelForm':eventModelForm})
+    return render(request, 'admin_panel.html', {'eventGroupModelForm': eventGroupModelForm,'eventModelForm':eventModelForm,'ticketModelForm':ticketModelForm,'userModelForm':userModelForm,'landingUserModelForm':landingUserModelForm})
 
 def event_groups(request):
     if request.method == 'POST':
