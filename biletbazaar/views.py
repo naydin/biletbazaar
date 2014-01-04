@@ -116,10 +116,10 @@ def anasayfa(request):
     # event_group = event_group_list[0]
     # event_list = event_group.event_set.all()
 
-    event_group_list = EventGroup.objects.all().order_by('-saleCount')
+    event_group_list = EventGroup.objects.all().order_by('-saleCount')[0:5]
 
-    if len(event_group_list) > 5:
-        event_group_list = event_group_list[0:5]
+    # if len(event_group_list) > 5:
+    #     event_group_list = event_group_list[0:5]
     
     # event_list = []
     # for event_group in event_group_list:
@@ -127,9 +127,9 @@ def anasayfa(request):
     #     if len(event_list_temp) >= 1:
     #         event_list.append(event_list_temp[0])
 
-    event_list = Event.objects.filter(city='istanbul').order_by('date')
-    if len(event_list) > 10:
-        event_list = event_list[0:10]
+    event_list = Event.objects.filter(city='istanbul').order_by('date')[0:10]
+    
+    cheap_event_list = Event.objects.filter(city='istanbul').order_by('date')[0:5]
     
     return render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list})
 
