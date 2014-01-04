@@ -129,7 +129,7 @@ def anasayfa(request):
 
     event_list = Event.objects.filter(city='istanbul').order_by('date')[0:10]
     
-    ticket_list = Ticket.objects.filter(event__city='istanbul')
+    ticket_list = Ticket.objects.filter(event__city='istanbul').order_by('price')[0:5]
     
     return render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list,'ticket_list':ticket_list})
 
