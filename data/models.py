@@ -27,7 +27,7 @@ class Event(models.Model):
     city = models.ForeignKey(City)
     
     def __unicode__(self):
-        return self.eventGroup.name + " "+ self.city+ " " + self.place
+        return self.eventGroup.name + " "+ self.city.name+ " " + self.place
 
 class User(models.Model):
     id = models.AutoField(primary_key=True)
