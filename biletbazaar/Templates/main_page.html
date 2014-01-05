@@ -645,10 +645,10 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
               <div class="sehir_sec_text">Sehir sec</div>
               <div class="sehir_sec_selection">
        	  <select class="selection_menu">
-  					<option value="volvo">Tum Turkiye</option>
-  					<option value="saab">Marmara/Istanbul</option>
-  					<option value="opel">Ege/Izmir</option>
-  					<option value="audi">Ic Anadolu/Ankara</option>
+  					<option>Tum Turkiye</option>
+					{% for city in city_list %}
+	  					<option>{{city.name}}</option>
+					{% endfor %}
 				</select></div>
             </div>
             <div class="ucuz_biletler">
