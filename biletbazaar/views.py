@@ -132,9 +132,9 @@ def anasayfa(request):
     #     if len(event_list_temp) >= 1:
     #         event_list.append(event_list_temp[0])
 
-    event_list = Event.objects.filter(city='istanbul').order_by('date')[0:10]
+    event_list = Event.objects.filter(city__name='Istanbul').order_by('date')[0:10]
     
-    ticket_list = Ticket.objects.filter(event__city='istanbul').order_by('price')[0:5]
+    ticket_list = Ticket.objects.filter(event__city__name='Istanbul').order_by('price')[0:5]
     
     return render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list,'ticket_list':ticket_list})
 

@@ -1,5 +1,12 @@
 from django.db import models
 
+class City(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=15,null=False)
+
+    def __unicode__(self):
+        return self.name
+        
 class EventGroup(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length = 30)
@@ -17,7 +24,7 @@ class Event(models.Model):
     eventGroup = models.ForeignKey(EventGroup)
     place = models.CharField(max_length = 30)
     date = models.DateField()
-    city = models.CharField(max_length = 15)
+    city = models.ForeignKey(City)
     
     def __unicode__(self):
         return self.eventGroup.name + " "+ self.city+ " " + self.place
@@ -56,6 +63,4 @@ class LandingUser(models.Model):
     # def __unicode__(self):
 #             return self.name
 
-class City(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=15,null=False)
+
