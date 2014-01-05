@@ -90,6 +90,20 @@
 				    </form>
 				</td>
 				<td>
+					<h2>City</h2>
+				    {% if cityModelForm.errors %}
+				        <p style="color: red;">
+				            Please correct the error{{ cityModelForm.errors|pluralize }} below.
+				        </p>
+				    {% endif %}
+
+				    <form action="" method="post">
+				        <table>
+				            {{ cityModelForm.as_table }}
+				        </table>
+				        {% csrf_token %}
+				        <input type="submit" name="cityModelForm" value="Submit">
+				    </form>
 				</td>
 			</tr>
 		</table>

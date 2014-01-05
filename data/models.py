@@ -56,3 +56,6 @@ class LandingUser(models.Model):
     # def __unicode__(self):
 #             return self.name
 
+class City(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=15,null=False)

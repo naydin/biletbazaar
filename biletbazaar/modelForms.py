@@ -22,3 +22,7 @@ class TicketModelForm(ModelForm):
 class LandingUserModelForm(ModelForm):
     class Meta:
         model = LandingUser
+        
+class CityModelForm(ModelForm):
+    class Meta:
+        model = City

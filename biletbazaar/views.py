@@ -23,6 +23,7 @@ def admin_panel(request):
     ticketModelForm = TicketModelForm()
     userModelForm = UserModelForm()
     landingUserModelForm = LandingUserModelForm()
+    cityModelForm = CityModelForm()
     
     if request.method == 'POST':
         if 'eventGroupModelForm' in request.POST:
@@ -35,6 +36,8 @@ def admin_panel(request):
             form = UserModelForm(request.POST)
         if 'landingUserModelForm' in request.POST:
             form = LandingUserModelForm(request.POST)
+        if 'cityModelForm' in request.POST:
+            form = CityModelForm(request.POST)
             
         if form.is_valid():
             form.save(commit=True)
@@ -57,8 +60,10 @@ def admin_panel(request):
                 userModelForm = form
             if 'landingUserModelForm' in request.POST:
                 landingUserModelForm = form
-
-    return render(request, 'admin_panel.html', {'eventGroupModelForm': eventGroupModelForm,'eventModelForm':eventModelForm,'ticketModelForm':ticketModelForm,'userModelForm':userModelForm,'landingUserModelForm':landingUserModelForm})
+            if 'cityModelForm' in request.POST:
+                cityModelForm = form
+                
+    return render(request, 'admin_panel.html', {'eventGroupModelForm': eventGroupModelForm,'eventModelForm':eventModelForm,'ticketModelForm':ticketModelForm,'userModelForm':userModelForm,'landingUserModelForm':landingUserModelForm,'cityModelForm':cityModelForm})
 
 def event_groups(request):
     if request.method == 'POST':
