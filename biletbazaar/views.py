@@ -115,16 +115,31 @@ def mail_template(request):
     return render(request,'mail_template.html',{'base':'/static/'})
 
 
+selected_city_id_field = "selected_city_id"
+
 def anasayfa(request):
     # max_sale_count = EventGroup.objects.all().aggregate(Max('saleCount'))['saleCount__max']
     # event_group_list = EventGroup.objects.filter(saleCount = max_sale_count)
     # event_group = event_group_list[0]
     # event_list = event_group.event_set.all()
-
+    
+    selected_city_id = ""
+    selected_city_name = ""
+    
+    if selected_city_id_field in request.COOKIES:
+        request.session[selected_city_id_field] = request.COOKIES[selected_city_id_field]
+        city = City.objects.get(id=request.COOKIES[selected_city_id_field])
+        selected_city_name = city.name
+        print "oldu" + request.COOKIES[selected_city_id_field]
+    
     try:
-        selected_city = request.POST['city_select']
+        selected_city_name = request.POST['city_select']
+        city = City.objects.get(name=selected_city_name)
+        request.session[selected_city_id_field] = city.id
+        selected_city_id = city.id
     except Exception as e:
-        pass
+        # print '%s (%s)' % (e.message, type(e))
+        selected_city_id = ""
     
     event_group_list = EventGroup.objects.all().order_by('-saleCount')[0:5]
 
@@ -143,7 +158,13 @@ def anasayfa(request):
     
     city_list = City.objects.all()
     
-    return render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list,'ticket_list':ticket_list,"city_list":city_list})
+    response = render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list,
+    'ticket_list':ticket_list,"city_list":city_list,'selected_city_name':selected_city_name})
+
+    if selected_city_id != "":
+        response.set_cookie(selected_city_id_field,selected_city_id)
+        
+    return response
 
 
 def send_maill(email):

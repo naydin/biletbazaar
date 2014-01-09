@@ -649,7 +649,11 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
 	  				<select name ="city_select" onChange="this.form.submit();" class="selection_menu">
 	    					<option>Tum Turkiye</option>
 	  					{% for city in city_list %}
+						{% if city.name == selected_city_name %}
+							<option selected>{{city.name}}</option>
+						{% else %}
 	  	  					<option>{{city.name}}</option>
+						{% endif %}
 	  					{% endfor %}
 	  				</select>
 				</form>
