@@ -121,6 +121,11 @@ def anasayfa(request):
     # event_group = event_group_list[0]
     # event_list = event_group.event_set.all()
 
+    try:
+        selected_city = request.POST['city_select']
+    except Exception as e:
+        pass
+    
     event_group_list = EventGroup.objects.all().order_by('-saleCount')[0:5]
 
     # if len(event_group_list) > 5:

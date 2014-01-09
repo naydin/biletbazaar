@@ -644,12 +644,16 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
             <div class="sehir_sec">
               <div class="sehir_sec_text">Sehir sec</div>
               <div class="sehir_sec_selection">
-       	  <select class="selection_menu">
-  					<option>Tum Turkiye</option>
-					{% for city in city_list %}
-	  					<option>{{city.name}}</option>
-					{% endfor %}
-				</select></div>
+				<form action="" method="POST">
+					{% csrf_token %}
+	  				<select name ="city_select" onChange="this.form.submit();" class="selection_menu">
+	    					<option>Tum Turkiye</option>
+	  					{% for city in city_list %}
+	  	  					<option>{{city.name}}</option>
+	  					{% endfor %}
+	  				</select>
+				</form>
+			  </div>
             </div>
             <div class="ucuz_biletler">
               <a href="#"><div class="ucuz_bilet_yazi">ucuz biletler</div></a>
