@@ -116,6 +116,7 @@ def mail_template(request):
 
 
 selected_city_name_field = "selected_city_name"
+city_name_all_cities = "Tum Turkiye"
 
 def anasayfa(request):
     # max_sale_count = EventGroup.objects.all().aggregate(Max('saleCount'))['saleCount__max']
@@ -127,23 +128,25 @@ def anasayfa(request):
     
     if selected_city_name_field in request.COOKIES:
         selected_city_name = request.COOKIES[selected_city_name_field]
-        try:
-            City.objects.get(name=selected_city_name)
-        except Exception as e:
-            selected_city_name = ""
+        if selected_city_name != city_name_all_cities:
+            try:
+                City.objects.get(name=selected_city_name)
+                request.session[selected_city_name_field] = selected_city_name
+                print "oldu" + request.COOKIES[selected_city_name_field]
+            except Exception as e:
+                selected_city_name = ""
         
-        request.session[selected_city_name_field] = request.COOKIES[selected_city_name_field]
         
-        print "oldu" + request.COOKIES[selected_city_name_field]
-    
     try:
         selected_city_name = request.POST['city_select']
     except Exception as e:
         # print '%s (%s)' % (e.message, type(e))
         pass
-        
+
+    
     try:
-        city = City.objects.get(name=selected_city_name)
+        if selected_city_name != city_name_all_cities:
+            city = City.objects.get(name=selected_city_name)
         request.session[selected_city_name_field] = selected_city_name
     except Exception as e:
         selected_city_name = ""
@@ -159,14 +162,17 @@ def anasayfa(request):
     #     if len(event_list_temp) >= 1:
     #         event_list.append(event_list_temp[0])
 
-    event_list = Event.objects.filter(city__name='Istanbul').order_by('date')[0:10]
-    
-    ticket_list = Ticket.objects.filter(event__city__name='Istanbul').order_by('price')[0:5]
-    
+    if selected_city_name == city_name_all_cities or selected_city_name == '':
+        event_list = Event.objects.all().order_by('date')[0:10]
+        ticket_list = Ticket.objects.all().order_by('price')[0:5]
+    else:
+        event_list = Event.objects.filter(city__name=selected_city_name).order_by('date')[0:10]
+        ticket_list = Ticket.objects.filter(event__city__name=selected_city_name).order_by('price')[0:5]
+
     city_list = City.objects.all()
     
     response = render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list,
-    'ticket_list':ticket_list,"city_list":city_list,'selected_city_name':selected_city_name})
+    'ticket_list':ticket_list,"city_list":city_list,'selected_city_name':selected_city_name,'city_name_all_cities':city_name_all_cities})
 
     if selected_city_name != "":
         response.set_cookie(selected_city_name_field,selected_city_name)

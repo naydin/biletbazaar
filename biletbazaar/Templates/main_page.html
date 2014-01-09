@@ -647,7 +647,7 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
 				<form action="" method="POST">
 					{% csrf_token %}
 	  				<select name ="city_select" onChange="this.form.submit();" class="selection_menu">
-	    					<!-- <option>Tum Turkiye</option> -->
+	    					<option>{{city_name_all_cities}}</option>
 	  					{% for city in city_list %}
 						{% if city.name == selected_city_name %}
 							<option selected>{{city.name}}</option>
