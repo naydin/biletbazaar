@@ -488,9 +488,10 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
            	  <img src="{{base}}resimler/step1.png"  />
             </div>
             <div class="etkinligi_sec">
-            <form class="etkinligi_sec_tool" action="">
+            <form class="etkinligi_sec_tool" method="post">
                   <input id="submit" type="submit" value="Etkinlik Bul" />
-                  <input id="searchh" type="text" placeholder="etkinlik adı gir">
+				  {% csrf_token %}
+                  <input id="searchh" type="text" placeholder="etkinlik adı gir" name="search_event_group_name">
                   
     
 				</form>
@@ -503,45 +504,20 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
             
             
             
-           
-            	<div  style=" overflow-y:scroll" class="ucuz_biletler">
+           	{% if event_list %}
+            <div  style=" overflow-y:scroll" class="ucuz_biletler">
              <div class="ucuz_bilet_yazi">ucuz biletler</div>
-              <div class="ucuz_bilet">
-              <table><tr>
-                <td height="45px" width="60px" style=" padding-right:50px;" ><img class="autoResizeImage" src="{{base}}resimler/biletbosta.png" /></td>
-                <td height="45px" width="150px" style=" padding-right:50px;" >Duman<br />Jolly Joker Istanbul<br />İstanbul</td>
-                <td height="45px" width="50px" style=" padding-right:50px;">Ara<br />11<br />Cmt</td>
-                <td><button type="submit" class="button_example">Seç</button></td>
-                </tr></table></div>
-             <div class="ucuz_bilet">
-              <table><tr>
-                <td height="45px" width="60px" style=" padding-right:50px;"><img class="autoResizeImage" src="{{base}}resimler/biletbosta.png" alt="Event Photo"  /></td>
-                <td height="45px" width="150px" style=" padding-right:50px;">Duman<br />Jolly Joker Istanbul<br/> İstanbul</td>
-                <td height="45px" width="50px" style=" padding-right:50px;">Ara<br />11<br />Cmt</td>
-                <td><button type="submit" class="button_example">Seç</button></td>
-                </tr></table></div>
-              <div class="ucuz_bilet">
-              <table><tr>
-                <td height="45px" width="60px" style=" padding-right:50px;"><img class="autoResizeImage" src="{{base}}resimler/biletbosta.png" alt="Event Photo"  /></td>
-                <td height="45px" width="150px" style=" padding-right:50px;">Duman<br />Jolly Joker Istanbul<br/> İstanbul</td>
-                <td height="45px" width="50px" style=" padding-right:50px;">Ara<br />11<br />Cmt</td>
-                <td><button type="submit" class="button_example">Seç</button></td>
-                </tr></table></div>
-             <div class="ucuz_bilet">
-              <table><tr>
-                <td height="45px" width="60px" style=" padding-right:50px;"><img class="autoResizeImage" src="{{base}}resimler/biletbosta.png" alt="Event Photo"  /></td>
-                <td height="45px" width="150px" style=" padding-right:50px;">Duman<br />Jolly Joker Istanbul<br/> İstanbul</td>
-                <td height="45px" width="50px" style=" padding-right:50px;">Ara<br />11<br />Cmt</td>
-                <td><button type="submit" class="button_example">Seç</button></td>
-                </tr></table></div>
-              <div class="ucuz_bilet">
-              <table><tr>
-                <td height="45px" width="60px" style=" padding-right:50px;"><img class="autoResizeImage" src="{{base}}resimler/biletbosta.png" alt="Event Photo"  /></td>
-                <td height="45px" width="150px" style=" padding-right:50px;">Duman<br />Jolly Joker Istanbul<br/> İstanbul</td>
-                <td height="45px" width="50px" style=" padding-right:50px;">Ara<br />11<br />Cmt</td>
-                <td><button type="submit" class="button_example">Seç</button></td>
-                </tr></table></div>
+			 
+			 {% for event in event_list %}
+				<div class="ucuz_bilet"><table><tr>
+					<td height="45px" width="60px" style=" padding-right:50px;" ><img class="autoResizeImage" src="{{event.eventGroup.photoUrl}}" /></td>
+					<td height="45px" width="150px" style=" padding-right:50px;" >{{event.eventGroup.name}}<br />{{event.place}}<br />{{event.city.name}}</td>
+					<td height="45px" width="50px" style=" padding-right:50px;">{{event.date|date:"M"}}<br />{{event.date.day}}<br />{{event.date|date:"l"}}</td>
+					<td><button type="submit" class="button_example">Seç</button></td>
+				</tr></table></div>
+			 {% endfor %}
             </div>
+			{% endif %}
             
   </div>
 </div>

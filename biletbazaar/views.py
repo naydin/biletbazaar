@@ -96,18 +96,21 @@ def landing(request):
     return render(request,'landing_page.html',{'base':'/static/','error':clientError})
     
 
-def bilet_ilan(request):
-    # selected_city_name = ""
-#     if request.session[selected_city_name_field]:
-#         selected_city_name = request.session[selected_city_name_field]
-#     
-#     if selected_city_name == '':
-#         event_list = Event.objects.all()
-#     else:
-#         event_list = Event.objects.filter(city__name=selected_city_name)
-    event_group_list = EventGroup.objects.all()
 
-    return render(request,'bilet_ilan.html',{'base':'/static/','event_group_list':event_group_list})
+def bilet_ilan(request):
+    selected_city_name = ""
+    if request.session[selected_city_name_field]:
+        selected_city_name = request.session[selected_city_name_field]
+    
+    event_list = []
+    if request.method == 'POST':
+        if request.POST['search_event_group_name']:
+            search_event_group_name = request.POST['search_event_group_name']
+            event_list = Event.objects.filter(eventGroup__name__contains=search_event_group_name,city__name__contains=selected_city_name)
+            
+    event_group_list = EventGroup.objects.all()
+    
+    return render(request,'bilet_ilan.html',{'base':'/static/','event_group_list':event_group_list,'event_list':event_list})
 
 
 def anasayfa(request):
@@ -140,6 +143,7 @@ def anasayfa(request):
     #query the required lists
     event_group_list = EventGroup.objects.all().order_by('-saleCount')[0:5]
 
+#TODO: change city name as contains ""
     if selected_city_name == '':
         event_list = Event.objects.all().order_by('date')[0:10]
         ticket_list = Ticket.objects.all().order_by('price')[0:5]
