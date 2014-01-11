@@ -64,20 +64,7 @@ def admin_panel(request):
                 cityModelForm = form
                 
     return render(request, 'admin_panel.html', {'eventGroupModelForm': eventGroupModelForm,'eventModelForm':eventModelForm,'ticketModelForm':ticketModelForm,'userModelForm':userModelForm,'landingUserModelForm':landingUserModelForm,'cityModelForm':cityModelForm})
-
-def event_groups(request):
-    if request.method == 'POST':
-        form = EventGroupForm(request.POST)
-        if form.is_valid():
-            # cleaned_data = form.cleaned_data
-#             cleaned_data.save()
-            form.save()
-            return HttpResponse("Thanks")
-        else:
-            return HttpResponse("Error")
-    else:
-        form = EventGroupForm()
-    return render(request,'event_group_form.html',{'form':form})
+    
 
 def landing(request):
     clientError = u""
@@ -102,17 +89,10 @@ def landing(request):
         user.save()
         clientError = u"E-mail adresiniz sistemize kaydedildi."
         
-        # subject, from_email, to_mail = 'Bilet Bosta Hosgeldiniz Mesaji', 'biletbosta@naydin.webfactional.com', [reqEmail]
-#         text_content = 'Turkiye 2.el bilet pazari cok yakinda www.biletbosta.com adresinde sizlerle bulusacak!'
-#  
-#         message = EmailMessage(subject, text_content, from_email,to_mail)
-#         message.send()
         send_maill(reqEmail)
         
     return render(request,'landing_page.html',{'base':'/static/','error':clientError})
-
-def mail_template(request):
-    return render(request,'mail_template.html',{'base':'/static/'})
+    
 
 def bilet_ilan(request):
     return render(request,'bilet_ilan.html',{'base':'/static/'})
@@ -156,15 +136,6 @@ def anasayfa(request):
     
     event_group_list = EventGroup.objects.all().order_by('-saleCount')[0:5]
 
-    # if len(event_group_list) > 5:
-    #     event_group_list = event_group_list[0:5]
-    
-    # event_list = []
-    # for event_group in event_group_list:
-    #     event_list_temp = event_group.event_set.filter(city='istanbul')
-    #     if len(event_list_temp) >= 1:
-    #         event_list.append(event_list_temp[0])
-
     if selected_city_name == city_name_all_cities or selected_city_name == '':
         event_list = Event.objects.all().order_by('date')[0:10]
         ticket_list = Ticket.objects.all().order_by('price')[0:5]
@@ -182,7 +153,6 @@ def anasayfa(request):
         
     return response
 
-
 def send_maill(email):
     subject, from_email, to = 'Bilet Bosta\'ya Hosgeldiniz', 'info@biletbosta.com',email
     text_content = ''
@@ -192,13 +162,4 @@ def send_maill(email):
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
     msg.attach_alternative(html_content, "text/html")
     msg.send()
-
-# def events(request):
-#     event_list = getAllEvents()
-#     t = get_template('events.html')
-#     html = t.render(Context({'event_list':event_list}))
-#     # insertEvent("konser",'cok hos')
-#     # insertEventt()
-# 
-#     return HttpResponse(html)
 
