@@ -142,15 +142,8 @@ def anasayfa(request):
     
     #query the required lists
     event_group_list = EventGroup.objects.all().order_by('-saleCount')[0:5]
-
-#TODO: change city name as contains ""
-    if selected_city_name == '':
-        event_list = Event.objects.all().order_by('date')[0:10]
-        ticket_list = Ticket.objects.all().order_by('price')[0:5]
-    else:
-        event_list = Event.objects.filter(city__name=selected_city_name).order_by('date')[0:10]
-        ticket_list = Ticket.objects.filter(event__city__name=selected_city_name).order_by('price')[0:5]
-
+    event_list = Event.objects.filter(city__name__contains=selected_city_name).order_by('date')[0:10]
+    ticket_list = Ticket.objects.filter(event__city__name__contains=selected_city_name).order_by('price')[0:5]
     city_list = City.objects.all()
 
     #prepare the response
