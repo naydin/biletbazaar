@@ -16,7 +16,7 @@ from django.core.exceptions import ValidationError
 
 def hello(request):
     return HttpResponse("Hola world")
-
+    
 def admin_panel(request):
     eventGroupModelForm = EventGroupModelForm()
     eventModelForm = EventModelForm()
@@ -113,6 +113,9 @@ def landing(request):
 
 def mail_template(request):
     return render(request,'mail_template.html',{'base':'/static/'})
+
+def bilet_ilan(request):
+    return render(request,'bilet_ilan.html',{'base':'/static/'})
 
 
 selected_city_name_field = "selected_city_name"

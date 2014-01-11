@@ -26,5 +26,6 @@ urlpatterns = patterns('',
     url(r'^$', landing),
     url('^anasayfa/$',anasayfa),
     url('^admin_panel/$',admin_panel),
+    url('^bilet_ilan/$',bilet_ilan),
     
 )
