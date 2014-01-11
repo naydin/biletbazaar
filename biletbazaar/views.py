@@ -148,7 +148,7 @@ def anasayfa(request):
 
     #prepare the response
     response = render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list,
-    'ticket_list':ticket_list,"city_list":city_list,'selected_city_name':selected_city_name,'city_name_all_cities':"Tum Turkiye"})
+    'ticket_list':ticket_list,"city_list":city_list,'selected_city_name':selected_city_name,'city_name_all_cities':"Tüm Türkiye"})
 
     #include selected city in the cookie
     response.set_cookie(selected_city_name_field,selected_city_name)
