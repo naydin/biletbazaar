@@ -14,6 +14,8 @@ from django.db.models import Max
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 
+selected_city_name_field = "selected_city_name"
+
 def hello(request):
     return HttpResponse("Hola world")
     
@@ -95,10 +97,18 @@ def landing(request):
     
 
 def bilet_ilan(request):
-    return render(request,'bilet_ilan.html',{'base':'/static/'})
+    # selected_city_name = ""
+#     if request.session[selected_city_name_field]:
+#         selected_city_name = request.session[selected_city_name_field]
+#     
+#     if selected_city_name == '':
+#         event_list = Event.objects.all()
+#     else:
+#         event_list = Event.objects.filter(city__name=selected_city_name)
+    event_group_list = EventGroup.objects.all()
 
+    return render(request,'bilet_ilan.html',{'base':'/static/','event_group_list':event_group_list})
 
-selected_city_name_field = "selected_city_name"
 
 def anasayfa(request):
     # max_sale_count = EventGroup.objects.all().aggregate(Max('saleCount'))['saleCount__max']

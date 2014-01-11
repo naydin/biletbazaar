@@ -4,7 +4,22 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Bilet Boşta</title>
     <link href="bilet_ilan.css" rel="stylesheet" type="text/css" />
-    
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script>
+	  $(function() {
+	    var availableTags = [
+			{% for event_group in event_group_list %}
+				"{{event_group.name}}",
+			{% endfor %}
+	    ];
+	    $( "#searchh" ).autocomplete({
+	      source: availableTags
+	    });
+	  });
+	</script>
     
 
 
@@ -339,7 +354,7 @@ border:1px solid #CE9A01;-webkit-box-shadow: #FFF563 0px 1px 0px inset;-moz-box-
 }
 
 
-#search, #submit
+#searchh, #submit
 {
 	text-align:center;
 	float: right;
@@ -348,7 +363,7 @@ border:1px solid #CE9A01;-webkit-box-shadow: #FFF563 0px 1px 0px inset;-moz-box-
 
 
 
-#search
+#searchh
 {
 	
 	padding: 5px 9px;
@@ -475,7 +490,7 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
             <div class="etkinligi_sec">
             <form class="etkinligi_sec_tool" action="">
                   <input id="submit" type="submit" value="Etkinlik Bul" />
-                  <input id="search" type="text" placeholder="etkinlik adı gir">
+                  <input id="searchh" type="text" placeholder="etkinlik adı gir">
                   
     
 				</form>
