@@ -163,7 +163,6 @@ def anasayfa(request):
     'ticket_list':ticket_list,"city_list":city_list,'selected_city_name':selected_city_name,'city_name_all_cities':u"Tüm Türkiye"})
 
     #include selected city in the cookie
-    print u''.join((selected_city_name)).encode('utf-8').strip()
     response.set_cookie(selected_city_name_field,u''.join((selected_city_name)).encode('utf-8').strip())
         
     return response

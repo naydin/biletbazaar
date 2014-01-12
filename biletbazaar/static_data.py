@@ -90,6 +90,22 @@ def reset_static_data():
     eg6.photoUrl = "http://www.biletix.com/static/images/live/event/eventimages/rihanna.jpg"
     eg6.save()
     
+    eg7 = EventGroup()
+    eg7.name = "Levent Yuksel"
+    eg7.description = "Askerden sonra ilk konseri. Kaçırma!"
+    eg7.category = "Müzik"
+    eg7.saleCount = 60
+    eg7.photoUrl = "http://www.biletix.com/static/images/live/event/eventimages/levent_yuksel_jollyjoker.jpg"
+    eg7.save()
+    
+    eg8 = EventGroup()
+    eg8.name = "Teoman"
+    eg8.description = "Sağdan soldan arakladığı bikaç akor melankoli falan felan işte anladın sen onu."
+    eg8.category = "Müzik"
+    eg8.saleCount = 80
+    eg8.photoUrl = "http://www.biletix.com/static/images/live/event/eventimages/teoman_harbiye.jpg"
+    eg8.save()
+    
     event_groups = EventGroup.objects.all()
     
     datetimenow = datetime.datetime.now()
