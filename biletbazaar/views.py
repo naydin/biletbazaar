@@ -112,13 +112,16 @@ def bilet_ilan(request):
     if request.session[selected_city_name_field]:
         selected_city_name = request.session[selected_city_name_field]
     
+    print "cityname=" + selected_city_name
+    
     event_list = []
     if request.method == 'POST':
         if request.POST['search_event_group_name']:
             search_event_group_name = request.POST['search_event_group_name']
-            event_list = Event.objects.filter(eventGroup__name__contains=search_event_group_name,city__name__contains=selected_city_name)
+            event_list = Event.objects.filter(eventGroup__name__icontains=search_event_group_name,city__name__contains=selected_city_name)
             
     event_group_list = EventGroup.objects.all()
+    print len(event_list)
     
     return render(request,'bilet_ilan.html',{'base':'/static/','event_group_list':event_group_list,'event_list':event_list})
 
@@ -133,8 +136,6 @@ def anasayfa(request):
     
     #check if a city is selected previously and stored in a cookie
     if selected_city_name_field in request.COOKIES:
-        # u''.join((selected_city_name)).encode('utf-8').strip()
-        print request.COOKIES[selected_city_name_field]
         selected_city_name = ''.join((request.COOKIES[selected_city_name_field])).decode('utf-8').strip()
     
     #if a city is posted take that as selected city
