@@ -108,7 +108,7 @@ def landing(request):
 
 
 def bilet_ilan(request):
-    selected_city_name = ""
+    selected_city_name = u''
     if request.session[selected_city_name_field]:
         selected_city_name = request.session[selected_city_name_field]
     
@@ -132,7 +132,7 @@ def anasayfa(request):
     # event_group = event_group_list[0]
     # event_list = event_group.event_set.all()
     
-    selected_city_name = ''
+    selected_city_name = u''
     
     #check if a city is selected previously and stored in a cookie
     if selected_city_name_field in request.COOKIES:
