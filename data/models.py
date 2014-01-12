@@ -37,6 +37,7 @@ class User(models.Model):
     iban = models.CharField(max_length = 25, null=True)
     saleCount = models.IntegerField()
     purchaseCount = models.IntegerField()
+    #TODO: Password
 
     def __unicode__(self):
         return self.username
