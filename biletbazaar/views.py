@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
@@ -10,6 +11,7 @@ from django.shortcuts import render
 from forms import *
 from modelForms import *
 from django.db.models import Max
+from static_data import *
 
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
@@ -18,7 +20,15 @@ selected_city_name_field = "selected_city_name"
 
 def hello(request):
     return HttpResponse("Hola world")
-    
+
+def reset_data(request):
+    try:
+        reset_static_data()
+    except Exception as e:
+        print '%s (%s)' % (e.message, type(e))
+
+    return HttpResponse("Reset Successful.")
+
 def admin_panel(request):
     eventGroupModelForm = EventGroupModelForm()
     eventModelForm = EventModelForm()
@@ -124,7 +134,7 @@ def anasayfa(request):
     #check if a city is selected previously and stored in a cookie
     if selected_city_name_field in request.COOKIES:
         selected_city_name = request.COOKIES[selected_city_name_field]
-        
+    
     #if a city is posted take that as selected city
     try:
         selected_city_name = request.POST['city_select']
@@ -148,7 +158,7 @@ def anasayfa(request):
 
     #prepare the response
     response = render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list,
-    'ticket_list':ticket_list,"city_list":city_list,'selected_city_name':selected_city_name,'city_name_all_cities':"Tüm Türkiye"})
+    'ticket_list':ticket_list,"city_list":city_list,'selected_city_name':selected_city_name,'city_name_all_cities':u"Tüm Türkiye"})
 
     #include selected city in the cookie
     response.set_cookie(selected_city_name_field,selected_city_name)
