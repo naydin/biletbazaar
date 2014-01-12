@@ -112,13 +112,12 @@ def bilet_ilan(request):
     if request.session[selected_city_name_field]:
         selected_city_name = request.session[selected_city_name_field]
     
-    print "cityname=" + selected_city_name
     
     event_list = []
     if request.method == 'POST':
         if request.POST['search_event_group_name']:
             search_event_group_name = request.POST['search_event_group_name']
-            event_list = Event.objects.filter(eventGroup__name__icontains=search_event_group_name,city__name__contains=selected_city_name)
+            event_list = Event.objects.filter(eventGroup__name__icontains=search_event_group_name,city__name__icontains=selected_city_name)
             
     event_group_list = EventGroup.objects.all()
     print len(event_list)
