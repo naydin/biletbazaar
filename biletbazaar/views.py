@@ -129,11 +129,13 @@ def anasayfa(request):
     # event_group = event_group_list[0]
     # event_list = event_group.event_set.all()
     
-    selected_city_name = ""
+    selected_city_name = ''
     
     #check if a city is selected previously and stored in a cookie
     if selected_city_name_field in request.COOKIES:
-        selected_city_name = request.COOKIES[selected_city_name_field]
+        # u''.join((selected_city_name)).encode('utf-8').strip()
+        print request.COOKIES[selected_city_name_field]
+        selected_city_name = ''.join((request.COOKIES[selected_city_name_field])).decode('utf-8').strip()
     
     #if a city is posted take that as selected city
     try:
@@ -161,7 +163,8 @@ def anasayfa(request):
     'ticket_list':ticket_list,"city_list":city_list,'selected_city_name':selected_city_name,'city_name_all_cities':u"Tüm Türkiye"})
 
     #include selected city in the cookie
-    response.set_cookie(selected_city_name_field,selected_city_name)
+    print u''.join((selected_city_name)).encode('utf-8').strip()
+    response.set_cookie(selected_city_name_field,u''.join((selected_city_name)).encode('utf-8').strip())
         
     return response
 
