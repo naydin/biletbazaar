@@ -109,6 +109,15 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+# AUTHENTICATION_BACKENDS = (
+#     'social_auth.backends.twitter.TwitterBackend',
+#     'social_auth.backends.facebook.FacebookBackend',
+#     'social_auth.backends.google.GoogleOAuthBackend',
+#     'social_auth.backends.google.GoogleOAuth2Backend',
+#     'social_auth.backends.google.GoogleBackend',
+#     # 'django.contrib.auth.backends.ModelBackend',SHOULD BE ADDED TO USE DJANGO USER
+# )
+
 ROOT_URLCONF = 'biletbazaar.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
@@ -134,6 +143,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'data',
+    # 'social.apps.django_app.default',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
