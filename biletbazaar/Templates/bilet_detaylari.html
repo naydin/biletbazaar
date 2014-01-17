@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Bilet Boşta</title>
+    <link href="bilet_detaylari.css" rel="stylesheet" type="text/css" />
+     <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+  
+  <script>
+    // execute your scripts when the DOM is ready. this is a good habit
+  $(function() {
+
+        // select all desired input fields and attach tooltips to them
+      $("#myform :input").tooltip({
+
+      // place tooltip on the right edge
+      position: "center right",
+
+      // a little tweaking of the position
+      offset: [-2, 20],
+
+      // use the built-in fadeIn/fadeOut effect
+      effect: "fade",
+
+      // custom opacity setting
+      opacity: 0.7
+
+      });
+    });
+  </script>
+    <script>
+    function validate(theForm) { // passing the form object
+ 	var val1=document.forms["myform"]["koltuk_no"].value;
+	var val2=document.forms["myform"]["bilet_sayisi"].value;
+	var flag = 0;
+  if (val1==null || val1.trim()=="") { 
+    
+	document.getElementById('koltuk_uyari').innerHTML = '*Gerekli alan'
+	flag =1
+    
+  }
+  if (val2==null || val2.trim()=="" ||val2=="bilet sayısını giriniz") { 
+    
+	document.getElementById('biletsayisi_uyari').innerHTML = '*Gerekli alan'
+	flag=1
+    
+  }
+  if(flag==1){
+	  return false;
+	
+  }
+  return true; // allow submit
+}
+</script>
+    
+<script>
+    
+function myFunction()
+{
+var w = document.documentElement.clientWidth;
+document.getElementById('content').style.marginLeft = Math.round( (w - 890)/2)+'px';
+document.getElementById('banner').style.marginLeft = Math.round( (w - 890)/2)+'px';
+document.getElementById('menu').style.marginLeft = Math.round( (w - 890)/2)+'px';
+document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)/2 +210 )+'px';
+
+};
+	
+</script>
+    
+
+</head>
+
+<body onload="myFunction()" onresize="myFunction()">
+	<div class="header_css">
+   
+		<div id="banner" class="banner">
+        	<div class="logo"><a href="abc.html"><img class="img" src="resimler/logo.png" /></a></div>
+            <div class="links">
+            	<div class="hesabim"><a style="color:#FFF" href="#">yardım</a> | <a style="color:#FFF" href="#">hesabım</a></div>
+                <div class="uye_girisi"><a style="color:#FFF" href="#">üye ol</a> | <a style="color:#FFF" href="#">üye girişi</a>&nbsp;&nbsp;<a href="#"><img src="resimler/facebook.png" /></a>&nbsp;<a href="#"><img src="resimler/twitter.png" /></a>&nbsp;<a href="#"><img src="resimler/googleplus.png" /></a></div>
+                <div class="search">
+                <form id="searchbox" action="">
+                <input id="submit" type="submit" value="Search">
+    			<input id="search" type="text" placeholder="etkinlik adı gir">
+    
+				</form></div>
+                <div class="dil"><a style="color:#FFF" href="#">bize ulaşın</a>&nbsp;&nbsp;<a style="color:#FFF" href="#">TR</a> | <a style="color:#FFF" href="#">ENG</a></div>
+            </div>
+        </div>
+        <div id="menu" class="menu">
+      <a href="#"><div align="center" class="anasayfa"><span style="color:#FFF; vertical-align:middle">anasayfa</span></div></a>
+            <a href="#"><div align="center" class="muzik"><span style="color:#FFF; vertical-align:middle">müzik</span></div></a>
+            <a href="#"><div align="center" class="spor"><span style="color:#FFF; vertical-align:middle">spor</span></div></a>
+            <a href="#"><div align="center" class="sahne"><span style="color:#FFF; vertical-align:middle">sahne</span></div></a>
+            <a href="#"><div align="center" class="hakkimizda"><span style="color:#FFF; vertical-align:middle">hakkımızda</span></div></a>
+            <a class="button" href="#"><div align="center" class="sss"><span style="color:#FFF; vertical-align:middle">sss</span></div></a>
+      </div>
+</div>
+<div id="content" class="content_css">
+	<div class="white_bg">
+        <div class="steps_logo">
+           	  <img src="step2.png"  />
+         </div>
+        	
+         <div class="bilet_detaylari">
+    			<form id="myform" name="bilet_detaylari" method="post" onsubmit="return validate(this)">
+         			<label class="name" style="font-size:20px">elinizdeki bilet sayısı</label> <label id="biletsayisi_uyari" style="color:#bdd531; margin-left:10px;"></label>
+            		<br /><br />
+   					<select id="bilet_sayisi" class="styled-select" title="İlanını vermek istediğiniz bilet sayısını giriniz. Bundan sonra yapacağınız işlemleri elinizdeki biletlerden birisi için devam edeceksiniz.">
+      					<option selected="selected" disabled="disabled">bilet sayısını giriniz</option>
+      					<option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+   					</select>
+                    <br /><br />
+                    <label class="name" style="font-size:20px">kategori no</label> 
+            		<br /><br />
+   					<select class="styled-select" title="Biletinizin yer aldığı kategoriyi seçiniz. Birden fazla bilet ilanı veriyorsanız hepsinin aynı kategoride yer aldığına emin olunuz.">
+      					<option selected="selected" disabled="disabled">bilet kategorisini seciniz</option>
+      					<option>Sahne Önü</option>
+                        <option>Kategori 1</option>
+                        <option>Kategori 2</option>
+                        <option>Kategori 3</option>
+   					</select>
+                    <br /><br />
+                    <label class="name" style="font-size:20px">sıra no</label> 
+            		<br /><br />
+   					<select class="styled-select" title="Biletinizin bulunduğu sırayı seçiniz.">
+      					<option selected="selected" disabled="disabled">bilet sıra numarası</option>
+      					<option> Sıra A </option>
+                        <option> Sıra B </option>
+                        <option> Sıra C </option>
+                        <option> Sıra D </option>
+                        <option> Sıra E </option>
+   					</select>
+                    <br /><br />
+                    <label class="name" style="font-size:20px">koltuk no</label> <label id="koltuk_uyari" style="color:#bdd531; margin-left:10px;"></label>
+            		<br /><br />
+   					<input id="koltuk_no" class="tb" type="text" title="Biletinizin üstünde yazan koltuk numarasını belirtiniz. Birden fazla bilet ilanı veriyorsanız başlangıç koltuk numarasını yazınız."/>
+                    <br />
+                    <button type="submit" class="btn">Sonraki</button>
+        		</form>
+		</div>
+      
+            
+            
+  	</div>
+</div>
+    
+<div id="footer" class="footer">
+   <div id="footer_links" class="footer_links">
+    <div class="link">Yardım<br /><a style="color:#FFF" href="#">Sık Sorulan Sorular</a><br /><a style="color:#FFF" href="#">Bize Ulaşın</a><br /><a style="color:#FFF" href="#">Teslimat Seçenekleri</a><br /><a style="color:#FFF" href="#">Politikalarımız</a></div>
+            <div class="link">Hesabım<br /><a style="color:#FFF" href="#">Profilim</a><br /><a style="color:#FFF" href="#">Adreslerim</a><br /><a style="color:#FFF" href="#">Biletlerim</a></div>
+            <div class="link">Hakkımızda<br /><a style="color:#FFF" href="#">TTK Bildirimleri</a><br /><a style="color:#FFF" href="#">Biz Kimiz?</a><br /><a style="color:#FFF" href="#">Site Haritası</a></div>
+         
+      </div>
+        <div class="copyright"><span style="font-size:10px; color:#FFF">Bu web sitesinin kullanımı, ticari engelleyen Kullanım Koşullarına tabidir. Bu sayfayı geçtiğinizde bu koşulları kabul etmiş sayılırsınız.</span><br /><span style="font-size:12px; color:#FFF">Copyright © Bilet Boşta 2013 </span> </div>
+</div>
+</body>
+</html>
