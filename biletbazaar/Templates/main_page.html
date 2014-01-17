@@ -52,30 +52,30 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
             	<a href=""><img class="img" src="{{base}}resimler/logo.png" /></a>
             </div>
             <div class="links">
-            	<div class="hesabim"><a style="color:#FFF" href="#">yardÄ±m</a> | <a style="color:#FFF" href="#">hesabÄ±m</a></div>
-                <div class="uye_girisi"><a style="color:#FFF" href="#">Ã¼ye ol</a> | <a style="color:#FFF" href="#">Ã¼ye giriÅŸi</a>&nbsp;&nbsp;<a href="#"><img src="{{base}}resimler/facebook.png" /></a>&nbsp;<a href="#"><img src="{{base}}resimler/twitter.png" /></a>&nbsp;<a href="#"><img src="{{base}}resimler/googleplus.png" /></a></div>
+            	<div class="hesabim"><a style="color:#FFF" href="#">yardım</a> | <a style="color:#FFF" href="#">hesabım</a></div>
+                <div class="uye_girisi"><a style="color:#FFF" href="#">üye ol</a> | <a style="color:#FFF" href="#">üye girişi</a>&nbsp;&nbsp;<a href="#"><img src="{{base}}resimler/facebook.png" /></a>&nbsp;<a href="#"><img src="{{base}}resimler/twitter.png" /></a>&nbsp;<a href="#"><img src="{{base}}resimler/googleplus.png" /></a></div>
                 <div class="search">
                 <form id="searchbox" action="">
                 <input id="submit" type="submit" value="Search">
     			<input id="search" type="text" placeholder="etkinlik adi gir">
     
 				</form></div>
-                <div class="dil"><a style="color:#FFF" href="#">bize ulaÅŸÄ±n</a>&nbsp;&nbsp;<a style="color:#FFF" href="#">TR</a> | <a style="color:#FFF" href="#">ENG</a></div>
+                <div class="dil"><a style="color:#FFF" href="#">bize ulaşın</a>&nbsp;&nbsp;<a style="color:#FFF" href="#">TR</a> | <a style="color:#FFF" href="#">ENG</a></div>
             </div>
         </div>
         <div id="menu" class="menu">
       <a href="#"><div align="center" class="anasayfa"><span style="color:#FFF; vertical-align:middle">anasayfa</span></div></a>
-            <a href="#"><div align="center" class="muzik"><span style="color:#FFF; vertical-align:middle">mÃ¼zik</span></div></a>
+            <a href="#"><div align="center" class="muzik"><span style="color:#FFF; vertical-align:middle">müzik</span></div></a>
             <a href="#"><div align="center" class="spor"><span style="color:#FFF; vertical-align:middle">spor</span></div></a>
             <a href="#"><div align="center" class="sahne"><span style="color:#FFF; vertical-align:middle">sahne</span></div></a>
-            <a href="#"><div align="center" class="hakkimizda"><span style="color:#FFF; vertical-align:middle">hakkÄ±mÄ±zda</span></div></a>
+            <a href="#"><div align="center" class="hakkimizda"><span style="color:#FFF; vertical-align:middle">hakkımızda</span></div></a>
             <a class="button" href="#"><div align="center" class="sss"><span style="color:#FFF; vertical-align:middle">sss</span></div></a>
         </div>
     </div>
     <div id="content" class="content_css">
     	<div class="white_bg">
         	<div class="haftanin_etkinlikleri">
-            	<div class="haftanin_etkinlikleri_yazi"><span style=" margin-left:10px;">haftanÄ±n etkinlikleri</span></div>
+            	<div class="haftanin_etkinlikleri_yazi"><span style=" margin-left:10px;">haftanın etkinlikleri</span></div>
                 <div class="weekly_content">
                         <div class="left_images">
 							{% for event_group in event_group_list %}
@@ -104,9 +104,9 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
 				{% endfor %}
                 
             </div>
-            <a href="/bilet_ilan"><div class="bilet_ilani"><span>bilet ilanÄ± ver</span></div></a>
+            <a href="/bilet_ilan"><div class="bilet_ilani"><span>bilet ilanı ver</span></div></a>
             <div class="sehir_sec">
-              <div class="sehir_sec_text">Å�ehir seÃ§</div>
+              <div class="sehir_sec_text">Şehir Seç</div>
               <div class="sehir_sec_selection">
 				<form action="" method="POST">
 					{% csrf_token %}
@@ -141,12 +141,12 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
     </div>
     <div class="footer">
     	<div id="footer_links" class="footer_links">
-        	<div class="link">YardÄ±m<br /><a style="color:#FFF" href="#">SÄ±kÃ§a Sorulan Sorular</a><br /><a style="color:#FFF" href="#">Bize UlaÅŸÄ±n</a><br /><a style="color:#FFF" href="#">Teslimat SeÃ§enekleri</a><br /><a style="color:#FFF" href="#">PolitikalarÄ±mÄ±z</a></div>
-            <div class="link">HesabÄ±m<br /><a style="color:#FFF" href="#">Profilim</a><br /><a style="color:#FFF" href="#">Adreslerim</a><br /><a style="color:#FFF" href="#">Biletlerim</a></div>
-            <div class="link">HakkÄ±mzda<br /><a style="color:#FFF" href="#">TTK Bildirimleri</a><br /><a style="color:#FFF" href="#">Biz Kimiz?</a><br /><a style="color:#FFF" href="#">Site HaritasÄ±</a></div>
+        	<div class="link">Yardım<br /><a style="color:#FFF" href="#">Sıkça Sorulan Sorular</a><br /><a style="color:#FFF" href="#">Bize Ulaşın</a><br /><a style="color:#FFF" href="#">Teslimat Seçenekleri</a><br /><a style="color:#FFF" href="#">Politikalarımız</a></div>
+            <div class="link">Hesabım<br /><a style="color:#FFF" href="#">Profilim</a><br /><a style="color:#FFF" href="#">Adreslerim</a><br /><a style="color:#FFF" href="#">Biletlerim</a></div>
+            <div class="link">Hakkımızda<br /><a style="color:#FFF" href="#">TTK Bildirimleri</a><br /><a style="color:#FFF" href="#">Biz Kimiz?</a><br /><a style="color:#FFF" href="#">Site Haritası</a></div>
          
         </div>
-        <div class="copyright"><span style="font-size:10px; color:#FFF">Bu web sitesinin kullanimi, ticari engelleyen Kullanim KoÅŸullarina tabidir. Bu sayfayi geÃ§tiÄŸinizde bu koÅŸullari kabul etmiÅŸ sayÄ±lÄ±rsÄ±nÄ±z.</span><br /><span style="font-size:12px; color:#FFF">Copyright Â© Bilet BoÅŸta 2013 </span> </div>
+        <div class="copyright"><span style="font-size:10px; color:#FFF">Bu web sitesinin kullanımı, ticari engelleyen Kullanim Koşullarına tabidir. Bu sayfayı geçtiğinizde bu koşulları kabul etmiş sayılmaktasınız.</span><br /><span style="font-size:12px; color:#FFF">Copyright © Bilet Boşta 2013 </span> </div>
     </div>
 </body>
 </html>
