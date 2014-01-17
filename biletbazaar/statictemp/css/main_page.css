@@ -1,0 +1,525 @@
+
+    
+ html{
+	font-family:"Myriad Pro";
+	font-size:14px;
+}
+body{
+	
+	background-image:url(../resimler/deneme10.jpg);
+	overflow-y: scroll;
+	overflow-x: hidden;
+	
+}
+
+
+
+a:link{
+	color:#FFF;
+	text-decoration:none;
+}
+
+a:active{
+	color:#0F0;
+}
+
+.header_css{
+	background-image:url(../resimler/bg.png);
+	height:195px;
+	margin-left:0px;
+	margin-top:0px;
+	
+}
+
+.header_css .banner{
+	
+	
+	position:relative;
+	height:166px;
+	
+}
+
+.header_css .menu{
+	position:absolute;
+	text-align:center;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:15px;
+	margin-top:0px;
+	height:29px;
+}
+
+
+.header_css .menu .anasayfa{
+	opacity:1;
+	background-image:url(../resimler/anasayfa.png);
+	height:29px;
+	float:left;
+	width:157px;
+	
+}
+
+.header_css .menu .anasayfa:hover{
+	font-size:16px;
+	opacity:0.9;
+}
+
+.header_css .menu .muzik:hover{
+	font-size:16px;
+	opacity:0.9;
+}
+
+.header_css .menu .spor:hover{
+	font-size:16px;
+	opacity:0.9;
+}
+
+.header_css .menu .sahne:hover{
+	font-size:16px;
+	opacity:0.9;
+}
+
+.header_css .menu .hakkimizda:hover{
+	font-size:16px;
+	opacity:0.9;
+}
+
+.header_css .menu .sss:hover{
+	font-size:16px;
+	opacity:0.9;
+}
+
+
+.header_css .menu .muzik{
+	opacity:1;
+	background-image:url(../resimler/muzik.png);
+	height:29px;
+	float:left;
+	width:144px;
+}
+
+.header_css .menu .spor{
+	opacity:1;
+	background-image:url(../resimler/spor.png);
+	height:29px;
+	float:left;
+	width:147px;
+}
+
+.header_css .menu .sahne{
+	opacity:1;
+	background-image:url(../resimler/sahne.png);
+	height:29px;
+	float:left;
+	width:146px;
+}
+
+.header_css .menu .hakkimizda{
+	opacity:1;
+	background-image:url(../resimler/hakkimizda.png);
+	height:29px;
+	float:left;
+	width:151px;
+}
+
+.header_css .menu .sss{
+	opacity:1;
+	background-image:url(../resimler/sss.png);
+	margin-top:0px;
+	height:29px;
+	float:left;
+	width:145px;
+}
+
+
+.header_css .banner .logo{
+	position:absolute;
+	height:166px;
+	width:440px;
+	
+}
+
+.header_css .banner .links{
+	color:#FFF;
+	vertical-align:middle;
+	text-align:right;
+	position:absolute;
+	height:166px;
+	width:449px;
+	margin-left:440px;
+	
+}
+
+.header_css .banner .links .hesabim{
+	margin-right:20px;
+	height:40px;
+}
+
+.header_css .banner .links .uye_girisi{
+	margin-right:20px;
+	height:40px;
+}
+
+.header_css .banner .links .search{
+	margin-right:20px;
+	height:40px;
+}
+
+.header_css .banner .links .dil{
+	margin-right:20px;
+	height:40px;
+}
+
+.content_css{
+	position:relative;
+	background-color:#565554;
+	width:890px;
+	height:695px;
+
+	
+}
+
+.content_css .white_bg{
+	position:absolute;
+	background-color:#FFF;
+	margin-top:11px;
+	margin-left:12px;
+	width:866px;
+	height:640px;
+}
+
+.content_css .white_bg .haftanin_etkinlikleri{
+	position:absolute;
+	background: linear-gradient(#cfcfcf,#ffffff);
+	margin-top:12px;
+	margin-left:12px;
+	width:563px;
+	height:231px;
+}
+
+
+.content_css .white_bg .haftanin_etkinlikleri .haftanin_etkinlikleri_yazi{
+	font-size:16px;
+	vertical-align:middle;
+	line-height:30px;
+	width:563px;
+	height:31px;
+}
+
+.content_css .white_bg .haftanin_etkinlikleri .weekly_content .left_images{
+	position:absolute;
+	margin-left:0px;
+	margin-top:0px;
+	width:163px;
+	height:200px;
+}
+
+.content_css .white_bg .haftanin_etkinlikleri .weekly_content .left_images .left_image{
+	color:#d1d1d1;
+	border:2px solid #626160;
+	background-color:#545352;
+	width:163px;
+	height:36px;
+}
+
+
+.content_css .white_bg .haftanin_etkinlikleri .weekly_content .left_images .left_image:hover{
+	width:190px;
+	color:#000;
+	background-color:#f5f5f5;
+
+}
+
+
+.content_css .white_bg .haftanin_etkinlikleri .weekly_content{
+	position:relative;
+	width:563px;
+	height:200px;
+}
+
+.content_css .white_bg .haftanin_etkinlikleri .weekly_content .big_image{
+	margin-top:0px;
+	margin-left:163px;
+	height:200px;
+	width:400px;
+	background-color:#000;
+}
+
+
+
+.content_css .white_bg .hot_tickets{
+	position:absolute;
+	background: linear-gradient(#cfcfcf,#ffffff);
+	margin-top: 254px;
+	margin-left:12px;
+	width:563px;
+	height:376px;
+}
+
+
+.content_css .white_bg .hot_tickets .hot_tickets_baslik{
+	font-size:16px;
+	color:#000;
+	line-height: 26px;
+	text-align:center;
+	float:left;
+	height: 26px;
+	width:563px;
+}
+
+
+.content_css .white_bg .hot_tickets .event_left{
+	border:2px solid #cfcfcf;
+	margin-top:2px;
+	background-color:#f8f8f8;
+	float:left;
+	height: 63px;
+	width:270px;
+}
+
+.content_css .white_bg .hot_tickets .event_right{
+	border:2px solid #cfcfcf;
+	margin-top:2px;
+	background-color:#f8f8f8;
+	float:right;
+	height: 63px;
+	width:270px;
+}
+
+.content_css .white_bg .bilet_ilani{
+	opacity:1;
+	line-height:55px;
+	vertical-align:middle;
+	text-align:center;
+	font-size:24px;
+	position:absolute;
+	background-image:url(../resimler/bilet_ilani_ver.png);
+	margin-top: 12px;
+	margin-left: 587px;
+	width: 268px;
+	height: 55px;
+}
+
+.content_css .white_bg .bilet_ilani:hover{
+	opacity:0.9;
+	color:#FFF;
+}
+
+	
+
+.content_css .white_bg .sehir_sec{
+	position:absolute;
+	margin-top: 76px;
+	margin-left: 587px;
+	width: 268px;
+	height: 63px;
+}
+
+
+.content_css .white_bg .sehir_sec .sehir_sec_text{
+	text-align:center;
+	font-size:16px;
+	color:#000;
+	background: linear-gradient(#bbbbbb,#dadada);
+	line-height:30px;
+	
+	vertical-align:middle;
+	margin-top:0px;
+	height:30px;
+}
+
+
+.content_css .white_bg .sehir_sec .sehir_sec_selection{
+	height:33px;
+	background-color:#c0c0c0;
+}
+
+.content_css .white_bg .sehir_sec .sehir_sec_selection .selection_menu{
+	margin-left:7px;
+	margin-top:5px;
+	height:70%;
+	width:95%;
+}
+
+
+
+
+
+
+
+.content_css .white_bg .ucuz_biletler{
+	position:absolute;
+	background-color:#bfbfbf;
+	margin-top: 150px;
+	margin-left: 587px;
+	width: 268px;
+	height: 299px;
+}
+
+.content_css .white_bg .ucuz_biletler .ucuz_bilet_yazi{
+	color:#000;
+	font-size:16px;
+	background: linear-gradient(#bbbbbb,#dadada);
+	line-height:24px;
+	text-align:center;
+	vertical-align:middle;
+	margin-top:0px;
+	height:24px;
+}
+
+
+
+.content_css .white_bg .ucuz_biletler .ucuz_bilet{
+	vertical-align:middle;
+	line-height:15px;
+	border:2px solid #cfcfcf;
+	margin-left:2px;
+	margin-top:1px;
+	background-color:#f8f8f8;
+	float:left;
+	height: 50px;
+	width:260px;
+	
+}
+	
+	
+
+.content_css .white_bg .logo{
+	position:absolute;
+	background-image:url(../resimler/bilet-bosta-reklam.png);
+	margin-top: 456px;
+	margin-left: 587px;
+	width: 268px;
+	height: 168px;
+}
+
+
+.footer{
+	background-image:url(../resimler/bg.png);
+	height:165px;
+
+	margin-top:0px;
+	
+}
+
+
+.footer .footer_links{
+
+	height:100px;
+	margin-top:0px;
+	margin-left: 430px;
+	margin-right: 130px;
+}
+
+.footer .footer_links .link{
+	margin-top:15px;
+	float:left;
+	height:100px;
+	width:180px;
+}
+
+.footer .copyright{
+	vertical-align:middle;
+	line-height:20px;
+	text-align:center;
+	margin-top:20px;
+	height:65px;
+	
+}
+
+.autoResizeImage {
+	vertical-align:middle;
+    height: 100%;
+    width: 100%;
+}
+
+.img{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 40px;
+	margin-bottom:auto;
+}
+
+
+
+#search, #submit
+{
+	float: right;
+}
+
+#search
+{
+	padding: 5px 9px;
+	height: 23px;
+	width: 280px;
+	border: 1px solid #a4c3ca;
+	font: normal 13px 'trebuchet MS', arial, helvetica;
+	background: #f1f1f1;
+	
+	-moz-border-radius: 50px 3px 3px 50px;
+	 border-radius: 50px 3px 3px 50px;
+	 -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+	 -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+	 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);            
+}
+
+/* ----------------------- */
+
+#submit
+{		
+	background: #bad130;
+	background-image: -moz-linear-gradient(#a3b82a,#bad130);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #6cbb6b),color-stop(1, #a3b82a));
+	
+	-moz-border-radius: 3px 50px 50px 3px;
+	border-radius: 3px 50px 50px 3px;
+	
+	border-width: 1px;
+	border-style: solid;
+	border-color: #7eba7c #578e57 #447d43;
+	
+	 -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+	 -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+	 box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;   		
+
+	height: 35px;
+	margin: 0 0 0 10px;
+        padding: 0;
+	width: 90px;
+	cursor: pointer;
+	font: bold 14px Arial, Helvetica;
+	color: #23441e;
+	
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+
+#submit:hover
+{		
+	background: #95d788;
+	background-image: -moz-linear-gradient(#6cbb6b, #95d788);
+	background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #95d788),color-stop(1, #6cbb6b));
+}	
+
+#submit:active
+{		
+	background: #95d788;
+	outline: none;
+   
+	 -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	 -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	 box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
+}
+
+#submit::-moz-focus-inner
+{
+       border: 0;  /* Small centering fix for Firefox */
+}		
+ 
+    
+    
+    
+
+    
+    
+    
+    
