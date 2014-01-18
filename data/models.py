@@ -25,6 +25,7 @@ class Event(models.Model):
     place = models.CharField(max_length = 30)
     date = models.DateField()
     city = models.ForeignKey(City)
+    seatNumberEnabled = models.BooleanField()
     
     def __unicode__(self):
         return self.eventGroup.name + " "+ self.city.name+ " " + self.place
@@ -52,6 +53,8 @@ class Ticket(models.Model):
     creationDate = models.DateField()
     ticketCount = models.IntegerField()
     seatCategory = models.CharField(max_length = 30)
+    seatNumber = models.CharField(max_length=20,null=True)
+    
 
     
 class LandingUser(models.Model):

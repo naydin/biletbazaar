@@ -122,6 +122,7 @@ def reset_static_data():
         e1.place = event_places[ random_place ]
         e1.city = event_cities[ random_place ]
         e1.date = datetimenow + datetime.timedelta(days = randrange(20,100))
+        e1.seatNumberEnabled = True
         e1.save()
         events.append(e1)
 
