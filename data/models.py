@@ -28,12 +28,51 @@ class Event(models.Model):
     date = models.DateField()
     city = models.ForeignKey(City)
     
-    availableCategories = models.CharField(max_length = 100,null=True)
+    availableCategories = models.CharField(max_length = 100, null=True)
     availableSeatRows = models.CharField(max_length = 50, null=True)
     
     def __unicode__(self):
         return self.eventGroup.name + " "+ self.city.name+ " " + self.place
         
+    def addSeatCategory(self,seatCategory):
+        if self.availableCategories:
+            self.availableCategories += arrayElementSeparator + seatCategory
+        else:
+            self.availableCategories = seatCategory
+            
+    def getSeatCategories(self):
+        if self.availableCategories:
+            return self.availableCategories.split(arrayElementSeparator)
+        else:
+            return None
+    
+    def isSeatCategoryValid(self, seatCategory):
+        seatCategories = self.getSeatCategories()
+        for category in seatCategories:
+            if seatCategory == category:
+                return True
+        
+        return False
+         
+    def addSeatRow(self,seatRow):
+        if self.availableSeatRows:
+            self.availableSeatRows += arrayElementSeparator + seatRow
+        else:
+            self.availableSeatRows = seatRow
+            
+    def getSeatRows(self):
+        if self.availableSeatRows:
+            return self.availableSeatRows.split(arrayElementSeparator)
+        else:
+            return None
+            
+    def isSeatRowValid(self, seatRow):
+        seatRows = self.getSeatRows()
+        for row in seatRows:
+            if seatRow == row:
+                return True
+        
+        return False
 
 class User(models.Model):
     id = models.AutoField(primary_key=True)

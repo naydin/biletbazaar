@@ -174,22 +174,22 @@ def bilet_ilan(request):
             event_list = Event.objects.filter(eventGroup__name__icontains=search_event_group_name,city__name__icontains=selected_city_name)
             
     event_group_list = EventGroup.objects.all()
-    print len(event_list)
     
     return render(request,'sell/bilet_ilan.html',{'base':'/static/','event_group_list':event_group_list,'event_list':event_list})
 
 
 def bilet_detaylari(request):
     if request.method == 'POST':        
-        if request.session['sell_event']:
-            event = session['sell_event']
+        if request.session['sell_event_id']:
+            event_id = request.session['sell_event_id']
+            event = Event.objects.get(id=event_id)
             
+            ticket_count = request.POST['ticket_count']
+            seat_category = request.POST['seat_category']
+            seat_row = request.POST['seat_row']
+            seat_number = request.POST['seat_number']
             
-            request.POST['ticket_count']
-            request.POST['seat_category']
-            request.POST['seat_row']
-            request.POST['seat_number']
-            
+            return redirect('/fiyatlandir')
         
     else:
         if request.GET['event_id']:
@@ -197,11 +197,12 @@ def bilet_detaylari(request):
                 event_id = request.GET['event_id']
                 event = Event.objects.get(id=event_id)
                 
-                request.session['sell_event'] = event
+                request.session['sell_event_id'] = event_id
                 
                 return render(request,'sell/bilet_detaylari.html')
                 
             except Exception as e:
+                print '%s (%s)' % (e.message, type(e))
                 return redirect('/anasayfa')
         else:
             return redirect('/anasayfa')

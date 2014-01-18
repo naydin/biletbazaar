@@ -124,19 +124,16 @@ def reset_static_data():
         e1.date = datetimenow + datetime.timedelta(days = randrange(20,100))
         
         random_seat_category_count = randrange(0,6)
-        random_seat_row_count = randrange(0,15)
+        random_seat_row_count = randrange(1,15)
         
         if random_seat_category_count:
-            seat_categories = 'A'
-            for i in range(1,random_seat_category_count):
-                seat_categories += arrayElementSeparator + chr(i + ord('A'))
-            e1.avaliableCategories = seat_categories
+            for i in range(0,random_seat_category_count):
+                e1.addSeatCategory( chr( i + ord('A') ) )
                 
-        if random_seat_row_count:
-            seat_rows = '1'
             for i in range(1,random_seat_row_count):
-                seat_rows += arrayElementSeparator + str(i)
-            e1.availableSeatRows = seat_rows
+                    e1.addSeatRow( str(i) )
+                
+
         
         e1.save()
         events.append(e1)
