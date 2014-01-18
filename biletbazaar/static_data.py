@@ -122,12 +122,27 @@ def reset_static_data():
         e1.place = event_places[ random_place ]
         e1.city = event_cities[ random_place ]
         e1.date = datetimenow + datetime.timedelta(days = randrange(20,100))
-        e1.seatNumberEnabled = True
+        
+        random_seat_category_count = randrange(0,6)
+        random_seat_row_count = randrange(0,15)
+        
+        if random_seat_category_count:
+            seat_categories = 'A'
+            for i in range(1,random_seat_category_count):
+                seat_categories += arrayElementSeparator + chr(i + ord('A'))
+            e1.avaliableCategories = seat_categories
+                
+        if random_seat_row_count:
+            seat_rows = '1'
+            for i in range(1,random_seat_row_count):
+                seat_rows += arrayElementSeparator + str(i)
+            e1.availableSeatRows = seat_rows
+        
         e1.save()
         events.append(e1)
 
     users = []
-    for i in range(0,100):
+    for i in range(0,25):
         u1 = User()
         u1.username = ''.join(random.choice(string.ascii_lowercase) for x in range(4,10)) + '@gmail.com'
         u1.gsm = '+90' + ''.join(random.choice(string.digits) for x in range(10))
@@ -140,7 +155,7 @@ def reset_static_data():
     
     tickets = []
     seat_categories = ['A','B','C']
-    for i in range(0,300):
+    for i in range(0,100):
         user_random = randrange(0,len(users))
         event_random = randrange(0,len(events))
         seat_category_random = randrange(0,len(seat_categories))

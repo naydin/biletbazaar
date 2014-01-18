@@ -7,7 +7,7 @@ from django.template.loader import get_template
 from django.template import Context,loader
 from data.eventManager import *
 from data.models import *
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from forms import *
 from modelForms import *
 from django.db.models import Max
@@ -180,7 +180,33 @@ def bilet_ilan(request):
 
 
 def bilet_detaylari(request):
-    return render(request,'sell/bilet_detaylari.html')
+    if request.method == 'POST':        
+        if request.session['sell_event']:
+            event = session['sell_event']
+            
+            
+            request.POST['ticket_count']
+            request.POST['seat_category']
+            request.POST['seat_row']
+            request.POST['seat_number']
+            
+        
+    else:
+        if request.GET['event_id']:
+            try:
+                event_id = request.GET['event_id']
+                event = Event.objects.get(id=event_id)
+                
+                request.session['sell_event'] = event
+                
+                return render(request,'sell/bilet_detaylari.html')
+                
+            except Exception as e:
+                return redirect('/anasayfa')
+        else:
+            return redirect('/anasayfa')
+            
+
     
 def fiyatlandir(request):
     return render(request,'sell/fiyatlandir.html')

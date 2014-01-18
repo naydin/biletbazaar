@@ -1,5 +1,7 @@
 from django.db import models
 
+arrayElementSeparator = ',,'
+
 class City(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=15,null=False)
@@ -25,10 +27,13 @@ class Event(models.Model):
     place = models.CharField(max_length = 30)
     date = models.DateField()
     city = models.ForeignKey(City)
-    seatNumberEnabled = models.BooleanField()
+    
+    availableCategories = models.CharField(max_length = 100,null=True)
+    availableSeatRows = models.CharField(max_length = 50, null=True)
     
     def __unicode__(self):
         return self.eventGroup.name + " "+ self.city.name+ " " + self.place
+        
 
 class User(models.Model):
     id = models.AutoField(primary_key=True)
@@ -42,8 +47,6 @@ class User(models.Model):
 
     def __unicode__(self):
         return self.username
-
-seatCategorySeparator = '=='
     
 class Ticket(models.Model):
     id = models.AutoField(primary_key=True)
@@ -52,8 +55,10 @@ class Ticket(models.Model):
     price = models.DecimalField(max_digits = 8, decimal_places = 2)
     creationDate = models.DateField()
     ticketCount = models.IntegerField()
-    seatCategory = models.CharField(max_length = 30)
-    seatNumber = models.CharField(max_length=20,null=True)
+    
+    seatCategory = models.CharField(max_length = 20, null=True)
+    seatRow = models.CharField(max_length = 20, null=True)
+    seatNumber = models.CharField(max_length=20, null=True)
     
 
     
