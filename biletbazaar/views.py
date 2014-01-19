@@ -177,6 +177,7 @@ def bilet_ilan(request):
     
     return render(request,'sell/bilet_ilan.html',{'base':'/static/','event_group_list':event_group_list,'event_list':event_list})
 
+valid_ticket_count_range = range(1,7)
 
 def bilet_detaylari(request):
     if request.method == 'POST':        
@@ -188,7 +189,7 @@ def bilet_detaylari(request):
             seat_category = request.POST['seat_category']
             seat_row = request.POST['seat_row']
             seat_number = request.POST['seat_number']
-            
+
             return redirect('/fiyatlandir')
         
     else:
@@ -199,11 +200,15 @@ def bilet_detaylari(request):
                 
                 request.session['sell_event_id'] = event_id
                 
-                ticket_count_list = range(1,7)
+                ticket_count_list = valid_ticket_count_range
                 seat_category_list = event.getSeatCategories()
                 seat_row_list = event.getSeatRows()
+                
                                 
-                return render(request,'sell/bilet_detaylari.html',{'ticket_count_list':ticket_count_list,'seat_category_list':seat_category_list,'seat_row_list':seat_row_list})
+                return render(request,'sell/bilet_detaylari.html',
+                {'ticket_count_list':ticket_count_list,
+                'seat_category_list':seat_category_list,
+                'seat_row_list':seat_row_list})
                 
             except Exception as e:
                 print '%s (%s)' % (e.message, type(e))
