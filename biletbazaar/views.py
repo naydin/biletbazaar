@@ -199,7 +199,11 @@ def bilet_detaylari(request):
                 
                 request.session['sell_event_id'] = event_id
                 
-                return render(request,'sell/bilet_detaylari.html')
+                ticket_count_list = range(1,7)
+                seat_category_list = event.getSeatCategories()
+                seat_row_list = event.getSeatRows()
+                                
+                return render(request,'sell/bilet_detaylari.html',{'ticket_count_list':ticket_count_list,'seat_category_list':seat_category_list,'seat_row_list':seat_row_list})
                 
             except Exception as e:
                 print '%s (%s)' % (e.message, type(e))

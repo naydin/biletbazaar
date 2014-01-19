@@ -110,31 +110,40 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
             		<br /><br />
    					<select name="ticket_count" id="bilet_sayisi" class="styled-select" title="İlanını vermek istediğiniz bilet sayısını giriniz. Bundan sonra yapacağınız işlemleri elinizdeki biletlerden birisi için devam edeceksiniz.">
       					<option selected="selected" disabled="disabled">bilet sayısını giriniz</option>
-      					<option>1</option>
+						{% for ticket_count in ticket_count_list %}
+						<option> {{ticket_count}}</option>
+						{% endfor %}
+      					<!-- <option>1</option>
                         <option>2</option>
                         <option>3</option>
-                        <option>4</option>
+                        <option>4</option> -->
    					</select>
                     <br /><br />
                     <label class="name" style="font-size:20px">kategori no</label> 
             		<br /><br />
    					<select name="seat_category" class="styled-select" title="Biletinizin yer aldığı kategoriyi seçiniz. Birden fazla bilet ilanı veriyorsanız hepsinin aynı kategoride yer aldığına emin olunuz.">
       					<option selected="selected" disabled="disabled">bilet kategorisini seciniz</option>
-      					<option>Sahne Önü</option>
+						{% for seat_category in seat_category_list %}
+						<option>{{seat_category}}</option>
+						{% endfor %}
+      					<!-- <option>Sahne Önü</option>
                         <option>Kategori 1</option>
                         <option>Kategori 2</option>
-                        <option>Kategori 3</option>
+                        <option>Kategori 3</option> -->
    					</select>
                     <br /><br />
                     <label class="name" style="font-size:20px">sıra no</label> 
             		<br /><br />
    					<select name="seat_row" class="styled-select" title="Biletinizin bulunduğu sırayı seçiniz.">
       					<option selected="selected" disabled="disabled">bilet sıra numarası</option>
-      					<option> Sira A </option>
+						{% for seat_row in seat_row_list %}
+						<option>{{seat_row}}</option>
+						{% endfor %}
+      					<!-- <option> Sira A </option>
                         <option> Sıra B </option>
                         <option> Sıra C </option>
                         <option> Sıra D </option>
-                        <option> Sıra E </option>
+                        <option> Sıra E </option> -->
    					</select>
                     <br /><br />
                     <label class="name" style="font-size:20px">koltuk no</label> <label id="koltuk_uyari" style="color:#bdd531; margin-left:10px;"></label>
