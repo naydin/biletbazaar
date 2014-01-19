@@ -216,7 +216,7 @@ def bilet_detaylari(request):
                 seat_row_error = u'Lütfen geçerli bir sıra no girin.'
 
             try:
-                ticket_count = request.POST['seat_number']
+                seat_number = request.POST['seat_number']
                 intvar = int(ticket_count)
             except Exception as e:
                 seat_number_error = u'Lütfen geçerli bir koltuk no girin.'
@@ -269,7 +269,20 @@ def bilet_detaylari(request):
 
     
 def fiyatlandir(request):
-    return render(request,'sell/fiyatlandir.html')
+    try:
+        event = Event.objects.get(id = request.session['sell_event_id'])
+        ticket_count = request.session['sell_ticket_count']
+        seat_category = request.session['sell_seat_category']
+        seat_row = request.session['sell_seat_row']
+        seat_number = request.session['sell_seat_number']
+    except Exception as e:
+        return redirect('/anasayfa')
+    return render(request,'sell/fiyatlandir.html',
+    {'event':event,
+    'ticket_count':ticket_count,
+    'seat_category':seat_category,
+    'seat_row':seat_row,
+    'seat_number':seat_number})
     
 def teslimat(request):
     return render(request,'sell/teslimat.html')
