@@ -185,11 +185,61 @@ def bilet_detaylari(request):
             event_id = request.session['sell_event_id']
             event = Event.objects.get(id=event_id)
             
-            ticket_count = request.POST['ticket_count']
-            seat_category = request.POST['seat_category']
-            seat_row = request.POST['seat_row']
-            seat_number = request.POST['seat_number']
+            ticket_count = ''
+            seat_category = ''
+            seat_row = ''
+            seat_number = ''
+            ticket_count_error = ''
+            seat_category_error = ''
+            seat_row_error = ''
+            seat_number_error = ''
+            
+            try:
+                ticket_count = request.POST['ticket_count']
+                if int(ticket_count) not in valid_ticket_count_range:
+                    raise Exception('')
+            except Exception as e:
+                ticket_count_error = u'Lütfen geçerli bir bilet sayısı girin.'
+                
+            try:
+                seat_category = request.POST['seat_category']
+                if not event.isSeatCategoryValid(seat_category):
+                    raise Exception('')
+            except Exception as e:
+                seat_category_error = u'Lütfen geçerli kategori no girin.'
+            
+            try:
+                seat_row = request.POST['seat_row']
+                if not event.isSeatRowValid(seat_row):
+                    raise Exception('')
+            except Exception as e:
+                seat_row_error = u'Lütfen geçerli bir sıra no girin.'
 
+            try:
+                ticket_count = request.POST['seat_number']
+                intvar = int(ticket_count)
+            except Exception as e:
+                seat_number_error = u'Lütfen geçerli bir koltuk no girin.'
+            #TODO:seat_number limit validation
+
+            if ticket_count_error or seat_category_error or seat_row_error or seat_number_error:
+                ticket_count_list = valid_ticket_count_range
+                seat_category_list = event.getSeatCategories()
+                seat_row_list = event.getSeatRows()
+                return render(request,'sell/bilet_detaylari.html',
+                {'ticket_count_list':ticket_count_list,
+                'seat_category_list':seat_category_list,
+                'seat_row_list':seat_row_list,
+                'ticket_count_error':ticket_count_error,
+                'seat_category_error':seat_category_error,
+                'seat_row_error':seat_row_error,
+                'seat_number_error':seat_number_error})
+
+            request.session['sell_ticket_count'] = ticket_count
+            request.session['sell_seat_category'] = seat_category
+            request.session['sell_seat_row'] = seat_row
+            request.session['sell_seat_number'] = seat_number
+            
             return redirect('/fiyatlandir')
         
     else:

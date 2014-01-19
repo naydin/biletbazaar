@@ -105,8 +105,8 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
          </div>
         	
          <div class="bilet_detaylari">
-    			<form id="myform" name="bilet_detaylari" method="post" onsubmit="return validate(this)">
-         			<label class="name" style="font-size:20px">elinizdeki bilet sayısı</label> <label id="biletsayisi_uyari" style="color:#bdd531; margin-left:10px;"></label>
+    			<form id="myform" name="bilet_detaylari" method="post" >
+         			<label class="name" style="font-size:20px">elinizdeki bilet sayısı</label> <label id="biletsayisi_uyari" style="color:#bdd531; margin-left:10px;">{{ticket_count_error}}</label>
             		<br /><br />
    					<select name="ticket_count" id="bilet_sayisi" class="styled-select" title="İlanını vermek istediğiniz bilet sayısını giriniz. Bundan sonra yapacağınız işlemleri elinizdeki biletlerden birisi için devam edeceksiniz.">
       					<option selected="selected" disabled="disabled">bilet sayısını giriniz</option>
@@ -115,7 +115,7 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
 						{% endfor %}
    					</select>
                     <br /><br />
-                    <label class="name" style="font-size:20px">kategori no</label> 
+                    <label class="name" style="font-size:20px">kategori no</label><label id="biletsayisi_uyari" style="color:#bdd531; margin-left:10px;">{{seat_category_error}}</label> 
             		<br /><br />
    					<select name="seat_category" class="styled-select" title="Biletinizin yer aldığı kategoriyi seçiniz. Birden fazla bilet ilanı veriyorsanız hepsinin aynı kategoride yer aldığına emin olunuz.">
       					<option selected="selected" disabled="disabled">bilet kategorisini seciniz</option>
@@ -124,7 +124,7 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
 						{% endfor %}
    					</select>
                     <br /><br />
-                    <label class="name" style="font-size:20px">sıra no</label> 
+                    <label class="name" style="font-size:20px">sıra no</label> <label id="biletsayisi_uyari" style="color:#bdd531; margin-left:10px;">{{seat_row_error}}</label>
             		<br /><br />
    					<select name="seat_row" class="styled-select" title="Biletinizin bulunduğu sırayı seçiniz.">
       					<option selected="selected" disabled="disabled">bilet sıra numarası</option>
@@ -133,7 +133,7 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
 						{% endfor %}
    					</select>
                     <br /><br />
-                    <label class="name" style="font-size:20px">koltuk no</label> <label id="koltuk_uyari" style="color:#bdd531; margin-left:10px;"></label>
+                    <label class="name" style="font-size:20px">koltuk no</label> <label id="koltuk_uyari" style="color:#bdd531; margin-left:10px;">{{seat_number_error}}</label>
             		<br /><br />
    					<input name="seat_number" id="koltuk_no" class="tb" type="text" title="Biletinizin üstünde yazan koltuk numarasını belirtiniz. Birden fazla bilet ilanı veriyorsanız başlangıç koltuk numarasını yazınız."/>
                     <br />
