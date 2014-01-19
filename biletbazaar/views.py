@@ -217,7 +217,7 @@ def bilet_detaylari(request):
 
             try:
                 seat_number = request.POST['seat_number']
-                intvar = int(ticket_count)
+                intvar = int(seat_number)
             except Exception as e:
                 seat_number_error = u'Lütfen geçerli bir koltuk no girin.'
             #TODO:seat_number limit validation
@@ -277,12 +277,44 @@ def fiyatlandir(request):
         seat_number = request.session['sell_seat_number']
     except Exception as e:
         return redirect('/anasayfa')
+
+    ticket_face_value_error = ''
+    ticket_sell_value_error = ''
+
+    if request.method == 'POST':
+        try:
+            ticket_face_value = request.POST['sell_ticket_face_value']
+            ticket_sell_value = request.POST['sell_ticket_sell_value']
+            
+            try:
+                dummy = float(ticket_face_value)
+            except Exception as e:
+                ticket_face_value_error = u'Lütfen geçerli bir fiyat girin.'
+
+            try:
+                dummy = float(ticket_sell_value)
+            except Exception as e:
+                ticket_sell_value_error = u'Lütfen geçerli bir fiyat girin.'
+            
+            if (ticket_face_value_error == '') and (ticket_sell_value_error == ''):
+                request.session['sell_ticket_face_value'] = ticket_face_value
+                request.session['sell_ticket_sell_value'] = ticket_sell_value
+            
+                return redirect('/teslimat')
+                
+        except Exception as e:
+            return redirect('anasayfa')
+        
     return render(request,'sell/fiyatlandir.html',
     {'event':event,
     'ticket_count':ticket_count,
     'seat_category':seat_category,
     'seat_row':seat_row,
-    'seat_number':seat_number})
+    'seat_number':seat_number,
+    'ticket_face_value_error':ticket_face_value_error,
+    'ticket_sell_value_error':ticket_sell_value_error})
+        
+        
     
 def teslimat(request):
     return render(request,'sell/teslimat.html')

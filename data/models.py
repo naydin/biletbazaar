@@ -91,7 +91,7 @@ class Ticket(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User)
     event = models.ForeignKey(Event)
-    price = models.DecimalField(max_digits = 8, decimal_places = 2)
+    price = models.DecimalField(max_digits = 8, decimal_places = 2)#TODO: should be float
     creationDate = models.DateField()
     ticketCount = models.IntegerField()
     
@@ -99,7 +99,7 @@ class Ticket(models.Model):
     seatRow = models.CharField(max_length = 20, null=True)
     seatNumber = models.CharField(max_length=20, null=True)
     
-
+#TODO: face value gotten from user should be added to ticket
     
 class LandingUser(models.Model):
     id = models.AutoField(primary_key=True)
