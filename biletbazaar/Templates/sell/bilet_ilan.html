@@ -509,12 +509,19 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
              <div class="ucuz_bilet_yazi">ucuz biletler</div>
 			 
 			 {% for event in event_list %}
-				<div class="ucuz_bilet"><table><tr>
-					<td height="45px" width="60px" style=" padding-right:50px;" ><img class="autoResizeImage" src="{{event.eventGroup.photoUrl}}" /></td>
-					<td height="45px" width="150px" style=" padding-right:50px;" >{{event.eventGroup.name}}<br />{{event.place}}<br />{{event.city.name}}</td>
-					<td height="45px" width="50px" style=" padding-right:50px;">{{event.date|date:"M"}}<br />{{event.date.day}}<br />{{event.date|date:"l"}}</td>
-					<td><button type="submit" class="button_example">Seç</button></td>
-				</tr></table></div>
+			 <form action="/bilet_detaylari/" method="GET">
+ 				<div class="ucuz_bilet"><table><tr>
+ 					<td height="45px" width="60px" style=" padding-right:50px;" ><img class="autoResizeImage" src="{{event.eventGroup.photoUrl}}" /></td>
+ 					<td height="45px" width="150px" style=" padding-right:50px;" >{{event.eventGroup.name}}<br />{{event.place}}<br />{{event.city.name}}</td>
+ 					<td height="45px" width="50px" style=" padding-right:50px;">{{event.date|date:"M"}}<br />{{event.date.day}}<br />{{event.date|date:"l"}}</td>
+ 					<!-- <td><button type="submit" class="button_example" action="">Seç</button></td> -->
+					
+					<td>
+						<input type="hidden" name="event_id" value="{{event.id}}" /> 
+						<input type="submit" class="button_example">Seç</input>
+					</td>
+ 				</tr></table></div>
+			 </form>
 			 {% endfor %}
             </div>
 			{% endif %}
