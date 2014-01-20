@@ -349,7 +349,7 @@ def teslimat(request):
                 ship_neighbourhood_error = error_message
             if not re.match("^[0-9A-Za-z:,-./\sÇçŞşÜüÖöIıİiĞğ]+$",ship_address,re.UNICODE):
                 ship_address_error = error_message
-            if not re.match("^[0-9A-Za-z:,-./\sÇçŞşÜüÖöIıİiĞğ]+$",ship_address2,re.UNICODE):
+            if ship_address2 != '' and (not re.match("^[0-9A-Za-z:,-./\sÇçŞşÜüÖöIıİiĞğ]+$",ship_address2,re.UNICODE)):
                 ship_address2_error = error_message
             
             if ship_name_error == '' and ship_surname_error == '' and ship_city_error == '' and ship_neighbourhood_error == '' and ship_address_error == '' and ship_address2_error == '':
