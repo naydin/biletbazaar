@@ -165,9 +165,10 @@ def send_maill(email):
 
 def bilet_ilan(request):
     selected_city_name = u''
-    if request.session[selected_city_name_field]:
+    try:
         selected_city_name = request.session[selected_city_name_field]
-    
+    except Exception as e:
+        selected_city_name = u''
     
     event_list = []
     if request.method == 'POST':
@@ -182,8 +183,8 @@ def bilet_ilan(request):
 valid_ticket_count_range = range(1,7)
 
 def bilet_detaylari(request):
-    if request.method == 'POST':        
-        if request.session['sell_event_id']:
+    if request.method == 'POST':
+        try:        
             event_id = request.session['sell_event_id']
             event = Event.objects.get(id=event_id)
             
@@ -243,6 +244,8 @@ def bilet_detaylari(request):
             request.session['sell_seat_number'] = seat_number
             
             return redirect('/fiyatlandir')
+        except Exception as e:
+            return redirect('/anasayfa')
         
     else:
         if request.GET['event_id']:
