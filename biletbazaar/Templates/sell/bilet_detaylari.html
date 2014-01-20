@@ -118,7 +118,7 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
                     <label class="name" style="font-size:20px">kategori no</label><label id="biletsayisi_uyari" style="color:#bdd531; margin-left:10px;">{{seat_category_error}}</label> 
             		<br /><br />
    					<select name="seat_category" class="styled-select" title="Biletinizin yer aldığı kategoriyi seçiniz. Birden fazla bilet ilanı veriyorsanız hepsinin aynı kategoride yer aldığına emin olunuz.">
-      					<option selected="selected" disabled="disabled">bilet kategorisini seciniz</option>
+      					<option selected="selected" disabled="disabled">bilet kategorisini seçiniz</option>
 						{% for seat_category in seat_category_list %}
 						<option>{{seat_category}}</option>
 						{% endfor %}
