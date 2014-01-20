@@ -366,7 +366,6 @@ def teslimat(request):
             # print '%s (%s)' % (e.message, type(e))
             return redirect('/anasayfa')
 
-        19981612
         
     return render(request,'sell/teslimat.html',{
         'ship_name_error':ship_name_error,
