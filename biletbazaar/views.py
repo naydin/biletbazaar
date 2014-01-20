@@ -335,12 +335,19 @@ def teslimat(request):
             ship_address = request.POST['ship_address']
             ship_address2 = request.POST['ship_address2']
             
-        #TODO: validations with regex including unicode characters
-            # error_message = u'Lütfen geçerli bir değer giriniz.'
-            # if not re.match("^[0-9A-Za-z:,-./\s]+$", ship_name):
-            #     ship_name_error = error_message
-            # if not re.match("^[0-9A-Za-z:,-./\s]+$",ship_surname):
-            #     ship_surname_error = u'Lütfen '
+            error_message = u'Lütfen geçerli bir değer giriniz.'
+            if not re.match(u"^[A-Za-z\sÇçŞşÜüÖöIıİiĞğ]+$", ship_name,re.UNICODE):
+                ship_name_error = error_message
+            if not re.match(u"^[A-Za-z\sÇçŞşÜüÖöIıİiĞğ]+$", ship_surname,re.UNICODE):
+                ship_surname_error = error_message
+            if not re.match(u"^[A-Za-z\sÇçŞşÜüÖöIıİiĞğ]+$", ship_city,re.UNICODE):
+                ship_city_error = error_message
+            if not re.match(u"^[A-Za-z\sÇçŞşÜüÖöIıİiĞğ]+$", ship_neighbourhood,re.UNICODE):
+                ship_neighbourhood_error = error_message
+            if not re.match("^[0-9A-Za-z:,-./\sÇçŞşÜüÖöIıİiĞğ]+$",ship_address,re.UNICODE):
+                ship_address_error = error_message
+            if not re.match("^[0-9A-Za-z:,-./\sÇçŞşÜüÖöIıİiĞğ]+$",ship_address2,re.UNICODE):
+                ship_address2_error = error_message
             
             if ship_name_error == '' and ship_surname_error == '' and ship_city_error == '' and ship_neighbourhood_error == '' and ship_address_error == '' and ship_address2_error == '':
                 request.session['ship_name'] = ship_name
