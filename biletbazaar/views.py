@@ -16,6 +16,8 @@ from static_data import *
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 
+import re
+
 selected_city_name_field = "selected_city_name"
 
 def hello(request):
@@ -303,7 +305,7 @@ def fiyatlandir(request):
                 return redirect('/teslimat')
                 
         except Exception as e:
-            return redirect('anasayfa')
+            return redirect('/anasayfa')
         
     return render(request,'sell/fiyatlandir.html',
     {'event':event,
@@ -317,7 +319,53 @@ def fiyatlandir(request):
         
     
 def teslimat(request):
-    return render(request,'sell/teslimat.html')
+    ship_name_error = ''
+    ship_surname_error = ''
+    ship_city_error = ''
+    ship_neighbourhood_error = ''
+    ship_address_error = ''
+    ship_address2_error = ''
+
+    if request.method == 'POST':
+        try:
+            ship_name = request.POST['ship_name']
+            ship_surname = request.POST['ship_surname']
+            ship_city = request.POST['ship_city']
+            ship_neighbourhood = request.POST['ship_neighbourhood']
+            ship_address = request.POST['ship_address']
+            ship_address2 = request.POST['ship_address2']
+            
+        #TODO: validations with regex including unicode characters
+            # error_message = u'Lütfen geçerli bir değer giriniz.'
+            # if not re.match("^[0-9A-Za-z:,-./\s]+$", ship_name):
+            #     ship_name_error = error_message
+            # if not re.match("^[0-9A-Za-z:,-./\s]+$",ship_surname):
+            #     ship_surname_error = u'Lütfen '
+            
+            if ship_name_error == '' and ship_surname_error == '' and ship_city_error == '' and ship_neighbourhood_error == '' and ship_address_error == '' and ship_address2_error == '':
+                request.session['ship_name'] = ship_name
+                request.session['ship_surname'] = ship_surname
+                request.session['ship_city'] = ship_city
+                request.session['ship_neighbourhood'] = ship_neighbourhood
+                request.session['ship_address'] = ship_address
+                request.session['ship_address2'] = ship_address2
+                
+                return redirect('/onayla')
+            
+        except Exception as e:
+            print '%s (%s)' % (e.message, type(e))
+            return redirect('/anasayfa')
+
+        
+        
+    return render(request,'sell/teslimat.html',{
+        'ship_name_error':ship_name_error,
+        'ship_surname_error':ship_surname_error,
+        'ship_city_error':ship_city_error,
+        'ship_neighbourhood_error':ship_neighbourhood_error,
+        'ship_address_error':ship_address_error,
+        'ship_address2_error':ship_address2_error
+    })
 
 def onayla(request):
     return render(request,'sell/onayla.html')
