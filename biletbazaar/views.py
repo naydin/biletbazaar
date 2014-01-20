@@ -363,10 +363,10 @@ def teslimat(request):
                 return redirect('/onayla')
             
         except Exception as e:
-            print '%s (%s)' % (e.message, type(e))
+            # print '%s (%s)' % (e.message, type(e))
             return redirect('/anasayfa')
 
-        
+        19981612
         
     return render(request,'sell/teslimat.html',{
         'ship_name_error':ship_name_error,
@@ -378,4 +378,24 @@ def teslimat(request):
     })
 
 def onayla(request):
-    return render(request,'sell/onayla.html')
+    try:
+        event = Event.objects.get(id=request.session['sell_event_id'])
+        ticket_count = request.session['sell_ticket_count']
+        seat_category = request.session['sell_seat_category']
+        seat_row = request.session['sell_seat_row']
+        seat_number = request.session['sell_seat_number']
+        ticket_sell_value = request.session['sell_ticket_sell_value']
+    except Exception as e:
+        # print '%s (%s)' % (e.message, type(e))
+        return redirect('/anasayfa')
+    
+    if request.method == 'POST':
+        pass
+    return render(request,'sell/onayla.html',{
+        'event':event,
+        'ticket_count':ticket_count,
+        'seat_category':seat_category,
+        'seat_row':seat_row,
+        'seat_number':seat_number,
+        'ticket_sell_value':ticket_sell_value
+    })

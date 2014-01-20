@@ -123,10 +123,10 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
         <div style="margin-bottom:20px;" class="bilet">
          	<table>
             	<tr>
-                	<td width="150" height="80" style="text-align:center">Feb<br />2<br />Pzts</td>
-                	<td width="150" height="80" style="text-align:center">DUMAN<br />Jolly Joker<br />İstanbul</td>
-                    <td width="150" height="80" style="text-align:center">Kategori No: 1<br />Sıra No: A<br />Koltuk No: 7</td>
-                    <td width="150" height="80" style="text-align:center">İlan Fiyatı: 120 TL</td>
+                	<td width="150" height="80" style="text-align:center">{{event.date|date:"M"}}<br />{{event.date.day}}<br />{{event.date|date:"l"}}</td>
+                	<td width="150" height="80" style="text-align:center">{{event.eventGroup.name}}<br />{{event.place}}<br />{{event.city.name}}</td>
+                    <td width="150" height="80" style="text-align:center">Bilet Sayısı: {{ticket_count}}<br />Kategori No: {{seat_category}}<br />Sıra No: {{seat_row}}<br />Koltuk No: {{seat_number}}</td>
+                    <td width="150" height="80" style="text-align:center">İlan Fiyatı: {{ticket_sell_value}} TL</td>
                 </tr>
             </table>
          </div>
