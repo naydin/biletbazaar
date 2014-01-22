@@ -16,6 +16,7 @@ from static_data import *
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 
+import datetime
 import re
 
 selected_city_name_field = "selected_city_name"
@@ -406,10 +407,63 @@ def onayla(request):
             if not ((len(sell_iban) == 16) and re.match(u"^[0-9]+$", sell_iban,re.UNICODE) ):
                 iban_error = error_message
             
+            if name_error == '' and surname_error == '' and iban_error == '':
+                event = Event.objects.get(id = request.session['sell_event_id'])
+                ticket_count = request.session['sell_ticket_count']
+                seat_category = request.session['sell_seat_category']
+                seat_row = request.session['sell_seat_row']
+                seat_number = request.session['sell_seat_number']
+                ticket_face_value = request.session['sell_ticket_face_value']
+                ticket_sell_value = request.session['sell_ticket_sell_value']
+                ship_name = request.session['ship_name']
+                ship_surname = request.session['ship_surname']
+                ship_city = request.session['ship_city']
+                ship_neighbourhood = request.session['ship_neighbourhood']
+                ship_address = request.session['ship_address']
+                ship_address2 = request.session['ship_address2']
+                
+                shipment_info = ShipmentInfo()
+                shipment_info.name = ship_name
+                shipment_info.surname = ship_surname
+                shipment_info.city = ship_city
+                shipment_info.neighbourhood = ship_neighbourhood
+                shipment_info.address = ship_address
+                shipment_info.address2 = ship_address2
+                
+                payment_info = PaymentInfo()
+                payment_info.name = sell_name
+                payment_info.surname = sell_surname
+                payment_info.iban = sell_iban
+                
+                #todo:ticket should be connected with the loggedin user
+                user = User.objects.all()[0]
+                
+                ticket = Ticket()
+                ticket.user = user
+                ticket.event = event
+                ticket.price = ticket_sell_value
+                ticket.faceValue = ticket_face_value
+                ticket.creationDate = datetime.datetime.now()
+                ticket.ticketCount = ticket_count
+                
+                ticket.seatCategory = seat_category
+                ticket.seatRow = seat_row
+                ticket.seatNumber = seat_number
+                
+                shipment_info.ticket = ticket
+                payment_info.ticket = ticket
+                
+                ticket.save()
+                shipment_info.save()
+                payment_info.save()
+                
+                return redirect('/anasayfa')
             
         except Exception as e:
-            # print '%s (%s)' % (e.message, type(e))
+            print '%s (%s)' % (e.message, type(e))
             return redirect('/anasayfa')
+        
+        
 
     return render(request,'sell/onayla.html',{
         'event':event,
