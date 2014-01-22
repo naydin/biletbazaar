@@ -161,8 +161,26 @@ def reset_static_data():
         t1.user = users[user_random]
         t1.event = events[event_random]
         t1.price = randrange(25,200)
+        t1.faceValue = randrange(25,200)
         t1.creationDate = datetimenow + datetime.timedelta(days = randrange(-10,0))
         t1.ticketCount = randrange(1,6)
         t1.seatCategory = seat_categories[seat_category_random]
         t1.save()
+        
+        
+        s1 = ShipmentInfo()
+        s1.name = u'Necati'
+        s1.surname = u'Aydın'
+        s1.city = u'İstanbul'
+        s1.neighbourhood = 'Maslak'
+        s1.address = 'Bir adres'
+        s1.ticket = t1
+        s1.save()
+        
+        p1 = PaymentInfo()
+        p1.name = 'Necati'
+        p1.surname = 'Aydin'
+        p1.iban = '1234567890123456'
+        p1.ticket = t1
+        p1.save()
         

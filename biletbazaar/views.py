@@ -408,7 +408,7 @@ def onayla(request):
             
             
         except Exception as e:
-            print '%s (%s)' % (e.message, type(e))
+            # print '%s (%s)' % (e.message, type(e))
             return redirect('/anasayfa')
 
     return render(request,'sell/onayla.html',{

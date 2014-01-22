@@ -82,7 +82,7 @@ class User(models.Model):
     iban = models.CharField(max_length = 25, null=True)
     saleCount = models.IntegerField()
     purchaseCount = models.IntegerField()
-    #TODO: Password
+    #TODO: Password, name surname
 
     def __unicode__(self):
         return self.username
@@ -91,19 +91,37 @@ class Ticket(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User)
     event = models.ForeignKey(Event)
-    price = models.DecimalField(max_digits = 8, decimal_places = 2)#TODO: should be float
+    price = models.DecimalField(max_digits = 8, decimal_places = 2)
+    faceValue = models.DecimalField(max_digits = 8, decimal_places = 2)
     creationDate = models.DateField()
     ticketCount = models.IntegerField()
     
     seatCategory = models.CharField(max_length = 20, null=True)
     seatRow = models.CharField(max_length = 20, null=True)
-    seatNumber = models.CharField(max_length=20, null=True)
-    
-#TODO: face value gotten from user should be added to ticket
+    seatNumber = models.CharField(max_length=20, null=True)    
+
+
+class ShipmentInfo(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length = 20)
+    surname = models.CharField(max_length = 15)
+    city = models.CharField(max_length = 20)
+    neighbourhood = models.CharField(max_length = 20) #semt
+    address = models.CharField(max_length = 50)
+    address2 = models.CharField(max_length = 50)
+    ticket = models.OneToOneField(Ticket)
+
+class PaymentInfo(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length = 20)
+    surname = models.CharField(max_length = 15)
+    iban = models.CharField(max_length = 16, null=True)
+    ticket = models.OneToOneField(Ticket)
     
 class LandingUser(models.Model):
     id = models.AutoField(primary_key=True)
     email = models.EmailField()
+    
     
     # name = models.CharField(max_length = 30)
 #     description = models.CharField(max_length = 200)
