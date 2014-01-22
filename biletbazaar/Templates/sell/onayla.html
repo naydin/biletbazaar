@@ -133,19 +133,20 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
          
          
          <div class="bilet_detaylari">
-    			<form id="myform" name="bilet_detaylari" method="post" onsubmit="return validate(this)">
+    			<form id="myform" name="bilet_detaylari" method="post">
                 <label class="name" style="font-size:20px;">Ödeme Yapılacak Hesap Bilgileri</label>
                 <br /><br />
-         			<label  class="name" style="font-size:20px">İsim</label><label id="isim_lb" style="color:#bdd531; margin-left:10px;"></label> 
-   					<input id="isim_tb" class="tb" type="text" title="Ödemenin yapılacağı hesap sahibinin ismini giriniz." />
+         			<label  class="name" style="font-size:20px">İsim</label><label id="isim_lb" style="color:#bdd531; margin-left:10px;">{{name_error}}</label> 
+   					<input name='sell_name' id="isim_tb" class="tb" type="text" title="Ödemenin yapılacağı hesap sahibinin ismini giriniz." />
                     <div style="height:8px;"></div>
-                    <label class="name" style="font-size:20px" >Soyisim</label><label id="soyisim_lb" style="color:#bdd531; margin-left:10px;"></label>
-   					<input id="soyisim_tb" class="tb" type="text" title="Ödemenin yapılacağı hesap sahibinin soyismini giriniz." />
+                    <label class="name" style="font-size:20px" >Soyisim</label><label id="soyisim_lb" style="color:#bdd531; margin-left:10px;">{{surname_error}}</label>
+   					<input name='sell_surname' id="soyisim_tb" class="tb" type="text" title="Ödemenin yapılacağı hesap sahibinin soyismini giriniz." />
                     <div style="height:8px;"></div>
-                    <label class="name" style="font-size:20px" >IBAN No</label><label id="iban_lb" style="color:#bdd531; margin-left:10px;"></label>
-   					<input id="iban_tb" class="tb" type="text" title="Ödemenin yapılacağı hesabın IBAN numarasını giriniz."/>
+                    <label class="name" style="font-size:20px" >IBAN No</label><label id="iban_lb" style="color:#bdd531; margin-left:10px;">{{iban_error}}</label>
+   					<input name='sell_iban' id="iban_tb" class="tb" type="text" title="Ödemenin yapılacağı hesabın IBAN numarasını giriniz."/>
                
                     <div style="height:8px;"></div>
+					{% csrf_token %}
                     <button type="submit" class="btn">İlanı Ver</button>
         		</form>
 		</div>

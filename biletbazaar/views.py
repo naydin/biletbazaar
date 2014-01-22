@@ -377,6 +377,10 @@ def teslimat(request):
     })
 
 def onayla(request):
+    name_error = ''
+    surname_error = ''
+    iban_error = ''
+    
     try:
         event = Event.objects.get(id=request.session['sell_event_id'])
         ticket_count = request.session['sell_ticket_count']
@@ -389,12 +393,32 @@ def onayla(request):
         return redirect('/anasayfa')
     
     if request.method == 'POST':
-        pass
+        try:
+            sell_name = request.POST['sell_name']
+            sell_surname = request.POST['sell_surname']
+            sell_iban = request.POST['sell_iban']
+                        
+            error_message = u'Lütfen geçerli bir değer girin.'
+            if not re.match(u"^[A-Za-z\sÇçŞşÜüÖöIıİiĞğ]+$", sell_name,re.UNICODE):
+                name_error = error_message
+            if not re.match(u"^[A-Za-zÇçŞşÜüÖöIıİiĞğ]+$", sell_surname,re.UNICODE):
+                surname_error = error_message
+            if not ((len(sell_iban) == 16) and re.match(u"^[0-9]+$", sell_iban,re.UNICODE) ):
+                iban_error = error_message
+            
+            
+        except Exception as e:
+            print '%s (%s)' % (e.message, type(e))
+            return redirect('/anasayfa')
+
     return render(request,'sell/onayla.html',{
         'event':event,
         'ticket_count':ticket_count,
         'seat_category':seat_category,
         'seat_row':seat_row,
         'seat_number':seat_number,
-        'ticket_sell_value':ticket_sell_value
+        'ticket_sell_value':ticket_sell_value,
+        'name_error':name_error,
+        'surname_error':surname_error,
+        'iban_error':iban_error
     })
