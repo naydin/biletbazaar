@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Bilet Boşta</title>
+    <link href="event_group.css" rel="stylesheet" type="text/css" />
+    
+    
+    <script>
+    
+	
+	function myFunction()
+{
+var w = document.documentElement.clientWidth;
+document.getElementById('content').style.marginLeft = Math.round( (w - 890)/2)+'px';
+document.getElementById('banner').style.marginLeft = Math.round( (w - 890)/2)+'px';
+document.getElementById('menu').style.marginLeft = Math.round( (w - 890)/2)+'px';
+document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)/2 +210 )+'px';
+
+
+
+
+
+
+
+};
+	
+	
+
+	function changeImage(id) {
+    	document.getElementById('big_photo').src = id;
+    	return false; // prevent default link
+	}
+	;
+	</script>
+    
+
+</head>
+
+<body onload="myFunction()" onresize="myFunction()">
+	<div class="header_css">
+   
+		<div id="banner" class="banner">
+        	<div class="logo"><a href="abc.html"><img class="img" src="resimler/logo.png" /></a></div>
+            <div class="links">
+            	<div class="hesabim"><a style="color:#FFF" href="#">yardım</a> | <a style="color:#FFF" href="#">hesabım</a></div>
+                <div class="uye_girisi"><a style="color:#FFF" href="#">üye ol</a> | <a style="color:#FFF" href="#">üye girişi</a>&nbsp;&nbsp;<a href="#"><img src="resimler/facebook.png" /></a>&nbsp;<a href="#"><img src="resimler/twitter.png" /></a>&nbsp;<a href="#"><img src="resimler/googleplus.png" /></a></div>
+                <div class="search">
+                <form id="searchbox" action="">
+                  <input id="submit" type="submit" value="Search" />
+                  <input id="search" type="text" placeholder="etkinlik adı gir">
+    
+				</form></div>
+                <div class="dil"><a style="color:#FFF" href="#">bize ulaşın</a>&nbsp;&nbsp;<a style="color:#FFF" href="#">TR</a> | <a style="color:#FFF" href="#">ENG</a></div>
+            </div>
+        </div>
+        <div id="menu" class="menu">
+      <a href="#"><div align="center" class="anasayfa"><span style="color:#FFF; vertical-align:middle">anasayfa</span></div></a>
+            <a href="#"><div align="center" class="muzik"><span style="color:#FFF; vertical-align:middle">müzik</span></div></a>
+            <a href="#"><div align="center" class="spor"><span style="color:#FFF; vertical-align:middle">spor</span></div></a>
+            <a href="#"><div align="center" class="sahne"><span style="color:#FFF; vertical-align:middle">sahne</span></div></a>
+            <a href="#"><div align="center" class="hakkimizda"><span style="color:#FFF; vertical-align:middle">hakkımızda</span></div></a>
+            <a class="button" href="#"><div align="center" class="sss"><span style="color:#FFF; vertical-align:middle">sss</span></div></a>
+        </div>
+    </div>
+    
+    
+    
+    
+<div id="content" class="content_css">
+  <div class="white_bg">
+   	<div class="eventgroup_foto">
+         <div class="eventgroup_onpic"><span style="margin-top:10px; font-size:18px">TARKAN</span></div>   	
+    </div>
+    <div class="eventgroup_info">
+    	<div class="eventgroup_name"><span style="color:#38a1bc; font-weight:bold;">TARKAN</span><a style="margin-left:40px;" href="#"><img src="resimler/facebook.png" /></a>&nbsp;<a href="#"><img src="resimler/twitter.png" /></a>			&nbsp;<a href="#"><img src="resimler/googleplus.png" /></a>
+        <div class="eventgroup_yazi"><span>The success of Tarkan in the early 90s was seen by some as a sign of growing admiration for Western music, and the artist's real success came two years later. Collaborating with Turkey's "little sparrow", prominent producer and songwriter Sezen Aksu,[19] Tarkan's highly anticipated second album [Acayipsin]] (Oh - You're Something Else) sold more than two million copies in Turkey and 750 thousand copies in Europe.</span></div>       
+        </div>
+        <div class="sehir_sirala">
+        	<form id="myform" name="bilet_detaylari" method="post">
+        	<label class="name" style="font-size:15px">şehre göre sırala</label> <label id="biletsayisi_uyari" style="color:#bdd531; margin-left:10px;"></label>
+            <br />
+   			<select id="bilet_sayisi" class="styled-select">
+      					<option>Tüm Türkiye</option>
+                        <option>İstanbul</option>
+                        <option>Ankara</option>
+                        <option>İzmir</option>
+   					</select>
+            </form>
+        </div>
+    </div>
+          
+    <div class="event_list">
+    		<div class="eventlist_baslik">
+        	<table><tr style="height:11px; background-color:#bfbfbf; text-align:center; font-size:16px;">
+            <td style="width:115px;">etkinlik adı</td>
+            <td style="width:115px;">yer</td>
+            <td style="width:115px;">tarih</td>
+            <td style="width:115px;">bilet sayısı</td>
+            <td style="width:115px;">min. bilet fiyatı</td>
+            <td style="width:115px;"></td>
+            <td style="width:110px;"></td>
+            </tr></table>
+            </div>
+            
+       <div style="" class="eventlist_area">     
+            <div class"event">
+        	<table><tr style="height:60px; text-align:center;">
+            <td style="width:120px;">Tarkan<br />İstanbul</td>
+            <td style="width:120px;">Jolly Joker</td>
+            <td style="width:120px;">11 Ocak<br />Cumartesi</td>
+            <td style="width:120px;">50 bilet</td>
+            <td style="width:120px;">125 TL</td>
+            <td style="width:120px;"><button class="button_sat" type="button">bilet sat</button></td>
+            <td style="width:120px;"><button class="button_al" type="button">bilet al</button></td>
+            </tr></table>
+            </div>
+            
+            <div class"event">
+        	<table><tr style="height:60px; text-align:center;">
+            <td style="width:120px;">Tarkan<br />İstanbul</td>
+            <td style="width:120px;">Jolly Joker</td>
+            <td style="width:120px;">11 Ocak<br />Cumartesi</td>
+            <td style="width:120px;">50 bilet</td>
+            <td style="width:120px;">125 TL</td>
+            <td style="width:120px;"><button class="button_sat" type="button">bilet sat</button></td>
+            <td style="width:120px;"><button class="button_al" type="button">bilet al</button></td>
+            </tr></table>
+            </div>
+            
+            <div class"event">
+        	<table><tr style="height:60px; text-align:center;">
+            <td style="width:120px;">Tarkan<br />İstanbul</td>
+            <td style="width:120px;">Jolly Joker</td>
+            <td style="width:120px;">11 Ocak<br />Cumartesi</td>
+            <td style="width:120px;">50 bilet</td>
+            <td style="width:120px;">125 TL</td>
+            <td style="width:120px;"><button class="button_sat" type="button">bilet sat</button></td>
+            <td style="width:120px;"><button class="button_al" type="button">bilet al</button></td>
+            </tr></table>
+            </div>
+            
+            <div class"event">
+        	<table><tr style="height:60px; text-align:center;">
+            <td style="width:120px;">Tarkan<br />İstanbul</td>
+            <td style="width:120px;">Jolly Joker</td>
+            <td style="width:120px;">11 Ocak<br />Cumartesi</td>
+            <td style="width:120px;">50 bilet</td>
+            <td style="width:120px;">125 TL</td>
+            <td style="width:120px;"><button class="button_sat" type="button">bilet sat</button></td>
+            <td style="width:120px;"><button class="button_al" type="button">bilet al</button></td>
+            </tr></table>
+            </div>
+            
+            <div class"event">
+        	<table><tr style="height:60px; text-align:center;">
+            <td style="width:120px;">Tarkan<br />İstanbul</td>
+            <td style="width:120px;">Jolly Joker</td>
+            <td style="width:120px;">11 Ocak<br />Cumartesi</td>
+            <td style="width:120px;">50 bilet</td>
+            <td style="width:120px;">125 TL</td>
+            <td style="width:120px;"><button class="button_sat" type="button">bilet sat</button></td>
+            <td style="width:120px;"><button class="button_al" type="button">bilet al</button></td>
+            </tr></table>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+    <div id="footer" class="footer">
+    	<div id="footer_links" class="footer_links">
+        	<div class="link">Yardım<br /><a style="color:#FFF" href="#">Sık Sorulan Sorular</a><br /><a style="color:#FFF" href="#">Bize Ulaşın</a><br /><a style="color:#FFF" href="#">Teslimat Seçenekleri</a><br /><a style="color:#FFF" href="#">Politikalarımız</a></div>
+            <div class="link">Hesabım<br /><a style="color:#FFF" href="#">Profilim</a><br /><a style="color:#FFF" href="#">Adreslerim</a><br /><a style="color:#FFF" href="#">Biletlerim</a></div>
+            <div class="link">Hakkımızda<br /><a style="color:#FFF" href="#">TTK Bildirimleri</a><br /><a style="color:#FFF" href="#">Biz Kimiz?</a><br /><a style="color:#FFF" href="#">Site Haritası</a></div>
+         
+        </div>
+        <div class="copyright"><span style="font-size:10px; color:#FFF">Bu web sitesinin kullanımı, ticari engelleyen Kullanım Koşullarına tabidir. Bu sayfayı geçtiğinizde bu koşulları kabul etmiş sayılırsınız.</span><br /><span style="font-size:12px; color:#FFF">Copyright © Bilet Boşta 2013 </span> </div>
+    </div>
+</body>
+</html>

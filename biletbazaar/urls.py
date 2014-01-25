@@ -18,7 +18,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     
-    url(r'^hello/$', hello),
     url(r'^landing/$',landing),
     # url(r'^mailTemplate/$',mail_template),
     # url(r'^send_mail/$',send_maill),

@@ -21,9 +21,8 @@ import re
 
 selected_city_name_field = "selected_city_name"
 
-def hello(request):
-    return HttpResponse("Hola world")
 
+#reset all data in bilet bosta database
 def reset_data(request):
     try:
         reset_static_data()
@@ -32,6 +31,8 @@ def reset_data(request):
 
     return HttpResponse("Reset Successful.")
 
+
+#admin panel: data entry into Bilet Bosta Database
 def admin_panel(request):
     eventGroupModelForm = EventGroupModelForm()
     eventModelForm = EventModelForm()
@@ -81,6 +82,7 @@ def admin_panel(request):
     return render(request, 'admin_panel.html', {'eventGroupModelForm': eventGroupModelForm,'eventModelForm':eventModelForm,'ticketModelForm':ticketModelForm,'userModelForm':userModelForm,'landingUserModelForm':landingUserModelForm,'cityModelForm':cityModelForm})
     
 
+#landing page
 def landing(request):
     clientError = u""
     if request.method == 'POST':
@@ -109,6 +111,8 @@ def landing(request):
     return render(request,'landing_page.html',{'base':'/static/','error':clientError})    
     
 
+
+#anasayfa --> view ismi anasayfa, template ismi main_page..ikisinden biri seçilip aynı olması sağlanmalı
 def anasayfa(request):
     # max_sale_count = EventGroup.objects.all().aggregate(Max('saleCount'))['saleCount__max']
     # event_group_list = EventGroup.objects.filter(saleCount = max_sale_count)
@@ -151,6 +155,8 @@ def anasayfa(request):
         
     return response
 
+
+#send email content 
 def send_maill(email):
     subject, from_email, to = 'Bilet Bosta\'ya Hosgeldiniz', 'info@biletbosta.com',email
     text_content = ''
@@ -163,7 +169,7 @@ def send_maill(email):
 
 
 #sell
-
+# sell step 1 : etkinlik search
 def bilet_ilan(request):
     selected_city_name = u''
     try:
@@ -183,6 +189,7 @@ def bilet_ilan(request):
 
 valid_ticket_count_range = range(1,7)
 
+#sell step2 : bilet detaylari page
 def bilet_detaylari(request):
     if request.method == 'POST':
         try:        
@@ -273,7 +280,7 @@ def bilet_detaylari(request):
             return redirect('/anasayfa')
             
 
-    
+#sell step 3: fiyatlandır page    
 def fiyatlandir(request):
     try:
         event = Event.objects.get(id = request.session['sell_event_id'])
@@ -321,7 +328,7 @@ def fiyatlandir(request):
     'ticket_sell_value_error':ticket_sell_value_error})
         
         
-    
+#sell step 4 : teslimat page    
 def teslimat(request):
     ship_name_error = ''
     ship_surname_error = ''
@@ -377,6 +384,8 @@ def teslimat(request):
         'ship_address2_error':ship_address2_error
     })
 
+
+#sell step 5: onayla page
 def onayla(request):
     name_error = ''
     surname_error = ''
