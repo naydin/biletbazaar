@@ -108,24 +108,25 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
          	<div class="bilet_detaylari" style="float:left;">
             <br />
     			<label id="etkinlik_ismi" style="margin-left:20px; margin-top:50px; font-weight:bold; color:#3babc7" >TARKAN</label><br /><br />
-                <label id="etkinlik_yer" style="margin-left:20px;" >Jolly Joker, İstanbul</label><br /><br />
-                <label id="etkinlik_tarih" style="margin-left:20px;" >17 Ocak 2014</label><br /><br />
-                <label id="etkinlik_saat" style="margin-left:20px;">Saat: 20:00</label><br /><br />
+                <label id="etkinlik_yer" style="margin-left:20px;" >{{ticket.event.place}}, {{ticket.event.city.name}}</label><br /><br />
+                <label id="etkinlik_tarih" style="margin-left:20px;" >{{ticket.event.date}}</label><br /><br />
+                <label id="etkinlik_saat" style="margin-left:20px;">{{ticket.event.date|date:"H"}}</label><br /><br />
                 <br /><br />
-              <span id="etkinlik_saat" style="margin-left:20px;">Kategori :</span><label style="float:right; padding-right:20px;" id="kategori_no">Kategori 5</label>               
+              <span id="etkinlik_saat" style="margin-left:20px;">Kategori :</span><label style="float:right; padding-right:20px;" id="kategori_no">Kategori {{ticket.seatCategory}}</label>               
               <hr style=" margin-left:20px; margin-right:20px; border-color:#3babc7" />
               
-              <span id="etkinlik_saat" style="margin-left:20px;">Koltuk :</span><label style="float:right; padding-right:20px;" id="kategori_no">35 D</label>               
+              <span id="etkinlik_saat" style="margin-left:20px;">Koltuk :</span><label style="float:right; padding-right:20px;" id="kategori_no">{{ticket.seatRow}} {{ticket.seatNumber}} </label>               
               
               <hr style=" margin-left:20px; margin-right:20px; border-color:#3babc7" />
-              
-              <span id="etkinlik_saat" style="margin-left:20px;">Bilet Sayısı :</span><select style="float:right; margin-right:20px;" id="bilet_sayisi" class="styled-select">
-      					<option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        
-   					</select>               
-              
+			  <form method="POST" >              
+              <span id="etkinlik_saat" style="margin-left:20px;">Bilet Sayısı :</span>
+
+				<select name="buy_ticket_count" style="float:right; margin-right:20px;" id="bilet_sayisi" class="styled-select">
+					{% for ticket_count in ticket_count_list %}
+						<option>{{ticket_count}}</option>
+					{% endfor %}
+				</select>               
+			  
               <hr style=" margin-left:20px; margin-right:20px; margin-top:10px; border-color:#3babc7" />
               
               <br /><br />
@@ -133,8 +134,10 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
 			</div>
         	<div class="bilet_detaylari2" style="float:left";>
        		  <div class="event_foto" ><img src="{% static 'resimler/tarkan.png' %}" style="max-width:100%; max-height:100%;" /></div>
-            	<div class="submit_button"><button type="submit" class="button_example">Devam</button></div>
+			  {% csrf_token %}
+				<div class="submit_button"><button type="submit" class="button_example">Devam</button></div>
        	  </div>
+		  </form>
       </div>
       
             
