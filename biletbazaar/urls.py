@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from views import *
+from sell.views import *
 from forms import *
 
 # Uncomment the next two lines to enable the admin:
