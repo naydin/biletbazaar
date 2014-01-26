@@ -1,9 +1,11 @@
+{% load staticfiles %}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Bilet Boşta</title>
-    <link href="biletal2.css" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/biletal2.css' %}" rel="stylesheet" type="text/css" />
     <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
     
     <script>
@@ -100,10 +102,10 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
 	<div class="header_css">
    
 		<div id="banner" class="banner">
-        	<div class="logo"><a href="abc.html"><img class="img" src="resimler/logo.png" /></a></div>
+        	<div class="logo"><a href="abc.html"><img class="img" src="{% static 'resimler/logo.png' %}" /></a></div>
             <div class="links">
             	<div class="hesabim"><a style="color:#FFF" href="#">yardım</a> | <a style="color:#FFF" href="#">hesabım</a></div>
-                <div class="uye_girisi"><a style="color:#FFF" href="#">üye ol</a> | <a style="color:#FFF" href="#">üye girişi</a>&nbsp;&nbsp;<a href="#"><img src="resimler/facebook.png" /></a>&nbsp;<a href="#"><img src="resimler/twitter.png" /></a>&nbsp;<a href="#"><img src="resimler/googleplus.png" /></a></div>
+                <div class="uye_girisi"><a style="color:#FFF" href="#">üye ol</a> | <a style="color:#FFF" href="#">üye girişi</a>&nbsp;&nbsp;<a href="#"><img src="{% static 'resimler/facebook.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/twitter.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/googleplus.png' %}" /></a></div>
                 <div class="search">
                 <form id="searchbox" action="">
                 <input id="submit" type="submit" value="Search">
@@ -125,7 +127,7 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
 <div id="content" class="content_css">
 	<div class="white_bg">
         <div class="steps_logo">
-           	  <img src="biletal2.png"  />
+           	  <img src="{% static 'resimler/biletal2.png' %}"  />
          </div>
         	
          <div class="bilet_detaylari">

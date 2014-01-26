@@ -3,7 +3,7 @@ html{
 	font-size:14px;
 }
 body{
-	background-image:url(GitHub/biletbazaar/biletbazaar/statictemp/resimler/deneme10.jpg);
+	background-image:url(../resimler/deneme10.jpg);
 	
 	overflow-y: scroll;
 	overflow-x: hidden;
@@ -22,7 +22,7 @@ a:active{
 }
 
 .header_css{
-	background-image:url(resimler/bg.png);
+	background-image:url(../resimler/bg.png);
 	height:195px;
 	margin-left:0px;
 	margin-top:0px;
@@ -49,7 +49,7 @@ a:active{
 
 .header_css .menu .anasayfa{
 	opacity:1;
-	background-image:url(resimler/anasayfa.png);
+	background-image:url(../resimler/anasayfa.png);
 	height:29px;
 	float:left;
 	width:157px;
@@ -89,7 +89,7 @@ a:active{
 
 .header_css .menu .muzik{
 	opacity:1;
-	background-image:url(resimler/muzik.png);
+	background-image:url(../resimler/muzik.png);
 	height:29px;
 	float:left;
 	width:144px;
@@ -97,7 +97,7 @@ a:active{
 
 .header_css .menu .spor{
 	opacity:1;
-	background-image:url(resimler/spor.png);
+	background-image:url(../resimler/spor.png);
 	height:29px;
 	float:left;
 	width:147px;
@@ -105,7 +105,7 @@ a:active{
 
 .header_css .menu .sahne{
 	opacity:1;
-	background-image:url(resimler/sahne.png);
+	background-image:url(../resimler/sahne.png);
 	height:29px;
 	float:left;
 	width:146px;
@@ -113,7 +113,7 @@ a:active{
 
 .header_css .menu .hakkimizda{
 	opacity:1;
-	background-image:url(resimler/hakkimizda.png);
+	background-image:url(../resimler/hakkimizda.png);
 	height:29px;
 	float:left;
 	width:151px;
@@ -121,7 +121,7 @@ a:active{
 
 .header_css .menu .sss{
 	opacity:1;
-	background-image:url(resimler/sss.png);
+	background-image:url(../resimler/sss.png);
 	margin-top:0px;
 	height:29px;
 	float:left;
@@ -341,7 +341,7 @@ border:1px solid #8bcf54; -webkit-border-radius: 3px; -moz-border-radius: 3px;bo
 
 
 .footer{
-	background-image:url(resimler/bg.png);
+	background-image:url(../resimler/bg.png);
 	height:165px;
 
 	margin-top:0px;
