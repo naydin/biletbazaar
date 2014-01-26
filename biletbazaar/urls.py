@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from views import *
 from sell.views import *
+from buy.views import *
 from forms import *
 
 # Uncomment the next two lines to enable the admin:
@@ -34,4 +35,10 @@ urlpatterns = patterns('',
     url('^fiyatlandir/$',fiyatlandir),
     url('^teslimat/$',teslimat),
     url('^onayla/$',onayla),
+    
+    #buy
+    url('^biletal1/$',biletal1),
+    url('^biletal2/$',biletal2),
+    url('^biletal3/$',biletal3),
+    url('^biletal4/$',biletal4),
 )
