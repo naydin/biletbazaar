@@ -151,11 +151,13 @@ def reset_static_data():
         users.append(u1)
     
     tickets = []
-    seat_categories = ['A','B','C']
+
     for i in range(0,100):
+
+        
         user_random = randrange(0,len(users))
         event_random = randrange(0,len(events))
-        seat_category_random = randrange(0,len(seat_categories))
+
         
         t1 = Ticket()
         t1.user = users[user_random]
@@ -164,7 +166,24 @@ def reset_static_data():
         t1.faceValue = randrange(25,200)
         t1.creationDate = datetimenow + datetime.timedelta(days = randrange(-10,0))
         t1.ticketCount = randrange(1,6)
-        t1.seatCategory = seat_categories[seat_category_random]
+        
+        seat_categories = t1.event.getSeatCategories()
+        # print 'category'
+        # print seat_categories
+        if seat_categories:
+            seat_category_random = randrange(0,len(seat_categories))
+            # print seat_category_random
+            t1.seatCategory = seat_categories[seat_category_random]
+        
+        seat_rows = t1.event.getSeatRows()
+        # print 'row'
+        # print seat_rows
+        if seat_rows:
+            seat_row_random = randrange(0,len(seat_rows))
+            # print seat_row_random
+            t1.seatRow = seat_rows[seat_row_random]
+            t1.seatNumber = randrange(1,10)
+        
         t1.save()
         
         
