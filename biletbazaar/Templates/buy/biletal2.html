@@ -131,38 +131,39 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
          </div>
         	
          <div class="bilet_detaylari">
-    			<form id="myform" name="bilet_detaylari" method="post" onsubmit="return validate(this)">
-         			<label class="name" style="font-size:20px;margin-left:10px; margin-right:20px; float:left;">İsim</label>
-   					<input id="isim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin adını giriniz." />
-                    <label id="isim_lb" style="color:#bdd531; float:right; margin-right:5px;"></label> 
-                    
-                    <br /><br /><br /><br />
-                    <label class="name" style="font-size:20px; margin-left:10px; float:left;">Soyisim </label>
-   					<input id="soyisim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin soyadını giriniz." />
-                    <label id="soyisim_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
-                    
-                    <br /><br /><br /><br />
-                    <label class="name" style="font-size:20px; margin-left:10px;float:left;">Şehir </label>
-   					<input id="sehir_tb" class="tb" type="text" title="Biletin teslim alınacağı ili giriniz."  />
-                    <label id="sehir_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
-                    
-                    <br /><br /><br /><br />
-                    <label class="name" style="font-size:20px; margin-left:10px;float:left;">Semt</label> 
-   					<input id="semt_tb" class="tb" type="text" title="Biletin teslim alınacağı semt adını giriniz." />
-                    <label id="semt_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
-                    
-                    <br /><br /><br /><br />
-                    <label class="name" style="font-size:20px; margin-left:10px;float:left;">Adres 1*</label> 
-   					<input id="adres_tb" class="tb" type="text" title="Lütfen biletin teslim alınacağı açık adresi giriniz." />
-                    <label id="adres_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
-                    
-                    <br /><br /><br /><br />
-                    <label class="name" style="font-size:20px; margin-left:10px;float:left;">Adres 2 </label> 
-   					<input class="tb" type="text"  />
-                    
-                    <br /><br /><br /><br />
-                    <button type="submit" class="button_example" style="float:right;">Devam</button>
-        		</form>
+ 			<form id="myform" name="bilet_detaylari" method="post">
+      			<label class="name" style="font-size:20px">İsim</label> <label id="isim_lb" style="color:#bdd531; margin-left:10px;">{{ship_name_error}}</label>
+					<input name="ship_name" id="isim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin adını giriniz." />
+                 <div style="height:8px;"></div>
+				 
+				 <br />
+				 
+                 <label class="name" style="font-size:20px">Soyisim</label><label id="soyisim_lb" style="color:#bdd531; margin-left:10px;">{{ship_surname_error}}</label>
+					<input name="ship_surname" id="soyisim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin soyadını giriniz." />
+                 <div style="height:8px;"></div>
+				 
+				 <br />
+                 <label class="name" style="font-size:20px">Şehir</label><label id="sehir_lb" style="color:#bdd531; margin-left:10px;">{{ship_city_error}}</label>
+					<input name="ship_city" id="sehir_tb" class="tb" type="text" title="Biletin teslim alınacağı ili giriniz."  />
+                 <div style="height:8px;"></div>
+				 
+				 <br />
+                 <label class="name" style="font-size:20px">Semt</label> <label id="semt_lb" style="color:#bdd531; margin-left:10px;">{{ship_neighbourhood_error}}</label>
+					<input name="ship_neighbourhood" id="semt_tb" class="tb" type="text" title="Biletin teslim alınacağı semt adını giriniz." />
+                 <div style="height:8px;"></div>
+				 
+				 <br />
+                 <label class="name" style="font-size:20px">Adres 1*</label> <label id="adres_lb" style="color:#bdd531; margin-left:10px;">{{ship_address_error}}</label>
+					<input name="ship_address" id="adres_tb" class="tb" type="text" title="Lütfen biletin teslim alınacağı açık adresi giriniz." />
+                 <div style="height:8px;"></div>
+				 
+				 <br />
+                 <label class="name" style="font-size:20px">Adres 2</label> <label id="adres_lb" style="color:#bdd531; margin-left:10px;">{{ship_address2_error}}</label>
+					<input name="ship_address2" class="tb" type="text"  />
+                 <div style="height:8px;"></div>
+				{% csrf_token %}
+                 <button type="submit" class="btn">Sonraki</button>
+     		</form>
 		</div>
       
             

@@ -46,7 +46,59 @@ def biletal1(request):
     
     
 def biletal2(request):
-    return render(request,'buy/biletal2.html')
+    ship_name_error = ''
+    ship_surname_error = ''
+    ship_city_error = ''
+    ship_neighbourhood_error = ''
+    ship_address_error = ''
+    ship_address2_error = ''
+
+    if request.method == 'POST':
+        try:
+            ship_name = request.POST['ship_name']
+            ship_surname = request.POST['ship_surname']
+            ship_city = request.POST['ship_city']
+            ship_neighbourhood = request.POST['ship_neighbourhood']
+            ship_address = request.POST['ship_address']
+            ship_address2 = request.POST['ship_address2']
+            
+            error_message = u'Lütfen geçerli bir değer giriniz.'
+            if not validation_util.is_all_char_with_whitespace(ship_name):
+                ship_name_error = error_message
+            if not validation_util.is_all_char(ship_surname):
+                ship_surname_error = error_message
+            if not validation_util.is_all_char(ship_city):
+                ship_city_error = error_message
+            if not validation_util.is_all_char(ship_neighbourhood):
+                ship_neighbourhood_error = error_message
+            if not validation_util.is_address(ship_address):
+                ship_address_error = error_message
+            if ship_address2 != '' and (not validation_util.is_address(ship_address2)):
+                ship_address2_error = error_message
+            
+            if ship_name_error == '' and ship_surname_error == '' and ship_city_error == '' and ship_neighbourhood_error == '' and ship_address_error == '' and ship_address2_error == '':
+                request.session['ship_name'] = ship_name
+                request.session['ship_surname'] = ship_surname
+                request.session['ship_city'] = ship_city
+                request.session['ship_neighbourhood'] = ship_neighbourhood
+                request.session['ship_address'] = ship_address
+                request.session['ship_address2'] = ship_address2
+                
+                return redirect('/biletal3')
+            
+        except Exception as e:
+            print '%s (%s)' % (e.message, type(e))
+            return redirect('/anasayfa')
+
+        
+    return render(request,'buy/biletal2.html',{
+        'ship_name_error':ship_name_error,
+        'ship_surname_error':ship_surname_error,
+        'ship_city_error':ship_city_error,
+        'ship_neighbourhood_error':ship_neighbourhood_error,
+        'ship_address_error':ship_address_error,
+        'ship_address2_error':ship_address2_error
+    })
     
 def biletal3(request):
     return render(request,'buy/biletal3.html')

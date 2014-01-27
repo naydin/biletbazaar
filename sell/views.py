@@ -305,6 +305,8 @@ def onayla(request):
                 shipment_info.save()
                 payment_info.save()
                 
+                #TODO: session variables should be deleted
+                
                 return redirect('/anasayfa')
             
         except Exception as e:
