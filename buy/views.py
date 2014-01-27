@@ -31,12 +31,11 @@ def biletal1(request):
             ticket_id = request.GET['ticket_id']
             ticket = Ticket.objects.get(id = ticket_id)
             ticket_count_list = range(1,ticket.ticketCount+1)
-            event = ticket.event
             
             request.session['buy_ticket_id'] = ticket_id
             
             return render(request,'buy/biletal1.html',{
-                'event':event,
+                'ticket':ticket,
                 'ticket_count_list':ticket_count_list
             })
 
