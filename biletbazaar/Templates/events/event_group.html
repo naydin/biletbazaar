@@ -1,74 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Bilet Boşta</title>
-    <link href="event_group.css" rel="stylesheet" type="text/css" />
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}event group - Bilet Boşta Kalmasın{% endblock %}
     
     
-    <script>
-    
-	
-	function myFunction()
-{
-var w = document.documentElement.clientWidth;
-document.getElementById('content').style.marginLeft = Math.round( (w - 890)/2)+'px';
-document.getElementById('banner').style.marginLeft = Math.round( (w - 890)/2)+'px';
-document.getElementById('menu').style.marginLeft = Math.round( (w - 890)/2)+'px';
-document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)/2 +210 )+'px';
-
-
-
-
-
-
-
-};
-	
-	
-
-	function changeImage(id) {
-    	document.getElementById('big_photo').src = id;
-    	return false; // prevent default link
-	}
-	;
-	</script>
+{% block css_js_links %} <link href="{% static 'css/event_group.css' %}" rel="stylesheet" type="text/css" /> {% endblock %}
     
 
-</head>
 
-<body onload="myFunction()" onresize="myFunction()">
-	<div class="header_css">
-   
-		<div id="banner" class="banner">
-        	<div class="logo"><a href="abc.html"><img class="img" src="resimler/logo.png" /></a></div>
-            <div class="links">
-            	<div class="hesabim"><a style="color:#FFF" href="#">yardım</a> | <a style="color:#FFF" href="#">hesabım</a></div>
-                <div class="uye_girisi"><a style="color:#FFF" href="#">üye ol</a> | <a style="color:#FFF" href="#">üye girişi</a>&nbsp;&nbsp;<a href="#"><img src="resimler/facebook.png" /></a>&nbsp;<a href="#"><img src="resimler/twitter.png" /></a>&nbsp;<a href="#"><img src="resimler/googleplus.png" /></a></div>
-                <div class="search">
-                <form id="searchbox" action="">
-                  <input id="submit" type="submit" value="Search" />
-                  <input id="search" type="text" placeholder="etkinlik adı gir">
-    
-				</form></div>
-                <div class="dil"><a style="color:#FFF" href="#">bize ulaşın</a>&nbsp;&nbsp;<a style="color:#FFF" href="#">TR</a> | <a style="color:#FFF" href="#">ENG</a></div>
-            </div>
-        </div>
-        <div id="menu" class="menu">
-      <a href="#"><div align="center" class="anasayfa"><span style="color:#FFF; vertical-align:middle">anasayfa</span></div></a>
-            <a href="#"><div align="center" class="muzik"><span style="color:#FFF; vertical-align:middle">müzik</span></div></a>
-            <a href="#"><div align="center" class="spor"><span style="color:#FFF; vertical-align:middle">spor</span></div></a>
-            <a href="#"><div align="center" class="sahne"><span style="color:#FFF; vertical-align:middle">sahne</span></div></a>
-            <a href="#"><div align="center" class="hakkimizda"><span style="color:#FFF; vertical-align:middle">hakkımızda</span></div></a>
-            <a class="button" href="#"><div align="center" class="sss"><span style="color:#FFF; vertical-align:middle">sss</span></div></a>
-        </div>
-    </div>
-    
-    
-    
-    
-<div id="content" class="content_css">
-  <div class="white_bg">
+{% block content %}
    	<div class="eventgroup_foto">
          <div class="eventgroup_onpic"><span style="margin-top:10px; font-size:18px">TARKAN</span></div>   	
     </div>
@@ -163,26 +104,7 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
             <td style="width:120px;"><button class="button_al" type="button">bilet al</button></td>
             </tr></table>
             </div>
-        </div>
-    </div>
-  </div>
-</div>
+        </div><!-- end of eventlist_area -->
+    </div><!-- end of eventlist -->
 
-
-
-
-
-
-
-
-    <div id="footer" class="footer">
-    	<div id="footer_links" class="footer_links">
-        	<div class="link">Yardım<br /><a style="color:#FFF" href="#">Sık Sorulan Sorular</a><br /><a style="color:#FFF" href="#">Bize Ulaşın</a><br /><a style="color:#FFF" href="#">Teslimat Seçenekleri</a><br /><a style="color:#FFF" href="#">Politikalarımız</a></div>
-            <div class="link">Hesabım<br /><a style="color:#FFF" href="#">Profilim</a><br /><a style="color:#FFF" href="#">Adreslerim</a><br /><a style="color:#FFF" href="#">Biletlerim</a></div>
-            <div class="link">Hakkımızda<br /><a style="color:#FFF" href="#">TTK Bildirimleri</a><br /><a style="color:#FFF" href="#">Biz Kimiz?</a><br /><a style="color:#FFF" href="#">Site Haritası</a></div>
-         
-        </div>
-        <div class="copyright"><span style="font-size:10px; color:#FFF">Bu web sitesinin kullanımı, ticari engelleyen Kullanım Koşullarına tabidir. Bu sayfayı geçtiğinizde bu koşulları kabul etmiş sayılırsınız.</span><br /><span style="font-size:12px; color:#FFF">Copyright © Bilet Boşta 2013 </span> </div>
-    </div>
-</body>
-</html>
+ {% endblock %}

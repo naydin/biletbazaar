@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}Bize Ulaşın - Bilet Boşta Kalmasın{% endblock %}
+    
+    
+{% block css_js_links %}
+	<link href="{% static 'css/bize_ulasin.css' %}" rel="stylesheet" type="text/css" /> 
+ 	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+{% endblock %}
+    
+
+
+
+{% block js_functions %} 
+  
+    function validate(theForm) { // passing the form object
+ 	var val1=document.forms["myform"]["koltuk_no"].value;
+	var val2=document.forms["myform"]["bilet_sayisi"].value;
+	var flag = 0;
+  if (val1==null || val1.trim()=="") { 
+    
+	document.getElementById('koltuk_uyari').innerHTML = '*Gerekli alan'
+	flag =1
+    
+  }
+  if (val2==null || val2.trim()=="" ||val2=="bilet sayısını giriniz") { 
+    
+	document.getElementById('biletsayisi_uyari').innerHTML = '*Gerekli alan'
+	flag=1
+    
+  }
+  if(flag==1){
+	  return false;
+	
+  }
+  return true; // allow submit
+}
+
+{% endblock %}
+    
+
+{% block content %}
+        <div class="uyelik">	
+         	<div class="login" >
+
+            
+			</div>
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        	<div class="signup" >
+       		  	
+                <form id="myform" name="bilet_detaylari" method="post" onsubmit="return validate(this)">
+         			<label class="name" style="font-size:20px;margin-left:10px; margin-bottom:20px;float:left;">ad, soyad</label>
+   					<input id="isim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin adını giriniz." />
+                    <label id="isim_lb" style="color:#bdd531; float:right; margin-right:5px;"></label> 
+                    
+                    <br />
+                    <label class="name" style="font-size:20px; margin-left:10px;margin-bottom:20px; float:left;">e-posta </label>
+   					<input id="soyisim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin soyadını giriniz." />
+                    <label id="soyisim_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
+                    
+                    
+                    <br />
+                    <label class="name" style="font-size:20px; margin-left:10px;margin-bottom:20px;float:left; ">mesaj </label>
+   					<textarea rows="7" cols="31" style="float:right; margin-right:5px;">  </textarea>
+                    <label id="sehir_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
+                    
+
+                   
+                    
+                    <br />
+                    <button type="submit" class="button_example" style="float:right; margin-right:5px; margin-top:25px;">gönder</button>
+        		</form>
+       	  </div>
+      </div>
+      
+{% endblock %}            
