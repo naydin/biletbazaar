@@ -133,27 +133,29 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
          <div class="bilet_detaylari">
     			<form id="myform" name="bilet_detaylari" method="post" onsubmit="return validate(this)">
          			<label class="name" style="font-size:20px;margin-left:10px; margin-right:20px; float:left;">Kart Tipi</label>
-   					<select id="bilet_sayisi" class="styled-select">
-             
-      					<option selected="selected">Visa</option>
-                        <option>MasterCard</option>
+   					<select name="buy_card_type" id="bilet_sayisi" class="styled-select">
+						{% for card_type in card_type_list %}
+						<option>{{card_type.name}}</option>
+						{% endfor %}
+      					<!-- <option selected="selected">Visa</option>
+                        <option>MasterCard</option> -->
    					</select>
                     <label id="karttipi_lb" style="color:#bdd531; float:right; margin-right:5px;"></label> 
                     
                     <br /><br /><br /><br />
                     <label class="name" style="font-size:20px; margin-left:10px; float:left;">Kart Sahibi </label>
-   					<input id="soyisim_tb" placeholder="soyad" class="tb" type="text" title="Bilet ilanını veren kişinin soyadını giriniz." style="margin-left:18px;" />
-                    <input id="soyisim_tb" placeholder="ad" class="tb" type="text" title="Bilet ilanını veren kişinin soyadını giriniz." />
+   					<input name="buy_surname" id="soyisim_tb" placeholder="soyad" class="tb" type="text" title="Bilet ilanını veren kişinin soyadını giriniz." style="margin-left:18px;" />
+                    <input name="buy_name" id="soyisim_tb" placeholder="ad" class="tb" type="text" title="Bilet ilanını veren kişinin soyadını giriniz." />
                     <label id="soyisim_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
                     
                     <br /><br /><br /><br />
                     <label class="name" style="font-size:20px; margin-left:10px;float:left;">Kart Numarası </label>
-   					<input id="sehir_tb" class="tb" style="width:270px;" type="text" title="Biletin teslim alınacağı ili giriniz."  />
+   					<input name="buy_card_number" id="sehir_tb" class="tb" style="width:270px;" type="text" title="Biletin teslim alınacağı ili giriniz."  />
                     <label id="sehir_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
                     
                     <br /><br /><br /><br />
                     <label class="name" style="font-size:20px; margin-left:10px;float:left;">Son Kullanma Tarihi</label> 
-   					<select id="kart_ay" class="styled-select" style="width:60px; float:left;margin-left:20px">
+   					<select name="buy_card_expiration_month"  id="kart_ay" class="styled-select" style="width:60px; float:left;margin-left:20px">
                     <option selected="selected" disabled="disabled">ay</option>
       					<option>01</option>
                         <option>02</option>
@@ -169,7 +171,7 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
                         <option>12</option>
    					</select>
                    <label></label>
-                    <select id="kart_yil" class="styled-select" style="width:60px; float:left;margin-left:20px">
+                    <select name="buy_card_expiration_year" id="kart_yil" class="styled-select" style="width:60px; float:left;margin-left:20px">
                     <option selected="selected" disabled="disabled">yıl</option>
       					<option>14</option>
                         <option>15</option>
@@ -188,7 +190,7 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
                     
                     <br /><br /><br /><br />
                     <label class="name" style="font-size:20px; margin-left:10px;float:left;">Güvenlik Kodu </label> 
-   					<input id="adres_tb" class="tb" type="text" title="Lütfen biletin teslim alınacağı açık adresi giriniz." maxlength="3" style="float:left; width:25px; margin-left:65px;" />
+   					<input name="buy_card_cvc2" id="adres_tb" class="tb" type="text" title="Lütfen biletin teslim alınacağı açık adresi giriniz." maxlength="3" style="float:left; width:25px; margin-left:65px;" />
                     <label id="adres_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
     
                     

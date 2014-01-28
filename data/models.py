@@ -117,12 +117,16 @@ class PaymentInfo(models.Model):
     surname = models.CharField(max_length = 15)
     iban = models.CharField(max_length = 16, null=True)
     ticket = models.OneToOneField(Ticket)
+
+class CreditCardType(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length = 20)
     
 class LandingUser(models.Model):
     id = models.AutoField(primary_key=True)
     email = models.EmailField()
     
-    
+
     # name = models.CharField(max_length = 30)
 #     description = models.CharField(max_length = 200)
     

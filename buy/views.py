@@ -100,7 +100,11 @@ def biletal2(request):
     })
     
 def biletal3(request):
-    return render(request,'buy/biletal3.html')
+    
+    card_type_list = CreditCardType.objects.all()
+    return render(request,'buy/biletal3.html',{
+        'card_type_list':card_type_list
+    })
     
 def biletal4(request):
     return render(request,'buy/biletal4.html')
