@@ -100,10 +100,22 @@ def biletal2(request):
     })
     
 def biletal3(request):
+    month_list = []
+    for month_number in range(1,13):
+        month_list.append('%02d' % month_number)
+        
+    year_list = []
+    for year_number in range(14,26):
+        year_list.append('%02d' % year_number)
     
     card_type_list = CreditCardType.objects.all()
+    
+    
+    
     return render(request,'buy/biletal3.html',{
-        'card_type_list':card_type_list
+        'card_type_list':card_type_list,
+        'month_list':month_list,
+        'year_list':year_list
     })
     
 def biletal4(request):
