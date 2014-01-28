@@ -5,7 +5,7 @@ from data.models import *
 from django.shortcuts import render,redirect
 
 import datetime
-import re
+from biletbazaar.validation_util import *
 
 
 # sell step 1 : etkinlik search
@@ -186,17 +186,17 @@ def teslimat(request):
             ship_address2 = request.POST['ship_address2']
             
             error_message = u'Lütfen geçerli bir değer giriniz.'
-            if not re.match(u"^[A-Za-z\sÇçŞşÜüÖöIıİiĞğ]+$", ship_name,re.UNICODE):
+            if not validation_util.is_all_char_with_whitespace(ship_name):
                 ship_name_error = error_message
-            if not re.match(u"^[A-Za-z\sÇçŞşÜüÖöIıİiĞğ]+$", ship_surname,re.UNICODE):
+            if not validation_util.is_all_char(ship_surname):
                 ship_surname_error = error_message
-            if not re.match(u"^[A-Za-z\sÇçŞşÜüÖöIıİiĞğ]+$", ship_city,re.UNICODE):
+            if not validation_util.is_all_char(ship_city):
                 ship_city_error = error_message
-            if not re.match(u"^[A-Za-z\sÇçŞşÜüÖöIıİiĞğ]+$", ship_neighbourhood,re.UNICODE):
+            if not validation_util.is_all_char(ship_neighbourhood):
                 ship_neighbourhood_error = error_message
-            if not re.match("^[0-9A-Za-z:,-./\sÇçŞşÜüÖöIıİiĞğ]+$",ship_address,re.UNICODE):
+            if not validation_util.is_address(ship_address):
                 ship_address_error = error_message
-            if ship_address2 != '' and (not re.match("^[0-9A-Za-z:,-./\sÇçŞşÜüÖöIıİiĞğ]+$",ship_address2,re.UNICODE)):
+            if ship_address2 != '' and (not validation_util.is_address(ship_address2)):
                 ship_address2_error = error_message
             
             if ship_name_error == '' and ship_surname_error == '' and ship_city_error == '' and ship_neighbourhood_error == '' and ship_address_error == '' and ship_address2_error == '':
@@ -210,7 +210,7 @@ def teslimat(request):
                 return redirect('/onayla')
             
         except Exception as e:
-            # print '%s (%s)' % (e.message, type(e))
+            print '%s (%s)' % (e.message, type(e))
             return redirect('/anasayfa')
 
         
@@ -248,11 +248,11 @@ def onayla(request):
             sell_iban = request.POST['sell_iban']
                         
             error_message = u'Lütfen geçerli bir değer girin.'
-            if not re.match(u"^[A-Za-z\sÇçŞşÜüÖöIıİiĞğ]+$", sell_name,re.UNICODE):
+            if not validation_util.is_all_char_with_whitespace(sell_name):
                 name_error = error_message
-            if not re.match(u"^[A-Za-zÇçŞşÜüÖöIıİiĞğ]+$", sell_surname,re.UNICODE):
+            if not validation_util.is_all_char(sell_surname):
                 surname_error = error_message
-            if not ((len(sell_iban) == 16) and re.match(u"^[0-9]+$", sell_iban,re.UNICODE) ):
+            if not ( (len(sell_iban) == 16) and validation_util.is_all_digit(sell_iban)):
                 iban_error = error_message
             
             if name_error == '' and surname_error == '' and iban_error == '':
@@ -304,6 +304,8 @@ def onayla(request):
                 ticket.save()
                 shipment_info.save()
                 payment_info.save()
+                
+                #TODO: session variables should be deleted
                 
                 return redirect('/anasayfa')
             

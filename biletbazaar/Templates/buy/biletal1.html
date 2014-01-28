@@ -66,10 +66,10 @@
         <div class="bilet_det">	
          	<div class="bilet_detaylari" style="float:left;">
             <br />
-    			<label id="etkinlik_ismi" style="margin-left:20px; margin-top:50px; font-weight:bold; color:#3babc7" >{{event.eventGroup.name}}</label><br /><br />
-                <label id="etkinlik_yer" style="margin-left:20px;" >{{event.place}}, {{event.city.name}}</label><br /><br />
-                <label id="etkinlik_tarih" style="margin-left:20px;" >{{event.date}}</label><br /><br />
-                <label id="etkinlik_saat" style="margin-left:20px;">{{event.date|date:"H"}}</label><br /><br />
+    			<label id="etkinlik_ismi" style="margin-left:20px; margin-top:50px; font-weight:bold; color:#3babc7" >{{ticket.event.eventGroup.name}}</label><br /><br />
+                <label id="etkinlik_yer" style="margin-left:20px;" >{{ticket.event.place}}, {{ticket.event.city.name}}</label><br /><br />
+                <label id="etkinlik_tarih" style="margin-left:20px;" >{{ticket.event.date}}</label><br /><br />
+                <label id="etkinlik_saat" style="margin-left:20px;">{{ticket.event.date|date:"H"}}</label><br /><br />
                 <br /><br />
               <span id="etkinlik_saat" style="margin-left:20px;">Kategori :</span><label style="float:right; padding-right:20px;" id="kategori_no">Kategori {{ticket.seatCategory}}</label>               
               <hr style=" margin-left:20px; margin-right:20px; border-color:#3babc7" />
