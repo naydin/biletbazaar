@@ -115,34 +115,16 @@
                     <label class="name" style="font-size:20px; margin-left:10px;float:left;">Son Kullanma Tarihi</label> 
    					<select name="buy_card_expiration_month"  id="kart_ay" class="styled-select" style="width:60px; float:left;margin-left:20px">
                     <option selected="selected" disabled="disabled">ay</option>
-      					<option>01</option>
-                        <option>02</option>
-                        <option>03</option>
-                        <option>04</option>
-                        <option>05</option>
-                        <option>06</option>
-                        <option>07</option>
-                        <option>08</option>
-                        <option>09</option>
-                        <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
+					{% for month in month_list %}
+					<option>{{month}}</option>
+					{% endfor %}
    					</select>
                    <label></label>
                     <select name="buy_card_expiration_year" id="kart_yil" class="styled-select" style="width:60px; float:left;margin-left:20px">
                     <option selected="selected" disabled="disabled">yıl</option>
-      					<option>14</option>
-                        <option>15</option>
-                        <option>16</option>
-                        <option>17</option>
-                        <option>18</option>
-                        <option>19</option>
-                        <option>20</option>
-                        <option>21</option>
-                        <option>22</option>
-                        <option>23</option>
-                        <option>24</option>
-                        <option>25</option>
+					{% for year in year_list %}
+					<option>{{year}}</option>
+					{% endfor %}
    					</select>
                     
                     
@@ -153,6 +135,7 @@
     
                     
                     <br /><br /><br /><br />
+					{% csrf_token %}
                     <button type="submit" class="button_example" style="float:right;">Devam</button>
         		</form>
 		</div>

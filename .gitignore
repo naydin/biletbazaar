@@ -6,3 +6,5 @@ static/
 .pydevproject
 .project
 .metadata/
+.settings/
+media/

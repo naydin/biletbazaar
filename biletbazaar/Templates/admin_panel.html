@@ -106,6 +106,28 @@
 				    </form>
 				</td>
 			</tr>
+			<tr>
+				<td>
+					<h2>Image Upload</h2>
+				    {% if imageDocumentForm.errors %}
+				        <p style="color: red;">
+				            Please correct the error{{ imageDocumentForm.errors|pluralize }} below.
+				        </p>
+				    {% endif %}
+
+				    <form action="" method="post" enctype="multipart/form-data">
+				        <table>
+				            {{ imageDocumentForm.as_table }}
+				        </table>
+				        {% csrf_token %}
+				        <input type="submit" name="imageDocumentForm" value="Submit">
+				    </form>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+			</tr>
 		</table>
 		
 	</body>
