@@ -3,11 +3,17 @@ from views import *
 from sell.views import *
 from buy.views import *
 from forms import *
+from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
+
+
+from django.template.loader import add_to_builtins
+for tag in settings.AUTOLOAD_TEMPLATETAGS:
+    add_to_builtins(tag)
 
 urlpatterns = patterns('',
     # Examples:
@@ -41,4 +47,8 @@ urlpatterns = patterns('',
     url('^biletal2/$',biletal2),
     url('^biletal3/$',biletal3),
     url('^biletal4/$',biletal4),
+    
+    #event group
+    url('^event_group/$',event_group),
+    url('^event/$',event),
 )

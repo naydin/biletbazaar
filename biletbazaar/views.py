@@ -16,6 +16,8 @@ from static_data import *
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 
+from django.template import Context
+
 import datetime
 import re
 
@@ -166,3 +168,152 @@ def send_maill(email):
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
     msg.attach_alternative(html_content, "text/html")
     msg.send()
+
+ 
+def event_group(request):
+
+	 
+	if request.method == 'GET':
+            try:
+            
+            	selected_city_name = request.session[selected_city_name_field];
+            	
+                event_group_id = request.GET['event_group_id']
+                eventgroup = EventGroup.objects.get(id=event_group_id)
+                events = Event.objects.filter(eventGroup__id = event_group_id, city__name__icontains=selected_city_name)
+                
+           
+                event_group_name = eventgroup.name
+                event_group_description = eventgroup.description
+                event_group_category = eventgroup.category
+                event_group_saleCount = eventgroup.saleCount
+                event_group_photoUrl = eventgroup.photoUrl
+                city_list = City.objects.all()
+                
+                
+                
+                return render(request,'events/event_group.html',
+                {'event_group_name':event_group_name,
+                'event_group_description':event_group_description,
+                'event_group_category':event_group_category,
+                'event_group_saleCount':event_group_saleCount,
+              	'event_group_photoUrl':event_group_photoUrl,
+              	'events' : events,
+              	'city_list' : city_list,
+              	'selected_city_name' : selected_city_name, 
+              	'city_name_all_cities':u"Tüm Türkiye"
+              	
+                })
+                
+            except Exception as e:
+                print '%s (%s)' % (e.message, type(e))
+                return redirect('/anasayfa')
+	elif request.method == 'POST':
+        	selected_city_name = u''
+        	#if a city is posted take that as selected city
+    		try:
+    			if(request.POST['city_select']==u"Tüm Türkiye"):
+    				selected_city_name = ""
+    			else:
+        			selected_city_name = request.POST['city_select']
+    		except Exception as e:
+        		# print '%s (%s)' % (e.message, type(e))
+        		pass
+        	
+        	
+        	event_group_id = request.GET['event_group_id']
+                eventgroup = EventGroup.objects.get(id=event_group_id)
+                events = Event.objects.filter(eventGroup__id = event_group_id, city__name__icontains=selected_city_name)
+                
+           
+                event_group_name = eventgroup.name
+                event_group_description = eventgroup.description
+                event_group_category = eventgroup.category
+                event_group_saleCount = eventgroup.saleCount
+                event_group_photoUrl = eventgroup.photoUrl
+                city_list = City.objects.all()
+                
+                
+                
+                return render(request,'events/event_group.html',
+                {'event_group_name':event_group_name,
+                'event_group_description':event_group_description,
+                'event_group_category':event_group_category,
+                'event_group_saleCount':event_group_saleCount,
+              	'event_group_photoUrl':event_group_photoUrl,
+              	'events' : events,
+              	'city_list' : city_list,
+              	'selected_city_name' : selected_city_name, 
+              	'city_name_all_cities':u"Tüm Türkiye"
+              	
+                })
+        		
+        	
+	else:
+            return redirect('/anasayfa')    
+            
+def event(request):
+	event_id = request.GET['event_id']
+	if request.method == 'GET':
+		tickets = Ticket.objects.filter(event__id = event_id).order_by('price')
+		selected_category=u"Tümü"
+		sort_type=u"bilet fiyatı"
+	elif request.method == 'POST':
+		selected_category = u''
+		if request.POST['category_select'] == u"Tümü":
+			selected_category = ""
+		else:
+			selected_category = request.POST['category_select']
+
+		sort_type = request.POST['sirala']
+    
+		if sort_type == u"bilet fiyatı":
+			tickets = Ticket.objects.filter(event__id = event_id,seatCategory__icontains=selected_category).order_by('price')
+		else:
+			tickets = Ticket.objects.filter(event__id = event_id,seatCategory__icontains=selected_category).order_by('ticketCount')
+	else:
+		pass          
+        
+        
+	try:  
+		event = Event.objects.get(id=event_id)       
+		event_group_idd = event.eventGroup.id       
+		event_group_name = EventGroup.objects.get(id=event_group_idd).name
+		event_group_photoUrl = EventGroup.objects.get(id=event_group_idd).photoUrl
+		        
+		events = Event.objects.filter(eventGroup__id = event_group_idd)
+        
+	            
+	            
+		event_place = event.place
+		event_date = event.date
+		event_city = event.city
+		
+		event_categories = event.getSeatCategories()
+	            
+		return render(request,'events/event.html',
+	            {'event_place':event_place,
+	            'event_date':event_date,
+	            'event_city':event_city,
+	            'event_group_name':event_group_name,
+	            'event_group_photoUrl' : event_group_photoUrl,
+	          	'tickets' : tickets,
+	          	'events' : events,
+	          	'event_categories' : event_categories,
+	          	'all_categories':u"Tümü",
+	          	'selected_category':selected_category,
+	          	'sort_type':sort_type
+	    
+	          	
+	            })
+	                
+        	
+	except Exception as e:
+		print '%s (%s)' % (e.message, type(e))
+		return redirect('/anasayfa')
+	   	
+   
+       
+
+		
+		
