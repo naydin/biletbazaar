@@ -42,6 +42,7 @@ td{
 }
 
 .content_css .white_bg .event_list{
+	overflow:auto;
 	position:absolute;
 	float:left;
 	background:linear-gradient(#dbdbdb,#ffffff);
@@ -73,9 +74,7 @@ td{
 
 
 .content_css .white_bg .event_list .eventlist_area{
-	
-	overflow-x: hidden;
-overflow-y: scroll;
+	overflow:auto;
 }
 
 

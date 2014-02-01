@@ -136,7 +136,15 @@ INSTALLED_APPS = (
     'data',
     'sell',
     'buy',
+    'events',
 )
+
+
+
+AUTOLOAD_TEMPLATETAGS = (
+    'events.templatetags.extra_tags',
+)
+
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 

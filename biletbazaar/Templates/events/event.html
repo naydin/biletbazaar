@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+{% load extra_tags %}
 {% load staticfiles %}
+
 
 
 {% block title %}event - Bilet Boşta Kalmasın{% endblock %}
@@ -11,38 +13,41 @@
 
 
 {% block content %}
-   	<div class="eventgroup_foto">
-         <div class="eventgroup_onpic"><span style="margin-top:10px; font-size:18px">TARKAN</span></div>   	
+   	<div class="eventgroup_foto" style="background-image:url({{event_group_photoUrl}});">
+         <div class="eventgroup_onpic"><span style="margin-top:10px; font-size:18px">{{event_group_name}}</span></div>   	
     </div>
     <div class="eventgroup_info">
-    	<div class="eventgroup_name"><span style="color:#38a1bc; font-weight:bold;">TARKAN</span><a style="margin-left:40px;" href="#"><img src="resimler/facebook.png" /></a>&nbsp;<a href="#"><img src="resimler/twitter.png" /></a>			&nbsp;<a href="#"><img src="resimler/googleplus.png" /></a></div>
-        <div class="eventgroup_yazi"><span style="font-size:14px">Jolly Joker</span><span style="font-size:14px"> İstanbul</span><br /><span style="font-size:14px">11 Ocak</span></div>       
+    	<div class="eventgroup_name"><span style="color:#38a1bc; font-weight:bold;">{{event_group_name}}</span><a style="margin-left:40px;" href="#"><img src="{% static 'resimler/facebook.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/twitter.png' %}" /></a>			&nbsp;<a href="#"><img src="{% static 'resimler/googleplus.png' %}" /></a></div>
+        <div class="eventgroup_yazi"><span style="font-size:14px">{{event_place}}</span><span style="font-size:14px"> {{event_city}}</span><br /><span style="font-size:14px">{{event_date}}</span></div>       
      
         <div class="sehir_sirala">
-        	<form id="myform" name="bilet_detaylari" method="post">
+        	<form id="myform" name="bilet_detaylari" method="POST">
             <table>
-            <tr><label class="name" style="font-size:16px">tarihi değiştir</label> 
-            <br />
-   			<select id="bilet_sayisi" class="styled-select">
-      					<option>11 Ocak</option>
-                        <option>18 Mart</option>
-                        <option>4 Temmuz</option>
-                        
-   					</select></tr>
+            
             <tr><td><label class="name" style="font-size:16px">kategori değiştir</label> <br />
-                    <select id="bilet_sayisi" class="kategori_sec">
-      					<option>Kategori 1</option>
-                        <option>Kategori 2</option>
-                        <option>Kategori 3</option>
-                        <option>Kategori 4</option>
-   					</select></td><td>
-                    <label class="name" style="font-size:16px">bilet adedi seç</label> <br />
-                    <select id="bilet_sayisi" class="kategori_sec">
-      					<option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-   					</select></td></tr>
+             	{% csrf_token %}
+             	<select id="bilet_sayisi" class="kategori_sec" name="category_select" onChange="this.form.submit();">
+             		<option>{{all_categories}}</option>
+                    {% for category in event_categories %}
+                    	{% if category == selected_category %}
+							<option selected>{{category}}</option>
+						{% else %}
+	  	  					<option>{{category}}</option>
+						{% endif %}
+                    {% endfor %}    
+   				</select></td><td>
+                <label class="name" style="font-size:16px">sırala</label> <br />
+                {% csrf_token %}
+                <select id="bilet_sayisi" class="kategori_sec" name="sirala" onChange="this.form.submit();">
+                		{% ifnotequal sort_type "bilet fiyatı" %}
+							<option>bilet fiyatı</option>
+							<option selected>bilet adeti</option>
+						{% else %}
+	  	  					<option selected>bilet fiyatı</option>
+	  	  					<option>bilet adeti</option>
+						{% endifnotequal %}
+      					
+   				</select></td></tr>
             
             </table>
  
@@ -62,95 +67,33 @@
             </tr></table>
             </div>
             
-       <div style="" class="eventlist_area">     
+       <div class="eventlist_area">
+       		
+       		{% for ticket in tickets %}     
             <div class"event">
         	<table><tr style="height:60px; text-align:center;">
-            <td style="width:83px;">Kategori 2</td>
-            <td style="width:83px;">30 D</td>
-            <td style="width:83px;"><select id="bilet_adedi" class="bilet_adedi">
-      					<option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-   					</select>
+            <td style="width:83px;">{{ticket.seatCategory}}</td>
+            <td style="width:83px;">{{ticket.seatRow}}</td>
+            <td style="width:83px;">
+            	<select id="bilet_adedi" class="bilet_adedi">
+            	{% for i in ticket.ticketCount|get_range %}
+      					<option>{{forloop.counter}}</option>
+                {% endfor %}        
+   				</select>
               </td>
-            <td style="width:83px;">125 TL</td>
+            <td style="width:83px;">{{ticket.price}} TL</td>
             
-            <td style="width:85px;"><button class="button_al" type="button">bilet al</button></td>
+            <td style="width:85px;">
+            <a href="/biletal1/?ticket_id={{ticket.id}}" class="button_al" >bilet al</a>
+            
             </tr></table>
             </div>
+            {% endfor %}
             
-            <div class"event">
-        	<table><tr style="height:60px; text-align:center;">
-            <td style="width:83px;">Kategori 2</td>
-            <td style="width:83px;">30 D</td>
-            <td style="width:83px;"><select id="bilet_adedi" class="bilet_adedi">
-      					<option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-   					</select>
-              </td>
-            <td style="width:83px;">125 TL</td>
-            
-            <td style="width:85px;"><button class="button_al" type="button">bilet al</button></td>
-            </tr></table>
-            </div>
-            
-            <div class"event">
-        	<table><tr style="height:60px; text-align:center;">
-            <td style="width:83px;">Kategori 2</td>
-            <td style="width:83px;">30 D</td>
-            <td style="width:83px;"><select id="bilet_adedi" class="bilet_adedi">
-      					<option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-   					</select>
-              </td>
-            <td style="width:83px;">125 TL</td>
-            
-            <td style="width:85px;"><button class="button_al" type="button">bilet al</button></td>
-            </tr></table>
-            </div>
-            
-            <div class"event">
-        	<table><tr style="height:60px; text-align:center;">
-            <td style="width:83px;">Kategori 2</td>
-            <td style="width:83px;">30 D</td>
-            <td style="width:83px;"><select id="bilet_adedi" class="bilet_adedi">
-      					<option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-   					</select>
-              </td>
-            <td style="width:83px;">125 TL</td>
-            
-            <td style="width:85px;"><button class="button_al" type="button">bilet al</button></td>
-            </tr></table>
-            </div>
-            
-            <div class"event">
-        	<table><tr style="height:60px; text-align:center;">
-            <td style="width:83px;">Kategori 2</td>
-            <td style="width:83px;">30 D</td>
-            <td style="width:83px;"><select id="bilet_adedi" class="bilet_adedi">
-      					<option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-   					</select>
-              </td>
-            <td style="width:83px;">125 TL</td>
-            
-            <td style="width:85px;"><button class="button_al" type="button">bilet al</button></td>
-            </tr></table>
-            </div>
-        </div>
+      </div>
         
-    </div>
-    <div class="oturma_duzeni">
-    	<img src="oturma_duzeni.png" />
-        </div>
+  </div>
+  <div class="oturma_duzeni">
+    	<img src="{% static 'resimler/oturma_duzeni.png' %}" />
+  </div>
  {% endblock %}

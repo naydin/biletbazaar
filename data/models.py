@@ -1,5 +1,10 @@
 from django.db import models
+
 from django.contrib.auth.models import AbstractBaseUser
+
+from django.db.models import Avg, Max, Min
+from decimal import Decimal
+
 
 arrayElementSeparator = ',,'
 
@@ -74,6 +79,29 @@ class Event(models.Model):
                 return True
         
         return False
+    
+    
+    
+    
+    
+    def calculateTickets(self):
+        return Ticket.objects.filter(event = self.id).count()
+
+    total_tickets = property(calculateTickets)
+    
+    
+    def minTicket(self):
+        t = Ticket.objects.filter(event = self.id).aggregate(Min('price'))
+        if(t["price__min"]==None):
+            return '-'
+        else:
+            return t["price__min"]
+
+    min_ticket = property(minTicket)
+    
+    
+   
+
 
 
 class User(AbstractBaseUser):
