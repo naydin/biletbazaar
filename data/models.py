@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser
 
 arrayElementSeparator = ',,'
 
@@ -74,16 +75,19 @@ class Event(models.Model):
         
         return False
 
-class User(models.Model):
+
+class User(AbstractBaseUser):
     id = models.AutoField(primary_key=True)
-    username = models.EmailField()
+    username = models.EmailField(unique=True,max_length=50)
     gsm = models.CharField(max_length =20, null=True)
     address = models.CharField(max_length=100, null=True)
     iban = models.CharField(max_length = 25, null=True)
     saleCount = models.IntegerField()
     purchaseCount = models.IntegerField()
-    #TODO: Password, name surname
+    #first_name, last_name and password comes from base user
 
+    USERNAME_FIELD = 'username'
+    
     def __unicode__(self):
         return self.username
     
