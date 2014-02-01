@@ -40,6 +40,7 @@ def admin_panel(request):
     userModelForm = UserModelForm()
     landingUserModelForm = LandingUserModelForm()
     cityModelForm = CityModelForm()
+    imageDocumentForm = ImageDocumentForm()
     
     if request.method == 'POST':
         if 'eventGroupModelForm' in request.POST:
@@ -54,17 +55,25 @@ def admin_panel(request):
             form = LandingUserModelForm(request.POST)
         if 'cityModelForm' in request.POST:
             form = CityModelForm(request.POST)
+        if 'imageDocumentForm' in request.POST:
+            form = ImageDocumentForm(request.POST,request.FILES)
             
         if form.is_valid():
-            form.save(commit=True)
-            # cd = form.cleaned_data
-            # send_mail(
-            #     cd['subject'],
-            #     cd['message'],
-            #     cd.get('email', 'noreply@example.com'),
-            #     ['siteowner@example.com'],
-            # )
-            return HttpResponse("Success")
+            if 'imageDocumentForm' in request.POST:
+                if form.is_valid():
+                    newDoc = ImageDocument(docfile = request.FILES['docfile'])
+                    newDoc.save()
+                    
+            else:
+                form.save(commit=True)
+                # cd = form.cleaned_data
+                # send_mail(
+                #     cd['subject'],
+                #     cd['message'],
+                #     cd.get('email', 'noreply@example.com'),
+                #     ['siteowner@example.com'],
+                # )
+                return HttpResponse("Success")
         else:
             if 'eventGroupModelForm' in request.POST:
                 eventGroupModelForm = form
@@ -78,8 +87,18 @@ def admin_panel(request):
                 landingUserModelForm = form
             if 'cityModelForm' in request.POST:
                 cityModelForm = form
+            if 'imageDocumentForm' in request.POST:
+                imageDocumentForm = form
                 
-    return render(request, 'admin_panel.html', {'eventGroupModelForm': eventGroupModelForm,'eventModelForm':eventModelForm,'ticketModelForm':ticketModelForm,'userModelForm':userModelForm,'landingUserModelForm':landingUserModelForm,'cityModelForm':cityModelForm})
+    return render(request, 'admin_panel.html', {
+        'eventGroupModelForm': eventGroupModelForm,
+        'eventModelForm':eventModelForm,
+        'ticketModelForm':ticketModelForm,
+        'userModelForm':userModelForm,
+        'landingUserModelForm':landingUserModelForm,
+        'cityModelForm':cityModelForm,
+        'imageDocumentForm':imageDocumentForm
+    })
     
 
 #landing page

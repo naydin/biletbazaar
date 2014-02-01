@@ -42,3 +42,6 @@ class TicketForm(forms.Form):
 class LandingUserForm(forms.Form):
     email = forms.EmailField()
     
+class ImageDocumentForm(forms.Form):
+    docfile = forms.FileField()
+    
