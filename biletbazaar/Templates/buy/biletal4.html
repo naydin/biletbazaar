@@ -69,14 +69,14 @@
         <div class="bilet_det">	
          	<div class="bilet_detaylari" style="float:left;">
             <br />
-    			<label id="etkinlik_ismi" style="margin-left:20px; margin-top:50px; font-weight:bold; color:#3babc7" >TARKAN</label><br /><br />
-                <label id="etkinlik_yer" style="margin-left:20px;" >Jolly Joker, İstanbul</label><br /><br />
-                <label id="etkinlik_tarih" style="margin-left:20px;" >17 Ocak 2014</label><br /><br />
-                <label id="etkinlik_saat" style="margin-left:20px;">Saat: 20:00</label><br /><br />
+    			<label id="etkinlik_ismi" style="margin-left:20px; margin-top:50px; font-weight:bold; color:#3babc7" >{{ticket.event.eventGroup.name}}</label><br /><br />
+                <label id="etkinlik_yer" style="margin-left:20px;" >{{ticket.event.place}}, {{ticket.event.city.name}}</label><br /><br />
+                <label id="etkinlik_tarih" style="margin-left:20px;" >{{ticket.event.date}}</label><br /><br />
+                <label id="etkinlik_saat" style="margin-left:20px;">Saat: {{ticket.event.date|date:"h"}}</label><br /><br />
                 
-                <label id="etkinlik_saat" style="margin-left:20px;">Kategori 4</label><br /><br />
-                <label id="etkinlik_saat" style="margin-left:20px;">35 A</label><br /><br />
-                <label id="etkinlik_saat" style="margin-left:20px;">Bilet Sayısı : 2</label><br />
+                <label id="etkinlik_saat" style="margin-left:20px;">Kategori {{ticket.seatCategory}}</label><br /><br />
+                <label id="etkinlik_saat" style="margin-left:20px;">{{ticket.seatRow}} {{ticket.seatNumber}}</label><br /><br />
+                <label id="etkinlik_saat" style="margin-left:20px;">Bilet Sayısı : {{ticket_count}}</label><br />
 
 			</div>
         	<div class="bilet_detaylari2" style="float:right";>
