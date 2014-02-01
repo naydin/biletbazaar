@@ -47,7 +47,7 @@ def reset_static_data():
     eg1.description = "Bir Bostanci Klasiği"
     eg1.category = "Müzik"
     eg1.saleCount = 100
-    eg1.photoUrl = "http://www.biletix.com/static/images/live/event/eventimages/Duman_bgm1.jpg"
+    eg1.photoUrl = "http://biletbosta.com/media/event_group_photos/Duman_bgm1.jpg"
     eg1.save()
     
     eg2 = EventGroup()
@@ -55,7 +55,7 @@ def reset_static_data():
     eg2.description = "İyi konser. Kaçırma!"
     eg2.category = "Müzik"
     eg2.saleCount = 10
-    eg2.photoUrl = "http://www.biletix.com/static/images/live/event/eventimages/mor_ve_otesi_02.jpg"
+    eg2.photoUrl = "http://biletbosta.com/media/event_group_photos/mor_ve_otesi_02.jpg"
     eg2.save()
     
     eg3 = EventGroup()
@@ -63,7 +63,7 @@ def reset_static_data():
     eg3.description = "Minik Serçe."
     eg3.category = "Müzik"
     eg3.saleCount = 55
-    eg3.photoUrl = "http://www.biletix.com/static/images/live/event/groupimages/sezen_aksu_02.jpg"
+    eg3.photoUrl = "http://biletbosta.com/media/event_group_photos/sezen_aksu_02.jpg"
     eg3.save()
         
     eg4 = EventGroup()
@@ -71,7 +71,7 @@ def reset_static_data():
     eg4.description = "Oynama şıkıdım şıkıdım."
     eg4.category = "Müzik"
     eg4.saleCount = 200
-    eg4.photoUrl = "http://www.biletix.com/static/images/live/event/eventimages/tarkan2012.jpg"
+    eg4.photoUrl = "http://biletbosta.com/media/event_group_photos/tarkan2012.jpg"
     eg4.save()
     
     eg5 = EventGroup()
@@ -79,7 +79,7 @@ def reset_static_data():
     eg5.description = "Burak ın sevdiği var ya ondan."
     eg5.category = "Müzik"
     eg5.saleCount = 5
-    eg5.photoUrl = "http://www.biletix.com/static/images/live/event/eventimages/mehmet_erdem.jpg"
+    eg5.photoUrl = "http://biletbosta.com/media/event_group_photos/mehmet_erdem.jpg"
     eg5.save()
     
     eg6 = EventGroup()
@@ -87,7 +87,7 @@ def reset_static_data():
     eg6.description = "Rihanna Diamonds Dünya Turnesi."
     eg6.category = "Müzik"
     eg6.saleCount = 250
-    eg6.photoUrl = "http://www.biletix.com/static/images/live/event/eventimages/rihanna.jpg"
+    eg6.photoUrl = "http://biletbosta.com/media/event_group_photos/rihanna.jpg"
     eg6.save()
     
     eg7 = EventGroup()
@@ -95,7 +95,7 @@ def reset_static_data():
     eg7.description = "Askerden sonra ilk konseri. Kaçırma!"
     eg7.category = "Müzik"
     eg7.saleCount = 60
-    eg7.photoUrl = "http://www.biletix.com/static/images/live/event/eventimages/levent_yuksel_jollyjoker.jpg"
+    eg7.photoUrl = "http://biletbosta.com/media/event_group_photos/levent_yuksel_jollyjoker.jpg"
     eg7.save()
     
     eg8 = EventGroup()
@@ -103,7 +103,7 @@ def reset_static_data():
     eg8.description = "Sağdan soldan arakladığı bikaç akor melankoli falan felan işte anladın sen onu."
     eg8.category = "Müzik"
     eg8.saleCount = 80
-    eg8.photoUrl = "http://www.biletix.com/static/images/live/event/eventimages/teoman_harbiye.jpg"
+    eg8.photoUrl = "http://biletbosta.com/media/event_group_photos/teoman_harbiye.jpg"
     eg8.save()
     
     event_groups = EventGroup.objects.all()
