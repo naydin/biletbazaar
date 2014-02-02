@@ -299,6 +299,7 @@ def event(request):
 		event_group_idd = event.eventGroup.id       
 		event_group_name = EventGroup.objects.get(id=event_group_idd).name
 		event_group_photoUrl = EventGroup.objects.get(id=event_group_idd).photoUrl
+		print event_group_photoUrl
 		        
 		events = Event.objects.filter(eventGroup__id = event_group_idd)
         

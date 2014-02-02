@@ -34,11 +34,18 @@ def biletal1(request):
             ticket = Ticket.objects.get(id = ticket_id)
             ticket_count_list = range(1,ticket.ticketCount+1)
             
+            event_id = ticket.event.id
+            event = Event.objects.get(id=event_id)
+            event_group_idd = event.eventGroup.id
+            event_group_photoUrl = EventGroup.objects.get(id=event_group_idd).photoUrl
+            print event_group_photoUrl
+            
             request.session['buy_ticket_id'] = ticket_id
             
             return render(request,'buy/biletal1.html',{
                 'ticket':ticket,
-                'ticket_count_list':ticket_count_list
+                'ticket_count_list':ticket_count_list,
+                'event_group_photoUrl': event_group_photoUrl
             })
 
         except Exception as e:
