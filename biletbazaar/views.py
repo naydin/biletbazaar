@@ -4,25 +4,49 @@ from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
-from django.template import Context,loader
+from django.template import Context,loader,RequestContext
 from data.eventManager import *
 from data.models import *
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,render_to_response
 from forms import *
 from modelForms import *
 from django.db.models import Max
 from static_data import *
-
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
-
-from django.template import Context
+from django.contrib.auth import authenticate, login, logout,REDIRECT_FIELD_NAME
+from django.contrib.auth.decorators import login_required
+from django.utils.http import is_safe_url
 
 import datetime
 import re
 
 selected_city_name_field = "selected_city_name"
 
+def login_user(request):
+    logout(request)
+    username = password = ''
+    if request.POST:
+        if 'login_form' in request.POST:
+            print '==' + REDIRECT_FIELD_NAME
+            redirect_to = request.POST.get(REDIRECT_FIELD_NAME,
+                                               request.GET.get(REDIRECT_FIELD_NAME, ''))
+            print '**' + redirect_to
+            if not is_safe_url(url=redirect_to, host=request.get_host()):
+                            redirect_to = resolve_url(settings.LOGIN_REDIRECT_URL)
+                            
+            username = request.POST['username']
+            password = request.POST['password']
+            print username + '==' + password
+            user = authenticate(username=username, password=password)
+            print user
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect(redirect_to)
+        else:#TODO: signup should be implemented
+            pass
+    return render_to_response('login.html', context_instance=RequestContext(request))
 
 #reset all data in bilet bosta database
 def reset_data(request):
@@ -35,6 +59,7 @@ def reset_data(request):
 
 
 #admin panel: data entry into Bilet Bosta Database
+@login_required(login_url='/login')
 def admin_panel(request):
     eventGroupModelForm = EventGroupModelForm()
     eventModelForm = EventModelForm()

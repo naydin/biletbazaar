@@ -147,6 +147,7 @@ def reset_static_data():
         u1.iban = ''.join(random.choice(string.digits) for x in range(16))
         u1.saleCount = randrange(0,50)
         u1.purchaseCount = randrange(0,50)
+        u1.set_password('0000')
         u1.save()
         users.append(u1)
     

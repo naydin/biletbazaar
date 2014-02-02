@@ -51,4 +51,6 @@ urlpatterns = patterns('',
     #event group
     url('^event_group/$',event_group),
     url('^event/$',event),
+    
+    url(r'^login/$',login_user),
 )

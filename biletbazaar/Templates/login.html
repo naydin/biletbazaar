@@ -67,23 +67,24 @@
             	<span style="font-size:22px; color:#3496af; margin-left:40px; display:inline-block; margin-top:30px;">üye girişi</span>
                 <br /><br /><br />
                 <div class="fb_giris">
-                <a style="margin-left:40px; vertical-align:bottom" href=""><img src="fb_login.png" /></a>
+                <a style="margin-left:40px; vertical-align:bottom" href=""><img src="{% static 'resimler/fb_login.png' %}" /></a>
                 <span style="margin-left:10px;display: inline-block;vertical-align: top; font-size:16px">facebook yoluyla giriş yap</span>
                  <span style="font-size:30px; margin-left:140px;">veya</span>
                 </div>
                 
                  <form id="myform" name="bilet_detaylari" method="post" onsubmit="return validate(this)">
          			<label class="name" style="font-size:20px;margin-left:10px; margin-bottom:20px; margin-right:40px;float:left;">e-posta</label>
-   					<input id="isim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin adını giriniz." />
+   					<input name="username" id="isim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin adını giriniz." />
                     <label id="isim_lb" style="color:#bdd531; float:right; margin-right:5px;"></label> 
                     
                     <br />
                     <label class="name" style="font-size:20px; margin-left:10px;margin-bottom:20px; margin-right:40px; float:left;">şifre </label>
-   					<input id="soyisim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin soyadını giriniz." />
+   					<input name="password" id="soyisim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin soyadını giriniz." />
                     <label id="soyisim_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
                     
                     <br />
-                    <button type="submit" class="button_example" style="float:right; margin-right:15px; margin-left:150px; margin-bottom:20px;">giriş</button>
+					{% csrf_token %}
+                    <button type="submit" name ="login_form" class="button_example" style="float:right; margin-right:15px; margin-left:150px; margin-bottom:20px;">giriş</button>
                     <br />
                     <a href="" style="float:right; margin-right:15px; color:#aabf2c">şifremi unuttum</a>
                     
@@ -97,7 +98,7 @@
        		  	<span style="font-size:22px; color:#3496af; margin-left:40px; display:inline-block; margin-top:30px;">kaydol</span>
                 <br /><br /><br />
                 <div class="fb_giris2">
-                <a style="margin-left:40px; vertical-align:bottom" href=""><img src="fb_login.png" /></a>
+                <a style="margin-left:40px; vertical-align:bottom" href=""><img src="{% static 'resimler/fb_login.png' %}" /></a>
                 <span style="margin-left:10px;display: inline-block;vertical-align: top; font-size:16px">facebook yoluyla kaydol</span>
                 <span style="font-size:30px; margin-left:140px;">veya</span>
                 </div>
@@ -135,7 +136,8 @@
                     <label id="adres_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
                     
                     <br />
-                    <button type="submit" class="button_example" style="float:right; margin-right:5px;">kaydol</button>
+					{% csrf_token %}
+                    <button type="submit" name='submit_form' class="button_example" style="float:right; margin-right:5px;">kaydol</button>
         		</form>
        	  </div>
       </div>
