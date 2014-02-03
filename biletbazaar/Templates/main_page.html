@@ -66,7 +66,7 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
             <div class="hot_tickets">
             	<div class="hot_tickets_baslik">talepte olan etkinlikler</div>
 				{% for event in event_list %}
-	                <a href="#"><div class={% if forloop.counter0|divisibleby:2 %}"event_left"{% else %} "event_right"{% endif %}>
+	                <a href="/event/?event_id={{event.id}}"><div class={% if forloop.counter0|divisibleby:2 %}"event_left"{% else %} "event_right"{% endif %}>
 		                <table>
 							<tr>
 			                <td height="60px" width="75px"><img class="autoResizeImage" src="{{event.eventGroup.photoUrl}}" alt="Event Photo"  /></td>
@@ -100,7 +100,7 @@ document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)
             <div class="ucuz_biletler">
               <a href="#"><div class="ucuz_bilet_yazi">ucuz biletler</div></a>
 			  {% for ticket in ticket_list %}
-              <a href="#"><div class="ucuz_bilet">
+              <a href="/biletal1/?ticket_id={{ticket.id}}"><div class="ucuz_bilet">
               <table><tr>
                 <td height="45px" width="60px" ><img class="autoResizeImage" src="{{ticket.event.eventGroup.photoUrl}}" /></td>
                 <td height="45px" width="150px" >{{ticket.event.eventGroup.name}}<br />{{ticket.event.place}}<br />{{ticket.event.city.name}}</td>
