@@ -75,11 +75,14 @@
             <td style="width:83px;">{{ticket.seatCategory}}</td>
             <td style="width:83px;">{{ticket.seatRow}}</td>
             <td style="width:83px;">
-            	<select id="bilet_adedi" class="bilet_adedi">
-            	{% for i in ticket.ticketCount|get_range %}
-      					<option>{{forloop.counter}}</option>
-                {% endfor %}        
-   				</select>
+            	{{ticket.ticketCount}}
+            	{% comment %}
+            		<select id="bilet_adedi" class="bilet_adedi">
+            			{% for i in ticket.ticketCount|get_range %}
+      						<option>{{forloop.counter}}</option>
+                		{% endfor %}        
+   					</select>
+            	{% endcomment %}
               </td>
             <td style="width:83px;">{{ticket.price}} TL</td>
             

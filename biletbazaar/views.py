@@ -165,6 +165,7 @@ def anasayfa(request):
     # event_group = event_group_list[0]
     # event_list = event_group.event_set.all()
     
+    request.session[selected_city_name_field] = u"Tüm Türkiye"
     selected_city_name = u''
     
     #check if a city is selected previously and stored in a cookie
@@ -218,40 +219,45 @@ def event_group(request):
 
 	 
 	if request.method == 'GET':
-            try:
-            
-            	selected_city_name = request.session[selected_city_name_field];
+		try:
+    	
+			if(request.session[selected_city_name_field]==u"Tüm Türkiye"):
+				selected_city_name = ""
+			else:
+				selected_city_name = request.session[selected_city_name_field]
             	
-                event_group_id = request.GET['event_group_id']
-                eventgroup = EventGroup.objects.get(id=event_group_id)
-                events = Event.objects.filter(eventGroup__id = event_group_id, city__name__icontains=selected_city_name)
-                
-           
-                event_group_name = eventgroup.name
-                event_group_description = eventgroup.description
-                event_group_category = eventgroup.category
-                event_group_saleCount = eventgroup.saleCount
-                event_group_photoUrl = eventgroup.photoUrl
-                city_list = City.objects.all()
-                
-                
-                
-                return render(request,'events/event_group.html',
-                {'event_group_name':event_group_name,
-                'event_group_description':event_group_description,
-                'event_group_category':event_group_category,
-                'event_group_saleCount':event_group_saleCount,
-              	'event_group_photoUrl':event_group_photoUrl,
-              	'events' : events,
-              	'city_list' : city_list,
-              	'selected_city_name' : selected_city_name, 
-              	'city_name_all_cities':u"Tüm Türkiye"
-              	
-                })
-                
-            except Exception as e:
-                print '%s (%s)' % (e.message, type(e))
-                return redirect('/anasayfa')
+            	
+            	
+			event_group_id = request.GET['event_group_id']
+			eventgroup = EventGroup.objects.get(id=event_group_id)
+			events = Event.objects.filter(eventGroup__id = event_group_id, city__name__icontains=selected_city_name)
+        
+   
+			event_group_name = eventgroup.name
+			event_group_description = eventgroup.description
+			event_group_category = eventgroup.category
+			event_group_saleCount = eventgroup.saleCount
+			event_group_photoUrl = eventgroup.photoUrl
+			city_list = City.objects.all()
+			
+			
+			
+			return render(request,'events/event_group.html',
+			{'event_group_name':event_group_name,
+			'event_group_description':event_group_description,
+			'event_group_category':event_group_category,
+			'event_group_saleCount':event_group_saleCount,
+			'event_group_photoUrl':event_group_photoUrl,
+			'events' : events,
+			'city_list' : city_list,
+			'selected_city_name' : selected_city_name, 
+			'city_name_all_cities':u"Tüm Türkiye"
+			
+			})
+
+		except Exception as e:
+			print '%s (%s)' % (e.message, type(e))
+			return redirect('/anasayfa')
 	elif request.method == 'POST':
         	selected_city_name = u''
         	#if a city is posted take that as selected city
