@@ -5,7 +5,7 @@
 	background:linear-gradient(#dbdbdb,#ffffff);
 	text-align:left;
 	margin-top:25px;
-	background-image:url(bize_ulasin.png);
+	background-image:url(../resimler/bize_ulasin.png);
 	margin-left:34px;
 
 	width: 732px;
@@ -17,7 +17,7 @@
 
 .content_css .white_bg .uyelik .signup{
 	margin-left:210px;
-	background-image:url(mesaj_bg.png);
+	background-image:url(../resimler/mesaj_bg.png);
 	padding-top:10px;
 	text-align:left;
 	width: 390px;

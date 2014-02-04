@@ -53,4 +53,6 @@ urlpatterns = patterns('',
     url('^event/$',event),
     
     url(r'^login/$',login_user),
+    url('^bize_ulasin/$',bize_ulasin),
+    url('^hesabim/$',hesabim),
 )

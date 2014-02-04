@@ -364,7 +364,23 @@ def event(request):
 		return redirect('/anasayfa')
 	   	
    
+def hesabim(request):
+	return render(request,'hesabim.html')
        
-
+def bize_ulasin(request):
+	if request.method == 'GET':
+		return render(request,'bize_ulasin.html')
+	elif request.method == 'POST':
 		
+		bize_ulasin = BizeUlasin()
+		
+		bize_ulasin.name = request.POST['name']
+		bize_ulasin.email = request.POST['email']
+		bize_ulasin.message = request.POST['message']
+        
+		bize_ulasin.save()
+		
+		return redirect('/anasayfa')
+	else:	
+		return redirect('/hesabim')
 		

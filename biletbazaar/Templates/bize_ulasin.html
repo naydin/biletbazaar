@@ -52,24 +52,28 @@
        		  	
                 <form id="myform" name="bilet_detaylari" method="post" onsubmit="return validate(this)">
          			<label class="name" style="font-size:20px;margin-left:10px; margin-bottom:20px;float:left;">ad, soyad</label>
-   					<input id="isim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin adını giriniz." />
+         			{% csrf_token %}
+   					<input name="name" id="isim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin adını giriniz." />
                     <label id="isim_lb" style="color:#bdd531; float:right; margin-right:5px;"></label> 
                     
                     <br />
                     <label class="name" style="font-size:20px; margin-left:10px;margin-bottom:20px; float:left;">e-posta </label>
-   					<input id="soyisim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin soyadını giriniz." />
+                    {% csrf_token %}
+   					<input name="email" id="soyisim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin soyadını giriniz." />
                     <label id="soyisim_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
                     
                     
                     <br />
                     <label class="name" style="font-size:20px; margin-left:10px;margin-bottom:20px;float:left; ">mesaj </label>
-   					<textarea rows="7" cols="31" style="float:right; margin-right:5px;">  </textarea>
+                    {% csrf_token %}
+   					<textarea name="message" rows="7" cols="31" style="float:right; margin-right:5px;">  </textarea>
                     <label id="sehir_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
                     
 
                    
                     
                     <br />
+                    {% csrf_token %}
                     <button type="submit" class="button_example" style="float:right; margin-right:5px; margin-top:25px;">gönder</button>
         		</form>
        	  </div>

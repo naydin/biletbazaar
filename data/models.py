@@ -183,6 +183,13 @@ class LandingUser(models.Model):
 class ImageDocument(models.Model):
     docfile = models.FileField(upload_to='event_group_photos')
     
+class BizeUlasin(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=30)
+    email = models.EmailField()
+    message = models.CharField(max_length=200)
+    
+    
 
     # name = models.CharField(max_length = 30)
 #     description = models.CharField(max_length = 200)
