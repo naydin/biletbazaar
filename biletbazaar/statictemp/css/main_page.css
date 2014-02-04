@@ -15,12 +15,14 @@ body{
 
 
 a:link{
-	color:#FFF;
+	font-family:"Myriad Pro";
+	color:#000;
 	text-decoration:none;
 }
 
 a:active{
-	color:#0F0;
+	font-family:"Myriad Pro";
+	color:#000;
 }
 
 .header_css{
@@ -274,6 +276,7 @@ a:active{
 	float:left;
 	height: 63px;
 	width:270px;
+	
 }
 
 .content_css .white_bg .hot_tickets .event_right{
@@ -297,6 +300,7 @@ a:active{
 	margin-left: 587px;
 	width: 268px;
 	height: 55px;
+	color:#FFF;
 }
 
 .content_css .white_bg .bilet_ilani:hover{
