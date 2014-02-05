@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Etkinlik Bul - Bilet Boşta Kalmasın{% endblock %}
+
+{% block css_js_links %} 
+	<link href="{% static 'css/search_results.css' %}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/resources/demos/style.css">
+{% endblock %}
+    
+
+{% block js_functions %} 
+
+	  $(function() {
+	    var availableTags = [
+			{% for event_group in event_group_list %}
+				"{{event_group.name}}",
+			{% endfor %}
+	    ];
+	    $( "#searchh" ).autocomplete({
+	      source: availableTags
+	    });
+	  });
+
+{% endblock %}
+    
+
+
+
+
+
+
+    
+{% block content %}
+            
+
+            
+           	{% if event_list|length %}
+           	<div class="ucuz_bilet_yazi">Arama Sonuçları</div>
+            <div class="ucuz_biletler">
+             
+			 
+			 {% for event in event_list %}
+			 <form action="/event/?event_id={{event.id}}" method="GET">
+ 				<div class="ucuz_bilet"><table><tr>
+ 					<td height="45px" width="60px" style=" padding-right:50px;" ><img class="autoResizeImage" src="{{event.eventGroup.photoUrl}}" /></td>
+ 					<td height="45px" width="150px" style=" padding-right:50px;" >{{event.eventGroup.name}}<br />{{event.place}}<br />{{event.city.name}}</td>
+ 					<td height="45px" width="70px" style=" padding-right:50px;">{{event.date|date:"M"}}<br />{{event.date.day}}<br />{{event.date|date:"l"}}</td>
+ 					<!-- <td><button type="submit" class="button_example" action="">Seç</button></td> -->
+					
+					<td>
+						<input type="hidden" name="event_id" value="{{event.id}}" /> 
+						<input type="submit" class="button_example" value="Seç">
+					</td>
+ 				</tr></table></div>
+			 </form>
+			 {% endfor %}
+            </div>
+			{% endif %}
+            
+ {% endblock %}

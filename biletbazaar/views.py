@@ -4,7 +4,8 @@ from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
-from django.template import Context,loader,RequestContext
+from django.template import RequestContext
+from django.template import loader
 from data.eventManager import *
 from data.models import *
 from django.shortcuts import render,redirect,render_to_response
@@ -164,50 +165,52 @@ def anasayfa(request):
     # event_group_list = EventGroup.objects.filter(saleCount = max_sale_count)
     # event_group = event_group_list[0]
     # event_list = event_group.event_set.all()
+	
+	request.session[selected_city_name_field] = u"Tüm Türkiye"
+	selected_city_name = u''
     
-    request.session[selected_city_name_field] = u"Tüm Türkiye"
-    selected_city_name = u''
-    
-    #check if a city is selected previously and stored in a cookie
-    if selected_city_name_field in request.COOKIES:
-        selected_city_name = ''.join((request.COOKIES[selected_city_name_field])).decode('utf-8').strip()
+	#check if a city is selected previously and stored in a cookie
+	if selected_city_name_field in request.COOKIES:
+		selected_city_name = ''.join((request.COOKIES[selected_city_name_field])).decode('utf-8').strip()
     
     #if a city is posted take that as selected city
-    try:
-        selected_city_name = request.POST['city_select']
-    except Exception as e:
+	try:
+		selected_city_name = request.POST['city_select']
+	except Exception as e:
         # print '%s (%s)' % (e.message, type(e))
-        pass
+		pass
     
     #validate selected city,if valid save it to session
-    try:
-        City.objects.get(name=selected_city_name)
-        request.session[selected_city_name_field] = selected_city_name
-    except Exception as e:
-        selected_city_name = ""
+	try:
+		City.objects.get(name=selected_city_name)
+		request.session[selected_city_name_field] = selected_city_name
+	except Exception as e:
+		selected_city_name = ""
     
     
-    #query the required lists
-    event_group_list = EventGroup.objects.all().order_by('-saleCount')[0:5]
-    event_list = Event.objects.filter(city__name__contains=selected_city_name).order_by('date')[0:10]
-    ticket_list = Ticket.objects.filter(event__city__name__contains=selected_city_name).order_by('price')[0:5]
-    city_list = City.objects.all()
-
-    #prepare the response
-    response = render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list,
-    'ticket_list':ticket_list,"city_list":city_list,'selected_city_name':selected_city_name,'city_name_all_cities':u"Tüm Türkiye"})
-
-    #include selected city in the cookie
-    response.set_cookie(selected_city_name_field,u''.join((selected_city_name)).encode('utf-8').strip())
-        
-    return response
+	#query the required lists
+	event_group_list = EventGroup.objects.all().order_by('-saleCount')[0:5]
+	event_list = Event.objects.filter(city__name__contains=selected_city_name).order_by('date')[0:10]
+	ticket_list = Ticket.objects.filter(event__city__name__contains=selected_city_name).order_by('price')[0:5]
+	city_list = City.objects.all()
+	
+	
+	
+	#prepare the response
+	response = render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list,
+	'ticket_list':ticket_list,"city_list":city_list,'selected_city_name':selected_city_name,'city_name_all_cities':u"Tüm Türkiye"})
+	
+	#include selected city in the cookie
+	response.set_cookie(selected_city_name_field,u''.join((selected_city_name)).encode('utf-8').strip())
+	    
+	return response
 
 
 #send email content 
 def send_maill(email):
     subject, from_email, to = 'Bilet Bosta\'ya Hosgeldiniz', 'info@biletbosta.com',email
     text_content = ''
-    c = Context({'ig_url':'http://www.biletbosta.com/static/bilet-bosta-reklam.png'})
+    c = RequestContext(request,{'ig_url':'http://www.biletbosta.com/static/bilet-bosta-reklam.png'})
     t = loader.get_template('mail_template.html')
     html_content = t.render(c)
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
@@ -384,3 +387,15 @@ def bize_ulasin(request):
 	else:	
 		return redirect('/hesabim')
 		
+
+def search_result(request):
+	if request.method == 'POST':
+		if request.POST['search_here']:
+			query = request.POST['search_here']
+			event_list = Event.objects.filter(eventGroup__name__icontains=query)
+		return render(request,'search_results.html',{'event_list':event_list})
+	else:
+		return redirect('/search_result')
+	
+		
+	

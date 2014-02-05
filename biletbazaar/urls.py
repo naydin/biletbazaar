@@ -55,4 +55,5 @@ urlpatterns = patterns('',
     url(r'^login/$',login_user),
     url('^bize_ulasin/$',bize_ulasin),
     url('^hesabim/$',hesabim),
+    url('^search_result/$',search_result),
 )

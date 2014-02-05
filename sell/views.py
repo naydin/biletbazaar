@@ -1,12 +1,28 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
-from django.template import Context,loader
+from django.template import RequestContext
+from django.template import loader
 from data.models import *
 from django.shortcuts import render,redirect
 
 import datetime
 from biletbazaar.validation_util import *
 
+def base(request):
+    selected_city_name = u''
+    try:
+        selected_city_name = request.session[selected_city_name_field]
+    except Exception as e:
+        selected_city_name = u''
+        
+    if request.method == 'POST':
+        if request.POST['search_here']:
+            search_event_group_name = request.POST['search_here']
+            event_group = EventGroup.objects.filter(name__icontains=search_event_group_name)
+            
+    event_group_list = EventGroup.objects.all()
+    
+    return render(request,'sell/bilet_ilan.html',{'base':'/static/','event_group_list':event_group_list,'event_list':event_list})
 
 # sell step 1 : etkinlik search
 def bilet_ilan(request):
