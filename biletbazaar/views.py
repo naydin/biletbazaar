@@ -28,25 +28,53 @@ def login_user(request):
     logout(request)
     username = password = ''
     if request.POST:
+        redirect_to = request.POST.get(REDIRECT_FIELD_NAME,
+                                           request.GET.get(REDIRECT_FIELD_NAME, ''))
+
+        if not is_safe_url(url=redirect_to, host=request.get_host()):
+                        redirect_to = resolve_url(settings.LOGIN_REDIRECT_URL)
+
+        #TODO: validations for username and password should be added
         if 'login_form' in request.POST:
-            print '==' + REDIRECT_FIELD_NAME
-            redirect_to = request.POST.get(REDIRECT_FIELD_NAME,
-                                               request.GET.get(REDIRECT_FIELD_NAME, ''))
-            print '**' + redirect_to
-            if not is_safe_url(url=redirect_to, host=request.get_host()):
-                            redirect_to = resolve_url(settings.LOGIN_REDIRECT_URL)
-                            
+                
             username = request.POST['username']
             password = request.POST['password']
-            print username + '==' + password
+
             user = authenticate(username=username, password=password)
-            print user
+
             if user is not None:
                 if user.is_active:
                     login(request, user)
                     return redirect(redirect_to)
-        else:#TODO: signup should be implemented
-            pass
+        elif 'signup_form' in request.POST:
+            name = request.POST['name']
+            surname = request.POST['surname']
+            mail = request.POST['mail']
+            password = request.POST['password']
+            password_again = request.POST['password_again']
+            gsm = request.POST['gsm']
+            
+            if password != password_again:
+                #TODO: error should be added
+                pass
+            
+            user = User()
+            user.username = mail
+            user.set_password(password)
+            user.first_name = name
+            user.last_name = surname
+            user.gsm = gsm
+            user.save()
+            
+            userr = authenticate(username=mail, password=password)
+            print userr
+            if userr is not None:
+                if userr.is_active:
+                    login(request, userr)
+                    return redirect(redirect_to)
+            
+        else:
+            return redirect('/anasayfa')
     return render_to_response('login.html', context_instance=RequestContext(request))
 
 #reset all data in bilet bosta database
