@@ -16,16 +16,31 @@
     
     
     <script type="text/javascript">
-    	function resolution()
-		{
-			
+    	$(document).ready( function() {
+    		$('body').hide();
+
 			var w = document.documentElement.clientWidth;
 			
 			document.getElementById('content').style.marginLeft = Math.round( (w - 890)/2)+'px';
 			document.getElementById('banner').style.marginLeft = Math.round( (w - 890)/2)+'px';
 			document.getElementById('menu').style.marginLeft = Math.round( (w - 890)/2)+'px';
 			document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)/2 +210 )+'px';
+			
+			$('body').show();
+			
+			
+		});
+		
+		function resolution()
+		{
+			var w = document.documentElement.clientWidth;
+			document.getElementById('content').style.marginLeft = Math.round( (w - 890)/2)+'px';
+			document.getElementById('banner').style.marginLeft = Math.round( (w - 890)/2)+'px';
+			document.getElementById('menu').style.marginLeft = Math.round( (w - 890)/2)+'px';
+			document.getElementById('footer_links').style.marginLeft = Math.round( (w - 890)/2 +210 )+'px';
+
 		};
+		
 		
 		
 		$(function() {
@@ -50,7 +65,7 @@
 	
 </head>
 
-<body onload="resolution()" onresize="resolution()">
+<body  onresize="resolution()">
 	<div class="header_css">
     	<div id="banner" class="banner">
         	
@@ -62,7 +77,7 @@
             	<div class="hesabim"><a style="color:#FFF" href="/login">oturum aç</a> | <a style="color:#FFF" href="/hesabim">hesabım</a> | <a style="color:#FFF" href="#">yardım</a></div>
                 <div class="uye_girisi"><a href="#"><img src="{% static 'resimler/facebook.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/twitter.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/googleplus.png' %}" /></a></div>
                 <div class="search">
-                	<form id="searchbox" method="POST" action="/search_result/">
+                	<form id="searchbox" method="GET" action="/search_result/">
                		{% csrf_token %}
                		<input id="submit" type="submit" value="Search">
                		{% csrf_token %}

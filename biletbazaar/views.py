@@ -417,13 +417,13 @@ def bize_ulasin(request):
 		
 
 def search_result(request):
-	if request.method == 'POST':
-		if request.POST['search_here']:
-			query = request.POST['search_here']
+	if request.method == 'GET':
+		if request.GET['search_here']:
+			query = request.GET['search_here']
 			event_list = Event.objects.filter(eventGroup__name__icontains=query)
 		return render(request,'search_results.html',{'event_list':event_list})
 	else:
-		return redirect('/search_result')
+		return redirect('/anasayfa')
 	
 		
 	
