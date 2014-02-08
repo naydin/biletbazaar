@@ -13,6 +13,16 @@
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script>
+	function fbLogin() {
+	  FB.login(function(response) {
+	    if (response.session) {
+	      //user is logged in, reload page
+	      window.location.reload(true);
+	    } else {
+	      // user is not logged in
+	    }
+	  }, {perms:'read_stream,publish_stream,offline_access'});
+	}
 	window.fbAsyncInit = function() {
 	  FB.init({
 	    appId      : '1384694118463559',
@@ -32,6 +42,7 @@
 	      // login status of the person. In this case, we're handling the situation where they 
 	      // have logged in to the app.
 		  window.alert(response.authResponse.accessToken);
+		  // response.authResponse.userID
 	      testAPI();
 	    } else if (response.status === 'not_authorized') {
 	      // In this case, the person is logged into Facebook, but not into the app, so we call
@@ -42,7 +53,7 @@
 	      // result from direct interaction from people using the app (such as a mouse click)
 	      // (2) it is a bad experience to be continually prompted to login upon page load.
 		  window.alert('not_authorized');
-	      FB.login();
+	      fbLogin();
 	    } else {
 	      // In this case, the person is not logged into Facebook, so we call the login() 
 	      // function to prompt them to do so. Note that at this stage there is no indication
@@ -50,7 +61,7 @@
 	      // dialog right after they log in to Facebook. 
 	      // The same caveats as above apply to the FB.login() call here.
 		  window.alert('else');
-	      FB.login();
+	      fbLogin();
 	    }
 	  });
 	  };
@@ -147,7 +158,7 @@
 				</form>
 				{% else %}
             	<div class="hesabim"><a style="color:#FFF" href="/login">oturum aç</a> | <a style="color:#FFF" href="/hesabim">hesabım</a> | <a style="color:#FFF" href="#">yardım</a></div>
-                <div class="uye_girisi"><a href="#"><img onclick="FB.login();" src="{% static 'resimler/facebook.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/twitter.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/googleplus.png' %}" /></a></div>
+                <div class="uye_girisi"><a href="#"><img onclick="fbLogin();" src="{% static 'resimler/facebook.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/twitter.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/googleplus.png' %}" /></a></div>
                 <div class="search">
                 	<form id="searchbox" method="GET" action="/search_result/">
                		{% csrf_token %}
