@@ -75,12 +75,12 @@
                  <form id="myform" name="bilet_detaylari" method="post" onsubmit="return validate(this)">
          			<label class="name" style="font-size:20px;margin-left:10px; margin-bottom:20px; margin-right:40px;float:left;">e-posta</label>
    					<input name="username" id="isim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin adını giriniz." />
-                    <label id="isim_lb" style="color:#bdd531; float:right; margin-right:5px;"></label> 
+                    <label id="isim_lb" style="color:#bdd531; float:right; margin-right:5px;">{{login_username_error}}</label> 
                     
                     <br />
                     <label class="name" style="font-size:20px; margin-left:10px;margin-bottom:20px; margin-right:40px; float:left;">şifre </label>
    					<input name="password" id="soyisim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin soyadını giriniz." />
-                    <label id="soyisim_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
+                    <label id="soyisim_lb" style="color:#bdd531; float:right; margin-right:5px;">{{login_password_error}}</label>
                     
                     <br />
 					{% csrf_token %}
@@ -106,34 +106,34 @@
                 <form id="myform" name="bilet_detaylari" method="post" onsubmit="return validate(this)">
          			<label class="name" style="font-size:20px;margin-left:10px; margin-bottom:20px; margin-right:40px;float:left;">ad</label>
    					<input name="name" id="isim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin adını giriniz." />
-                    <label id="isim_lb" style="color:#bdd531; float:right; margin-right:5px;"></label> 
+                    <label id="isim_lb" style="color:#bdd531; float:right; margin-right:5px;">{{signup_name_error}}</label> 
                     
                     <br />
                     <label class="name" style="font-size:20px; margin-left:10px;margin-bottom:20px; float:left;">soyad </label>
    					<input name="surname" id="soyisim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin soyadını giriniz." />
-                    <label id="soyisim_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
+                    <label id="soyisim_lb" style="color:#bdd531; float:right; margin-right:5px;">{{signup_surname_error}}</label>
                     
                     
                     <br />
                     <label class="name" style="font-size:20px; margin-left:10px;margin-bottom:20px;float:left; margin-right:40px;">e-posta </label>
-   					<input name="mail" id="sehir_tb" class="tb" type="text" title="Biletin teslim alınacağı ili giriniz."  />
-                    <label id="sehir_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
+   					<input name="username" id="sehir_tb" class="tb" type="text" title="Biletin teslim alınacağı ili giriniz."  />
+                    <label id="sehir_lb" style="color:#bdd531; float:right; margin-right:5px;">{{signup_username_error}}</label>
                     
 
                     <br />
                     <label class="name" style="font-size:20px; margin-left:10px;margin-bottom:20px;float:left;">sifre</label> 
    					<input name="password" id="adres_tb" class="tb" type="text" title="Lütfen biletin teslim alınacağı açık adresi giriniz." />
-                    <label id="adres_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
+                    <label id="adres_lb" style="color:#bdd531; float:right; margin-right:5px;">{{signup_password_error}}</label>
                     
                     <br />
                     <label class="name" style="font-size:20px; margin-left:10px;margin-bottom:20px;float:left;">sifre tekrar</label> 
    					<input name="password_again" id="adres_tb" class="tb" type="text" title="Lütfen biletin teslim alınacağı açık adresi giriniz." />
-                    <label id="adres_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
+                    <label id="adres_lb" style="color:#bdd531; float:right; margin-right:5px;">{{signup_password_again_error}}</label>
                     
                      <br />
                     <label class="name" style="font-size:20px; margin-left:10px;margin-bottom:20px;float:left;">cep telefonu</label> 
    					<input name="gsm" id="adres_tb" class="tb" type="text" title="Lütfen biletin teslim alınacağı açık adresi giriniz." />
-                    <label id="adres_lb" style="color:#bdd531; float:right; margin-right:5px;"></label>
+                    <label id="adres_lb" style="color:#bdd531; float:right; margin-right:5px;">{{signup_gsm_error}}</label>
                     
                     <br />
 					{% csrf_token %}
