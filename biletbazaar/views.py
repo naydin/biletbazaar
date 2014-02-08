@@ -8,7 +8,7 @@ from django.template import RequestContext
 from django.template import loader
 from data.eventManager import *
 from data.models import *
-from django.shortcuts import render,redirect,render_to_response
+from django.shortcuts import render,redirect,render_to_response,resolve_url
 from forms import *
 from modelForms import *
 from django.db.models import Max
@@ -19,11 +19,19 @@ from django.contrib.auth import authenticate, login, logout,REDIRECT_FIELD_NAME
 from django.contrib.auth.decorators import login_required
 from django.utils.http import is_safe_url
 from biletbazaar.validation_util import *
+from django.conf import settings
 
 import datetime
 import re
 
 selected_city_name_field = "selected_city_name"
+
+from django.contrib import auth
+
+def logout_view(request):
+    auth.logout(request)
+    # Redirect to a success page.
+    return redirect("/anasayfa")
 
 def login_user(request):
     logout(request)
@@ -43,7 +51,8 @@ def login_user(request):
                                            request.GET.get(REDIRECT_FIELD_NAME, ''))
 
         if not is_safe_url(url=redirect_to, host=request.get_host()):
-                        redirect_to = resolve_url(settings.LOGIN_REDIRECT_URL)
+            # redirect_to = resolve_url(settings.LOGIN_REDIRECT_URL)
+            redirect_to = '/anasayfa'
 
         if 'login_form' in request.POST:
             #Get username and password from the web form

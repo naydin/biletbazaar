@@ -74,6 +74,17 @@
             </div><!--end of logo-->
             
             <div class="links">
+				{% if user.is_authenticated %}
+            	<div class="hesabim"><a style="color:#FFF" href="/logout">oturumu kapat</a> | <a style="color:#FFF" href="/hesabim">Hoşgeldin {{user.gsm}}</a> | <a style="color:#FFF" href="#">yardım</a></div>
+                <div class="uye_girisi"><a href="#"><img src="{% static 'resimler/facebook.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/twitter.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/googleplus.png' %}" /></a></div>
+                <div class="search">
+                	<form id="searchbox" method="GET" action="/search_result/">
+               		{% csrf_token %}
+               		<input id="submit" type="submit" value="Search">
+               		{% csrf_token %}
+    				<input id="search" type="text" placeholder="etkinlik adi gir" name="search_here">    
+				</form>
+				{% else %}
             	<div class="hesabim"><a style="color:#FFF" href="/login">oturum aç</a> | <a style="color:#FFF" href="/hesabim">hesabım</a> | <a style="color:#FFF" href="#">yardım</a></div>
                 <div class="uye_girisi"><a href="#"><img src="{% static 'resimler/facebook.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/twitter.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/googleplus.png' %}" /></a></div>
                 <div class="search">
@@ -83,6 +94,8 @@
                		{% csrf_token %}
     				<input id="search" type="text" placeholder="etkinlik adi gir" name="search_here">    
 				</form>
+				{% endif %}
+            	
 				</div><!-- end of search -->
 				
                 
