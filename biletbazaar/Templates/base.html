@@ -75,7 +75,7 @@
             
             <div class="links">
 				{% if user.is_authenticated %}
-            	<div class="hesabim"><a style="color:#FFF" href="/logout">oturumu kapat</a> | <a style="color:#FFF" href="/hesabim">Hoşgeldin {{user.gsm}}</a> | <a style="color:#FFF" href="#">yardım</a></div>
+            	<div class="hesabim"><a style="color:#FFF" href="/logout">oturumu kapat</a> | <a style="color:#FFF" href="/hesabim">Hoşgeldin {{user.first_name}}</a> | <a style="color:#FFF" href="#">yardım</a></div>
                 <div class="uye_girisi"><a href="#"><img src="{% static 'resimler/facebook.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/twitter.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/googleplus.png' %}" /></a></div>
                 <div class="search">
                 	<form id="searchbox" method="GET" action="/search_result/">

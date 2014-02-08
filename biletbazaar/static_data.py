@@ -148,6 +148,8 @@ def reset_static_data():
         u1.saleCount = randrange(0,50)
         u1.purchaseCount = randrange(0,50)
         u1.set_password('0000')
+        u1.first_name = 'necati'
+        u1.last_name = 'aydin'
         u1.save()
         users.append(u1)
     
