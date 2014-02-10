@@ -13,6 +13,30 @@
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script>
+	function post_to_url(path, params, method) {
+	    method = method || "post"; // Set method to post by default if not specified.
+
+	    // The rest of this code assumes you are not using a library.
+	    // It can be made less wordy if you use one.
+	    var form = document.createElement("form");
+	    form.setAttribute("method", method);
+	    form.setAttribute("action", path);
+
+	    for(var key in params) {
+	        if(params.hasOwnProperty(key)) {
+	            var hiddenField = document.createElement("input");
+	            hiddenField.setAttribute("type", "hidden");
+	            hiddenField.setAttribute("name", key);
+	            hiddenField.setAttribute("value", params[key]);
+
+	            form.appendChild(hiddenField);
+	         }
+	    }
+
+	    document.body.appendChild(form);
+	    form.submit();
+	}
+	
 	function fbLogin() {
 	  FB.login(function(response) {
 	    if (response.session) {
@@ -21,7 +45,7 @@
 	    } else {
 	      // user is not logged in
 	    }
-	  }, {perms:'email'});
+	  }, {perms:['email','user_online_presence','offline_access']});
 	}
 	window.fbAsyncInit = function() {
 	  FB.init({
@@ -44,6 +68,7 @@
 		  window.alert(response.authResponse.accessToken);
 		  // response.authResponse.userID
 	      testAPI();
+		  post_to_url("/fb_login",{"access_token":response.authResponse.accessToken},"POST");
 	    } else if (response.status === 'not_authorized') {
 	      // In this case, the person is logged into Facebook, but not into the app, so we call
 	      // FB.login() to prompt them to do so. 

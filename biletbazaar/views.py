@@ -20,6 +20,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.http import is_safe_url
 from biletbazaar.validation_util import *
 from django.conf import settings
+import urllib
+import urllib2
 
 import datetime
 import re
@@ -27,6 +29,22 @@ import re
 selected_city_name_field = "selected_city_name"
 
 from django.contrib import auth
+
+def fb_login(request):
+    if request.POST:
+        try:
+            access_token = request.POST['access_token']
+            url = "https://graph.facebook.com/me"
+            values = {'access_token':access_token}
+            data = urllib.urlencode(values)
+            request = urllib2.Request(url + "search" +"?"+ data)
+            response = urllib2.urlopen(request)
+            html = response.read()
+            return html
+        except Exception as e:
+            return redirect("/anasayfa")
+        
+    return redirect("/anasayfa")
 
 def logout_view(request):
     auth.logout(request)
