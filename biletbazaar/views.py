@@ -67,7 +67,7 @@ def fb_login(request):
             html = response.read()
             dict = json.loads(html)
             emaill = dict['email']
-            email= udata.encode("ascii","ignore")
+            email= emaill.encode("ascii","ignore")
             try:
                 user = User.objects.get(username=email)
                 #login if the user exists
