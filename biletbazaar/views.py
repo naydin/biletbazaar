@@ -22,6 +22,7 @@ from biletbazaar.validation_util import *
 from django.conf import settings
 import urllib
 import urllib2
+from django.views.decorators.csrf import csrf_exempt
 
 import datetime
 import re
