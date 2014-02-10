@@ -59,9 +59,9 @@ def fb_login(request):
             
             return HttpResponse(email + ' ' + last_name)
         except Exception as e:
-            return redirect("/anasayfa")
+            return HttpResponse(e.message())
         
-    return redirect("/anasayfa")
+    return redirect("/biletal1")
 
 def logout_view(request):
     auth.logout(request)
