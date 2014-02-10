@@ -34,7 +34,7 @@ def fb_login(request):
     if request.POST:
         try:
             access_token = request.POST['access_token']
-            url = "https://graph.facebook.com/me"
+            url = "https://graph.facebook.com/me/"
             values = {'access_token':access_token}
             data = urllib.urlencode(values)
             request = urllib2.Request(url + "search" +"?"+ data)
