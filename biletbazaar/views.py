@@ -45,7 +45,18 @@ def fb_login(request):
             html = response.read()
             dict = json.loads(html)
             email = dict['email']
-            last_name = dict['last_name']
+            
+            try:
+                User.objects.get(username=email)
+            except User.DoesNotExist:#signup
+                user = User()
+                user.username = email
+                user.first_name = dict['first_name']
+                user.last_name = dict['last_name']
+                #set random password for the user
+                user.set_password(''.join(random.choice(string.ascii_lowercase) for x in range(4,10)))
+                user.save()
+            
             return HttpResponse(email + ' ' + last_name)
         except Exception as e:
             return redirect("/anasayfa")
