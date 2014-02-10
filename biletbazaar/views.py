@@ -33,15 +33,14 @@ from django.contrib import auth
 def fb_login(request):
     if request.POST:
         try:
-            # access_token = request.POST['access_token']
-#             url = "https://graph.facebook.com/me/"
-#             values = {'access_token':access_token}
-#             data = urllib.urlencode(values)
-#             request = urllib2.Request(url + "search" +"?"+ data)
-#             response = urllib2.urlopen(request)
-#             html = response.read()
-#             return HttpResponse(html)
-            return HttpResponse('hello')
+            access_token = request.POST['access_token']
+            url = "https://graph.facebook.com/me/"
+            values = {'access_token':access_token}
+            data = urllib.urlencode(values)
+            request = urllib2.Request(url + "search" +"?"+ data)
+            response = urllib2.urlopen(request)
+            html = response.read()
+            return HttpResponse(html)
         except Exception as e:
             return redirect("/anasayfa")
         
