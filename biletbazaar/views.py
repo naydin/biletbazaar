@@ -45,7 +45,8 @@ def fb_login(request):
             html = response.read()
             dict = json.loads(html)
             email = dict['email']
-            return HttpResponse(email)
+            last_name = dict['last_name']
+            return HttpResponse(email + ' ' + last_name)
         except Exception as e:
             return redirect("/anasayfa")
         
