@@ -48,9 +48,8 @@ def fb_login(request):
             email = dict['email']
             
             try:
-                User.objects.get(username=email)
+                user = User.objects.get(username=email)
                 #login if the user exists
-                user = authenticate(email)
                 if user is not None:
                     if user.is_active:
                         login(request, user)
