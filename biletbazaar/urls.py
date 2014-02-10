@@ -60,4 +60,6 @@ urlpatterns = patterns('',
     url('^bize_ulasin/$',bize_ulasin),
     url('^hesabim/$',hesabim),
     url('^search_result/$',search_result),
+    
+    url('^deneme/$',deneme),
 )
