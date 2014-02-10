@@ -16,7 +16,7 @@ from static_data import *
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate, login, logout,REDIRECT_FIELD_NAME
-import auth_backends
+from auth_backends import *
 from django.contrib.auth.decorators import login_required
 from django.utils.http import is_safe_url
 from biletbazaar.validation_util import *
@@ -50,6 +50,7 @@ def fb_login(request):
             try:
                 user = User.objects.get(username=email)
                 #login if the user exists
+                user = PasswordlessAuthBackend.authenticate(email)
                 if user is not None:
                     if user.is_active:
                         login(request, user)
