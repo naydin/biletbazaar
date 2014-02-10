@@ -57,11 +57,11 @@ def fb_login(request):
                 user.set_password(''.join(random.choice(string.ascii_lowercase) for x in range(4,10)))
                 user.save()
             
-            return HttpResponse(email + ' ' + last_name)
+            return HttpResponse(success)
         except Exception as e:
-            return HttpResponse('%s (%s)' % (e.message, type(e)))
+            return redirect("/anasayfa")
         
-    return redirect("/biletal1")
+    return redirect("/anasayfa")
 
 def logout_view(request):
     auth.logout(request)
