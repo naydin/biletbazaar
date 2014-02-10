@@ -58,16 +58,16 @@ def deneme(request):
 def fb_login(request):
     if request.POST:
         try:
-            # access_token = request.POST['access_token']
-            # url = "https://graph.facebook.com/me/"
-            # values = {'access_token':access_token}
-            # data = urllib.urlencode(values)
-            # request = urllib2.Request(url +"?"+ data)
-            # response = urllib2.urlopen(request)
-            # html = response.read()
-            # dict = json.loads(html)
-            # email = dict['email']
-            email = 'aydinnecati@gmail.com'
+            access_token = request.POST['access_token']
+            url = "https://graph.facebook.com/me/"
+            values = {'access_token':access_token}
+            data = urllib.urlencode(values)
+            request2 = urllib2.Request(url +"?"+ data)
+            response2 = urllib2.urlopen(request2)
+            html = response2.read()
+            dict = json.loads(html)
+            email = dict['email']
+            
             try:
                 user = User.objects.get(username=email)
                 #login if the user exists
