@@ -59,7 +59,7 @@ def fb_login(request):
             
             return HttpResponse(email + ' ' + last_name)
         except Exception as e:
-            return HttpResponse(e.message())
+            return HttpResponse('%s (%s)' % (e.message, type(e)))
         
     return redirect("/biletal1")
 
