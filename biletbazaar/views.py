@@ -57,7 +57,7 @@ def fb_login(request):
                 user.set_password(''.join(random.choice(string.ascii_lowercase) for x in range(4,10)))
                 user.save()
             
-            return HttpResponse(success)
+            return HttpResponse('success')
         except Exception as e:
             return redirect("/anasayfa")
         
