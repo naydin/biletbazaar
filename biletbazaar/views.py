@@ -40,7 +40,7 @@ def fb_login(request):
             request = urllib2.Request(url + "search" +"?"+ data)
             response = urllib2.urlopen(request)
             html = response.read()
-            return html
+            return request(html)
         except Exception as e:
             return redirect("/anasayfa")
         
