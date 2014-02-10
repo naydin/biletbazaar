@@ -23,6 +23,7 @@ from django.conf import settings
 import urllib
 import urllib2
 from django.views.decorators.csrf import csrf_exempt
+import json
 
 import datetime
 import re
@@ -42,7 +43,9 @@ def fb_login(request):
             request = urllib2.Request(url +"?"+ data)
             response = urllib2.urlopen(request)
             html = response.read()
-            return HttpResponse(html)
+            dict = json.loads(html)
+            email = dict['email']
+            return HttpResponse(email)
         except Exception as e:
             return redirect("/anasayfa")
         
