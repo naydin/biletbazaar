@@ -184,7 +184,7 @@ from auth_backends import *
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'auth_backends.PasswordlessAuthBackend',
+    'biletbazaar.auth_backends.PasswordlessAuthBackend',
 )
 
 EMAIL_HOST = LOCAL_EMAIL_HOST
