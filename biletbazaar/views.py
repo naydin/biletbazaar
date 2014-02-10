@@ -50,8 +50,7 @@ def fb_login(request):
             try:
                 user = User.objects.get(username=email)
                 #login if the user exists
-                backend = PasswordlessAuthBackend()
-                user = backend.authenticate(username=email)
+                authenticate(username=email)
                 if user is not None:
                     if user.is_active:
                         login(request, user)
