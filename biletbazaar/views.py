@@ -68,7 +68,9 @@ def fb_login(request):
             
             return HttpResponse('success')
         except Exception as e:
-            return redirect("/anasayfa")
+            #TODO:debug statement should be deleted
+            return HttpResponse('%s (%s)' % (e.message, type(e)))
+            
         
     return redirect("/anasayfa")
 
