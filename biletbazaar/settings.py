@@ -183,8 +183,8 @@ LOGGING = {
 from auth_backends import *
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
     'biletbazaar.auth_backends.PasswordlessAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 EMAIL_HOST = LOCAL_EMAIL_HOST
