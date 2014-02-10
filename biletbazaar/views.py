@@ -30,6 +30,7 @@ selected_city_name_field = "selected_city_name"
 
 from django.contrib import auth
 
+@csrf_exempt
 def fb_login(request):
     if request.POST:
         try:
