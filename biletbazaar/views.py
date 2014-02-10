@@ -39,7 +39,7 @@ def fb_login(request):
             url = "https://graph.facebook.com/me/"
             values = {'access_token':access_token}
             data = urllib.urlencode(values)
-            request = urllib2.Request(url + "search" +"?"+ data)
+            request = urllib2.Request(url +"?"+ data)
             response = urllib2.urlopen(request)
             html = response.read()
             return HttpResponse(html)
