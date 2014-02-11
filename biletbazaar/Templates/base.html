@@ -41,8 +41,7 @@
 	  FB.login(function(response) {
 	    if (response.session) {
 	      //user is logged in, reload page
-	      // window.location.reload(true);
-  		  post_to_url("/fb_login/",{"access_token":response.authResponse.accessToken},"POST");
+	      window.location.reload(true);
 	    } else {
 	      // user is not logged in
 	    }
@@ -69,6 +68,9 @@
 		  // window.alert(response.authResponse.accessToken);
 		  // response.authResponse.userID
 	      testAPI();
+		  {% if not user.is_authenticated %}
+			post_to_url("/fb_login/",{"access_token":response.authResponse.accessToken},"POST");
+		  {% endif %}
 
 	    } else if (response.status === 'not_authorized') {
 	      // In this case, the person is logged into Facebook, but not into the app, so we call
