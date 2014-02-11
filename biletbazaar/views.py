@@ -59,6 +59,7 @@ def fb_login(request):
     if request.POST:
         try:
             access_token = request.POST['access_token']
+            redirect_to = request.POST['next']
             url = "https://graph.facebook.com/me/"
             values = {'access_token':access_token}
             data = urllib.urlencode(values)
@@ -75,9 +76,7 @@ def fb_login(request):
                 if user is not None:
                     if user.is_active:
                         login(request, user)
-                        return HttpResponse('login successful')
-                    else:
-                        return HttpResponse('login failed')
+                        
             except User.DoesNotExist:#signup
                 user = User()
                 user.username = email
@@ -87,10 +86,10 @@ def fb_login(request):
                 user.set_password(''.join(random.choice(string.ascii_lowercase) for x in range(4,10)))
                 user.save()
             
-            return HttpResponse('success')
+            return redirect(redirect_to)
         except Exception as e:
             #TODO:debug statement should be deleted
-            return HttpResponse('error = %s (%s)' % (e.message, type(e)))
+            return redirect("/anasayfa")
             
         
     return redirect("/anasayfa")
