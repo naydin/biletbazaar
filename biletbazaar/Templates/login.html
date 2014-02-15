@@ -38,7 +38,7 @@ $(document).ready(function() {
       
 
       // do not submit the form
-      return e.preventDefault();
+      <!-- return e.preventDefault(); -->
   });
   });
 
@@ -206,9 +206,10 @@ $(document).ready(function() {
 					  </p>
  
 					  <!-- input form. you can press enter too -->
-					  <form action="/login/" method="POST">{% csrf_token %}
-					    <input />
-					    <button type="submit"> Gönder </button>
+					  <form action="/login/" method="POST">
+					    <input name="username"/>
+						{% csrf_token %}
+					    <input type="submit" name="forgot_password_form" value='Gönder'>
 					    <button type="button" class="close"> İptal </button>
 					  </form>
 					  <br />
