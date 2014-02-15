@@ -9,7 +9,6 @@ def autocomplete_tags(request):
     except Exception as e:
         selected_category = ''
 
-    print 'here = ' + selected_category
     color = ''
     if selected_category == 'muzik':
         color = '#37a0ba'

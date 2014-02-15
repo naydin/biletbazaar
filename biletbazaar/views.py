@@ -351,18 +351,28 @@ def anasayfa(request):
     except Exception as e:
         selected_city_name = ""
 
+    #get category
+    selected_category = ''
+    try:
+        selected_category = request.GET['category']
+        selected_category = u''.join((selected_category)).encode('utf-8').strip()
+        if selected_category == 'muzik':
+            selected_category = u'Müzik'
+        elif selected_category == 'spor':
+            selected_category = u'Spor'
+        elif selected_category == 'sahne':
+            selected_category = u'sahne'
+        else:
+            selected_category = u''
+    except Exception as e:
+        selected_category = ''
+
     #query the required lists
-    event_group_list = EventGroup.objects.all().order_by('-saleCount')[0:5]
-    event_list = Event.objects.filter(city__name__contains=selected_city_name).order_by('date')[0:10]
-    ticket_list = Ticket.objects.filter(event__city__name__contains=selected_city_name).order_by('price')[0:5]
+    event_group_list = EventGroup.objects.filter(category__icontains=selected_category).order_by('-saleCount')[0:5]
+    event_list = Event.objects.filter(city__name__contains=selected_city_name,eventGroup__category__icontains=selected_category).order_by('date')[0:10]
+    ticket_list = Ticket.objects.filter(event__city__name__contains=selected_city_name,event__eventGroup__category__icontains=selected_category).order_by('price')[0:5]
     city_list = City.objects.all()
     
-
-
-
-
-    
-
 
     #prepare the response
     response = render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list,
