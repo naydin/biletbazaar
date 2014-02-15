@@ -7,15 +7,16 @@
     
 {% block css_js_links %}
 	<link href="{% static 'css/biletal2.css' %}" rel="stylesheet" type="text/css" /> 
- 	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+ 	 <script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
 {% endblock %}
     
 
 
 
-{% block js_functions %} 
-    
-  $(function() {
+{% block js_functions %}
+
+
+	  $(function() {
 
         // select all desired input fields and attach tooltips to them
       $("#myform :input").tooltip({
@@ -35,6 +36,8 @@
       });
     });
 
+ 
+    
 
     function validate(theForm) { // passing the form object
  	var val1=document.forms["myform"]["isim_tb"].value;
@@ -89,7 +92,7 @@
          </div>
         	
          <div class="bilet_detaylari">
- 			<form id="myform" name="bilet_detaylari" method="post">
+ 			<form id="myform" name="bilet_detaylari" method="post" onsubmit="return validate(this)">
       			<label class="name" style="font-size:20px">İsim</label> <label id="isim_lb" style="color:#bdd531; margin-left:10px;">{{ship_name_error}}</label>
 					<input name="ship_name" id="isim_tb" class="tb" type="text" title="Bilet ilanını veren kişinin adını giriniz." />
                  <div style="height:8px;"></div>

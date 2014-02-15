@@ -26,9 +26,9 @@
 	line-height:24px;
 	text-align:center;
 	vertical-align:middle;
-	margin-top:40px;
+	
 	margin-left:150px;
-	margin-right:150px;
+	margin-right:100px;
 	height:24px;
 }
 
@@ -190,4 +190,99 @@ border:1px solid #7d99ca; -webkit-border-radius: 3px; -moz-border-radius: 3px;bo
 }		
 
 
+ /* root element for scrollable */
+  .scrollable {
+ 
+  /* required settings */
+  position:relative;
+  overflow:hidden;
+ 
+  /*
+  vertical scrollables have typically larger height than width but
+  not now
+  */
+  height: 500px;
+  width: 600px;
+  margin-left:150px;
+  }
+ 
+  /* root element for scrollable items */
+  .scrollable .items {
+  position:absolute;
+ 
+  /* this time we have very large space for the height */
+  height:20000em;
+  }
 
+/* root element for scrollable */
+.vertical {
+
+    /* required settings */
+    position:relative;
+    overflow:hidden;
+
+    /* vertical scrollers have typically larger height than width */
+    height: 665px;
+    width: 650px;
+    border-top:1px solid #ddd;
+}
+
+/* root element for scrollable items */
+.items {
+    position:absolute;
+
+    /* this time we have very large space for height */
+    height:20000em;
+    margin: 0px;
+}
+
+/* single scrollable item */
+.item {
+    border-bottom:1px solid #ddd;
+    margin:10px 0;
+    padding:15px;
+    font-size:12px;
+    height:140px;
+}
+
+/* elements inside single item */
+.item img {
+    float:left;
+    margin-right:3px;
+    height:100px;
+    width:120px;
+}
+
+.item h3 {
+    margin:0 0 5px 0;
+    font-size:16px;
+    color:#456;
+    font-weight:normal;
+}
+
+/* the action buttons above the scrollable */
+#actions {
+	margin-left:150px;
+    width:750px;
+    margin:30px 0 10px 0;
+}
+
+#actions a {
+    font-size:11px;
+    cursor:pointer;
+    color:#666;
+}
+
+#actions a:hover {
+    text-decoration:underline;
+    color:#000;
+}
+
+.disabled {
+    visibility:hidden;
+}
+
+.next {
+	margin-right:150px;
+    float:right;
+}

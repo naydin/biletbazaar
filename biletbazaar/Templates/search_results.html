@@ -5,14 +5,16 @@
 
 {% block css_js_links %} 
 	<link href="{% static 'css/search_results.css' %}" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-	<link rel="stylesheet" href="/resources/demos/style.css">
+	 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 {% endblock %}
     
 
 {% block js_functions %} 
+
+	$(function() {
+    // initialize scrollable with mousewheel support
+    $(".scrollable").scrollable({ vertical: true, mousewheel: true });
+});
 
 	  $(function() {
 	    var availableTags = [
@@ -37,31 +39,37 @@
 {% block content %}
             
 
-            
+              <div id="actions" style="margin-left:150px;">
+    <a class="prev">&laquo; Geri</a>
+    <a class="next">Sonraki &raquo;</a>
+  </div>
+ 
            	{% if event_list|length %}
            	<div class="ucuz_bilet_yazi">Arama Sonuçları</div>
-            <div class="ucuz_biletler">
+           	 <!-- root element for scrollable -->
+  <div class="scrollable">
+            <div class="items">
              
 			 
 			 {% for event in event_list %}
 			 <form method="GET">
- 				<div class="ucuz_bilet"><table><tr>
- 					<td height="45px" width="60px" style=" padding-right:50px;" ><img class="autoResizeImage" src="{{event.eventGroup.photoUrl}}" /></td>
- 					<td height="45px" width="100px" style=" padding-right:50px;" >{{event.eventGroup.name}}<br />{{event.place}}<br />{{event.city.name}}</td>
+ 				<div class="item"><table><tr>
+ 					<td height="45px" width="120px" style=" padding-right:20px;" ><img class="autoResizeImage" src="{{event.eventGroup.photoUrl}}" /></td>
+ 					<td height="45px" width="150px" style=" padding-right:20px;" >{{event.eventGroup.name}}<br />{{event.place}}<br />{{event.city.name}}</td>
  					<td height="45px" width="70px" style=" padding-right:50px;">{{event.date|date:"M"}}<br />{{event.date.day}}<br />{{event.date|date:"l"}}</td>
  					<!-- <td><button type="submit" class="button_example" action="">Seç</button></td> -->
 					
-					<td>
+					<td width="145px">
 						<input type="hidden" name="event_id" value="{{event.id}}" /> 
 						<a class="button_sat" href="/bilet_detaylari/?event_id={{event.id}}" style="color:#FFF">bilet sat</a>
 					</td>
-					<td>
+					<td width="125px">
 						<a class="button_al" href="/event/?event_id={{event.id}}" style="color:#FFF">bilet al</a>
 					</td>
  				</tr></table></div>
 			 </form>
 			 {% endfor %}
-            </div>
+            </div></div>
 			{% endif %}
             
  {% endblock %}

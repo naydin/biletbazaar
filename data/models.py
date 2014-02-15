@@ -212,6 +212,16 @@ class BizeUlasin(models.Model):
     email = models.EmailField()
     message = models.CharField(max_length=200)
     
+
+class EtkinlikBildir(models.Model):
+    id = models.AutoField(primary_key=True)
+    isim = models.CharField(max_length=30)
+    mekan = models.CharField(max_length=30)
+    zaman = models.CharField(max_length=30)
+    sehir = models.CharField(max_length=30)
+    link = models.CharField(max_length=30)
+    email = models.EmailField()
+    
     
 
     # name = models.CharField(max_length = 30)

@@ -5,25 +5,84 @@
 
 {% block css_js_links %} 
 	<link href="{% static 'css/bilet_ilan.css' %}" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+ 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	
 	<link rel="stylesheet" href="/resources/demos/style.css">
+	
+ 	
 {% endblock %}
     
-
 {% block js_functions %} 
 
+
+	  
 	  $(function() {
-	    var availableTags = [
-			{% for event_group in event_group_list %}
-				"{{event_group.name}}",
-			{% endfor %}
-	    ];
-	    $( "#searchh" ).autocomplete({
-	      source: availableTags
-	    });
-	  });
+    var name = $( "#name" ),
+      email = $( "#email" ),
+      password = $( "#password" ),
+      allFields = $( [] ).add( name ).add( email ).add( password ),
+      tips = $( ".validateTips" );
+ 
+    function updateTips( t ) {
+      tips
+        .text( t )
+        .addClass( "ui-state-highlight" );
+      setTimeout(function() {
+        tips.removeClass( "ui-state-highlight", 1500 );
+      }, 500 );
+    }
+ 
+    function checkLength( o, n, min, max ) {
+      if ( o.val().length > max || o.val().length < min ) {
+        o.addClass( "ui-state-error" );
+        updateTips( "Length of " + n + " must be between " +
+          min + " and " + max + "." );
+        return false;
+      } else {
+        return true;
+      }
+    }
+ 
+    function checkRegexp( o, regexp, n ) {
+      if ( !( regexp.test( o.val() ) ) ) {
+        o.addClass( "ui-state-error" );
+        updateTips( n );
+        return false;
+      } else {
+        return true;
+      }
+    }
+    
+    
+    $( "#dialog-form" ).submit(function( event ) {
+	$( "#bbb" ).hide();
+  $( "#aaa" ).show();
+ 
+  
+  
+});
+ 
+    $( "#dialog-form" ).dialog({
+    	modal:true,
+      autoOpen: false,
+      height: 500,
+      width: 450,
+      
+      
+    });
+ 
+    $( "#create-user" )
+      
+      .click(function() {
+        $( "#dialog-form" ).dialog( "open" );
+      });
+  });
+	  
+
+	  
+	  
 
 {% endblock %}
     
@@ -36,9 +95,65 @@
     
 {% block content %}
 
+			<div id="dialog-form" title="Etkinliği bize bildirin" >
+  			<p class="validateTips">Etkinlik Bilgileri</p>
+ 
+  			<form action="/bilet_ilan/" method="POST">{% csrf_token %}
+  			<fieldset>
+  				<div style="width:350px;height:50px">
+			    <label style="float:left" for="name">etkinlik adı</label>
+			    <input style="float:right" type="text" name="isim" id="isim" class="text ui-widget-content ui-corner-all">
+			    </div>
+			    
+			    <div style="width:350px;height:50px">
+			    <label style="float:left" for="name">etkinlik mekanı</label>
+			    <input style="float:right" type="text" name="mekan" id="mekan" class="text ui-widget-content ui-corner-all">
+			    </div>
+			    
+			    <div style="width:350px;height:50px">
+			    <label style="float:left" for="name">etkinlik zamanı</label>
+			    <input style="float:right" type="text" name="zaman" id="zaman" class="text ui-widget-content ui-corner-all">
+			    </div>
+			    
+			    <div style="width:350px;height:50px">
+			    <label style="float:left" for="name">şehir </label>
+			    <input style="float:right" type="text" name="sehir" id="sehir" class="text ui-widget-content ui-corner-all">
+			    </div>
+			    
+			    
+			    <div style="width:350px;height:50px">
+			    <label style="float:left" for="name">etkinlik linki </label>
+			    <input style="float:right" type="text" name="link" id="link" class="text ui-widget-content ui-corner-all">
+			    </div>
+			    
+			    <div style="width:350px;height:50px">
+			    <label style="float:left" for="email">eposta adresiniz</label>
+			    <input style="float:right" type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all">
+			    </div>
+			</fieldset>
+				<input id="bbb" type="submit" value="Submit" name="gonder" />
+				<div id="aaa" style="display: none;">Başarılı bir şekilde eklendi.</div>
+			</form>
+		</div>
+
+
+
+		
+
+
+
+
+
+
+
         	<div class="steps_logo">
            	  <img src="{{base}}resimler/step1.png"  />
             </div>
+            
+           
+             <a class="yeni_etkinlik" href="javascript:handleAnchorClick();" id="create-user">Aradığın Etkinliği Bulamadın mı?</a>
+            
+            
             <div class="etkinligi_sec">
             	<form class="etkinligi_sec_tool" method="post">
                   <input id="submit" type="submit" value="Etkinlik Bul" />
@@ -59,8 +174,8 @@
 			 {% for event in event_list %}
 			 <form action="/bilet_detaylari/" method="GET">
  				<div class="ucuz_bilet"><table><tr>
- 					<td height="45px" width="60px" style=" padding-right:50px;" ><img class="autoResizeImage" src="{{event.eventGroup.photoUrl}}" /></td>
- 					<td height="45px" width="150px" style=" padding-right:50px;" >{{event.eventGroup.name}}<br />{{event.place}}<br />{{event.city.name}}</td>
+ 					<td height="70px" width="90px" style=" padding-right:50px;" ><img class="autoResizeImage" src="{{event.eventGroup.photoUrl}}" /></td>
+ 					<td height="45px" width="150px" style=" " >{{event.eventGroup.name}}<br />{{event.place}}<br />{{event.city.name}}</td>
  					<td height="45px" width="70px" style=" padding-right:50px;">{{event.date|date:"M"}}<br />{{event.date.day}}<br />{{event.date|date:"l"}}</td>
  					<!-- <td><button type="submit" class="button_example" action="">Seç</button></td> -->
 					
@@ -73,5 +188,6 @@
 			 {% endfor %}
             </div>
 			{% endif %}
-            
+			
+			
  {% endblock %}

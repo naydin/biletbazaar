@@ -34,10 +34,32 @@ def bilet_ilan(request):
     
     event_list = []
     if request.method == 'POST':
-        if request.POST['search_event_group_name']:
+        if 'search_event_group_name' in request.POST:
             search_event_group_name = request.POST['search_event_group_name']
             event_list = Event.objects.filter(eventGroup__name__icontains=search_event_group_name,city__name__icontains=selected_city_name)
+        elif 'gonder' in request.POST:
+            print "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
+            isim = request.POST['isim']
+            mekan = request.POST['mekan']
+            zaman = request.POST['zaman']
+            sehir = request.POST['sehir']
+            link = request.POST['link']
+            email = request.POST['email']
             
+            etkinlik_bildir = EtkinlikBildir()
+            etkinlik_bildir.isim = isim
+            etkinlik_bildir.mekan = mekan
+            etkinlik_bildir.zaman = zaman
+            etkinlik_bildir.sehir = sehir
+            etkinlik_bildir.link = link
+            etkinlik_bildir.email = email
+            
+            etkinlik_bildir.save()
+        else:
+            return redirect('/anasayfa')
+            
+            
+               
     event_group_list = EventGroup.objects.all()
     
     return render(request,'sell/bilet_ilan.html',{'base':'/static/','event_group_list':event_group_list,'event_list':event_list})

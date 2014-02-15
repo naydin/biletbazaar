@@ -8,12 +8,45 @@
 {% block css_js_links %}
 	<link href="{% static 'css/login.css' %}" rel="stylesheet" type="text/css" /> 
  	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+ 	
 {% endblock %}
     
 
 
 
 {% block js_functions %} 
+
+
+
+$(document).ready(function() {
+    var triggers = $(".modalInput").overlay({
+
+      // some mask tweaks suitable for modal dialogs
+      mask: {
+        color: '#FFF',
+        loadSpeed: 200,
+        opacity: 0.9
+      },
+
+      closeOnClick: false
+  });
+  
+  
+  
+    $("#prompt form").submit(function(e) {
+
+      
+
+      // do not submit the form
+      return e.preventDefault();
+  });
+  });
+
+
+
+
+
+
   $(function() {
 
         // select all desired input fields and attach tooltips to them
@@ -58,10 +91,25 @@
   return true; // allow submit
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
 
 {% block content %}
+
        
+       	
         <div class="uyelik">	
          	<div class="login" >
             	<span style="font-size:22px; color:#3496af; margin-left:40px; display:inline-block; margin-top:30px;">üye girişi</span>
@@ -86,14 +134,21 @@
 					{% csrf_token %}
                     <button type="submit" name ="login_form" class="button_example" style="float:right; margin-right:15px; margin-left:150px; margin-bottom:20px;">giriş</button>
                     <br />
-                    <a href="" style="float:right; margin-right:15px; color:#aabf2c">şifremi unuttum</a>
+                    <a id="unuttum" href="" class="modalInput" rel="#prompt" style="float:right; margin-right:15px; color:#aabf2c">şifremi unuttum</a>
                     
 
 
         		</form>
-                
-            
+        		
 			</div>
+			
+			
+			
+			
+			
+			
+			
+			
         	<div class="signup" >
        		  	<span style="font-size:22px; color:#3496af; margin-left:40px; display:inline-block; margin-top:30px;">kaydol</span>
                 <br /><br /><br />
@@ -141,5 +196,23 @@
         		</form>
        	  </div>
       </div>
+      
+      <!-- user input dialog -->
+				<div class="modal" id="prompt">
+  					<h2>Şifremi Unuttum</h2>
+ 
+					  <p>
+					    Şifreniz girilen email adresine gönderilecektir.
+					  </p>
+ 
+					  <!-- input form. you can press enter too -->
+					  <form action="/login/" method="POST">{% csrf_token %}
+					    <input />
+					    <button type="submit"> Gönder </button>
+					    <button type="button" class="close"> İptal </button>
+					  </form>
+					  <br />
+ 
+				</div>
       
 {% endblock %}
