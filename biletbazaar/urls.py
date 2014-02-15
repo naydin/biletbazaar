@@ -52,8 +52,14 @@ urlpatterns = patterns('',
     url('^event_group/$',event_group),
     url('^event/$',event),
     
+    #authentication
     url(r'^login/$',login_user),
+    url(r'^logout/$',logout_view),
+    url(r'^fb_login/$',fb_login),
+    
     url('^bize_ulasin/$',bize_ulasin),
     url('^hesabim/$',hesabim),
     url('^search_result/$',search_result),
+    
+    url('^deneme/$',deneme),
 )

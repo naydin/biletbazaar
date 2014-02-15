@@ -8,7 +8,7 @@ from django.template import RequestContext
 from django.template import loader
 from data.eventManager import *
 from data.models import *
-from django.shortcuts import render,redirect,render_to_response
+from django.shortcuts import render,redirect,render_to_response,resolve_url
 from forms import *
 from modelForms import *
 from django.db.models import Max
@@ -16,66 +16,202 @@ from static_data import *
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate, login, logout,REDIRECT_FIELD_NAME
+# from auth_backends import *
 from django.contrib.auth.decorators import login_required
 from django.utils.http import is_safe_url
+from biletbazaar.validation_util import *
+from django.conf import settings
+import urllib
+import urllib2
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 import datetime
 import re
 
 selected_city_name_field = "selected_city_name"
 
+from django.contrib import auth
+
+def deneme(request):
+    email = 'aydinnecati@gmail.com'
+    try:
+        try:
+            user = User.objects.get(username=email)
+        except User.DoesNotExist:#signup
+            return HttpResponse('user does not exist')
+            #login if the user exists
+        user = authenticate(username=email)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponse('login successful')
+            else:
+                return HttpResponse('login failed')
+        
+    except exception as e:
+        print '%s (%s)' % (e.message, type(e))
+        return HttpResponse('fail')
+    
+
+@csrf_exempt
+def fb_login(request):
+    if request.POST:
+        try:
+            access_token = request.POST['access_token']
+            redirect_to = request.POST['next']
+            url = "https://graph.facebook.com/me/"
+            values = {'access_token':access_token}
+            data = urllib.urlencode(values)
+            request2 = urllib2.Request(url +"?"+ data)
+            response2 = urllib2.urlopen(request2)
+            html = response2.read()
+            dict = json.loads(html)
+            email = dict['email']
+            
+            try:
+                user = User.objects.get(username=email)
+                #login if the user exists
+                user = authenticate(username=user.username)
+                if user is not None:
+                    if user.is_active:
+                        login(request, user)
+                        
+            except User.DoesNotExist:#signup
+                user = User()
+                user.username = email
+                user.first_name = dict['first_name']
+                user.last_name = dict['last_name']
+                #set random password for the user
+                user.set_password(''.join(random.choice(string.ascii_lowercase) for x in range(4,10)))
+                user.save()
+            
+            return redirect(redirect_to)
+        except Exception as e:
+            #TODO:debug statement should be deleted
+            return redirect("/anasayfa")
+            
+        
+    return redirect("/anasayfa")
+
+def logout_view(request):
+    auth.logout(request)
+    # Redirect to a success page.
+    return redirect("/anasayfa")
+
 def login_user(request):
     logout(request)
     username = password = ''
+    
+    login_username_error = ''
+    login_password_error = ''
+    signup_name_error = ''
+    signup_surname_error = ''
+    signup_username_error = ''
+    signup_password_error = ''
+    signup_password_again_error = ''
+    signup_gsm_error = ''
+    
     if request.POST:
         redirect_to = request.POST.get(REDIRECT_FIELD_NAME,
                                            request.GET.get(REDIRECT_FIELD_NAME, ''))
 
         if not is_safe_url(url=redirect_to, host=request.get_host()):
-                        redirect_to = resolve_url(settings.LOGIN_REDIRECT_URL)
+            # redirect_to = resolve_url(settings.LOGIN_REDIRECT_URL)
+            redirect_to = '/anasayfa'
 
-        #TODO: validations for username and password should be added
         if 'login_form' in request.POST:
-                
+            #Get username and password from the web form
             username = request.POST['username']
             password = request.POST['password']
+            
+            #validate username and password values
+            try:
+                validate_email(username)
+                try:
+                    User.objects.get(username=username)
+                except Exception as e:
+                    login_username_error = u'Böyle bir kullanıcı mevcut değil.'
+            except ValidationError:
+                login_username_error = u'Lütfen geçerli bir e-mail adresi girin.'
+                
+                
+            if not validation_util.is_password(password):
+                login_password_error = u'Lütfen geçerli bir şifre girin.'
+                
+            #if username and password are valid try to authenticate
+            if login_username_error == '' and login_password_error == '':
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    if user.is_active:
+                        login(request, user)
+                        return redirect(redirect_to)
+                else:
+                    login_password_error = u'Hatalı giriş.'
+            
 
-            user = authenticate(username=username, password=password)
-
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect(redirect_to)
         elif 'signup_form' in request.POST:
+            #get values from the web form
             name = request.POST['name']
             surname = request.POST['surname']
-            mail = request.POST['mail']
+            username = request.POST['username']
             password = request.POST['password']
             password_again = request.POST['password_again']
             gsm = request.POST['gsm']
             
+            #validation
+            error_message = u'Lütfen geçerli bir değer girin.'
+            if not validation_util.is_all_char_with_whitespace(name):
+                signup_name_error = error_message
+            if not validation_util.is_all_char(surname):
+                signup_surname_error = error_message
+
+            #validate username and check if it exists
+            try:
+                validate_email(username)
+                try:
+                    user = User.objects.get(username=username)
+                    signup_username_error = u'Böyle bir kullanıcı adı mevcut.'
+                except Exception as e:
+                    pass
+            except ValidationError:
+                signup_username_error = error_message
+            
+            if not validation_util.is_password(password):
+                signup_password_error = error_message
+            
             if password != password_again:
-                #TODO: error should be added
-                pass
+                signup_password_again_error = error_message
             
-            user = User()
-            user.username = mail
-            user.set_password(password)
-            user.first_name = name
-            user.last_name = surname
-            user.gsm = gsm
-            user.save()
-            
-            userr = authenticate(username=mail, password=password)
-            print userr
-            if userr is not None:
-                if userr.is_active:
-                    login(request, userr)
-                    return redirect(redirect_to)
-            
+            if not validation_util.is_gsm(gsm):
+                signup_gsm_error = error_message
+                
+            if signup_name_error == '' and signup_surname_error == '' and signup_username_error == '' and signup_password_error == '' and signup_password_again_error == '' and signup_gsm_error == '':            
+                user = User()
+                user.username = username
+                user.set_password(password)
+                user.first_name = name
+                user.last_name = surname
+                user.gsm = gsm
+                user.save()
+
+                userr = authenticate(username=username, password=password)
+                if userr is not None:
+                    if userr.is_active:
+                        login(request, userr)
+                        return redirect(redirect_to)
         else:
             return redirect('/anasayfa')
-    return render_to_response('login.html', context_instance=RequestContext(request))
+    return render_to_response('login.html', context_instance=RequestContext(request,{
+        'login_username_error':login_username_error,
+        'login_password_error':login_password_error,
+        'signup_name_error':signup_name_error,
+        'signup_surname_error':signup_surname_error,
+        'signup_username_error':signup_username_error,
+        'signup_password_error':signup_password_error,
+        'signup_password_again_error':signup_password_again_error,
+        'signup_gsm_error':signup_gsm_error
+    }))
 
 #reset all data in bilet bosta database
 def reset_data(request):

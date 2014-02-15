@@ -132,7 +132,9 @@ class User(AbstractBaseUser):
     iban = models.CharField(max_length = 25, null=True)
     saleCount = models.IntegerField(null=True)
     purchaseCount = models.IntegerField(null=True)
-    #first_name, last_name and password comes from base user
+    first_name = models.CharField(null=True, max_length=20)
+    last_name = models.CharField(null=True,max_length=15)
+    #password comes from base user
 
     USERNAME_FIELD = 'username'
 
