@@ -12,6 +12,13 @@
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	
 	<script>
+	
+	
+	
+	{% block css_js_links %}{% endblock %}
+	
+	
+	
 	function post_to_url(path, params, method) {
 	    method = method || "post"; // Set method to post by default if not specified.
 
@@ -111,7 +118,7 @@
 	    });
 	  }
 	  </script>
-    {% block css_js_links %}{% endblock %}
+    
     
 
     
