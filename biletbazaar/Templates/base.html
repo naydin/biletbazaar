@@ -88,7 +88,7 @@
 	      // result from direct interaction from people using the app (such as a mouse click)
 	      // (2) it is a bad experience to be continually prompted to login upon page load.
 		  // window.alert('not_authorized');
-	      fbLogin();
+	      // fbLogin();
 	    } else {
 	      // In this case, the person is not logged into Facebook, so we call the login() 
 	      // function to prompt them to do so. Note that at this stage there is no indication
@@ -96,7 +96,7 @@
 	      // dialog right after they log in to Facebook. 
 	      // The same caveats as above apply to the FB.login() call here.
 		  // window.alert('else');
-	      fbLogin();
+	      // fbLogin();
 	    }
 	  });
 	  };
@@ -188,7 +188,7 @@
             
             <div class="links">
 				{% if user.is_authenticated %}
-            	<div class="hesabim"><a style="color:#FFF" href="/logout" onclick="FB.logout();">oturumu kapat</a> | <a style="color:#FFF" href="/hesabim">Hoşgeldin {{user.first_name}}</a> | <a style="color:#FFF" href="#">yardım</a></div>
+            	<div class="hesabim"><a style="color:#FFF" href="/logout" >oturumu kapat</a> | <a style="color:#FFF" href="/hesabim">Hoşgeldin {{user.first_name}}</a> | <a style="color:#FFF" href="#">yardım</a></div>
                 <div class="uye_girisi"><a href="#"><img src="{% static 'resimler/facebook.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/twitter.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/googleplus.png' %}" /></a></div>
                 <div class="search">
                 	<form id="searchbox" method="GET" action="/search_result/">
