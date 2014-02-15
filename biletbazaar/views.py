@@ -323,51 +323,55 @@ def landing(request):
     
 
 
-#anasayfa --> view ismi anasayfa, template ismi main_page..ikisinden biri seçilip aynı olması sağlanmalı
+#anasayfa --> view ismi anasayfa, template ismi main_page..ikisinden biri seçilip aynı olması
 def anasayfa(request):
     # max_sale_count = EventGroup.objects.all().aggregate(Max('saleCount'))['saleCount__max']
     # event_group_list = EventGroup.objects.filter(saleCount = max_sale_count)
     # event_group = event_group_list[0]
     # event_list = event_group.event_set.all()
-	
-	request.session[selected_city_name_field] = u"Tüm Türkiye"
-	selected_city_name = u''
-    
-	#check if a city is selected previously and stored in a cookie
-	if selected_city_name_field in request.COOKIES:
-		selected_city_name = ''.join((request.COOKIES[selected_city_name_field])).decode('utf-8').strip()
-    
+
+    request.session[selected_city_name_field] = u"Tüm Türkiye"
+    selected_city_name = u''
+
+    #check if a city is selected previously and stored in a cookie
+    if selected_city_name_field in request.COOKIES:
+        selected_city_name = ''.join((request.COOKIES[selected_city_name_field])).decode('utf-8').strip()
+
     #if a city is posted take that as selected city
-	try:
-		selected_city_name = request.POST['city_select']
-	except Exception as e:
-        # print '%s (%s)' % (e.message, type(e))
-		pass
-    
+    try:
+        selected_city_name = request.POST['city_select']
+    except Exception as e:
+    # print '%s (%s)' % (e.message, type(e))
+        pass
+
     #validate selected city,if valid save it to session
-	try:
-		City.objects.get(name=selected_city_name)
-		request.session[selected_city_name_field] = selected_city_name
-	except Exception as e:
-		selected_city_name = ""
+    try:
+        City.objects.get(name=selected_city_name)
+        request.session[selected_city_name_field] = selected_city_name
+    except Exception as e:
+        selected_city_name = ""
+
+    #query the required lists
+    event_group_list = EventGroup.objects.all().order_by('-saleCount')[0:5]
+    event_list = Event.objects.filter(city__name__contains=selected_city_name).order_by('date')[0:10]
+    ticket_list = Ticket.objects.filter(event__city__name__contains=selected_city_name).order_by('price')[0:5]
+    city_list = City.objects.all()
     
+
+
+
+
     
-	#query the required lists
-	event_group_list = EventGroup.objects.all().order_by('-saleCount')[0:5]
-	event_list = Event.objects.filter(city__name__contains=selected_city_name).order_by('date')[0:10]
-	ticket_list = Ticket.objects.filter(event__city__name__contains=selected_city_name).order_by('price')[0:5]
-	city_list = City.objects.all()
-	
-	
-	
-	#prepare the response
-	response = render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list,
-	'ticket_list':ticket_list,"city_list":city_list,'selected_city_name':selected_city_name,'city_name_all_cities':u"Tüm Türkiye"})
-	
-	#include selected city in the cookie
-	response.set_cookie(selected_city_name_field,u''.join((selected_city_name)).encode('utf-8').strip())
-	    
-	return response
+
+
+    #prepare the response
+    response = render(request,'main_page.html',{'base':'/static/','event_list':event_list,'event_group_list':event_group_list,
+    'ticket_list':ticket_list,"city_list":city_list,'selected_city_name':selected_city_name,'city_name_all_cities':u"Tüm Türkiye"})
+
+    #include selected city in the cookie
+    response.set_cookie(selected_city_name_field,u''.join((selected_city_name)).encode('utf-8').strip())
+
+    return response
 
 
 #send email content 

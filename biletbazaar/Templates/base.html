@@ -226,9 +226,9 @@
         
         <div id="menu" class="menu">
       		<a href="/anasayfa"><div align="center" class="anasayfa"><span style="color:#FFF; vertical-align:middle">anasayfa</span></div></a>
-            <a href="#"><div align="center" class="muzik"><span style="color:#FFF; vertical-align:middle">müzik</span></div></a>
-            <a href="#"><div align="center" class="spor"><span style="color:#FFF; vertical-align:middle">spor</span></div></a>
-            <a href="#"><div align="center" class="sahne"><span style="color:#FFF; vertical-align:middle">sahne</span></div></a>
+            <a href="/anasayfa/?category=muzik"><div align="center" class="muzik"><span style="color:#FFF; vertical-align:middle">müzik</span></div></a>
+            <a href="/anasayfa/?category=spor"><div align="center" class="spor"><span style="color:#FFF; vertical-align:middle">spor</span></div></a>
+            <a href="/anasayfa/?category=sahne"><div align="center" class="sahne"><span style="color:#FFF; vertical-align:middle">sahne</span></div></a>
             <a href="#"><div align="center" class="hakkimizda"><span style="color:#FFF; vertical-align:middle">hakkımızda</span></div></a>
             <a href="/bize_ulasin"><div align="center" class="sss"><span style="color:#FFF; vertical-align:middle">bize ulaşın</span></div></a>
         </div><!-- end of menu -->
@@ -237,7 +237,7 @@
     
     
 
-    <div id="content" class="content_css">
+    <div id="content" class="content_css" {% if anasayfa_color %}style="background-color:{{anasayfa_color}};"{% endif %}>
     	<div class="white_bg">
     		
     	{% block content %}{% endblock %}
