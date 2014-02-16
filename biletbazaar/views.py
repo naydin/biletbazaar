@@ -201,7 +201,7 @@ def login_user(request):
             print unique_id 
         else:
             return redirect('/anasayfa')
-    return render('login.html', context_instance=RequestContext(request,{
+    return render(request,'login.html', {
         'login_username_error':login_username_error,
         'login_password_error':login_password_error,
         'signup_name_error':signup_name_error,
@@ -210,7 +210,7 @@ def login_user(request):
         'signup_password_error':signup_password_error,
         'signup_password_again_error':signup_password_again_error,
         'signup_gsm_error':signup_gsm_error
-    }))
+    })
 
 #reset all data in bilet bosta database
 def reset_data(request):
