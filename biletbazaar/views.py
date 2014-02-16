@@ -82,7 +82,7 @@ def logout_view(request):
     return redirect("/anasayfa")
 
 def login_user(request):
-    logout(request)
+    # logout(request)
     username = password = ''
     
     login_username_error = ''
