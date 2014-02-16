@@ -27,6 +27,13 @@ def reset_static_data():
     for event_group in event_groups:
         event_group.delete()
     
+    payment_infos = PaymentInfo.objects.all()
+    for payment_info in payment_infos:
+        payment_info.delete()
+        
+    shipment_infos = ShipmentInfo.objects.all()
+    for shipment_info in shipment_infos:
+        shipment_info.delete()
     
     istanbul = City()
     istanbul.name = "İstanbul"
@@ -185,7 +192,9 @@ def reset_static_data():
             seat_row_random = randrange(0,len(seat_rows))
             # print seat_row_random
             t1.seatRow = seat_rows[seat_row_random]
-            t1.seatNumber = randrange(1,10)
+            t1.seatNumberFrom = randrange(1,10)
+            t1.seatNumberTo = randrange(11,20)
+        t1.isActive = True
         
         t1.save()
         

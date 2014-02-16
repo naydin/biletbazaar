@@ -35,8 +35,6 @@ $(document).ready(function() {
   
     $("#prompt form").submit(function(e) {
 
-      
-
       // do not submit the form
       <!-- return e.preventDefault(); -->
   });
@@ -206,6 +204,7 @@ $(document).ready(function() {
 					  </p>
  
 					  <!-- input form. you can press enter too -->
+
 					  <form action="/login/" method="POST">
 					    <input name="username"/>
 						{% csrf_token %}

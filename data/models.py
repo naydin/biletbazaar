@@ -157,30 +157,30 @@ class Ticket(models.Model):
     seatRow = models.CharField(max_length = 20, null=True)
     seatNumber = models.CharField(max_length=20, null=True)
     
-#     seatNumberFrom = models.CharField(max_length=20, null=True)
-#     seatNumberTo = models.CharField(max_length=20, null=True)
-#     
-#     isActive = models.BooleanField(null=False,default=True)
-# 
-# class SaleStatus(object):#enum
-#     waitingSellerApproval = 1
-#     sellerApproved = 2
-#     shipping = 3
-#     buyerApproved = 4
-# 
-# class Sale(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     ticket = models.ForeignKey(Ticket)
-#     buyer = models.ForeignKey(User)
-#     seatNumberFrom = models.CharField(null=True,max_length=20)
-#     seatNumberTo = models.CharField(null=True,max_length=20)
-#     saleStatus = models.IntegerField(null=False,default=SaleStatus.waitingSellerApproval)
-# 
-#     def getSeller(self):
-#         return ticket.user
-#     seller = property(getSeller)
-#     #TODO: dates for sale statuses should be added?
-    
+    seatNumberFrom = models.CharField(max_length=20, null=True)
+    seatNumberTo = models.CharField(max_length=20, null=True)
+     
+    isActive = models.BooleanField(null=False,default=True)
+ 
+class SaleStatus(object):#enum
+    waitingSellerApproval = 1
+    sellerApproved = 2
+    shipping = 3
+    buyerApproved = 4
+  
+class Sale(models.Model):
+    id = models.AutoField(primary_key=True)
+    ticket = models.ForeignKey(Ticket)
+    buyer = models.ForeignKey(User)
+    seatNumberFrom = models.CharField(null=True,max_length=20)
+    seatNumberTo = models.CharField(null=True,max_length=20)
+    saleStatus = models.IntegerField(null=False,default=SaleStatus.waitingSellerApproval)
+  
+    def getSeller(self):
+        return ticket.user
+    seller = property(getSeller)
+    #TODO: dates for sale statuses should be added?
+     
 class ShipmentInfo(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length = 20)
@@ -189,14 +189,14 @@ class ShipmentInfo(models.Model):
     neighbourhood = models.CharField(max_length = 20) #semt
     address = models.CharField(max_length = 50)
     address2 = models.CharField(max_length = 50)
-    ticket = models.OneToOneField(Ticket)
+    ticket = models.ForeignKey(Ticket)
 
 class PaymentInfo(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length = 20)
     surname = models.CharField(max_length = 15)
     iban = models.CharField(max_length = 16, null=True)
-    ticket = models.OneToOneField(Ticket)
+    ticket = models.ForeignKey(Ticket)
 
 class CreditCardType(models.Model):
     id = models.AutoField(primary_key=True)

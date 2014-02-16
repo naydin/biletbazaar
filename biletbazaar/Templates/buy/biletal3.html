@@ -122,6 +122,7 @@
                    <label></label>
                     <select name="buy_card_expiration_year" id="kart_yil" class="styled-select" style="width:60px; float:left;margin-left:20px">
                     <option selected="selected" disabled="disabled">yıl</option>
+         
 					{% for year in year_list %}
 					<option>{{year}}</option>
 					{% endfor %}
@@ -136,7 +137,7 @@
                     
                     <br /><br /><br /><br />
 					{% csrf_token %}
-                    <button type="submit" class="button_example" style="float:right;">Sonraki</button>
+                    <button style="float:right" type="submit" class="button_example">Sonraki</button>
         		</form>
 		</div>
       
