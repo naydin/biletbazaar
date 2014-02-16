@@ -201,7 +201,7 @@ def login_user(request):
             print unique_id 
         else:
             return redirect('/anasayfa')
-    return render_to_response('login.html', context_instance=RequestContext(request,{
+    return render('login.html', context_instance=RequestContext(request,{
         'login_username_error':login_username_error,
         'login_password_error':login_password_error,
         'signup_name_error':signup_name_error,
