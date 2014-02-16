@@ -197,8 +197,7 @@ def login_user(request):
                 user.password_token = unique_id
                 user.save()
             except Exception as e:
-                # return redirect('/login')
-                return HttpResponse('%s (%s)' % (e.message, type(e)))
+                return redirect('/login')
             
             print unique_id 
         else:
