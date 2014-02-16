@@ -405,33 +405,10 @@ def anasayfa(request):
 
 
 #send email content 
-def send_maill_landing(email):
-    subject, from_email, to = 'Bilet Bosta\'ya Hosgeldiniz', 'info@biletbosta.com',email
-    text_content = ''
-    c = RequestContext(request,{'ig_url':'http://www.biletbosta.com/static/bilet-bosta-reklam.png'})
-    t = loader.get_template('mail_template.html')
-    html_content = t.render(c)
-    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-    msg.attach_alternative(html_content, "text/html")
-    msg.send()
-
 def send_maill(subject,to,template,dict):
-    # from_email = 'info@biletbosta.com'
-#     text_content = ''
-#     c = RequestContext(request,dict)
-#     t = loader.get_template(template)
-#     html_content = t.render(c)
-#     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-#     msg.attach_alternative(html_content, "text/html")
-#     msg.send()
-
-    # plaintext = get_template('email.txt')
-    htmly     = get_template(template)
-
+    htmly = get_template(template)
     d = Context(dict)
-
     from_email = 'info@biletbosta.com'
-    # text_content = plaintext.render(d)
     text_content = ''
     html_content = htmly.render(d)
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
