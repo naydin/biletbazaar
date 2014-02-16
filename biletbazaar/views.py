@@ -20,6 +20,7 @@ from django.contrib.auth import authenticate, login, logout,REDIRECT_FIELD_NAME
 from django.contrib.auth.decorators import login_required
 from django.utils.http import is_safe_url
 from biletbazaar.validation_util import *
+from biletbazaar.utils import *
 from django.conf import settings
 import urllib
 import urllib2
@@ -28,6 +29,7 @@ import json
 
 import datetime
 import re
+import uuid
 
 selected_city_name_field = "selected_city_name"
 
@@ -200,6 +202,22 @@ def login_user(request):
                     if userr.is_active:
                         login(request, userr)
                         return redirect(redirect_to)
+        elif 'forgot_password_form' in request.POST:
+            username = request.POST['username']
+            try:
+                validate_email(username)
+                user = User.objects.get(username=username)
+                unique_id = uuid.uuid4().hex                
+                datetimenow = str(datetime.datetime.now())
+
+                seperator = '||'
+                token = unique_id + seperator + datetimenow + seperator + user.username
+                
+
+            except ValidationError:
+                return redirect('/login')
+            
+            print unique_id 
         else:
             return redirect('/anasayfa')
     return render_to_response('login.html', context_instance=RequestContext(request,{
