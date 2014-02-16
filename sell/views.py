@@ -276,6 +276,7 @@ def teslimat(request):
 
 
 #sell step 5: onayla page
+@login_required(login_url='/login')
 def onayla(request):
     name_error = ''
     surname_error = ''
@@ -337,7 +338,7 @@ def onayla(request):
                 payment_info.iban = sell_iban
                 
                 #todo:ticket should be connected with the loggedin user
-                user = User.objects.all()[0]
+                user = request.user
                 
                 ticket = Ticket()
                 ticket.user = user
