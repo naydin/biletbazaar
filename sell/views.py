@@ -76,11 +76,13 @@ def bilet_detaylari(request):
             ticket_count = ''
             seat_category = ''
             seat_row = ''
-            seat_number = ''
+            seat_number_from = ''
+            seat_number_to = ''
             ticket_count_error = ''
             seat_category_error = ''
             seat_row_error = ''
-            seat_number_error = ''
+            seat_number_from_error = ''
+            seat_number_to_error = ''
             
             try:
                 ticket_count = request.POST['ticket_count']
@@ -104,13 +106,19 @@ def bilet_detaylari(request):
                 seat_row_error = u'Lütfen geçerli bir sıra no girin.'
 
             try:
-                seat_number = request.POST['seat_number']
-                intvar = int(seat_number)
+                seat_number_from = request.POST['seat_number_from']
+                intvar = int(seat_number_from)
             except Exception as e:
-                seat_number_error = u'Lütfen geçerli bir koltuk no girin.'
+                seat_number_from_error = u'Lütfen geçerli bir koltuk no girin.'
+                
+            try:
+                seat_number_to = request.POST['seat_number_to']
+                intvar = int(seat_number_to)
+            except Exception as e:
+                seat_number_to_error = u'Lütfen geçerli bir koltuk no girin.'
             #TODO:seat_number limit validation
 
-            if ticket_count_error or seat_category_error or seat_row_error or seat_number_error:
+            if ticket_count_error or seat_category_error or seat_row_error or seat_number_from_error or seat_number_to_error:
                 ticket_count_list = valid_ticket_count_range
                 seat_category_list = event.getSeatCategories()
                 seat_row_list = event.getSeatRows()
@@ -121,12 +129,15 @@ def bilet_detaylari(request):
                 'ticket_count_error':ticket_count_error,
                 'seat_category_error':seat_category_error,
                 'seat_row_error':seat_row_error,
-                'seat_number_error':seat_number_error})
+                'seat_number_from_error':seat_number_from_error,
+                'seat_number_to_error':seat_number_to_error
+                })
 
             request.session['sell_ticket_count'] = ticket_count
             request.session['sell_seat_category'] = seat_category
             request.session['sell_seat_row'] = seat_row
-            request.session['sell_seat_number'] = seat_number
+            request.session['sell_seat_number_from'] = seat_number_from
+            request.session['sell_seat_number_to'] = seat_number_to
             
             return redirect('/fiyatlandir')
         except Exception as e:
@@ -164,7 +175,8 @@ def fiyatlandir(request):
         ticket_count = request.session['sell_ticket_count']
         seat_category = request.session['sell_seat_category']
         seat_row = request.session['sell_seat_row']
-        seat_number = request.session['sell_seat_number']
+        seat_number_from = request.session['sell_seat_number_from']
+        seat_number_to = request.session['sell_seat_number_to']
     except Exception as e:
         return redirect('/anasayfa')
 
@@ -200,7 +212,8 @@ def fiyatlandir(request):
     'ticket_count':ticket_count,
     'seat_category':seat_category,
     'seat_row':seat_row,
-    'seat_number':seat_number,
+    'seat_number_from':seat_number_from,
+    'seat_number_to':seat_number_to,
     'ticket_face_value_error':ticket_face_value_error,
     'ticket_sell_value_error':ticket_sell_value_error})
         
@@ -273,7 +286,8 @@ def onayla(request):
         ticket_count = request.session['sell_ticket_count']
         seat_category = request.session['sell_seat_category']
         seat_row = request.session['sell_seat_row']
-        seat_number = request.session['sell_seat_number']
+        seat_number_from = request.session['sell_seat_number_from']
+        seat_number_to = request.session['sell_seat_number_to']
         ticket_sell_value = request.session['sell_ticket_sell_value']
     except Exception as e:
         # print '%s (%s)' % (e.message, type(e))
@@ -298,7 +312,8 @@ def onayla(request):
                 ticket_count = request.session['sell_ticket_count']
                 seat_category = request.session['sell_seat_category']
                 seat_row = request.session['sell_seat_row']
-                seat_number = request.session['sell_seat_number']
+                seat_number_from = request.session['sell_seat_number_from']
+                seat_number_to = request.session['sell_seat_number_to']
                 ticket_face_value = request.session['sell_ticket_face_value']
                 ticket_sell_value = request.session['sell_ticket_sell_value']
                 ship_name = request.session['ship_name']
@@ -334,7 +349,8 @@ def onayla(request):
                 
                 ticket.seatCategory = seat_category
                 ticket.seatRow = seat_row
-                ticket.seatNumber = seat_number
+                ticket.seatNumberFrom = seat_number_from
+                ticket.seatNumberTo = seat_number_to
                 
                 shipment_info.ticket = ticket
                 payment_info.ticket = ticket
@@ -358,7 +374,8 @@ def onayla(request):
         'ticket_count':ticket_count,
         'seat_category':seat_category,
         'seat_row':seat_row,
-        'seat_number':seat_number,
+        'seat_number_from':seat_number_from,
+        'seat_number_to':seat_number_to,
         'ticket_sell_value':ticket_sell_value,
         'name_error':name_error,
         'surname_error':surname_error,

@@ -5,7 +5,7 @@
 	
 	margin-top: 20px;
 	margin-left: 60px;
-	width: 370px;
+	width: 400px;
 	height: 400px;
 }
 
@@ -51,31 +51,24 @@ border-radius: 10px;
 border-radius: 10px;
    }
    
- .btn {
-	 margin-top: 10px;
-	 margin-left:295px;
-  background: #9fb329;
-  background-image: -webkit-linear-gradient(top, #9fb329, #9eb329);
-  background-image: -moz-linear-gradient(top, #9fb329, #9eb329);
-  background-image: -ms-linear-gradient(top, #9fb329, #9eb329);
-  background-image: -o-linear-gradient(top, #9fb329, #9eb329);
-  background-image: linear-gradient(to bottom, #9fb329, #9eb329);
- 
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 5px 20px 5px 20px;
-  text-decoration: none;
+ .button_example{
+border:1px solid #8bcf54; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-size:16px;font-family:arial, helvetica, sans-serif; padding: 8px 35px 8px 35px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
+ background-color: #a9db80; background-image: -webkit-gradient(linear, left top, left bottom, from(#a9db80), to(#96c56f));
+ background-image: -webkit-linear-gradient(top, #a9db80, #96c56f);
+ background-image: -moz-linear-gradient(top, #a9db80, #96c56f);
+ background-image: -ms-linear-gradient(top, #a9db80, #96c56f);
+ background-image: -o-linear-gradient(top, #a9db80, #96c56f);
+ background-image: linear-gradient(to bottom, #a9db80, #96c56f);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#a9db80, endColorstr=#96c56f);
 }
 
-.btn:hover {
-  background: #d6f422;
-  background-image: -webkit-linear-gradient(top, #d6f422, #d6f422);
-  background-image: -moz-linear-gradient(top, #d6f422, #d6f422);
-  background-image: -ms-linear-gradient(top, #d6f422, #d6f422);
-  background-image: -o-linear-gradient(top, #d6f422, #d6f422);
-  background-image: linear-gradient(to bottom, #d6f422, #d6f422);
-  text-decoration: none;
+.button_example:hover{
+ border:1px solid #74bf36;
+ background-color: #8ed058; background-image: -webkit-gradient(linear, left top, left bottom, from(#8ed058), to(#7bb64b));
+ background-image: -webkit-linear-gradient(top, #8ed058, #7bb64b);
+ background-image: -moz-linear-gradient(top, #8ed058, #7bb64b);
+ background-image: -ms-linear-gradient(top, #8ed058, #7bb64b);
+ background-image: -o-linear-gradient(top, #8ed058, #7bb64b);
+ background-image: linear-gradient(to bottom, #8ed058, #7bb64b);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#8ed058, endColorstr=#7bb64b);
 }
 
 .tooltip {

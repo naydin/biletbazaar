@@ -93,12 +93,18 @@
 						{% endfor %}
    					</select>
                     <br /><br />
-                    <label class="name" style="font-size:20px">koltuk no</label> <label id="koltuk_uyari" style="color:#bdd531; margin-left:10px;">{{seat_number_error}}</label>
-            		<br /><br />
-   					<input name="seat_number" id="koltuk_no" class="tb" type="text" title="Biletinizin üstünde yazan koltuk numarasını belirtiniz. Birden fazla bilet ilanı veriyorsanız başlangıç koltuk numarasını yazınız."/>
-                    <br />
+                    <label class="name" style="font-size:20px;float:left">koltuk no'dan</label> <label id="koltuk_uyari" style="color:#bdd531; margin-left:10px;">{{seat_number_from_error}}</label>
+   					<label class="name" style="font-size:20px; float:right">koltuk no'ya</label> <label id="koltuk_uyari" style="color:#bdd531; margin-left:10px;">{{seat_number_to_error}}</label>
+   					<br/><br/>
+   					<input style="width:100px; float:left" name="seat_number_from" id="koltuk_no" class="tb" type="text" title="Biletinizin üstünde yazan koltuk numarasını belirtiniz. Birden fazla bilet ilanı veriyorsanız başlangıç koltuk numarasını yazınız."/>
+					<span style="margin-left:53px">____</span>
+   					<input style="width:100px; float:right" name="seat_number_to" id="koltuk_no" class="tb" type="text" title="Biletinizin üstünde yazan koltuk numarasını belirtiniz. Birden fazla bilet ilanı veriyorsanız başlangıç koltuk numarasını yazınız."/>
+                   
+                    
+                    
+                    <br /><br/><br/>
 					{% csrf_token %}
-                    <button type="submit" class="btn">Sonraki</button>
+                    <button type="submit" class="button_example" style="float:right">Sonraki</button>
         		</form>
 		</div>
       

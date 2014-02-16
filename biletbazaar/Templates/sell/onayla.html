@@ -125,7 +125,7 @@
             	<tr>
                 	<td width="150" height="80" style="text-align:center">{{event.date|date:"M"}}<br />{{event.date.day}}<br />{{event.date|date:"l"}}</td>
                 	<td width="150" height="80" style="text-align:center">{{event.eventGroup.name}}<br />{{event.place}}<br />{{event.city.name}}</td>
-                    <td width="150" height="80" style="text-align:center">Bilet Sayısı: {{ticket_count}}<br />Kategori No: {{seat_category}}<br />Sıra No: {{seat_row}}<br />Koltuk No: {{seat_number}}</td>
+                    <td width="150" height="80" style="text-align:center">Bilet Sayısı: {{ticket_count}}<br />Kategori No: {{seat_category}}<br />Sıra No: {{seat_row}}<br />Koltuk No: {{seat_number_from}} - {{seat_number_to}}</td>
                     <td width="150" height="80" style="text-align:center">İlan Fiyatı: {{ticket_sell_value}} TL</td>
                 </tr>
             </table>
@@ -147,21 +147,13 @@
                
                     <div style="height:8px;"></div>
 					{% csrf_token %}
-                    <input type="submit" class="btn" value="İlanı Ver"/>
+                    <input type="submit" style="float:right" class="button_example" value="İlanı Ver"/>
         		</form>
 		</div>
 		
 		
 				
-		<div id="dialog-message" title="Download complete">
-  <p>
-    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-    Your files have downloaded successfully into the My Downloads folder.
-  </p>
-  <p>
-    Currently using <b>36% of your storage space</b>.
-  </p>
-</div>
+
 		
 		
 

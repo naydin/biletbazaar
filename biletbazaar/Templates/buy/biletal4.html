@@ -80,14 +80,14 @@
 
 			</div>
         	<div class="bilet_detaylari2" style="float:right";>
-       		  	<div class="event_foto" ><img src="{% static 'resimler/tarkan.png' %}" style="max-width:100%; max-height:100%;" /></div>
+       		  	<div class="event_foto" ><img src="{{event_group_photoUrl}}" style="max-width:100%; max-height:100%;" /></div>
                 
             	
        	  	</div>
             
             <div class="toplam">
            		<hr style=" margin-left:10px; margin-right:10px; border-color:#3babc7;" />
-           		<label style="float:right; padding-left:50px; padding-right:10px;" id="kategori_no"> 80 TL</label><span id="toplam_fiyat" style="margin-left:10px; float:right">Kredi kartından çekilecek tutar : </span>
+           		<label style="float:right; padding-left:50px; padding-right:10px;" id="kategori_no"> {% widthratio ticket.price 1 ticket_count %} TL</label><span id="toplam_fiyat" style="margin-left:10px; float:right">Kredi kartından çekilecek tutar : </span>
                 <br /><br /><br />
                 <button type="submit" class="button_example" style="float:right">Bileti Al</button>
            </div>
