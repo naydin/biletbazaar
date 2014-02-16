@@ -46,6 +46,7 @@
 	
 	function fbLogin() {
 	  FB.login(function(response) {
+		  window.alert('asdf');
 		  {% if not user.is_authenticated %}
 				post_to_url("/fb_login/",{"access_token":response.authResponse.accessToken,"next":document.URL},"POST");
 		  {% endif %}
