@@ -336,7 +336,7 @@ def landing(request):
         user.save()
         clientError = u"E-mail adresiniz sistemize kaydedildi."
         
-        send_maill('Bilet Bosta\'ya Hosgeldiniz',reqEmail,'mail_template.html',{})
+        send_maill('Bilet Boşta\'ya Hoşgeldiniz',reqEmail,'mail_template.html',{})
         
     return render(request,'landing_page.html',{'base':'/static/','error':clientError})    
     
