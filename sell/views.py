@@ -358,6 +358,7 @@ def onayla(request):
                 payment_info.ticket = ticket
                 
                 ticket.save()
+                #TODO aşağıdaki save'ler çalışmıyor!
                 shipment_info.save()
                 payment_info.save()
                 

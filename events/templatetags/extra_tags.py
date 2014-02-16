@@ -2,6 +2,16 @@ from django import template
 
 register = template.Library()
 
+
+
+
+@register.filter(name='add')    
+def add(value, arg):
+    return value + arg
+
+
+
+
 @register.filter(name='get_range')
 def get_range( value ):
   """

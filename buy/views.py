@@ -219,11 +219,34 @@ def biletal4(request):
     ticket_id = request.session['buy_ticket_id']
     ticket = Ticket.objects.get(id = ticket_id)
     ticket_count = request.session['buy_ticket_count']
-    event=Event.objects.get(id = ticket.event.id)
-    event_group_id = event.eventGroup.id
-    event_group_photoUrl = EventGroup.objects.get(id = event_group_id).photoUrl
-    return render(request,'buy/biletal4.html',{
-        'ticket': ticket,
-        'ticket_count': int(ticket_count),
-        'event_group_photoUrl' : event_group_photoUrl,                                       
-                                               })
+    ticket_final_seat = int(Ticket.objects.get(id = ticket_id).seatNumberFrom)+int(ticket_count)-1
+    if request.method == 'GET':
+        
+        
+        event=Event.objects.get(id = ticket.event.id)
+        event_group_id = event.eventGroup.id
+        event_group_photoUrl = EventGroup.objects.get(id = event_group_id).photoUrl
+        return render(request,'buy/biletal4.html',{
+            'ticket': ticket,
+            'ticket_count': int(ticket_count),
+            'ticket_final_seat' : ticket_final_seat,
+            'event_group_photoUrl' : event_group_photoUrl,                                       
+                                                   })
+    else :
+        Ticket.objects.filter(id = ticket_id).update(seatNumberFrom=str(ticket_final_seat+1))
+        count = Ticket.objects.get(id = ticket_id).ticketCount
+        
+        after = count - int(ticket_count)
+        Ticket.objects.filter(id = ticket_id).update(ticketCount=after)
+        user = request.user
+
+        
+        sale = Sale()
+        sale.buyer = user
+        sale.ticket = ticket
+        sale.seatNumberFrom = ticket.seatNumberFrom
+        sale.seatNumberTo = ticket_final_seat
+        
+        sale.save()
+        
+        return redirect('/anasayfa')

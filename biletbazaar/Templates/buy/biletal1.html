@@ -71,10 +71,13 @@
                 <label id="etkinlik_tarih" style="margin-left:20px;" >{{ticket.event.date}}</label><br /><br />
                 <label id="etkinlik_saat" style="margin-left:20px;">{{ticket.event.date|date:"H"}}</label><br /><br />
                 <br /><br />
-              <span id="etkinlik_saat" style="margin-left:20px;">Kategori :</span><label style="float:right; padding-right:20px;" id="kategori_no">Kategori {{ticket.seatCategory}}</label>               
+              <span id="etkinlik_saat" style="margin-left:20px;">Kategori :</span><label style="float:right; padding-right:20px;" id="kategori_no"> {{ticket.seatCategory}}</label>               
               <hr style=" margin-left:20px; margin-right:20px; border-color:#3babc7" />
               
-              <span id="etkinlik_saat" style="margin-left:20px;">Koltuk :</span><label style="float:right; padding-right:20px;" id="kategori_no">{{ticket.seatRow}} {{ticket.seatNumber}} </label>               
+              <span id="etkinlik_saat" style="margin-left:20px;">Sıra No:</span><label style="float:right; padding-right:20px;" id="kategori_no">{{ticket.seatRow}}</label>               
+              <hr style=" margin-left:20px; margin-right:20px; border-color:#3babc7" />
+              
+              <span id="etkinlik_saat" style="margin-left:20px;">Koltuk No:</span><label style="float:right; padding-right:20px;" id="kategori_no"> {{ticket.seatNumberFrom}} -- {{ticket.seatNumberTo}}  </label>               
               
               <hr style=" margin-left:20px; margin-right:20px; border-color:#3babc7" />
 			  <form method="POST" >              
