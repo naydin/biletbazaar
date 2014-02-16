@@ -213,10 +213,9 @@ def login_user(request):
                 seperator = '||'
                 token = unique_id + seperator + datetimenow + seperator + user.username
                 # subject,to,template,dict
-                send_maill('Sifre Yenileme',user.username,'forgot_password_mail.html',{'url':'www.biletbosta.com'})
+                send_maill('Şifre Yenileme',user.username,'forgot_password_mail.html',{'url':'www.biletbosta.com'})
 
-
-            except ValidationError:
+            except Exception as e:
                 return redirect('/login')
             
             print unique_id 
