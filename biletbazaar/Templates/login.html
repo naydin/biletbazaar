@@ -113,8 +113,8 @@ $(document).ready(function() {
             	<span style="font-size:22px; color:#3496af; margin-left:40px; display:inline-block; margin-top:30px;">üye girişi</span>
                 <br /><br /><br />
                 <div class="fb_giris">
-                <a style="margin-left:40px; vertical-align:bottom" href=""><img src="{% static 'resimler/fb_login.png' %}" /></a>
-                <span style="margin-left:10px;display: inline-block;vertical-align: top; font-size:16px">facebook yoluyla giriş yap</span>
+                <a style="margin-left:40px; vertical-align:bottom" href=""><img src="{% static 'resimler/fb_login.png' %}" onclick="fbLogin();"/></a>
+                <span style="margin-left:10px;display: inline-block;vertical-align: top; font-size:16px" >facebook yoluyla giriş yap</span>
                  <span style="font-size:30px; margin-left:140px;">veya</span>
                 </div>
                 
@@ -151,7 +151,7 @@ $(document).ready(function() {
        		  	<span style="font-size:22px; color:#3496af; margin-left:40px; display:inline-block; margin-top:30px;">kaydol</span>
                 <br /><br /><br />
                 <div class="fb_giris2">
-                <a style="margin-left:40px; vertical-align:bottom" href=""><img src="{% static 'resimler/fb_login.png' %}" /></a>
+                <a style="margin-left:40px; vertical-align:bottom" href=""><img src="{% static 'resimler/fb_login.png' %}" onclick="fbLogin();"/></a>
                 <span style="margin-left:10px;display: inline-block;vertical-align: top; font-size:16px">facebook yoluyla kaydol</span>
                 <span style="font-size:30px; margin-left:140px;">veya</span>
                 </div>

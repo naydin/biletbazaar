@@ -61,5 +61,4 @@ urlpatterns = patterns('',
     url('^hesabim/$',hesabim),
     url('^search_result/$',search_result),
     
-    url('^deneme/$',deneme),
 )

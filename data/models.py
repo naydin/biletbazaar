@@ -134,7 +134,7 @@ class User(AbstractBaseUser):
     purchaseCount = models.IntegerField(null=True)
     first_name = models.CharField(null=True, max_length=20)
     last_name = models.CharField(null=True,max_length=15)
-    # password_token = models.CharField(null = True, max_length = 50)
+    password_token = models.CharField(null = True, max_length = 50)
     #password comes from base user
 
     USERNAME_FIELD = 'username'

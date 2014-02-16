@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
-from django.template import RequestContext
+from django.template import RequestContext,Context
 from django.template import loader
 from data.eventManager import *
 from data.models import *
@@ -35,31 +35,11 @@ selected_city_name_field = "selected_city_name"
 
 from django.contrib import auth
 
-def deneme(request):
-    email = 'aydinnecati@gmail.com'
-    try:
-        try:
-            user = User.objects.get(username=email)
-        except User.DoesNotExist:#signup
-            return HttpResponse('user does not exist')
-            #login if the user exists
-        user = authenticate(username=email)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return HttpResponse('login successful')
-            else:
-                return HttpResponse('login failed')
-        
-    except exception as e:
-        print '%s (%s)' % (e.message, type(e))
-        return HttpResponse('fail')
-    
-
 @csrf_exempt
 def fb_login(request):
     if request.POST:
         try:
+            # return HttpResponse(access_token)
             access_token = request.POST['access_token']
             redirect_to = request.POST['next']
             url = "https://graph.facebook.com/me/"
@@ -102,7 +82,7 @@ def logout_view(request):
     return redirect("/anasayfa")
 
 def login_user(request):
-    logout(request)
+    # logout(request)
     username = password = ''
     
     login_username_error = ''
@@ -212,15 +192,16 @@ def login_user(request):
 
                 seperator = '||'
                 token = unique_id + seperator + datetimenow + seperator + user.username
-                
+                # subject,to,template,dict
+                send_maill('Şifre Yenileme',user.username,'forgot_password_mail.html',{'url':'www.biletbosta.com'})
 
-            except ValidationError:
+            except Exception as e:
                 return redirect('/login')
             
             print unique_id 
         else:
             return redirect('/anasayfa')
-    return render_to_response('login.html', context_instance=RequestContext(request,{
+    return render(request,'login.html', {
         'login_username_error':login_username_error,
         'login_password_error':login_password_error,
         'signup_name_error':signup_name_error,
@@ -229,7 +210,7 @@ def login_user(request):
         'signup_password_error':signup_password_error,
         'signup_password_again_error':signup_password_again_error,
         'signup_gsm_error':signup_gsm_error
-    }))
+    })
 
 #reset all data in bilet bosta database
 def reset_data(request):
@@ -335,7 +316,7 @@ def landing(request):
         user.save()
         clientError = u"E-mail adresiniz sistemize kaydedildi."
         
-        send_maill(reqEmail)
+        send_maill('Bilet Boşta\'ya Hoşgeldiniz',reqEmail,'mail_template.html',{})
         
     return render(request,'landing_page.html',{'base':'/static/','error':clientError})    
     
@@ -403,16 +384,15 @@ def anasayfa(request):
 
 
 #send email content 
-def send_maill(email):
-    subject, from_email, to = 'Bilet Bosta\'ya Hosgeldiniz', 'info@biletbosta.com',email
+def send_maill(subject,to,template,dict):
+    htmly = get_template(template)
+    d = Context(dict)
+    from_email = 'info@biletbosta.com'
     text_content = ''
-    c = RequestContext(request,{'ig_url':'http://www.biletbosta.com/static/bilet-bosta-reklam.png'})
-    t = loader.get_template('mail_template.html')
-    html_content = t.render(c)
+    html_content = htmly.render(d)
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
     msg.attach_alternative(html_content, "text/html")
     msg.send()
-
  
 def event_group(request):
 
