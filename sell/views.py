@@ -4,6 +4,7 @@ from django.template import RequestContext
 from django.template import loader
 from data.models import *
 from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
 
 import datetime
 from biletbazaar.validation_util import *
