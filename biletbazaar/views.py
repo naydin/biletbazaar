@@ -35,31 +35,11 @@ selected_city_name_field = "selected_city_name"
 
 from django.contrib import auth
 
-def deneme(request):
-    email = 'aydinnecati@gmail.com'
-    try:
-        try:
-            user = User.objects.get(username=email)
-        except User.DoesNotExist:#signup
-            return HttpResponse('user does not exist')
-            #login if the user exists
-        user = authenticate(username=email)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return HttpResponse('login successful')
-            else:
-                return HttpResponse('login failed')
-        
-    except exception as e:
-        print '%s (%s)' % (e.message, type(e))
-        return HttpResponse('fail')
-    
-
 @csrf_exempt
 def fb_login(request):
     if request.POST:
         try:
+            render HttpResponse(access_token)
             access_token = request.POST['access_token']
             redirect_to = request.POST['next']
             url = "https://graph.facebook.com/me/"
