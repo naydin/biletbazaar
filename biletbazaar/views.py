@@ -194,7 +194,8 @@ def login_user(request):
                 token = unique_id + seperator + datetimenow + seperator + user.username
                 # subject,to,template,dict
                 send_maill('Şifre Yenileme',user.username,'forgot_password_mail.html',{'url':'www.biletbosta.com'})
-
+                user.password_token = unique_id
+                user.save()
             except Exception as e:
                 return redirect('/login')
             
