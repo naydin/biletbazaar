@@ -39,7 +39,7 @@ from django.contrib import auth
 def fb_login(request):
     if request.POST:
         try:
-            return HttpResponse(access_token)
+            # return HttpResponse(access_token)
             access_token = request.POST['access_token']
             redirect_to = request.POST['next']
             url = "https://graph.facebook.com/me/"
