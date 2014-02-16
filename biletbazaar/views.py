@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
-from django.template import RequestContext
+from django.template import RequestContext,Context
 from django.template import loader
 from data.eventManager import *
 from data.models import *
@@ -212,7 +212,9 @@ def login_user(request):
 
                 seperator = '||'
                 token = unique_id + seperator + datetimenow + seperator + user.username
-                
+                # subject,to,template,dict
+                send_maill('Sifre Yenileme',user.username,'forgot_password_mail.html',{'url':'www.biletbosta.com'})
+
 
             except ValidationError:
                 return redirect('/login')
@@ -335,7 +337,7 @@ def landing(request):
         user.save()
         clientError = u"E-mail adresiniz sistemize kaydedildi."
         
-        send_maill(reqEmail)
+        send_maill_landing(reqEmail)
         
     return render(request,'landing_page.html',{'base':'/static/','error':clientError})    
     
@@ -403,7 +405,7 @@ def anasayfa(request):
 
 
 #send email content 
-def send_maill(email):
+def send_maill_landing(email):
     subject, from_email, to = 'Bilet Bosta\'ya Hosgeldiniz', 'info@biletbosta.com',email
     text_content = ''
     c = RequestContext(request,{'ig_url':'http://www.biletbosta.com/static/bilet-bosta-reklam.png'})
@@ -413,6 +415,28 @@ def send_maill(email):
     msg.attach_alternative(html_content, "text/html")
     msg.send()
 
+def send_maill(subject,to,template,dict):
+    # from_email = 'info@biletbosta.com'
+#     text_content = ''
+#     c = RequestContext(request,dict)
+#     t = loader.get_template(template)
+#     html_content = t.render(c)
+#     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+#     msg.attach_alternative(html_content, "text/html")
+#     msg.send()
+
+    # plaintext = get_template('email.txt')
+    htmly     = get_template(template)
+
+    d = Context(dict)
+
+    from_email = 'info@biletbosta.com'
+    # text_content = plaintext.render(d)
+    text_content = ''
+    html_content = htmly.render(d)
+    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
  
 def event_group(request):
 
