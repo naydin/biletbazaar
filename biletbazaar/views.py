@@ -194,7 +194,7 @@ def login_user(request):
                 token = unique_id + seperator + datetimenow + seperator + user.username
                 token = encode_util.base64(token)
                 # subject,to,template,dict
-                send_maill('Şifre Yenileme',user.username,'forgot_password_mail.html',{'url':'www.biletbosta.com/forgot_password_set/token?=%s' % token})
+                send_maill('Şifre Yenileme',user.username,'forgot_password_mail.html',{'url':'www.biletbosta.com/forgot_password_set/?token=%s' % token})
                 user.password_token = unique_id
                 user.save()
             except Exception as e:
@@ -233,6 +233,8 @@ def forgot_password_set(request):
                 raise Exception('Incorrect token.')
             #TODO: date time check should be added for one day
             user.set_password(new_password)
+            #TODO: token should be deleted from user object
+            #TODO: user should be logged in
             return redirect('/login')    
         except Exception:
             return redirect('/anasayfa')
