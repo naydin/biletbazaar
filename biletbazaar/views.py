@@ -237,7 +237,8 @@ def forgot_password_set(request):
             #TODO: user should be logged in
             return redirect('/login')    
         except Exception:
-            return redirect('/anasayfa')
+            #TODO: should be redirected to main page
+            return HttpResponse('%s (%s)' % (e.message, type(e)))
         
 
     return render(request,'forgot_password_set.html')
