@@ -237,7 +237,11 @@ def biletal4(request):
         count = Ticket.objects.get(id = ticket_id).ticketCount
         
         after = count - int(ticket_count)
-        Ticket.objects.filter(id = ticket_id).update(ticketCount=after)
+        if after == 0 :
+            Ticket.objects.filter(id = ticket_id).delete()
+        else :
+            Ticket.objects.filter(id = ticket_id).update(ticketCount=after)
+            
         user = request.user
 
         

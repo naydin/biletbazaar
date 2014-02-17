@@ -524,6 +524,7 @@ def event(request):
 	            
 		return render(request,'events/event.html',
 	            {'event_place':event_place,
+	            'event_id' :event_id,
 	            'event_date':event_date,
 	            'event_city':event_city,
 	            'event_group_name':event_group_name,

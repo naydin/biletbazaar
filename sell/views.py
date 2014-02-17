@@ -108,41 +108,44 @@ def bilet_detaylari(request):
 
             try:
                 seat_number_from = request.POST['seat_number_from']
-                intvar = int(seat_number_from)
-            except Exception as e:
-                seat_number_from_error = u'Lütfen geçerli bir koltuk no girin.'
-                
-            try:
                 seat_number_to = request.POST['seat_number_to']
-                intvar = int(seat_number_to)
+                intvar1 = int(seat_number_from)
+                intvar2 = int(seat_number_to)
+                if ((intvar2 - intvar1)+1) != int(ticket_count) :
+                    raise Exception('')
             except Exception as e:
-                seat_number_to_error = u'Lütfen geçerli bir koltuk no girin.'
+                seat_number_error = u'Kontrol ediniz.'
+                
+           
             #TODO:seat_number limit validation
 
-            if ticket_count_error or seat_category_error or seat_row_error or seat_number_from_error or seat_number_to_error:
-                ticket_count_list = valid_ticket_count_range
-                seat_category_list = event.getSeatCategories()
-                seat_row_list = event.getSeatRows()
-                return render(request,'sell/bilet_detaylari.html',
-                {'ticket_count_list':ticket_count_list,
-                'seat_category_list':seat_category_list,
-                'seat_row_list':seat_row_list,
-                'ticket_count_error':ticket_count_error,
-                'seat_category_error':seat_category_error,
-                'seat_row_error':seat_row_error,
-                'seat_number_from_error':seat_number_from_error,
-                'seat_number_to_error':seat_number_to_error
-                })
-
-            request.session['sell_ticket_count'] = ticket_count
-            request.session['sell_seat_category'] = seat_category
-            request.session['sell_seat_row'] = seat_row
-            request.session['sell_seat_number_from'] = seat_number_from
-            request.session['sell_seat_number_to'] = seat_number_to
+            if ticket_count_error =='' and seat_category_error == '' and seat_row_error == '' and seat_number_error == '' :
+                request.session['sell_ticket_count'] = ticket_count
+                request.session['sell_seat_category'] = seat_category
+                request.session['sell_seat_row'] = seat_row
+                request.session['sell_seat_number_from'] = seat_number_from
+                request.session['sell_seat_number_to'] = seat_number_to
             
-            return redirect('/fiyatlandir')
+                return redirect('/fiyatlandir')
         except Exception as e:
-            return redirect('/anasayfa')
+            return redirect('/anasayfa')      
+                
+        ticket_count_list = valid_ticket_count_range
+        seat_category_list = event.getSeatCategories()
+        seat_row_list = event.getSeatRows()
+        return render(request,'sell/bilet_detaylari.html',
+        {'ticket_count_list':ticket_count_list,
+        'seat_category_list':seat_category_list,
+        'seat_row_list':seat_row_list,
+        'ticket_count_error':ticket_count_error,
+        'seat_category_error':seat_category_error,
+        'seat_row_error':seat_row_error,
+        'seat_number_error':seat_number_error,
+      
+        })
+
+            
+        
         
     else:
         if request.GET['event_id']:
