@@ -5,7 +5,7 @@
 
 {% block css_js_links %} 
 	<link href="{% static 'css/search_results.css' %}" rel="stylesheet" type="text/css" />
-
+	 
 {% endblock %}
     
 
@@ -16,16 +16,7 @@
     $(".scrollable").scrollable({ vertical: true, mousewheel: true });
 });
 
-	  $(function() {
-	    var availableTags = [
-			{% for event_group in event_group_list %}
-				"{{event_group.name}}",
-			{% endfor %}
-	    ];
-	    $( "#searchh" ).autocomplete({
-	      source: availableTags
-	    });
-	  });
+
 
 {% endblock %}
     
