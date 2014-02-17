@@ -39,7 +39,6 @@ def bilet_ilan(request):
             search_event_group_name = request.POST['search_event_group_name']
             event_list = Event.objects.filter(eventGroup__name__icontains=search_event_group_name,city__name__icontains=selected_city_name)
         elif 'gonder' in request.POST:
-            print "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
             isim = request.POST['isim']
             mekan = request.POST['mekan']
             zaman = request.POST['zaman']
