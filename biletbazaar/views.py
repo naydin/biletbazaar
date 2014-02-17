@@ -212,6 +212,9 @@ def login_user(request):
         'signup_password_again_error':signup_password_again_error,
         'signup_gsm_error':signup_gsm_error
     })
+    
+def forgot_password_set(request):
+    return render(request,'forgot_password_set.html')
 
 #reset all data in bilet bosta database
 def reset_data(request):

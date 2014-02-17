@@ -56,6 +56,7 @@ urlpatterns = patterns('',
     url(r'^login/$',login_user),
     url(r'^logout/$',logout_view),
     url(r'^fb_login/$',fb_login),
+    url(r'^forgot_password_set/$',forgot_password_set),
     
     url('^bize_ulasin/$',bize_ulasin),
     url('^hesabim/$',hesabim),
