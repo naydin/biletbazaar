@@ -68,7 +68,7 @@
     			<form id="myform" name="bilet_detaylari" method="post" >
          			<label class="name" style="font-size:20px">elinizdeki bilet sayısı</label> <label id="biletsayisi_uyari" style="color:#bdd531; margin-left:10px;">{{ticket_count_error}}</label>
             		<br /><br />
-   					<select name="ticket_count" id="bilet_sayisi" class="styled-select" title="İlanını vermek istediğiniz bilet sayısını giriniz. Bundan sonra yapacağınız işlemleri elinizdeki biletlerden birisi için devam edeceksiniz.">
+   					<select name="ticket_count" id="bilet_sayisi" class="styled-select" >
       					<option selected="selected" disabled="disabled">bilet sayısını giriniz</option>
 						{% for ticket_count in ticket_count_list %}
 						<option> {{ticket_count}}</option>
@@ -77,7 +77,7 @@
                     <br /><br />
                     <label class="name" style="font-size:20px">kategori no</label><label id="biletsayisi_uyari" style="color:#bdd531; margin-left:10px;">{{seat_category_error}}</label> 
             		<br /><br />
-   					<select name="seat_category" class="styled-select" title="Biletinizin yer aldığı kategoriyi seçiniz. Birden fazla bilet ilanı veriyorsanız hepsinin aynı kategoride yer aldığına emin olunuz.">
+   					<select name="seat_category" class="styled-select" >
       					<option selected="selected" disabled="disabled">bilet kategorisini seçiniz</option>
 						{% for seat_category in seat_category_list %}
 						<option>{{seat_category}}</option>
@@ -86,7 +86,7 @@
                     <br /><br />
                     <label class="name" style="font-size:20px">sıra no</label> <label id="biletsayisi_uyari" style="color:#bdd531; margin-left:10px;">{{seat_row_error}}</label>
             		<br /><br />
-   					<select name="seat_row" class="styled-select" title="Biletinizin bulunduğu sırayı seçiniz.">
+   					<select name="seat_row" class="styled-select" >
       					<option selected="selected" disabled="disabled">bilet sıra numarası</option>
 						{% for seat_row in seat_row_list %}
 						<option>{{seat_row}}</option>
@@ -96,9 +96,9 @@
                     <label class="name" style="font-size:20px;float:left">koltuk no'dan</label> <label id="koltuk_uyari" style="color:#bdd531; margin-left:10px;">{{seat_number_error}}</label>
    					<label class="name" style="font-size:20px; float:right">koltuk no'ya</label> 
    					<br/><br/>
-   					<input style="width:100px; float:left" name="seat_number_from" id="koltuk_no" class="tb" type="text" title="Biletinizin üstünde yazan koltuk numarasını belirtiniz. Birden fazla bilet ilanı veriyorsanız başlangıç koltuk numarasını yazınız."/>
+   					<input style="width:100px; float:left" name="seat_number_from" id="koltuk_no" class="tb" type="text" />
 					<span style="margin-left:53px">____</span>
-   					<input style="width:100px; float:right" name="seat_number_to" id="koltuk_no" class="tb" type="text" title="Biletinizin üstünde yazan koltuk numarasını belirtiniz. Birden fazla bilet ilanı veriyorsanız başlangıç koltuk numarasını yazınız."/>
+   					<input style="width:100px; float:right" name="seat_number_to" id="koltuk_no" class="tb" type="text" />
                    
                     
                     

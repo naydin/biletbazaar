@@ -137,13 +137,13 @@
                 <label class="name" style="font-size:20px;">Ödeme Yapılacak Hesap Bilgileri</label>
                 <br /><br />
          			<label  class="name" style="font-size:20px">İsim</label><label id="isim_lb" style="color:#bdd531; margin-left:10px;">{{name_error}}</label> 
-   					<input name='sell_name' id="isim_tb" class="tb" type="text" title="Ödemenin yapılacağı hesap sahibinin ismini giriniz." />
+   					<input name='sell_name' id="isim_tb" class="tb" type="text"  />
                     <div style="height:8px;"></div>
                     <label class="name" style="font-size:20px" >Soyisim</label><label id="soyisim_lb" style="color:#bdd531; margin-left:10px;">{{surname_error}}</label>
-   					<input name='sell_surname' id="soyisim_tb" class="tb" type="text" title="Ödemenin yapılacağı hesap sahibinin soyismini giriniz." />
+   					<input name='sell_surname' id="soyisim_tb" class="tb" type="text"  />
                     <div style="height:8px;"></div>
                     <label class="name" style="font-size:20px" >IBAN No</label><label id="iban_lb" style="color:#bdd531; margin-left:10px;">{{iban_error}}</label>
-   					<input name='sell_iban' id="iban_tb" class="tb" type="text" title="Ödemenin yapılacağı hesabın IBAN numarasını giriniz."/>
+   					<input name='sell_iban' id="iban_tb" class="tb" type="text" />
                
                     <div style="height:8px;"></div>
 					{% csrf_token %}
