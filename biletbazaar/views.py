@@ -216,23 +216,24 @@ def login_user(request):
     
 def forgot_password_set(request):
     if request.method == "POST":
-        new_password = request.POST['password']
+        try:
+            new_password = request.POST['password']
         
-        token = request.GET['token']
-        token = decode_util.base64(token)
-        elements = token.split('||')
-        if len(elements) != 3:
-            raise Exception('Incorrect number of elements in the token.')
-        unique_id = elements[0]
-        datetime_token = elements[1]
-        username = elements[2]
-        user = User.objects.get(username=username)
+            token = request.GET['token']
+            token = decode_util.base64(token)
+            elements = token.split('||')
+            if len(elements) != 3:
+                raise Exception('Incorrect number of elements in the token.')
+            unique_id = elements[0]
+            datetime_token = elements[1]
+            username = elements[2]
+            user = User.objects.get(username=username)
         
-        if user.token != unique_id:
-            raise Exception('Incorrect token.')
-        #TODO: date time check should be added for one day
-        user.set_password(new_password)
-        return redirect('/login')    
+            if user.token != unique_id:
+                raise Exception('Incorrect token.')
+            #TODO: date time check should be added for one day
+            user.set_password(new_password)
+            return redirect('/login')    
         except Exception:
             return redirect('/anasayfa')
         
