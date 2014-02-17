@@ -76,6 +76,7 @@ def fb_login(request):
         
     return redirect("/anasayfa")
 
+@login_required(login_url='/login')
 def logout_view(request):
     auth.logout(request)
     # Redirect to a success page.
@@ -192,8 +193,9 @@ def login_user(request):
 
                 seperator = '||'
                 token = unique_id + seperator + datetimenow + seperator + user.username
+                token = encode_util.base64(token)
                 # subject,to,template,dict
-                send_maill('Şifre Yenileme',user.username,'forgot_password_mail.html',{'url':'www.biletbosta.com'})
+                send_maill('Şifre Yenileme',user.username,'forgot_password_mail.html',{'url':'www.biletbosta.com/forgot_password_set/?token=%s' % token})
                 user.password_token = unique_id
                 user.save()
             except Exception as e:
@@ -214,9 +216,38 @@ def login_user(request):
     })
     
 def forgot_password_set(request):
+    if request.method == "POST":
+        try:
+            new_password = request.POST['password']
+        
+            token = request.GET['token']
+            token = decode_util.base64(token)
+            elements = token.split('||')
+            if len(elements) != 3:
+                raise Exception('Incorrect number of elements in the token.')
+            unique_id = elements[0]
+            datetime_token = elements[1]
+            username = elements[2]
+            user = User.objects.get(username=username)
+        
+            if user.password_token != unique_id:
+                raise Exception('Incorrect token.')
+            #TODO: date time check should be added for one day
+            user.set_password(new_password)
+            user.password_token = None
+            user.save()
+            user = authenticate(username=user.username)
+            login(request, user)
+                    
+            return redirect('/anasayfa')    
+        except Exception as e:
+            return redirect('/anasayfa')
+        
+
     return render(request,'forgot_password_set.html')
 
 #reset all data in bilet bosta database
+@login_required(login_url='/login')
 def reset_data(request):
     try:
         reset_static_data()
@@ -547,7 +578,7 @@ def event(request):
 		print '%s (%s)' % (e.message, type(e))
 		return redirect('/anasayfa')
 	   	
-   
+@login_required(login_url='/login')   
 def hesabim(request):
 	return render(request,'hesabim.html')
        

@@ -82,8 +82,7 @@ def bilet_detaylari(request):
             ticket_count_error = ''
             seat_category_error = ''
             seat_row_error = ''
-            seat_number_from_error = ''
-            seat_number_to_error = ''
+            seat_number_error = ''
             
             try:
                 ticket_count = request.POST['ticket_count']
@@ -128,6 +127,7 @@ def bilet_detaylari(request):
             
                 return redirect('/fiyatlandir')
         except Exception as e:
+            print '%s (%s)' % (e.message, type(e))
             return redirect('/anasayfa')      
                 
         ticket_count_list = valid_ticket_count_range
@@ -223,6 +223,7 @@ def fiyatlandir(request):
         
         
 #sell step 4 : teslimat page    
+@login_required(login_url='/login')
 def teslimat(request):
     ship_name_error = ''
     ship_surname_error = ''
