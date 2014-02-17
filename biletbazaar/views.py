@@ -233,7 +233,7 @@ def forgot_password_set(request):
                 raise Exception('Incorrect token.')
             #TODO: date time check should be added for one day
             user.set_password(new_password)
-            user.password_token = null
+            user.password_token = None
             user.save()
             user = authenticate(username=user.username)
             login(request, user)
