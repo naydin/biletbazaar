@@ -233,13 +233,14 @@ def forgot_password_set(request):
                 raise Exception('Incorrect token.')
             #TODO: date time check should be added for one day
             user.set_password(new_password)
+            user.password_token = null
             user.save()
-            #TODO: token should be deleted from user object
-            #TODO: user should be logged in
-            return redirect('/login')    
+            user = authenticate(username=user.username)
+            login(request, user)
+                    
+            return redirect('/anasayfa')    
         except Exception as e:
-            #TODO: should be redirected to main page
-            return HttpResponse('%s (%s)' % (e.message, type(e)))
+            return redirect('/anasayfa')
         
 
     return render(request,'forgot_password_set.html')
