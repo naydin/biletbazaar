@@ -192,8 +192,9 @@ def login_user(request):
 
                 seperator = '||'
                 token = unique_id + seperator + datetimenow + seperator + user.username
+                token = encode_util.base64(token)
                 # subject,to,template,dict
-                send_maill('Şifre Yenileme',user.username,'forgot_password_mail.html',{'url':'www.biletbosta.com'})
+                send_maill('Şifre Yenileme',user.username,'forgot_password_mail.html',{'url':'www.biletbosta.com/forgot_password_set/?=%s' % token})
                 user.password_token = unique_id
                 user.save()
             except Exception as e:
@@ -214,6 +215,28 @@ def login_user(request):
     })
     
 def forgot_password_set(request):
+    if request.method == "POST":
+        new_password = request.POST['password']
+        
+        token = request.GET['token']
+        token = decode_util.base64(token)
+        elements = token.split('||')
+        if len(elements) != 3:
+            raise Exception('Incorrect number of elements in the token.')
+        unique_id = elements[0]
+        datetime_token = elements[1]
+        username = elements[2]
+        user = User.objects.get(username=username)
+        
+        if user.token != unique_id:
+            raise Exception('Incorrect token.')
+        #TODO: date time check should be added for one day
+        user.set_password(new_password)
+        return redirect('/login')    
+        except Exception:
+            return redirect('/anasayfa')
+        
+
     return render(request,'forgot_password_set.html')
 
 #reset all data in bilet bosta database
