@@ -76,6 +76,7 @@ def fb_login(request):
         
     return redirect("/anasayfa")
 
+@login_required(login_url='/login')
 def logout_view(request):
     auth.logout(request)
     # Redirect to a success page.
@@ -246,6 +247,7 @@ def forgot_password_set(request):
     return render(request,'forgot_password_set.html')
 
 #reset all data in bilet bosta database
+@login_required(login_url='/login')
 def reset_data(request):
     try:
         reset_static_data()
@@ -576,7 +578,7 @@ def event(request):
 		print '%s (%s)' % (e.message, type(e))
 		return redirect('/anasayfa')
 	   	
-   
+@login_required(login_url='/login')   
 def hesabim(request):
 	return render(request,'hesabim.html')
        

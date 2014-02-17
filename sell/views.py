@@ -223,6 +223,7 @@ def fiyatlandir(request):
         
         
 #sell step 4 : teslimat page    
+@login_required(login_url='/login')
 def teslimat(request):
     ship_name_error = ''
     ship_surname_error = ''

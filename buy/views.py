@@ -78,7 +78,7 @@ def biletal1(request):
             # print '%s (%s)' % (e.message, type(e))
             return redirect('/anasayfa')    
     
-    
+@login_required(login_url='/login')    
 def biletal2(request):
     ship_name_error = ''
     ship_surname_error = ''
@@ -133,7 +133,8 @@ def biletal2(request):
         'ship_address_error':ship_address_error,
         'ship_address2_error':ship_address2_error
     })
-    
+
+@login_required(login_url='/login')    
 def biletal3(request):
     card_type_error = ''
     name_error = ''
@@ -214,7 +215,8 @@ def biletal3(request):
         'card_expiration_year_error':card_expiration_year_error,
         'card_cvc2_error':card_cvc2_error
     })
-    
+
+@login_required(login_url='/login')    
 def biletal4(request):
     ticket_id = request.session['buy_ticket_id']
     ticket = Ticket.objects.get(id = ticket_id)
