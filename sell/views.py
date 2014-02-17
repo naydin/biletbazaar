@@ -212,7 +212,7 @@ def fiyatlandir(request):
         
     return render(request,'sell/fiyatlandir.html',
     {'event':event,
-    'ticket_count':ticket_count,
+    'ticket_count':int(ticket_count),
     'seat_category':seat_category,
     'seat_row':seat_row,
     'seat_number_from':seat_number_from,
@@ -377,7 +377,7 @@ def onayla(request):
 
     return render(request,'sell/onayla.html',{
         'event':event,
-        'ticket_count':ticket_count,
+        'ticket_count':int(ticket_count),
         'seat_category':seat_category,
         'seat_row':seat_row,
         'seat_number_from':seat_number_from,

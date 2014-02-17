@@ -125,7 +125,12 @@
             	<tr>
                 	<td width="150" height="80" style="text-align:center">{{event.date|date:"M"}}<br />{{event.date.day}}<br />{{event.date|date:"l"}}</td>
                 	<td width="150" height="80" style="text-align:center">{{event.eventGroup.name}}<br />{{event.place}}<br />{{event.city.name}}</td>
-                    <td width="150" height="80" style="text-align:center">Bilet Sayısı: {{ticket_count}}<br />Kategori No: {{seat_category}}<br />Sıra No: {{seat_row}}<br />Koltuk No: {{seat_number_from}} - {{seat_number_to}}</td>
+                	{% if ticket_count == 1 %}
+                		<td width="150" height="80" style="text-align:center">Bilet Sayısı: {{ticket_count}}<br />Kategori No: {{seat_category}}<br />Sıra No: {{seat_row}}<br />Koltuk No: {{seat_number_from}} </td>
+                	{% else %}
+                		<td width="150" height="80" style="text-align:center">Bilet Sayısı: {{ticket_count}}<br />Kategori No: {{seat_category}}<br />Sıra No: {{seat_row}}<br />Koltuk No: {{seat_number_from}} - {{seat_number_to}}</td>
+                	{% endif %}
+                    
                     <td width="150" height="80" style="text-align:center">İlan Fiyatı: {{ticket_sell_value}} TL</td>
                 </tr>
             </table>
