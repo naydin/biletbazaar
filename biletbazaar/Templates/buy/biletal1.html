@@ -76,8 +76,11 @@
               
               <span id="etkinlik_saat" style="margin-left:20px;">Sıra No:</span><label style="float:right; padding-right:20px;" id="kategori_no">{{ticket.seatRow}}</label>               
               <hr style=" margin-left:20px; margin-right:20px; border-color:#3babc7" />
-              
-              <span id="etkinlik_saat" style="margin-left:20px;">Koltuk No:</span><label style="float:right; padding-right:20px;" id="kategori_no"> {{ticket.seatNumberFrom}} -- {{ticket.seatNumberTo}}  </label>               
+              {% if ticket.seatNumberFrom == ticket.seatNumberTo %}
+              	<span id="etkinlik_saat" style="margin-left:20px;">Koltuk No:</span><label style="float:right; padding-right:20px;" id="kategori_no"> {{ticket.seatNumberFrom}} </label>
+              {% else %}
+              	<span id="etkinlik_saat" style="margin-left:20px;">Koltuk No:</span><label style="float:right; padding-right:20px;" id="kategori_no"> {{ticket.seatNumberFrom}} - {{ticket.seatNumberTo}}  </label>               
+              {% endif %}
               
               <hr style=" margin-left:20px; margin-right:20px; border-color:#3babc7" />
 			  <form method="POST" >              

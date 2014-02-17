@@ -18,7 +18,12 @@
     </div>
     <div class="eventgroup_info">
     	<div class="eventgroup_name"><span style="color:#38a1bc; font-weight:bold;">{{event_group_name}}</span><a style="margin-left:40px;" href="#"><img src="{% static 'resimler/facebook.png' %}" /></a>&nbsp;<a href="#"><img src="{% static 'resimler/twitter.png' %}" /></a>			&nbsp;<a href="#"><img src="{% static 'resimler/googleplus.png' %}" /></a></div>
-        <div class="eventgroup_yazi"><span style="font-size:14px">{{event_place}}</span><span style="font-size:14px"> {{event_city}}</span><br /><span style="font-size:14px">{{event_date}}</span></div>       
+        <div class="eventgroup_yazi">
+        	<span style="font-size:14px">{{event_place}}</span>
+        	<span style="font-size:14px"> {{event_city}}</span>
+        	<a href="/bilet_detaylari/?event_id={{event_id}}" class="button_sat" style="color:#FFF; float:right; margin-right:10px" >bilet sat</a>
+        	<br /><span style="font-size:14px">{{event_date}}</span>
+        </div>       
      
         <div class="sehir_sirala">
         	<form id="myform" name="bilet_detaylari" method="POST">

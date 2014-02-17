@@ -77,7 +77,16 @@
                 
                 <label id="etkinlik_saat" style="margin-left:20px;">Kategori : {{ticket.seatCategory}}</label><br /><br />
                 <label id="etkinlik_saat" style="margin-left:20px;">Sıra No : {{ticket.seatRow}}</label><br /><br />
-                <label id="etkinlik_saat" style="margin-left:20px;">Koltuk No :{{ticket.seatNumberFrom}} -- {{ticket_final_seat}}</label><br /><br />
+                
+                
+                {% if ticket.seatNumberFrom == ticket.seatNumberTo %}
+              		<label id="etkinlik_saat" style="margin-left:20px;">Koltuk No :{{ticket.seatNumberFrom}}</label><br /><br />
+              	{% else %}
+              		<label id="etkinlik_saat" style="margin-left:20px;">Koltuk No :{{ticket.seatNumberFrom}} - {{ticket_final_seat}}</label><br /><br />               
+              	{% endif %}
+                
+                
+                
                 <label id="etkinlik_saat" style="margin-left:20px;">Bilet Sayısı : {{ticket_count}}</label><br />
 
 			</div>
