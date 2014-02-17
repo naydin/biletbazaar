@@ -236,7 +236,7 @@ def forgot_password_set(request):
             #TODO: token should be deleted from user object
             #TODO: user should be logged in
             return redirect('/login')    
-        except Exception:
+        except Exception as e:
             #TODO: should be redirected to main page
             return HttpResponse('%s (%s)' % (e.message, type(e)))
         
