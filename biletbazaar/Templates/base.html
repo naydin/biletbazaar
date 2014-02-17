@@ -10,11 +10,29 @@
     <link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css" />
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	
 	{% block css_js_links %}{% endblock %}
 	
 	<script>
 	
 	
+	
+	$(function() {
+	    var availableTags = [
+			{% for event_group in event_group_alllist %}
+				"{{event_group.name}}",
+			{% endfor %}
+	    ];
+	    $( "#search" ).autocomplete({
+	      source: availableTags
+	    });
+	  });
+	  
 	
 	
 	
@@ -155,17 +173,7 @@
 		
 		{% block js_functions %}{% endblock %}
 		
-		$(function() {
-	    var availableTags = [
-			{% for event_group in event_group_alllist %}
-				"{{event_group.name}}",
-			{% endfor %}
-	    ];
-	    $( "#search" ).autocomplete({
-	      source: availableTags
-	    });
-	  });
-	  
+		
 	  
 
 	
