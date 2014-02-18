@@ -108,55 +108,56 @@ function show(){
                 
                 <form id="myform" name="bilet_detaylari" method="post">
                     <span style="font-size:18px; color:#000;" >ad</span>
-                    <label style="float:right; padding-right:10px;" id="kategori_no">Osman</label>              	
+                    <label style="float:right; padding-right:10px;" id="kategori_no">{{user.first_name}}</label>              	
                     <br />
                     <hr style=" margin-left:10px; margin-right:10px; border-color:#3babc7" />
                   
                     <br />
              
                     <span style="font-size:18px; color:#000;" >soyad</span>
-                    <label style="float:right; padding-right:10px;" id="kategori_no">Argin</label>
+                    <label style="float:right; padding-right:10px;" id="kategori_no">{{user.last_name}}</label>
                     <br />
                     <hr style=" margin-left:10px; margin-right:10px; border-color:#3babc7" />
                     
                     <br />
                   
                     <span style="font-size:18px; color:#000;" >e-posta</span>
-                    <label style="float:right; padding-right:10px;" id="eposta_lb">gorsevargin@gmail.com</label>
-                    <input id="eposta_tb" class="tb" type="text" style="display:none;" />
+                    <label style="float:right; padding-right:10px;" id="eposta_lb">{{user.username}}</label>
+                    <input name="username" id="eposta_tb" class="tb" type="text" style="display:none;" />
                     <br />
                     <hr style=" margin-left:10px; margin-right:10px; border-color:#3babc7" />
                     
                     <br />
                     <span style="font-size:18px; color:#000;" >şifre</span>
-                    <label style="float:right; padding-right:10px;" id="sifre_lb">123456</label>
+                    <label style="float:right; padding-right:10px;" id="sifre_lb"></label>
                     <input id="sifre_tb" class="tb" type="text" style="display:none;" />
                     <br />
                     <hr style=" margin-left:10px; margin-right:10px; border-color:#3babc7" />
                     
                     <br />
                     <span style="font-size:18px; color:#000;" >cep telefonu</span>
-                    <label style="float:right; padding-right:10px;" id="ceptelefonu_lb">05066216966</label>
-                    <input id="ceptelefonu_tb" class="tb" type="text" style="display:none;" />
+                    <label style="float:right; padding-right:10px;" id="ceptelefonu_lb">{{user.gsm|default_if_none:""}}</label>
+                    <input name="gsm" id="ceptelefonu_tb" class="tb" type="text" style="display:none;" />
                     <br />
                     <hr style=" margin-left:10px; margin-right:10px; border-color:#3babc7" />
                     
                      <br />
                     <span style="font-size:18px; color:#000;" >adres</span>
-                    <textarea disabled="disabled" id="adres_lb" rows="3" cols"20"  style="float:right; margin-right:5px;">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</textarea>
+                    <textarea disabled="disabled" id="adres_lb" rows="3" cols"20"  style="float:right; margin-right:5px;">{{user.address}}</textarea>
                     <textarea id="adres_tb" rows="3" cols="20" style="float:right; margin-right:5px; display:none;">  </textarea>
                     <br /><br /><br />
                     <hr style=" margin-left:10px; margin-right:10px; border-color:#3babc7" />
     
                     <br />
                     <span style="font-size:18px; color:#000;" >hesap no</span>
-                    <label style="float:right; padding-right:10px;" id="hesapno_lb">TR 1234123412341234</label>
+                    <label style="float:right; padding-right:10px;" id="hesapno_lb"></label>
                     <input id="hesapno_tb" class="tb" type="text" style="display:none;" />
                     <br />
                     <hr style=" margin-left:10px; margin-right:10px; border-color:#3babc7" />
                     
                     <br />
                     <div id="load" class="loading" style="display:none;">
+					{% csrf_token %}
                     <button id="kaydet" type="submit" class="button_example" style=" display:none; float:right; margin-right:10px; margin-left:150px; margin-bottom:20px;">kaydet</button>
                     </div>
               </form>
@@ -169,116 +170,36 @@ function show(){
                 </div>
                 
                 <div class="biletler">
-                    <div class="bilet" style="margin-top:0">
+					{% for ticket in buy_tickets %}
+                    <div class="bilet" style="margin-top:{{forloop.counter}}0">
+
                         <div class="event_pic">
                         	<img src="tarkan.png" width="100" height="120"/>
                             <label style="margin-top:10; background-color:#318da5; font-size:18px;">Teslim Alındı</label>
                         </div>
                         <div class="event_info">
-                        	<label style="margin-left:10px;">TARKAN</label>
+                        	<label style="margin-left:10px;">ticket.event.eventGroup.name</label>
                             <br />
-                            <label style="margin-left:10px;">Jolly Joker</label>
+                            <label style="margin-left:10px;">ticket.event.place</label>
                             <br />
-                            <label style="margin-left:10px;">İstanbul</label>
+                            <label style="margin-left:10px;">ticket.city.name</label>
                             <br />
-                            <label style="margin-left:10px;">16 Ocak 2014</label>
+                            <label style="margin-left:10px;">{{ticket.event.date.day}} {{ticket.event.date|date:"M"}} {{ticket.event.date.year}}</label>
                             <br />
-                            <label style="margin-left:10px;">22:00</label>
+                            <label style="margin-left:10px;">{{ticket.event.date|date:"h"}}</label>
                             <br />
-                            <label style="margin-left:10px;">Kategori 5</label>
+                            <label style="margin-left:10px;">Kategori {{ticket.seatCategory}}</label>
                             <br />
-                            <label style="margin-left:10px;">Koltuk 12</label>
-                            <br />
-                            <label style="margin-left:10px;">129 TL</label>
-                           
-                        
-                        </div>
-                        
-                   		<hr style="border-color:#3babc7" />
-                    </div>
-                    <div class="bilet">
-                        <div class="event_pic">
-                        	<img src="tarkan.png" width="100" height="120"/>
-                            <label style="margin-top:10; background-color:#318da5; font-size:18px;">Teslim Alındı</label>
-                        </div>
-                        <div class="event_info">
-                        	<label style="margin-left:10px;">TARKAN</label>
-                            <br />
-                            <label style="margin-left:10px;">Jolly Joker</label>
-                            <br />
-                            <label style="margin-left:10px;">İstanbul</label>
-                            <br />
-                            <label style="margin-left:10px;">16 Ocak 2014</label>
-                            <br />
-                            <label style="margin-left:10px;">22:00</label>
-                            <br />
-                            <label style="margin-left:10px;">Kategori 5</label>
-                            <br />
-                            <label style="margin-left:10px;">Koltuk 12</label>
+                            <label style="margin-left:10px;">Koltuk {{ticket.seatRow}}</label>
                             <br />
                             <label style="margin-left:10px;">129 TL</label>
                            
                         
                         </div>
+						
+					</div>
+					{% endfor %}
                         
-                   		<hr style="border-color:#3babc7" />
-                    </div>
-                   
-                   <div class="bilet">
-                        <div class="event_pic">
-                        	<img src="tarkan.png" width="100" height="120"/>
-                            <label style="margin-top:10; background-color:#318da5; font-size:18px;">Teslim Alındı</label>
-                        </div>
-                        <div class="event_info">
-                        	<label style="margin-left:10px;">TARKAN</label>
-                            <br />
-                            <label style="margin-left:10px;">Jolly Joker</label>
-                            <br />
-                            <label style="margin-left:10px;">İstanbul</label>
-                            <br />
-                            <label style="margin-left:10px;">16 Ocak 2014</label>
-                            <br />
-                            <label style="margin-left:10px;">22:00</label>
-                            <br />
-                            <label style="margin-left:10px;">Kategori 5</label>
-                            <br />
-                            <label style="margin-left:10px;">Koltuk 12</label>
-                            <br />
-                            <label style="margin-left:10px;">129 TL</label>
-                           
-                        
-                        </div>
-                        
-                   		<hr style="border-color:#3babc7" />
-                    </div>
-                   
-                    <div class="bilet">
-                        <div class="event_pic">
-                        	<img src="tarkan.png" width="100" height="120"/>
-                            <label style="margin-top:10; background-color:#318da5; font-size:18px;">Teslim Alındı</label>
-                        </div>
-                        <div class="event_info">
-                        	<label style="margin-left:10px;">TARKAN</label>
-                            <br />
-                            <label style="margin-left:10px;">Jolly Joker</label>
-                            <br />
-                            <label style="margin-left:10px;">İstanbul</label>
-                            <br />
-                            <label style="margin-left:10px;">16 Ocak 2014</label>
-                            <br />
-                            <label style="margin-left:10px;">22:00</label>
-                            <br />
-                            <label style="margin-left:10px;">Kategori 5</label>
-                            <br />
-                            <label style="margin-left:10px;">Koltuk 12</label>
-                            <br />
-                            <label style="margin-left:10px;">129 TL</label>
-                           
-                        
-                        </div>
-                        
-                   		<hr style="border-color:#3babc7" />
-                    </div>
                 </div>
                 
        	  	</div>
@@ -286,28 +207,27 @@ function show(){
             	<div class="yazi">
                 	<span>satılan biletler</span>
                 </div>
-                
-                
+                {% for ticket in sell_tickets %}
                 <div class="biletler">
-                    <div class="bilet" style="margin-top:0">
+                    <div class="bilet" style="margin-top:{{forloop.counter}}0">
                         <div class="event_pic">
-                        	<img src="tarkan.png" width="100" height="120"/>
+                        	<img src="{{ticket.event.eventGroup.photoUrl}}" width="100" height="120"/>
                             <label style="margin-top:10; background-color:#318da5; font-size:18px;">Teslim Alındı</label>
                         </div>
                         <div class="event_info">
-                        	<label style="margin-left:10px;">TARKAN</label>
+                        	<label style="margin-left:10px;">{{ticket.event.eventGroup.name}}</label>
                             <br />
-                            <label style="margin-left:10px;">Jolly Joker</label>
+                            <label style="margin-left:10px;">{{ticket.event.place}}</label>
                             <br />
-                            <label style="margin-left:10px;">İstanbul</label>
+                            <label style="margin-left:10px;">{{ticket.city.name}}</label>
                             <br />
-                            <label style="margin-left:10px;">16 Ocak 2014</label>
+                            <label style="margin-left:10px;">{{ticket.event.date.day}} {{ticket.event.date|date:"M"}} {{ticket.event.date.year}}</label>
                             <br />
-                            <label style="margin-left:10px;">22:00</label>
+                            <label style="margin-left:10px;">{{ticket.event.date|date:"h"}}</label>
                             <br />
-                            <label style="margin-left:10px;">Kategori 5</label>
+                            <label style="margin-left:10px;">Kategori {{ticket.seatCategory}}</label>
                             <br />
-                            <label style="margin-left:10px;">Koltuk 12</label>
+                            <label style="margin-left:10px;">Koltuk {{ticket.seatRow}}</label>
                             <br />
                             <label style="margin-left:10px;">129 TL</label>
                            
@@ -316,33 +236,8 @@ function show(){
                         
                    		<hr style="border-color:#3babc7" />
                     </div>
-                    <div class="bilet">
-                        <div class="event_pic">
-                        	<img src="tarkan.png" width="100" height="120"/>
-                            <label style="margin-top:10; background-color:#318da5; font-size:18px;">Teslim Alındı</label>
-                        </div>
-                        <div class="event_info">
-                        	<label style="margin-left:10px;">TARKAN</label>
-                            <br />
-                            <label style="margin-left:10px;">Jolly Joker</label>
-                            <br />
-                            <label style="margin-left:10px;">İstanbul</label>
-                            <br />
-                            <label style="margin-left:10px;">16 Ocak 2014</label>
-                            <br />
-                            <label style="margin-left:10px;">22:00</label>
-                            <br />
-                            <label style="margin-left:10px;">Kategori 5</label>
-                            <br />
-                            <label style="margin-left:10px;">Koltuk 12</label>
-                            <br />
-                            <label style="margin-left:10px;">129 TL</label>
-                           
-                        
-                        </div>
-                        
-                   		<hr style="border-color:#3babc7" />
-                    </div>
+				{% endfor %}
+                
                    
                    
                 </div>
