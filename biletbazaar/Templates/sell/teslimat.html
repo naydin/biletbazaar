@@ -101,14 +101,15 @@
                     <label class="name" style="font-size:20px">Semt</label> <label id="semt_lb" style="color:#bdd531; margin-left:10px;">{{ship_neighbourhood_error}}</label>
    					<input name="ship_neighbourhood" id="semt_tb" class="tb" type="text"  />
                     <div style="height:8px;"></div>
-                    <label class="name" style="font-size:20px">Adres 1*</label> <label id="adres_lb" style="color:#bdd531; margin-left:10px;">{{ship_address_error}}</label>
+                    <label class="name" style="font-size:20px">Adres</label> <label id="adres_lb" style="color:#bdd531; margin-left:10px;">{{ship_address_error}}</label>
    					<input name="ship_address" id="adres_tb" class="tb" type="text"  />
                     <div style="height:8px;"></div>
-                    <label class="name" style="font-size:20px">Adres 2</label> <label id="adres_lb" style="color:#bdd531; margin-left:10px;">{{ship_address2_error}}</label>
-   					<input name="ship_address2" class="tb" type="text"  />
+                    
                     <div style="height:8px;"></div>
+                    </br></br>
 					{% csrf_token %}
-                    <button type="submit" style="float:right" class="button_example">Sonraki</button>
+                    <button type="submit" style="float:right" class="button_example">Sonraki  ></button>
+                    <button type="button" class="button_example" style="float:left" onclick="history.go(-1);"><  Önceki</button>
         		</form>
 		</div>
 {% endblock %}      

@@ -229,7 +229,7 @@ def teslimat(request):
     ship_city_error = ''
     ship_neighbourhood_error = ''
     ship_address_error = ''
-    ship_address2_error = ''
+    
 
     if request.method == 'POST':
         try:
@@ -238,7 +238,7 @@ def teslimat(request):
             ship_city = request.POST['ship_city']
             ship_neighbourhood = request.POST['ship_neighbourhood']
             ship_address = request.POST['ship_address']
-            ship_address2 = request.POST['ship_address2']
+           
             
             error_message = u'Lütfen geçerli bir değer giriniz.'
             if not validation_util.is_all_char_with_whitespace(ship_name):
@@ -251,16 +251,15 @@ def teslimat(request):
                 ship_neighbourhood_error = error_message
             if not validation_util.is_address(ship_address):
                 ship_address_error = error_message
-            if ship_address2 != '' and (not validation_util.is_address(ship_address2)):
-                ship_address2_error = error_message
             
-            if ship_name_error == '' and ship_surname_error == '' and ship_city_error == '' and ship_neighbourhood_error == '' and ship_address_error == '' and ship_address2_error == '':
+            
+            if ship_name_error == '' and ship_surname_error == '' and ship_city_error == '' and ship_neighbourhood_error == '' and ship_address_error == '' :
                 request.session['ship_name'] = ship_name
                 request.session['ship_surname'] = ship_surname
                 request.session['ship_city'] = ship_city
                 request.session['ship_neighbourhood'] = ship_neighbourhood
                 request.session['ship_address'] = ship_address
-                request.session['ship_address2'] = ship_address2
+                
                 
                 return redirect('/onayla')
             
@@ -275,7 +274,7 @@ def teslimat(request):
         'ship_city_error':ship_city_error,
         'ship_neighbourhood_error':ship_neighbourhood_error,
         'ship_address_error':ship_address_error,
-        'ship_address2_error':ship_address2_error
+        
     })
 
 
@@ -326,7 +325,7 @@ def onayla(request):
                 ship_city = request.session['ship_city']
                 ship_neighbourhood = request.session['ship_neighbourhood']
                 ship_address = request.session['ship_address']
-                ship_address2 = request.session['ship_address2']
+               
                 
                 shipment_info = ShipmentInfo()
                 shipment_info.name = ship_name
@@ -334,7 +333,7 @@ def onayla(request):
                 shipment_info.city = ship_city
                 shipment_info.neighbourhood = ship_neighbourhood
                 shipment_info.address = ship_address
-                shipment_info.address2 = ship_address2
+                
                 
                 payment_info = PaymentInfo()
                 payment_info.name = sell_name
