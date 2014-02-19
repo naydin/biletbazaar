@@ -601,6 +601,7 @@ def hesabim(request):
     sell_tickets = Ticket.objects.filter(user=user)
     sales = Sale.objects.filter(buyer__id=user.id)
     buy_tickets = []
+    #TODO: sales statuses should be added to the template
     for sale in sales:
         buy_tickets.append(sale.ticket)
     return render(request,'hesabim.html',{
