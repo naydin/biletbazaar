@@ -148,7 +148,7 @@ class Ticket(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User)
     event = models.ForeignKey(Event)
-    price = models.DecimalField(max_digits = 8, decimal_places = 2)
+    price = models.DecimalField(max_digits = 8, decimal_places = 2)#unit price
     faceValue = models.DecimalField(max_digits = 8, decimal_places = 2)
     creationDate = models.DateField()
     ticketCount = models.IntegerField()

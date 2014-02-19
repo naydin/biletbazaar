@@ -192,7 +192,7 @@ function show(){
                             <br />
                             <label style="margin-left:10px;">Koltuk {{ticket.seatRow}}</label>
                             <br />
-                            <label style="margin-left:10px;">129 TL</label>
+                            <label style="margin-left:10px;">{% multiply ticket.price ticket.count %}</label>
                            
                         
                         </div>
@@ -229,7 +229,7 @@ function show(){
                             <br />
                             <label style="margin-left:10px;">Koltuk {{ticket.seatRow}}</label>
                             <br />
-                            <label style="margin-left:10px;">129 TL</label>
+                            <label style="margin-left:10px;">{% multiply ticket.price ticket.ticketCount %} TL</label>
                            
                         
                         </div>
