@@ -79,10 +79,10 @@
                 <label id="etkinlik_saat" style="margin-left:20px;">Sıra No : {{ticket.seatRow}}</label><br /><br />
                 
                 
-                {% if ticket.seatNumberFrom == ticket.seatNumberTo %}
-              		<label id="etkinlik_saat" style="margin-left:20px;">Koltuk No :{{ticket.seatNumberFrom}}</label><br /><br />
+                {% if ticket_count == 1 %}
+              		<label id="etkinlik_saat" style="margin-left:20px;">Koltuk No : {{ticket.seatNumberFrom}}</label><br /><br />
               	{% else %}
-              		<label id="etkinlik_saat" style="margin-left:20px;">Koltuk No :{{ticket.seatNumberFrom}} - {{ticket_final_seat}}</label><br /><br />               
+              		<label id="etkinlik_saat" style="margin-left:20px;">Koltuk No : {{ticket.seatNumberFrom}} - {{ticket_final_seat}}</label><br /><br />               
               	{% endif %}
                 
                 
@@ -97,13 +97,14 @@
        	  	</div>
             
             <div class="toplam">
-           		<hr style=" margin-left:10px; margin-right:10px; border-color:#3babc7;" />
+           		<hr style=" margin-left:10px; margin-right:10px; border-color:#3babc7; margin-top:30px" />
            		<label style="float:right; padding-left:50px; padding-right:10px;" id="kategori_no"> {% widthratio ticket.price 1 ticket_count %} TL</label><span id="toplam_fiyat" style="margin-left:10px; float:right">Kredi kartından çekilecek tutar : </span>
                 <br /><br /><br />
                 
                 <form id="myform" name="bilet_detaylari" method="post" onsubmit="return validate(this)">
                 {% csrf_token %}
                     <button style="float:right" type="submit" class="button_example">Bileti Al</button>
+                    <button type="button" class="button_example" style="float:left; margin-left:300px" onclick="history.go(-1);"><  Önceki</button>
         		</form>
                 
            </div>

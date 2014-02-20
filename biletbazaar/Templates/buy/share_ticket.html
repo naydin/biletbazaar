@@ -48,10 +48,11 @@
                             <br />
                             <label style="margin-left:10px;">Kategori {{ticket.seatCategory}}</label>
                             <br />
-                            <label style="margin-left:10px;">Koltuk {{ticket.seatNumberFrom}} - {{ticket.seatNumberTo}}</label>
-                            <br />
-                            <label style="margin-left:10px;">{{ticket.price}}</label>
-                           
+                            {% if buy_ticket_count == 1 %}
+                            	<label style="margin-left:10px;">Koltuk {{ticket_seat_from}}</label>
+                            {% else %}
+                            	<label style="margin-left:10px;">Koltuk {{ticket_seat_from}} - {{ticket_final_seat}}</label>
+                           {% endif %}
                         
                         </div>
                         

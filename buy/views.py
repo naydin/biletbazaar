@@ -222,6 +222,8 @@ def biletal4(request):
     ticket = Ticket.objects.get(id = ticket_id)
     ticket_count = request.session['buy_ticket_count']
     ticket_final_seat = int(Ticket.objects.get(id = ticket_id).seatNumberFrom)+int(ticket_count)-1
+    request.session['ticket_final_seat'] = ticket_final_seat
+    request.session['ticket_seat_from'] =  ticket.seatNumberFrom
     if request.method == 'GET':
         
         
@@ -260,8 +262,13 @@ def biletal4(request):
 def alis_onay(request):
     
     ticket = Ticket.objects.get(id = request.session['buy_ticket_id'])    
-
+    ticket_seat_from = request.session['ticket_seat_from']
+    buy_ticket_count = request.session['buy_ticket_count']
+    ticket_final_seat = request.session['ticket_final_seat']
     return render(request,'buy/share_ticket.html',{
         'ticket':ticket,
+        'ticket_seat_from':int(ticket_seat_from),
+        'buy_ticket_count':int(buy_ticket_count),
+        'ticket_final_seat':ticket_final_seat,
                                                    
     })
