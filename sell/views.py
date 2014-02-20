@@ -211,7 +211,9 @@ def fiyatlandir(request):
                 
         except Exception as e:
             return redirect('/anasayfa')
-        
+     
+    cheapest_ticket = Ticket.objects.filter(seatCategory=seat_category).order_by('price')[0]
+       
     return render(request,'sell/fiyatlandir.html',
     {'event':event,
     'ticket_count':int(ticket_count),
@@ -219,6 +221,7 @@ def fiyatlandir(request):
     'seat_row':seat_row,
     'seat_number_from':seat_number_from,
     'seat_number_to':seat_number_to,
+    'cheapest_ticket':cheapest_ticket,
     'ticket_face_value_error':ticket_face_value_error,
     'ticket_sell_value_error':ticket_sell_value_error})
         
