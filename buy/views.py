@@ -240,7 +240,7 @@ def biletal4(request):
         
         after = count - int(ticket_count)
         if after == 0 :
-            Ticket.objects.filter(id = ticket_id).delete()
+            Ticket.objects.filter(id = ticket_id).isActive = False
         else :
             Ticket.objects.filter(id = ticket_id).update(ticketCount=after)
             
@@ -255,5 +255,13 @@ def biletal4(request):
         
         sale.save()
         
-        return redirect('/anasayfa')
+        return redirect('/alis_onay')
 
+def alis_onay(request):
+    
+    ticket = Ticket.objects.get(id = request.session['buy_ticket_id'])    
+
+    return render(request,'buy/share_ticket.html',{
+        'ticket':ticket,
+                                                   
+    })

@@ -13,6 +13,11 @@
 
 
 {% block js_functions %}
+
+
+
+
+
 {% endblock %}    
     
 {% block content %}
@@ -21,14 +26,14 @@
          	<div class="login" >
             	<img src="{% static 'resimler/onay_icon.png' %}" style="width:100px; height:100px; margin-left:180px; margin-top: 10px" />
                 <br />
-            	<span style="font-size:22px; color:#3496af; margin-left:130px; display:inline-block; margin-top:30px;">İşleminiz tamamlandı!</span>
+            	<span style="font-size:22px; color:#3496af; margin-left:130px; display:inline-block; margin-top:30px;">Ödeme Onaylandı!</span>
                 
                 <hr style="border-color:#3babc7" />
                 <br />
                <div class="bilet" style="margin-top:0">
                         <div class="event_pic">
                         	<img src="{{ticket.event.eventGroup.photoUrl}}" width="100" height="120"/>
-                            <label style="margin-top:10; background-color:#318da5; font-size:18px;">Listelendi</label>
+                            
                         </div>
                         <div class="event_info">
                         	<label style="margin-left:10px;">{{ticket.event.eventGroup.name}}</label>
@@ -54,17 +59,17 @@
                    		<hr style="border-color:#3babc7;" />
                     </div>
                    
-                    <span style="font-size:16px; color:#000; margin-left:60px; display:inline-block; margin-top:30px;">Bilet İlanınızı Facebook'da Arkadaşlarınızla Paylaşın!</span>
-                    <br /><br />
+                    <span style="font-size:16px; color:#000; margin-left:60px; display:inline-block; margin-top:30px;">Gideceğiniz Etkinliği Arkadaşlarınıza Duyurun!</span>
+                    <br /><br /></br>
                     
-
-                	<a  href="https://www.facebook.com/sharer/sharer.php?u=http://www.biletbosta.com/biletal1/?ticket_id={{ticket.id}}" style="float:left; margin-left:20px; margin-right:40px"><img style="height:30px; width:150px;" src="{% static 'resimler/facebook_share.png' %}" /></a>
-                  	<a  href="https://twitter.com/share" data-url="http://www.biletbosta.com/biletal1/?ticket_id={{ticket.id}}" class="twitter-share-button" data-via="BiletBosta" data-lang="tr" data-size="large">Tweet</a>
-                  	<a  href="https://plus.google.com/share?url={http://www.biletbosta.com/biletal1/?ticket_id={{ticket.id}}}" onclick="javascript:window.open(this.href,
+                   
+                    
+                    <a  href="https://www.facebook.com/sharer/sharer.php?u=http://www.biletbosta.com/event/?event_id={{ticket.event.id}}" style="float:left; margin-left:20px; margin-right:40px"><img style="height:30px; width:150px;" src="{% static 'resimler/facebook_share.png' %}" /></a>
+                  	<a  href="https://twitter.com/share" data-url="http://www.biletbosta.com/event/?event_id={{ticket.event.id}}" class="twitter-share-button" data-via="BiletBosta" data-lang="tr" data-size="large">Tweet</a>
+                  	<a  href="https://plus.google.com/share?url={http://www.biletbosta.com/event/?event_id={{ticket.event.id}}}" onclick="javascript:window.open(this.href,
   '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img style="height:30px"
   src="https://www.gstatic.com/images/icons/gplus-64.png" alt="Share on Google+"/></a>
-                	
-            
+					
 			</div>
 
       

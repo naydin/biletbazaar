@@ -41,13 +41,14 @@ urlpatterns = patterns('',
     url('^fiyatlandir/$',fiyatlandir),
     url('^teslimat/$',teslimat),
     url('^onayla/$',onayla),
+    url('^satis_onay/$',satis_onay),
     
     #buy
     url('^biletal1/$',biletal1),
     url('^biletal2/$',biletal2),
     url('^biletal3/$',biletal3),
     url('^biletal4/$',biletal4),
-    url('^onay/$',onay),
+    url('^alis_onay/$',alis_onay),
     
     #event group
     url('^event_group/$',event_group),

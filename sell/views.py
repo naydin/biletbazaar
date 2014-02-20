@@ -370,7 +370,7 @@ def onayla(request):
                 
                 request.session['sell_ticket_id'] = ticket.id
                 
-                return redirect('/onay')
+                return redirect('/satis_onay')
             
         except Exception as e:
             print '%s (%s)' % (e.message, type(e))
@@ -391,7 +391,7 @@ def onayla(request):
         'iban_error':iban_error
     })
 
-def onay(request):
+def satis_onay(request):
     
     ticket = Ticket.objects.get(id = request.session['sell_ticket_id'])    
 
