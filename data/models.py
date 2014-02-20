@@ -55,6 +55,8 @@ class Event(models.Model):
     
     def isSeatCategoryValid(self, seatCategory):
         seatCategories = self.getSeatCategories()
+        if not seatCategories:
+            return True
         for category in seatCategories:
             if seatCategory == category:
                 return True
@@ -75,6 +77,8 @@ class Event(models.Model):
             
     def isSeatRowValid(self, seatRow):
         seatRows = self.getSeatRows()
+        if not seatRows:
+            return True
         for row in seatRows:
             if seatRow == row:
                 return True

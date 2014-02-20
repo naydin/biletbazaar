@@ -97,10 +97,14 @@
                         <br /><br />
                         <input name="sell_ticket_sell_value" id="biletilan_fiyati" class="tb" type="text" />
                         <br /><br />
+						{% if cheapest_ticket %}
                         <label>Bu etkinlikte aynı kategoriye ait en ucuz bilet</label>
-                        <label id="ilan_fiyatı">30 TL. </label>
+                        <label id="ilan_fiyatı">{{cheapest_ticket.price}} TL. </label>
                         <label>Bu fiyattan daha düşük bir fiyata ilan vermeniz biletinizin satılma ihtimalini artıracaktır. </label>
                         <br /><br /><br />
+						{% else %}
+						<label>Bu etkinliğe ait aynı kategoride başka bilet bulunmamaktadır.</label>
+						{% endif %}
 						{% csrf_token %}
                         <button type="submit" style="float:right" class="button_example">Sonraki  ></button>
                         <button type="button" class="button_example" style="float:left" onclick="history.go(-1);"><  Önceki</button>
