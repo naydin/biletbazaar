@@ -580,7 +580,34 @@ def event(request):
 	   	
 @login_required(login_url='/login')   
 def hesabim(request):
-	return render(request,'hesabim.html')
+    if request.method == 'POST':
+        try:
+            username = request.POST['username']
+            try:
+                User.objects.get(username=userame)
+                raise Exception('Username exists.')
+            except User.DoesNotExist:
+                pass
+            gsm = request.POST['gsm']
+            user = request.user
+            user.username = username
+            if gsm != '':
+                user.gsm = gsm
+            user.save()
+        except Exception as e:
+            return redirect('/anasayfa')
+            
+    user = request.user
+    sell_tickets = Ticket.objects.filter(user=user)
+    sales = Sale.objects.filter(buyer__id=user.id)
+    buy_tickets = []
+    #TODO: sales statuses should be added to the template
+    for sale in sales:
+        buy_tickets.append(sale.ticket)
+    return render(request,'hesabim.html',{
+    'user':user,
+    'buy_tickets':buy_tickets,
+    'sell_tickets':sell_tickets})
        
 def bize_ulasin(request):
 	if request.method == 'GET':
