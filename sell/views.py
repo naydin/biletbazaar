@@ -356,17 +356,21 @@ def onayla(request):
                 ticket.seatNumberFrom = seat_number_from
                 ticket.seatNumberTo = seat_number_to
                 
+                ticket.save()
+                
                 shipment_info.ticket = ticket
                 payment_info.ticket = ticket
                 
-                ticket.save()
+                
                 #TODO aşağıdaki save'ler çalışmıyor!
                 shipment_info.save()
                 payment_info.save()
                 
                 #TODO: session variables should be deleted
                 
-                return redirect('/anasayfa')
+                request.session['sell_ticket_id'] = ticket.id
+                
+                return redirect('/onay')
             
         except Exception as e:
             print '%s (%s)' % (e.message, type(e))
@@ -385,4 +389,13 @@ def onayla(request):
         'name_error':name_error,
         'surname_error':surname_error,
         'iban_error':iban_error
+    })
+
+def onay(request):
+    
+    ticket = Ticket.objects.get(id = request.session['sell_ticket_id'])    
+
+    return render(request,'sell/share_ticket.html',{
+        'ticket':ticket,
+                                                   
     })

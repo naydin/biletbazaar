@@ -47,6 +47,7 @@ urlpatterns = patterns('',
     url('^biletal2/$',biletal2),
     url('^biletal3/$',biletal3),
     url('^biletal4/$',biletal4),
+    url('^onay/$',onay),
     
     #event group
     url('^event_group/$',event_group),

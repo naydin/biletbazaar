@@ -5,9 +5,9 @@ register = template.Library()
 
 
 
-@register.filter(name='add')    
-def add(value, arg):
-    return value + arg
+# @register.filter(name='add')    
+# def add(value, arg):
+#     return value + arg
 
 
 

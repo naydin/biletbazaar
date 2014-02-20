@@ -1,0 +1,44 @@
+
+.content_css .white_bg .login{
+	float:left;
+	background:linear-gradient(#dbdbdb,#ffffff);
+	text-align:left;
+
+	width: 450px;
+	margin-left:210px;
+	margin-top:30px;
+	height: 600px;
+}
+
+
+.content_css .white_bg .login .bilet{
+	float:left;
+	margin-left:120px;
+	text-align:left;
+	margin-top:20px;
+	
+	width: 250px;
+	height: 150px;
+}
+
+
+.content_css .white_bg .login .bilet .event_pic{
+	float:left;
+	
+	text-align:left;
+	
+	width: 100px;
+	height: 150px;
+}
+
+
+.content_css .white_bg .login .bilet .event_info{
+	float:left;
+	
+	text-align:left;
+
+	width: 150px;
+	height: 150px;
+}
+
+

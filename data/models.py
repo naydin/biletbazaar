@@ -188,7 +188,6 @@ class ShipmentInfo(models.Model):
     city = models.CharField(max_length = 20)
     neighbourhood = models.CharField(max_length = 20) #semt
     address = models.CharField(max_length = 50)
-    address2 = models.CharField(max_length = 50)
     ticket = models.ForeignKey(Ticket)
 
 class PaymentInfo(models.Model):

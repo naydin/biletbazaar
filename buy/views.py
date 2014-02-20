@@ -256,3 +256,4 @@ def biletal4(request):
         sale.save()
         
         return redirect('/anasayfa')
+

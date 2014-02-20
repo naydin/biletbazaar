@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load extra_tags %}
+
+
+{% block title %}Onaylandı! - Bilet Boşta Kalmasın{% endblock %}
+ 
+
+{% block css_js_links %}
+	<link href="{% static 'css/share_ticket.css' %}" rel="stylesheet" type="text/css" /> 
+ 	
+{% endblock %}
+
+
+{% block js_functions %}
+{% endblock %}    
+    
+{% block content %}
+
+
+         	<div class="login" >
+            	<img src="{% static 'resimler/onay_icon.png' %}" style="width:100px; height:100px; margin-left:180px; margin-top: 10px" />
+                <br />
+            	<span style="font-size:22px; color:#3496af; margin-left:130px; display:inline-block; margin-top:30px;">İşleminiz tamamlandı!</span>
+                
+                <hr style="border-color:#3babc7" />
+                <br />
+               <div class="bilet" style="margin-top:0">
+                        <div class="event_pic">
+                        	<img src="{{ticket.event.eventGroup.photoUrl}}" width="100" height="120"/>
+                            <label style="margin-top:10; background-color:#318da5; font-size:18px;">Listelendi</label>
+                        </div>
+                        <div class="event_info">
+                        	<label style="margin-left:10px;">{{ticket.event.eventGroup.name}}</label>
+                            <br />
+                            <label style="margin-left:10px;">{{ticket.event.place}}</label>
+                            <br />
+                            <label style="margin-left:10px;">{{ticket.event.city.name}}</label>
+                            <br />
+                            <label style="margin-left:10px;">{{ticket.event.date}}</label>
+                            <br />
+                            <label style="margin-left:10px;">{{ticket.event.date|date:"H"}}</label>
+                            <br />
+                            <label style="margin-left:10px;">Kategori {{ticket.seatCategory}}</label>
+                            <br />
+                            <label style="margin-left:10px;">Koltuk {{ticket.seatNumberFrom}} - {{ticket.seatNumberTo}}</label>
+                            <br />
+                            <label style="margin-left:10px;">{{ticket.price}}</label>
+                           
+                        
+                        </div>
+                        
+                        <br /><br /><br />
+                   		<hr style="border-color:#3babc7;" />
+                    </div>
+                   
+                    <span style="font-size:16px; color:#000; margin-left:60px; display:inline-block; margin-top:30px;">Bilet İlanınızı Facebook'da Arkadaşlarınızla Paylaşın!</span>
+                    <br /><br />
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.biletbosta.com/biletal1/?ticket_id={{ticket.id}}" style="margin-left:120px;"><img src="{% static 'resimler/facebook_share.png' %}" /></a>
+                
+            
+			</div>
+
+      
+{% endblock %}
