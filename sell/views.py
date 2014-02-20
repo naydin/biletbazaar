@@ -89,30 +89,32 @@ def bilet_detaylari(request):
                     raise Exception('')
             except Exception as e:
                 ticket_count_error = u'Lütfen geçerli bir bilet sayısı girin.'
-                
-            try:
-                seat_category = request.POST['seat_category']
-                if not event.isSeatCategoryValid(seat_category):
-                    raise Exception('')
-            except Exception as e:
-                seat_category_error = u'Lütfen geçerli kategori no girin.'
             
-            try:
-                seat_row = request.POST['seat_row']
-                if not event.isSeatRowValid(seat_row):
-                    raise Exception('')
-            except Exception as e:
-                seat_row_error = u'Lütfen geçerli bir sıra no girin.'
+            if event.getSeatCategories():
+                try:
+                    seat_category = request.POST['seat_category']
+                    if not event.isSeatCategoryValid(seat_category):
+                        raise Exception('')
+                except Exception as e:
+                    seat_category_error = u'Lütfen geçerli kategori no girin.'
+            
+            if event.getSeatRows():
+                try:
+                    seat_row = request.POST['seat_row']
+                    if not event.isSeatRowValid(seat_row):
+                        raise Exception('')
+                except Exception as e:
+                    seat_row_error = u'Lütfen geçerli bir sıra no girin.'
 
-            try:
-                seat_number_from = request.POST['seat_number_from']
-                seat_number_to = request.POST['seat_number_to']
-                intvar1 = int(seat_number_from)
-                intvar2 = int(seat_number_to)
-                if ((intvar2 - intvar1)+1) != int(ticket_count) :
-                    raise Exception('')
-            except Exception as e:
-                seat_number_error = u'Kontrol ediniz.'
+                try:
+                    seat_number_from = request.POST['seat_number_from']
+                    seat_number_to = request.POST['seat_number_to']
+                    intvar1 = int(seat_number_from)
+                    intvar2 = int(seat_number_to)
+                    if ((intvar2 - intvar1)+1) != int(ticket_count) :
+                        raise Exception('')
+                except Exception as e:
+                    seat_number_error = u'Kontrol ediniz.'
                 
            
             #TODO:seat_number limit validation
