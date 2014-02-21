@@ -237,14 +237,19 @@ def biletal4(request):
             'event_group_photoUrl' : event_group_photoUrl,                                       
                                                    })
     else :
-        Ticket.objects.filter(id = ticket_id).update(seatNumberFrom=str(ticket_final_seat+1))
+        
         count = Ticket.objects.get(id = ticket_id).ticketCount
         
         after = count - int(ticket_count)
         if after == 0 :
             Ticket.objects.filter(id = ticket_id).isActive = False
+            Ticket.objects.filter(id = ticket_id).update(ticketCount = 0)
+            Ticket.objects.filter(id = ticket_id).update(seatNumberFrom= 0)
+            Ticket.objects.filter(id = ticket_id).update(seatNumberTo= 0)
         else :
             Ticket.objects.filter(id = ticket_id).update(ticketCount=after)
+            Ticket.objects.filter(id = ticket_id).update(seatNumberFrom=str(ticket_final_seat+1))
+            
             
         user = request.user
 

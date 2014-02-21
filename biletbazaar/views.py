@@ -404,7 +404,7 @@ def anasayfa(request):
     #query the required lists
     event_group_list = EventGroup.objects.filter(category__icontains=selected_category).order_by('-saleCount')[0:5]
     event_list = Event.objects.filter(city__name__contains=selected_city_name,eventGroup__category__icontains=selected_category).order_by('date')[0:10]
-    ticket_list = Ticket.objects.filter(event__city__name__contains=selected_city_name,event__eventGroup__category__icontains=selected_category).order_by('price')[0:5]
+    ticket_list = Ticket.objects.filter(event__city__name__contains=selected_city_name,event__eventGroup__category__icontains=selected_category).exclude(ticketCount=0).order_by('price')[0:5]
     city_list = City.objects.all()
     
 
