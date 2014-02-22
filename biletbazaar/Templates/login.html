@@ -89,18 +89,9 @@ $(document).ready(function() {
   return true; // allow submit
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+{% if forgot_password_username_error %}
+window.alert('{{forgot_password_username_error}}');
+{% endif %}
 
 {% endblock %}
 

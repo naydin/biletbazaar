@@ -94,6 +94,7 @@ def login_user(request):
     signup_password_error = ''
     signup_password_again_error = ''
     signup_gsm_error = ''
+    forgot_password_username_error = ''
     
     if request.POST:
         redirect_to = request.POST.get(REDIRECT_FIELD_NAME,
@@ -185,6 +186,7 @@ def login_user(request):
                         return redirect(redirect_to)
         elif 'forgot_password_form' in request.POST:
             username = request.POST['username']
+
             try:
                 validate_email(username)
                 user = User.objects.get(username=username)
@@ -198,12 +200,17 @@ def login_user(request):
                 send_maill('Şifre Yenileme',user.username,'forgot_password_mail.html',{'url':'www.biletbosta.com/forgot_password_set/?token=%s' % token})
                 user.password_token = unique_id
                 user.save()
+            except User.DoesNotExist:
+                forgot_password_username_error = u'Böyle bir kullanıcı adı mevcut değil.'
+            except ValidationError:
+                forgot_password_username_error = u'Lütfen geçerli bir e-mail adresi girin.'
             except Exception as e:
                 return redirect('/login')
             
-            print unique_id 
+             
         else:
             return redirect('/anasayfa')
+
     return render(request,'login.html', {
         'login_username_error':login_username_error,
         'login_password_error':login_password_error,
@@ -212,7 +219,8 @@ def login_user(request):
         'signup_username_error':signup_username_error,
         'signup_password_error':signup_password_error,
         'signup_password_again_error':signup_password_again_error,
-        'signup_gsm_error':signup_gsm_error
+        'signup_gsm_error':signup_gsm_error,
+        'forgot_password_username_error':forgot_password_username_error
     })
     
 def forgot_password_set(request):
