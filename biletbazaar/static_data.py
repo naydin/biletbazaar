@@ -186,14 +186,10 @@ def reset_static_data():
             t1.seatCategory = seat_categories[seat_category_random]
         
         seat_rows = t1.event.getSeatRows()
-        # print 'row'
-        # print seat_rows
         if seat_rows:
             seat_row_random = randrange(0,len(seat_rows))
-            # print seat_row_random
-            t1.seatRow = seat_rows[seat_row_random]
             t1.seatNumberFrom = randrange(1,10)
-            t1.seatNumberTo = randrange(11,20)
+            t1.seatNumberTo = t1.seatNumberFrom + t1.ticketCount - 1
         t1.isActive = True
         
         t1.save()

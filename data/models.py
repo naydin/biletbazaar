@@ -159,7 +159,6 @@ class Ticket(models.Model):
     
     seatCategory = models.CharField(max_length = 20, null=True)
     seatRow = models.CharField(max_length = 20, null=True)
-    seatNumber = models.CharField(max_length=20, null=True)
     
     seatNumberFrom = models.CharField(max_length=20, null=True)
     seatNumberTo = models.CharField(max_length=20, null=True)
