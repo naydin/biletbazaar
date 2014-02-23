@@ -612,10 +612,11 @@ def hesabim(request):
     #TODO: sales statuses should be added to the template
     for sale in sales:
         buy_tickets.append(sale.ticket)
+    
     return render(request,'hesabim.html',{
-    'user':user,
-    'buy_tickets':buy_tickets,
-    'sell_tickets':sell_tickets})
+        'user':user,
+        'buy_tickets':buy_tickets,
+        'sell_tickets':sell_tickets})
        
 def bize_ulasin(request):
 	if request.method == 'GET':

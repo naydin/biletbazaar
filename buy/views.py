@@ -237,19 +237,24 @@ def biletal4(request):
             'event_group_photoUrl' : event_group_photoUrl,                                       
                                                    })
     else :
-        
-        count = Ticket.objects.get(id = ticket_id).ticketCount
+        try:
+            ticket = Ticket.objects.get(id = ticket_id)
+        except Exception:
+            return redirect('/anasayfa')
+
+        count = ticket.ticketCount
         
         after = count - int(ticket_count)
         if after == 0 :
-            Ticket.objects.filter(id = ticket_id).isActive = False
-            Ticket.objects.filter(id = ticket_id).update(ticketCount = 0)
-            Ticket.objects.filter(id = ticket_id).update(seatNumberFrom= 0)
-            Ticket.objects.filter(id = ticket_id).update(seatNumberTo= 0)
+            ticket.isActive = False
+            ticket.ticketCount = 0
+            ticket.seatNumberFrom = 0
+            ticketSeatNumberTo = 0
+
         else :
-            Ticket.objects.filter(id = ticket_id).update(ticketCount=after)
-            Ticket.objects.filter(id = ticket_id).update(seatNumberFrom=str(ticket_final_seat+1))
-            
+            ticket.ticketCount = after
+            ticket.seatNumberFrom = str(ticket_final_seat+1)
+        ticket.save()
             
         user = request.user
 
