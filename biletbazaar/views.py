@@ -591,6 +591,7 @@ def hesabim(request):
     if request.method == 'POST':
         try:
             username = request.POST['username']
+            #TODO: email should be validated and error message returned accordingly
             try:
                 User.objects.get(username=userame)
                 raise Exception('Username exists.')
@@ -606,17 +607,20 @@ def hesabim(request):
             return redirect('/anasayfa')
             
     user = request.user
-    sell_tickets = Ticket.objects.filter(user=user)
-    sales = Sale.objects.filter(buyer__id=user.id)
-    buy_tickets = []
-    #TODO: sales statuses should be added to the template
-    for sale in sales:
-        buy_tickets.append(sale.ticket)
+    
+    sell_sales = Sale.objects.filter(ticket__user=user)
+    sell_tickets = Ticket.objects.filter(user=user,isActive=True)
+    sell_sales_count = len(sell_sales)
+    
+    buy_sales = Sale.objects.filter(buyer=user)
     
     return render(request,'hesabim.html',{
         'user':user,
-        'buy_tickets':buy_tickets,
-        'sell_tickets':sell_tickets})
+        'buy_sales':buy_sales,
+        'sell_tickets':sell_tickets,
+        'sell_sales':sell_sales,
+        'sell_sales_count':sell_sales_count,
+    })
        
 def bize_ulasin(request):
 	if request.method == 'GET':

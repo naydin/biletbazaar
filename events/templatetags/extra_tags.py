@@ -38,3 +38,6 @@ def get_range( value ):
 def multiply(a, b):
     return a * b
     
+@register.simple_tag()
+def sum(a, b):
+    return a + b

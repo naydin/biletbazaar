@@ -170,29 +170,31 @@ function show(){
                 </div>
                 
                 <div class="biletler">
-					{% for ticket in buy_tickets %}
+					{% for sale in buy_sales %}
                     <div class="bilet" style="margin-top:{{forloop.counter}}0">
 
                         <div class="event_pic">
-                        	<img src="tarkan.png" width="100" height="120"/>
+                        	<img src="{{sale.ticket.event.eventGroup.photoUrl}}" width="100" height="120"/>
                             <label style="margin-top:10; background-color:#318da5; font-size:18px;">Teslim Alındı</label>
                         </div>
                         <div class="event_info">
-                        	<label style="margin-left:10px;">ticket.event.eventGroup.name</label>
+                        	<label style="margin-left:10px;">{{sale.ticket.event.eventGroup.name}}</label>
                             <br />
-                            <label style="margin-left:10px;">ticket.event.place</label>
+                            <label style="margin-left:10px;">{{sale.ticket.event.place}}</label>
                             <br />
-                            <label style="margin-left:10px;">ticket.city.name</label>
+                            <label style="margin-left:10px;">{{sale.ticket.city.name}}</label>
                             <br />
-                            <label style="margin-left:10px;">{{ticket.event.date.day}} {{ticket.event.date|date:"M"}} {{ticket.event.date.year}}</label>
+                            <label style="margin-left:10px;">{{sale.ticket.event.date.day}} {{sale.ticket.event.date|date:"M"}} {{sale.ticket.event.date.year}}</label>
                             <br />
-                            <label style="margin-left:10px;">{{ticket.event.date|date:"h"}}</label>
+                            <label style="margin-left:10px;">{{sale.ticket.event.date|date:"h"}}</label>
                             <br />
-                            <label style="margin-left:10px;">Kategori {{ticket.seatCategory}}</label>
+                            <label style="margin-left:10px;">Kategori {{sale.ticket.seatCategory}}</label>
                             <br />
-                            <label style="margin-left:10px;">Koltuk {{ticket.seatRow}}</label>
+                            <label style="margin-left:10px;">Sıra {{sale.ticket.seatRow}}</label>
                             <br />
-                            <label style="margin-left:10px;">{% multiply ticket.price ticket.count %}</label>
+                            <label style="margin-left:10px;">Koltuk {{sale.seatNumberFrom}}-{{sale.seatNumberTo}}</label>
+                            <br />
+                            <label style="margin-left:10px;">{% multiply sale.ticket.price sale.ticket.ticketCount %}</label>
                            
                         
                         </div>
@@ -207,12 +209,45 @@ function show(){
             	<div class="yazi">
                 	<span>satılan biletler</span>
                 </div>
-                {% for ticket in sell_tickets %}
+                {% for sale in sell_sales %}
                 <div class="biletler">
                     <div class="bilet" style="margin-top:{{forloop.counter}}0">
                         <div class="event_pic">
                         	<img src="{{ticket.event.eventGroup.photoUrl}}" width="100" height="120"/>
                             <label style="margin-top:10; background-color:#318da5; font-size:18px;">Teslim Alındı</label>
+                        </div>
+                        <div class="event_info">
+                        	<label style="margin-left:10px;">{{sale.ticket.event.eventGroup.name}}</label>
+                            <br />
+                            <label style="margin-left:10px;">{{sale.ticket.event.place}}</label>
+                            <br />
+                            <label style="margin-left:10px;">{{sale.ticket.city.name}}</label>
+                            <br />
+                            <label style="margin-left:10px;">{{sale.ticket.event.date.day}} {{sale.ticket.event.date|date:"M"}} {{sale.ticket.event.date.year}}</label>
+                            <br />
+                            <label style="margin-left:10px;">{{sale.ticket.event.date|date:"h"}}</label>
+                            <br />
+                            <label style="margin-left:10px;">Kategori {{sale.ticket.seatCategory}}</label>
+                            <br />
+                            <label style="margin-left:10px;">Sıra {{sale.ticket.seatRow}}</label>
+                            <br />
+                            <label style="margin-left:10px;">Koltuk {{sale.seatNumberFrom}}-{{sale.seatNumberTo}}</label>
+                            <br />
+                            <label style="margin-left:10px;">{% multiply sale.ticket.price sale.ticket.ticketCount %} TL</label>
+                           
+                        
+                        </div>
+                        
+                   		<hr style="border-color:#3babc7" />
+                    </div>
+				</div>
+				{% endfor %}
+                {% for ticket in sell_tickets %}
+                <div class="biletler">
+                    <div class="bilet" style="margin-top:{% sum sell_sales_count forloop.counter %}0">
+                        <div class="event_pic">
+                        	<img src="{{ticket.event.eventGroup.photoUrl}}" width="100" height="120"/>
+                            <label style="margin-top:10; background-color:#318da5; font-size:18px;">İlan Verildi</label>
                         </div>
                         <div class="event_info">
                         	<label style="margin-left:10px;">{{ticket.event.eventGroup.name}}</label>
@@ -227,7 +262,9 @@ function show(){
                             <br />
                             <label style="margin-left:10px;">Kategori {{ticket.seatCategory}}</label>
                             <br />
-                            <label style="margin-left:10px;">Koltuk {{ticket.seatRow}}</label>
+                            <label style="margin-left:10px;">Sıra {{ticket.seatRow}}</label>
+                            <br />
+                            <label style="margin-left:10px;">Koltuk {{ticket.seatNumberFrom}}-{{ticket.seatNumberTo}}</label>
                             <br />
                             <label style="margin-left:10px;">{% multiply ticket.price ticket.ticketCount %} TL</label>
                            
@@ -236,6 +273,7 @@ function show(){
                         
                    		<hr style="border-color:#3babc7" />
                     </div>
+				</div>
 				{% endfor %}
                 
                    
