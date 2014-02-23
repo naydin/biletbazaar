@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 
 from django.contrib.auth.models import AbstractBaseUser
@@ -179,6 +180,18 @@ class Sale(models.Model):
     seatNumberTo = models.CharField(null=True,max_length=20)
     saleStatus = models.IntegerField(null=False,default=SaleStatus.waitingSellerApproval)
   
+    def saleStatusStr(self):
+        if self.saleStatus == SaleStatus.waitingSellerApproval:
+            return u'Satıcı Onayı Bekliyor'
+        elif self.saleStatus == SaleStatus.sellerApproved:
+            return u'Satıtı Onayladı'
+        elif self.saleStatus == SaleStatus.shipping:
+            return u'Kargoya Verildi'
+        elif self.saleStatus == SaleStatus.shipping:
+            return u'Alıcı Onayladı'
+        else:
+            return u'Hata'
+          
     def getSeller(self):
         return ticket.user
     seller = property(getSeller)
