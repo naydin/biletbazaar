@@ -593,8 +593,7 @@ def hesabim(request):
             username = request.POST['username']
             #TODO: email should be validated and error message returned accordingly
             try:
-                User.objects.get(username=userame)
-                raise Exception('Username exists.')
+                User.objects.get(username=username)
             except User.DoesNotExist:
                 pass
             gsm = request.POST['gsm']
