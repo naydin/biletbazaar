@@ -13,7 +13,7 @@ from biletbazaar.session_util import *
 def base(request):
     selected_city_name = u''
     try:
-        selected_city_name = request.session[selected_city_name_field]
+        selected_city_name = request.session[kselected_city]
     except Exception as e:
         selected_city_name = u''
         
@@ -30,7 +30,7 @@ def base(request):
 def bilet_ilan(request):
     selected_city_name = u''
     try:
-        selected_city_name = request.session[selected_city_name_field]
+        selected_city_name = request.session[kselected_city]
     except Exception as e:
         selected_city_name = u''
     

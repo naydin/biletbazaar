@@ -42,6 +42,9 @@ ksell_ship_city = 'ksell_ship_city'
 ksell_ship_neighbourhood = 'ksell_ship_neighbourhood'
 ksell_ship_address = 'ksell_ship_address'
 
+#generic
+kselected_city = 'kselected_city'
+
 class session_util(object):
     @staticmethod
     def clear_buy_step1(request):

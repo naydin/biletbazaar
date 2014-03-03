@@ -22,11 +22,12 @@ from django.utils.http import is_safe_url
 from biletbazaar.validation_util import *
 from biletbazaar.utils import *
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+from session_util import *
+
 import urllib
 import urllib2
-from django.views.decorators.csrf import csrf_exempt
 import json
-
 import datetime
 import re
 import uuid
@@ -372,7 +373,7 @@ def anasayfa(request):
     # event_group = event_group_list[0]
     # event_list = event_group.event_set.all()
 
-    request.session[selected_city_name_field] = u"Tüm Türkiye"
+    request.session[kselected_city] = u"Tüm Türkiye"
     selected_city_name = u''
 
     #check if a city is selected previously and stored in a cookie
@@ -389,7 +390,7 @@ def anasayfa(request):
     #validate selected city,if valid save it to session
     try:
         City.objects.get(name=selected_city_name)
-        request.session[selected_city_name_field] = selected_city_name
+        request.session[kselected_city] = selected_city_name
     except Exception as e:
         selected_city_name = ""
 
@@ -443,10 +444,10 @@ def event_group(request):
 	if request.method == 'GET':
 		try:
     	
-			if(request.session[selected_city_name_field]==u"Tüm Türkiye"):
+			if(request.session[kselected_city]==u"Tüm Türkiye"):
 				selected_city_name = ""
 			else:
-				selected_city_name = request.session[selected_city_name_field]
+				selected_city_name = request.session[kselected_city]
             	
             	
             	
