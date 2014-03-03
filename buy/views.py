@@ -113,12 +113,12 @@ def biletal2(request):
                 ship_address2_error = error_message
             
             if ship_name_error == '' and ship_surname_error == '' and ship_city_error == '' and ship_neighbourhood_error == '' and ship_address_error == '' and ship_address2_error == '':
-                request.session['ship_name'] = ship_name
-                request.session['ship_surname'] = ship_surname
-                request.session['ship_city'] = ship_city
-                request.session['ship_neighbourhood'] = ship_neighbourhood
-                request.session['ship_address'] = ship_address
-                request.session['ship_address2'] = ship_address2
+                request.session[buy_ship_name] = ship_name
+                request.session[buy_ship_surname] = ship_surname
+                request.session[buy_ship_city] = ship_city
+                request.session[buy_ship_neighbourhood] = ship_neighbourhood
+                request.session[buy_ship_address] = ship_address
+                request.session[buy_ship_address2] = ship_address2
                 
                 return redirect('/biletal3')
             
@@ -192,12 +192,12 @@ def biletal3(request):
                 card_cvc2_error = error_message
                 
             if card_type_error == '' and name_error == '' and surname_error == '' and card_number_error == '' and card_expiration_month_error == '' and card_expiration_year_error == '' and card_cvc2_error =='':
-                request.session['buy_name'] = name
-                request.session['buy_surname'] = surname
-                request.session['buy_card_number'] = card_number
-                request.session['buy_card_expiration_month'] = card_expiration_month
-                request.session['buy_card_expiration_year'] = card_expiration_year
-                request.session['buy_card_cvc2'] = card_cvc2
+                request.session[buy_cardholder_name] = name
+                request.session[buy_cardholder_surname] = surname
+                request.session[buy_card_number] = card_number
+                request.session[buy_card_expiration_month] = card_expiration_month
+                request.session[buy_card_expiration_year] = card_expiration_year
+                request.session[buy_card_cvc2] = card_cvc2
                 
                 return redirect('/biletal4')
             
@@ -225,8 +225,8 @@ def biletal4(request):
     ticket_count = request.session[buy_ticket_count]
     if ticket.seatNumberFrom:
         ticket_final_seat = int(Ticket.objects.get(id = ticket_id).seatNumberFrom)+int(ticket_count)-1
-        request.session['ticket_final_seat'] = ticket_final_seat
-        request.session['ticket_seat_from'] =  ticket.seatNumberFrom
+        request.session[buy_ticket_final_seat] = ticket_final_seat
+        request.session[buy_ticket_seat_from] =  ticket.seatNumberFrom
     else:
         ticket_final_seat = None
     if request.method == 'GET':
@@ -277,18 +277,18 @@ def biletal4(request):
 
 def alis_onay(request):
     
-    ticket = Ticket.objects.get(id = request.session['buy_ticket_id'])
+    ticket = Ticket.objects.get(id = request.session[buy_ticket_id])
     if ticket.seatNumberFrom:
-        ticket_seat_from = request.session['ticket_seat_from']
+        ticket_seat_from = request.session[buy_ticket_seat_from]
         ticket_seat_from = int(ticket_seat_from)
     else:
         ticket_seat_from = None
-    buy_ticket_count = request.session['buy_ticket_count']
-    ticket_final_seat = request.session['ticket_final_seat']
+    ticket_count = request.session[buy_ticket_count]
+    ticket_final_seat = request.session[buy_ticket_final_seat]
     return render(request,'buy/share_ticket.html',{
         'ticket':ticket,
         'ticket_seat_from':ticket_seat_from,
-        'buy_ticket_count':int(buy_ticket_count),
+        'buy_ticket_count':int(ticket_count),
         'ticket_final_seat':ticket_final_seat,
                                                    
     })
