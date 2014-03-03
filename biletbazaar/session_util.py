@@ -1,27 +1,27 @@
 
 #buy 1
-buy_ticket_id = 'buy_ticket_id'
-buy_ticket_count = 'buy_ticket_count'
+kbuy_ticket_id = 'kbuy_ticket_id'
+kbuy_ticket_count = 'kbuy_ticket_count'
 
 #buy 2
-buy_ship_name = 'buy_ship_name'
-buy_ship_surname = 'buy_ship_surname'
-buy_ship_city = 'buy_ship_city'
-buy_ship_neighbourhood = 'buy_ship_neighbourhood'
-buy_ship_address = 'buy_ship_address'
-buy_ship_address2 = 'buy_ship_address2'
+kbuy_ship_name = 'kbuy_ship_name'
+kbuy_ship_surname = 'kbuy_ship_surname'
+kbuy_ship_city = 'kbuy_ship_city'
+kbuy_ship_neighbourhood = 'kbuy_ship_neighbourhood'
+kbuy_ship_address = 'kbuy_ship_address'
+kbuy_ship_address2 = 'kbuy_ship_address2'
 
 #buy 3
-buy_cardholder_name = 'buy_cardholder_name'
-buy_cardholder_surname = 'buy_cardholder_surname'
-buy_card_number = 'buy_card_number'
-buy_card_expiration_month = 'buy_card_expiration_month'
-buy_card_expiration_year = 'buy_card_expiration_year'
-buy_card_cvc2 = 'buy_card_cvc2'
+kbuy_cardholder_name = 'kbuy_cardholder_name'
+kbuy_cardholder_surname = 'kbuy_cardholder_surname'
+kbuy_card_number = 'kbuy_card_number'
+kbuy_card_expiration_month = 'kbuy_card_expiration_month'
+kbuy_card_expiration_year = 'kbuy_card_expiration_year'
+kbuy_card_cvc2 = 'kbuy_card_cvc2'
 
 #buy 4
-buy_ticket_final_seat = 'buy_ticket_final_seat'
-buy_ticket_seat_from = 'buy_ticket_seat_from'
+kbuy_ticket_final_seat = 'kbuy_ticket_final_seat'
+kbuy_ticket_seat_from = 'kbuy_ticket_seat_from'
 
 class session_util(object):
     @staticmethod
