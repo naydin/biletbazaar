@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 import datetime
 from biletbazaar.validation_util import *
+from biletbazaar.session_util import *
 
 def base(request):
     selected_city_name = u''
@@ -70,7 +71,7 @@ valid_ticket_count_range = range(1,7)
 def bilet_detaylari(request):
     if request.method == 'POST':
         try:        
-            event_id = request.session['sell_event_id']
+            event_id = request.session[ksell_event_id]
             event = Event.objects.get(id=event_id)
             
             ticket_count = ''
@@ -120,11 +121,11 @@ def bilet_detaylari(request):
             #TODO:seat_number limit validation
 
             if ticket_count_error =='' and seat_category_error == '' and seat_row_error == '' and seat_number_error == '' :
-                request.session['sell_ticket_count'] = ticket_count
-                request.session['sell_seat_category'] = seat_category
-                request.session['sell_seat_row'] = seat_row
-                request.session['sell_seat_number_from'] = seat_number_from
-                request.session['sell_seat_number_to'] = seat_number_to
+                request.session[ksell_ticket_count] = ticket_count
+                request.session[ksell_seat_category] = seat_category
+                request.session[ksell_seat_row] = seat_row
+                request.session[ksell_seat_number_from] = seat_number_from
+                request.session[ksell_seat_number_to] = seat_number_to
             
                 return redirect('/fiyatlandir')
         except Exception as e:
@@ -154,7 +155,7 @@ def bilet_detaylari(request):
                 event_id = request.GET['event_id']
                 event = Event.objects.get(id=event_id)
                 
-                request.session['sell_event_id'] = event_id
+                request.session[ksell_event_id] = event_id
                 
                 ticket_count_list = valid_ticket_count_range
                 seat_category_list = event.getSeatCategories()
@@ -176,12 +177,12 @@ def bilet_detaylari(request):
 #sell step 3: fiyatlandır page    
 def fiyatlandir(request):
     try:
-        event = Event.objects.get(id = request.session['sell_event_id'])
-        ticket_count = request.session['sell_ticket_count']
-        seat_category = request.session['sell_seat_category']
-        seat_row = request.session['sell_seat_row']
-        seat_number_from = request.session['sell_seat_number_from']
-        seat_number_to = request.session['sell_seat_number_to']
+        event = Event.objects.get(id = request.session[ksell_event_id])
+        ticket_count = request.session[ksell_ticket_count]
+        seat_category = request.session[ksell_seat_category]
+        seat_row = request.session[ksell_seat_row]
+        seat_number_from = request.session[ksell_seat_number_from]
+        seat_number_to = request.session[ksell_seat_number_to]
     except Exception as e:
         return redirect('/anasayfa')
 
@@ -204,8 +205,8 @@ def fiyatlandir(request):
                 ticket_sell_value_error = u'Lütfen geçerli bir fiyat girin.'
             
             if (ticket_face_value_error == '') and (ticket_sell_value_error == ''):
-                request.session['sell_ticket_face_value'] = ticket_face_value
-                request.session['sell_ticket_sell_value'] = ticket_sell_value
+                request.session[ksell_ticket_face_value] = ticket_face_value
+                request.session[ksell_ticket_sell_value] = ticket_sell_value
             
                 return redirect('/teslimat')
                 
@@ -259,11 +260,11 @@ def teslimat(request):
             
             
             if ship_name_error == '' and ship_surname_error == '' and ship_city_error == '' and ship_neighbourhood_error == '' and ship_address_error == '' :
-                request.session['ship_name'] = ship_name
-                request.session['ship_surname'] = ship_surname
-                request.session['ship_city'] = ship_city
-                request.session['ship_neighbourhood'] = ship_neighbourhood
-                request.session['ship_address'] = ship_address
+                request.session[ksell_ship_name] = ship_name
+                request.session[ksell_ship_surname] = ship_surname
+                request.session[ksell_ship_city] = ship_city
+                request.session[ksell_ship_neighbourhood] = ship_neighbourhood
+                request.session[ksell_ship_address] = ship_address
                 
                 
                 return redirect('/onayla')
@@ -291,13 +292,13 @@ def onayla(request):
     iban_error = ''
     
     try:
-        event = Event.objects.get(id=request.session['sell_event_id'])
-        ticket_count = request.session['sell_ticket_count']
-        seat_category = request.session['sell_seat_category']
-        seat_row = request.session['sell_seat_row']
-        seat_number_from = request.session['sell_seat_number_from']
-        seat_number_to = request.session['sell_seat_number_to']
-        ticket_sell_value = request.session['sell_ticket_sell_value']
+        event = Event.objects.get(id=request.session[ksell_event_id])
+        ticket_count = request.session[ksell_ticket_count]
+        seat_category = request.session[ksell_seat_category]
+        seat_row = request.session[ksell_seat_row]
+        seat_number_from = request.session[ksell_seat_number_from]
+        seat_number_to = request.session[ksell_seat_number_to]
+        ticket_sell_value = request.session[ksell_ticket_sell_value]
     except Exception as e:
         # print '%s (%s)' % (e.message, type(e))
         return redirect('/anasayfa')
@@ -317,19 +318,19 @@ def onayla(request):
                 iban_error = error_message
             
             if name_error == '' and surname_error == '' and iban_error == '':
-                event = Event.objects.get(id = request.session['sell_event_id'])
-                ticket_count = request.session['sell_ticket_count']
-                seat_category = request.session['sell_seat_category']
-                seat_row = request.session['sell_seat_row']
-                seat_number_from = request.session['sell_seat_number_from']
-                seat_number_to = request.session['sell_seat_number_to']
-                ticket_face_value = request.session['sell_ticket_face_value']
-                ticket_sell_value = request.session['sell_ticket_sell_value']
-                ship_name = request.session['ship_name']
-                ship_surname = request.session['ship_surname']
-                ship_city = request.session['ship_city']
-                ship_neighbourhood = request.session['ship_neighbourhood']
-                ship_address = request.session['ship_address']
+                event = Event.objects.get(id = request.session[ksell_event_id])
+                ticket_count = request.session[ksell_ticket_count]
+                seat_category = request.session[ksell_seat_category]
+                seat_row = request.session[ksell_seat_row]
+                seat_number_from = request.session[ksell_seat_number_from]
+                seat_number_to = request.session[ksell_seat_number_to]
+                ticket_face_value = request.session[ksell_ticket_face_value]
+                ticket_sell_value = request.session[ksell_ticket_sell_value]
+                ship_name = request.session[ksell_ship_name]
+                ship_surname = request.session[ksell_ship_surname]
+                ship_city = request.session[ksell_ship_city]
+                ship_neighbourhood = request.session[ksell_ship_neighbourhood]
+                ship_address = request.session[ksell_ship_address]
                
                 
                 shipment_info = ShipmentInfo()
@@ -373,7 +374,7 @@ def onayla(request):
                 
                 #TODO: session variables should be deleted
                 
-                request.session['sell_ticket_id'] = ticket.id
+                request.session[ksell_ticket_id] = ticket.id
                 
                 return redirect('/satis_onay')
             
@@ -398,7 +399,7 @@ def onayla(request):
 
 def satis_onay(request):
     
-    ticket = Ticket.objects.get(id = request.session['sell_ticket_id'])    
+    ticket = Ticket.objects.get(id = request.session[ksell_ticket_id])
 
     return render(request,'sell/share_ticket.html',{
         'ticket':ticket,

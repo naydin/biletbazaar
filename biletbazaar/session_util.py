@@ -23,6 +23,25 @@ kbuy_card_cvc2 = 'kbuy_card_cvc2'
 kbuy_ticket_final_seat = 'kbuy_ticket_final_seat'
 kbuy_ticket_seat_from = 'kbuy_ticket_seat_from'
 
+#sell 2
+ksell_event_id = 'ksell_event_id'
+ksell_ticket_count = 'ksell_ticket_count'
+ksell_seat_category = 'ksell_seat_category'
+ksell_seat_row = 'ksell_seat_row'
+ksell_seat_number_from = 'ksell_seat_number_from'
+ksell_seat_number_to = 'ksell_seat_number_to'
+
+#sell 3
+ksell_ticket_face_value = 'ksell_ticket_face_value'
+ksell_ticket_sell_value = 'ksell_ticket_sell_value'
+
+#sell 4
+ksell_ship_name = 'ksell_ship_name'
+ksell_ship_surname = 'ksell_ship_surname'
+ksell_ship_city = 'ksell_ship_city'
+ksell_ship_neighbourhood = 'ksell_ship_neighbourhood'
+ksell_ship_address = 'ksell_ship_address'
+
 class session_util(object):
     @staticmethod
     def clear_buy_step1(request):
