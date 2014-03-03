@@ -6,8 +6,10 @@ from data.models import *
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from biletbazaar.validation_util import *
+from biletbazaar.session_util import *
 
 import datetime
+
 
 
 def biletal1(request):
@@ -15,12 +17,12 @@ def biletal1(request):
         if 'devam' in request.POST:
             
             try:
-                ticket_id = request.session['buy_ticket_id']
+                ticket_id = request.session[buy_ticket_id]
                 ticket = Ticket.objects.get(id = ticket_id)
                 
                 ticket_count = request.POST['buy_ticket_count']
                
-                request.session['buy_ticket_count'] = ticket_count
+                request.session[buy_ticket_count] = ticket_count
                 
                 return redirect('/biletal2')
                 
@@ -29,7 +31,7 @@ def biletal1(request):
         else:
             try:
                 ticket_count = request.POST['buy_ticket_count']
-                request.session['buy_ticket_count'] = ticket_count
+                request.session[buy_ticket_count] = ticket_count
                 
                 ticket_id = request.GET['ticket_id']
                 ticket = Ticket.objects.get(id = ticket_id)
@@ -60,7 +62,7 @@ def biletal1(request):
             ticket = Ticket.objects.get(id = ticket_id)
             ticket_count_list = range(1,int(ticket.ticketCount)+1)
             
-            request.session['buy_ticket_id'] = ticket_id
+            request.session[buy_ticket_id] = ticket_id
             
             event=Event.objects.get(id = ticket.event.id)
             event_group_id = event.eventGroup.id
@@ -218,12 +220,15 @@ def biletal3(request):
 
 @login_required(login_url='/login')    
 def biletal4(request):
-    ticket_id = request.session['buy_ticket_id']
+    ticket_id = request.session[buy_ticket_id]
     ticket = Ticket.objects.get(id = ticket_id)
-    ticket_count = request.session['buy_ticket_count']
-    ticket_final_seat = int(Ticket.objects.get(id = ticket_id).seatNumberFrom)+int(ticket_count)-1
-    request.session['ticket_final_seat'] = ticket_final_seat
-    request.session['ticket_seat_from'] =  ticket.seatNumberFrom
+    ticket_count = request.session[buy_ticket_count]
+    if ticket.seatNumberFrom:
+        ticket_final_seat = int(Ticket.objects.get(id = ticket_id).seatNumberFrom)+int(ticket_count)-1
+        request.session['ticket_final_seat'] = ticket_final_seat
+        request.session['ticket_seat_from'] =  ticket.seatNumberFrom
+    else:
+        ticket_final_seat = None
     if request.method == 'GET':
         
         
@@ -253,7 +258,8 @@ def biletal4(request):
 
         else :
             ticket.ticketCount = after
-            ticket.seatNumberFrom = str(ticket_final_seat+1)
+            if ticket_final_seat:
+                ticket.seatNumberFrom = str(ticket_final_seat+1)
         ticket.save()
             
         user = request.user
@@ -271,13 +277,17 @@ def biletal4(request):
 
 def alis_onay(request):
     
-    ticket = Ticket.objects.get(id = request.session['buy_ticket_id'])    
-    ticket_seat_from = request.session['ticket_seat_from']
+    ticket = Ticket.objects.get(id = request.session['buy_ticket_id'])
+    if ticket.seatNumberFrom:
+        ticket_seat_from = request.session['ticket_seat_from']
+        ticket_seat_from = int(ticket_seat_from)
+    else:
+        ticket_seat_from = None
     buy_ticket_count = request.session['buy_ticket_count']
     ticket_final_seat = request.session['ticket_final_seat']
     return render(request,'buy/share_ticket.html',{
         'ticket':ticket,
-        'ticket_seat_from':int(ticket_seat_from),
+        'ticket_seat_from':ticket_seat_from,
         'buy_ticket_count':int(buy_ticket_count),
         'ticket_final_seat':ticket_final_seat,
                                                    

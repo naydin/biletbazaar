@@ -75,15 +75,19 @@
                 <label id="etkinlik_tarih" style="margin-left:20px;" >{{ticket.event.date}}</label><br /><br />
                 <label id="etkinlik_saat" style="margin-left:20px;">Saat: {{ticket.event.date|date:"h"}}</label><br /><br />
                 
-                <label id="etkinlik_saat" style="margin-left:20px;">Kategori : {{ticket.seatCategory}}</label><br /><br />
-                <label id="etkinlik_saat" style="margin-left:20px;">Sıra No : {{ticket.seatRow}}</label><br /><br />
-                
-                
-                {% if ticket_count == 1 %}
-              		<label id="etkinlik_saat" style="margin-left:20px;">Koltuk No : {{ticket.seatNumberFrom}}</label><br /><br />
-              	{% else %}
-              		<label id="etkinlik_saat" style="margin-left:20px;">Koltuk No : {{ticket.seatNumberFrom}} - {{ticket_final_seat}}</label><br /><br />               
-              	{% endif %}
+				{% if ticket.seatCategory %}
+	                <label id="etkinlik_saat" style="margin-left:20px;">Kategori : {{ticket.seatCategory}}</label><br /><br />
+				{% endif %}
+				{% if ticket.seatRow%}
+	                <label id="etkinlik_saat" style="margin-left:20px;">Sıra No : {{ticket.seatRow}}</label><br /><br />
+                {% endif %}
+                {% if ticket_final_seat %}
+	                {% if ticket_count == 1 %}
+	              		<label id="etkinlik_saat" style="margin-left:20px;">Koltuk No : {{ticket.seatNumberFrom}}</label><br /><br />
+	              	{% else %}
+	              		<label id="etkinlik_saat" style="margin-left:20px;">Koltuk No : {{ticket.seatNumberFrom}} - {{ticket_final_seat}}</label><br /><br />               
+	              	{% endif %}
+				{% endif %}
                 
                 
                 
