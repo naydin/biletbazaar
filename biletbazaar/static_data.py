@@ -7,34 +7,16 @@ import string
 import random
 
 def reset_static_data():
-    users = User.objects.all()
-    for user in users:
-        user.delete()
-    
-    tickets = Ticket.objects.all()
-    for ticket in tickets:
-        ticket.delete()
-        
-    events = Event.objects.all()
-    for event in events:
-        event.delete()
 
-    cities = City.objects.all()
-    for city in cities:
-        city.delete()
-    
-    event_groups = EventGroup.objects.all()    
-    for event_group in event_groups:
-        event_group.delete()
-    
-    payment_infos = PaymentInfo.objects.all()
-    for payment_info in payment_infos:
-        payment_info.delete()
-        
-    shipment_infos = ShipmentInfo.objects.all()
-    for shipment_info in shipment_infos:
-        shipment_info.delete()
-    
+    User.objects.all().delete()
+    Ticket.objects.all().delete()
+    Event.objects.all().delete()
+    City.objects.all().delete()
+    EventGroup.objects.all().delete()
+    PaymentInfo.objects.all().delete()        
+    ShipmentInfo.objects.all().delete()
+
+    print ''
     print '******************************'
     print '*****Deletions completed.*****'
     print '******************************'
@@ -42,7 +24,7 @@ def reset_static_data():
     istanbul = City()
     istanbul.name = "İstanbul"
     istanbul.save()
-
+    
     ankara = City()
     ankara.name = "Ankara"
     ankara.save()
@@ -52,7 +34,7 @@ def reset_static_data():
     izmir.save()
     
     cities = City.objects.all()
-
+    
     eg1 = EventGroup()
     eg1.name = "Duman"
     eg1.description = "Bir Bostanci Klasiği"
@@ -116,7 +98,7 @@ def reset_static_data():
     eg8.saleCount = 80
     eg8.photoUrl = "http://biletbosta.com/media/event_group_photos/teoman_harbiye.jpg"
     eg8.save()
-
+    
     print '******************************'
     print '**Event Groups are created.***'
     print '******************************'
@@ -148,15 +130,15 @@ def reset_static_data():
             for i in range(1,random_seat_row_count):
                     e1.addSeatRow( str(i) )
                 
-
+    
         
         e1.save()
         events.append(e1)
-
+    
     print '******************************'
     print '*****Events are created.******'
     print '******************************'
-
+    
     users = []
     for i in range(0,25):
         u1 = User()
@@ -177,13 +159,13 @@ def reset_static_data():
     print '******************************'
     
     tickets = []
-
+    
     for i in range(0,100):
-
+    
         
         user_random = randrange(0,len(users))
         event_random = randrange(0,len(events))
-
+    
         
         t1 = Ticket()
         t1.user = users[user_random]
@@ -235,3 +217,4 @@ def reset_static_data():
     print '******************************'
     print '******Reset completed.********'
     print '******************************'
+
