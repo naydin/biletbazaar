@@ -372,8 +372,6 @@ def onayla(request):
                 shipment_info.save()
                 payment_info.save()
                 
-                #TODO: session variables should be deleted
-                
                 request.session[ksell_ticket_id] = ticket.id
                 
                 return redirect('/satis_onay')
