@@ -285,6 +285,9 @@ def alis_onay(request):
         ticket_seat_from = None
     ticket_count = request.session[kbuy_ticket_count]
     ticket_final_seat = request.session[kbuy_ticket_final_seat]
+
+    session_util.clear_buy_steps1234(request)
+    
     return render(request,'buy/share_ticket.html',{
         'ticket':ticket,
         'ticket_seat_from':ticket_seat_from,

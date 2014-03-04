@@ -400,7 +400,8 @@ def onayla(request):
 def satis_onay(request):
     
     ticket = Ticket.objects.get(id = request.session[ksell_ticket_id])
-
+    
+    session_util.clear_sell_steps1234(request)
     return render(request,'sell/share_ticket.html',{
         'ticket':ticket,
                                                    
