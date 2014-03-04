@@ -35,6 +35,10 @@ def reset_static_data():
     for shipment_info in shipment_infos:
         shipment_info.delete()
     
+    print '******************************'
+    print '*****Deletions completed.*****'
+    print '******************************'
+    
     istanbul = City()
     istanbul.name = "İstanbul"
     istanbul.save()
@@ -112,6 +116,10 @@ def reset_static_data():
     eg8.saleCount = 80
     eg8.photoUrl = "http://biletbosta.com/media/event_group_photos/teoman_harbiye.jpg"
     eg8.save()
+
+    print '******************************'
+    print '**Event Groups are created.***'
+    print '******************************'
     
     event_groups = EventGroup.objects.all()
     
@@ -145,6 +153,10 @@ def reset_static_data():
         e1.save()
         events.append(e1)
 
+    print '******************************'
+    print '*****Events are created.******'
+    print '******************************'
+
     users = []
     for i in range(0,25):
         u1 = User()
@@ -159,6 +171,10 @@ def reset_static_data():
         u1.last_name = 'aydin'
         u1.save()
         users.append(u1)
+    
+    print '******************************'
+    print '*****Users are created.*******'
+    print '******************************'
     
     tickets = []
 
@@ -188,6 +204,7 @@ def reset_static_data():
         seat_rows = t1.event.getSeatRows()
         if seat_rows:
             seat_row_random = randrange(0,len(seat_rows))
+            t1.seatRow = seat_rows[seat_row_random]
             t1.seatNumberFrom = randrange(1,10)
             t1.seatNumberTo = t1.seatNumberFrom + t1.ticketCount - 1
         t1.isActive = True
@@ -211,3 +228,10 @@ def reset_static_data():
         p1.ticket = t1
         p1.save()
         
+    print '******************************'
+    print '****Tickets are created.******'
+    print '******************************'
+    
+    print '******************************'
+    print '******Reset completed.********'
+    print '******************************'
