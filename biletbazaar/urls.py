@@ -34,6 +34,7 @@ urlpatterns = patterns('',
     url('^admin_panel/$',admin_panel),
 
     url('^reset_data/$',reset_data),
+    url('^paymentTest/$',paymentTest),
     
     #sell
     url('^bilet_ilan/$',bilet_ilan),

@@ -24,6 +24,7 @@ from biletbazaar.utils import *
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from session_util import *
+from paypal_util import *
 
 import urllib
 import urllib2
@@ -35,6 +36,10 @@ import uuid
 selected_city_name_field = "selected_city_name"
 
 from django.contrib import auth
+
+def paymentTest(request):
+    payKey = paypal_util.call_adaptive_payment('aydinnecati-facilitator@gmail.com',1.00)
+    return redirect(paypal_util.payment_url(payKey))
 
 @csrf_exempt
 def fb_login(request):
