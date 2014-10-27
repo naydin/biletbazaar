@@ -4,6 +4,7 @@ import json
 from local_settings import *
 
 sandbox_api_adaptive_pay_url = 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay'
+sandbox_api_adaptive_execute_payment_url = 'https://svcs.sandbox.paypal.com/AdaptivePayments/ExecutePayment'
 sandbox_api_dummy_url = 'https://api-3t.sandbox.paypal.com/nvp'
 sandbox_payment_page_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
 
@@ -53,6 +54,53 @@ class paypal_util(object):
             payKey = jsonDictionary['payKey']
             
             return payKey
+            
+        except Exception as e:
+            return None
+    
+    #returns payKey        
+    @staticmethod
+    def call_chained_delayed_payment_start(receiver_email, amount, returnUrl, cancelUrl):
+        params = {
+            "actionType":"PAY_PRIMARY",
+            "currencyCode":"TRY",
+            "feesPayer":"EACHRECEIVER",
+            "returnUrl":returnUrl,
+            "cancelUrl":cancelUrl,
+            "requestEnvelope":{"errorLanguage":"en_US"},
+            "receiverList":{"receiver":[{"email":"biletbostabusiness@gmail.com", "amount":str(amount), "primary":True},
+                                        {"email":receiver_email, "amount":str(9.0 * amount /10.0), "primary":False}]},
+
+
+        }
+    
+        paymentRequest = urllib2.Request(sandbox_api_adaptive_pay_url, json.dumps(params), http_header)
+    
+        try:
+            resp = urllib2.urlopen(paymentRequest)
+            jsonResponse = resp.read()
+            print('here response='+jsonResponse)
+            jsonDictionary = json.loads(jsonResponse)
+            payKey = jsonDictionary['payKey']
+
+            return payKey
+            
+        except Exception as e:
+            return None
+    
+    #returns json response as string
+    @staticmethod
+    def call_chained_delayed_payment_finish(payKey):
+        params = {
+            "requestEnvelope":{"errorLanguage":"en_US"},
+            "payKey":payKey
+        }
+    
+        paymentRequest = urllib2.Request(sandbox_api_adaptive_execute_payment_url, json.dumps(params), http_header)
+    
+        try:
+            resp = urllib2.urlopen(paymentRequest)
+            return resp.read()
             
         except Exception as e:
             return None

@@ -35,6 +35,7 @@ urlpatterns = patterns('',
 
     url('^reset_data/$',reset_data),
     url('^paymentTest/$',paymentTest),
+    url('^paymentTest2/$',paymentTest2),
     
     #sell
     url('^bilet_ilan/$',bilet_ilan),

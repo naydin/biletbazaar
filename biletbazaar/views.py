@@ -37,9 +37,21 @@ selected_city_name_field = "selected_city_name"
 
 from django.contrib import auth
 
+payKeySaved = ''
+
 def paymentTest(request):
-    payKey = paypal_util.call_adaptive_payment('aydinnecati-facilitator@gmail.com',1.00)
+    global payKeySaved
+    returnUrl = 'http://'+request.META['HTTP_HOST']+'/paymentTest2/'
+    
+    # return HttpResponse(returnUrl)
+    cancelUrl = returnUrl
+    payKey = paypal_util.call_chained_delayed_payment_start('bbseller_unverified@gmail.com', 10.00, returnUrl, cancelUrl)
+    payKeySaved = payKey
     return redirect(paypal_util.payment_url(payKey))
+
+def paymentTest2(request):
+    global payKeySaved
+    return HttpResponse(paypal_util.call_chained_delayed_payment_finish(payKeySaved))
 
 @csrf_exempt
 def fb_login(request):
